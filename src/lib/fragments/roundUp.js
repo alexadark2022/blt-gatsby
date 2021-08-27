@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 export const roundUpFragments = graphql`
   fragment RoundUpPage on WpRoundUp {
     id
-    viewCount
+    # viewCount
     slug
     title
     modified

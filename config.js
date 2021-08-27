@@ -5,7 +5,7 @@ const config = {
     post: "lg",
     archive: "lg",
   },
-  developLimit: 100,
+  // developLimit: 100,
   gatsbySourceWordPressOptions: {
     schema: {
       perPage: 20, // currently set to 100

@@ -13,6 +13,8 @@ const Page = ({ page, ctx }) => {
   const pageTemplate = headlesswp?.pageTemplate || "default"
   const skipTitle = headlesswp?.skipTitle || false
 
+  console.log("ctx", ctx)
+
   const featuredImage =
     page.featuredImage?.node.localFile.childImageSharp.original
   return (

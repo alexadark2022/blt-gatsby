@@ -42,7 +42,7 @@ export const destinationFragments = graphql`
 
   fragment DestinationPage on WpDestination {
     title
-    viewCount
+    # viewCount
     uri
     slug
     id

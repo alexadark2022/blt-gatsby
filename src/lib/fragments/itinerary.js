@@ -29,7 +29,7 @@ export const itineraryFragments = graphql`
 
   fragment ItineraryPage on WpItinerary {
     id
-    viewCount
+    # viewCount
     slug
     title
     uri

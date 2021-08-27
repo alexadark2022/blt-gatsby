@@ -18,8 +18,8 @@ export default DestinationPage
 
 export const pageQuery = graphql`
   query ($uri: String!) {
-    wpDestination(uri: { eq: $uri }) {
-      ...DestinationPage
+    wpPlaceToStay(uri: { eq: $uri }) {
+      ...PlaceToStayPage
     }
   }
 `

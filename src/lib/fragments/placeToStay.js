@@ -47,10 +47,10 @@ export const placeTostayFragments = graphql`
 
   fragment PlaceToStayPage on WpPlaceToStay {
     id
-    viewCount
+
     title
     uri
-    viewCount
+    # viewCount
     featuredImage {
       node {
         ...ListingImage
