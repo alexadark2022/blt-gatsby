@@ -77,6 +77,7 @@ export const destinationFragments = graphql`
       }
       imageGallery {
         ...LargeImage
+        ...ThumbImage
       }
       sidebarTourOperator {
         ... on WpTourOperator {

@@ -105,6 +105,7 @@ export const experienceFragments = graphql`
       }
       imageGallery {
         ...LargeImage
+        ...ThumbImage
       }
       sidebarTourOperator {
         ... on WpTourOperator {

@@ -7,11 +7,11 @@ export const commonFragments = graphql`
     localFile {
       childImageSharp {
         gatsbyImageData(
-          width: 940
-          height: 682
+          # width: 940
+          # height: 626
           quality: 80
-          layout: FULL_WIDTH
-          transformOptions: { fit: COVER }
+          aspectRatio: 1.5
+          layout: CONSTRAINED
         )
         original {
           height
@@ -43,11 +43,9 @@ export const commonFragments = graphql`
   }
 
   fragment ThumbImage on WpMediaItem {
-    altText
-    sourceUrl
-    localFile {
+    thumbLocalFile: localFile {
       childImageSharp {
-        gatsbyImageData(width: 98, height: 65, quality: 80, layout: CONSTRAINED)
+        gatsbyImageData(width: 71, aspectRatio: 1.5, layout: CONSTRAINED)
         original {
           height
           width

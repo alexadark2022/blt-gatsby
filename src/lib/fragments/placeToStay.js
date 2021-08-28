@@ -67,6 +67,7 @@ export const placeTostayFragments = graphql`
       }
       imageGallery {
         ...LargeImage
+        ...ThumbImage
       }
       sidebarTourOperator {
         ... on WpTourOperator {
