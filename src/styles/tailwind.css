@@ -3,62 +3,50 @@
 @tailwind utilities;
 
 @layer base {
-  @font-face {
-    font-family: "Adinda Melia";
-    src: url("/fonts/AdindaMelia.woff2") format("woff2"),
-      url("/fonts/AdindaMelia.woff") format("woff");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "Proxima Nova";
-    src: url("/fonts/ProximaNova-Medium.woff2") format("woff2"),
-      url("/fonts/ProximaNova-Medium.woff") format("woff");
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "Proxima Nova";
-    src: url("/fonts/ProximaNova-Light.woff2") format("woff2"),
-      url("/fonts/ProximaNova-Light.woff") format("woff");
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "Proxima Nova";
-    src: url("/fonts/ProximaNova-Regular.woff2") format("woff2"),
-      url("/fonts/ProximaNova-Regular.woff") format("woff");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "Proxima Nova";
-    src: url("/fonts/ProximaNova-Semibold.woff2") format("woff2"),
-      url("/fonts/ProximaNova-Semibold.woff") format("woff");
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
+  #___gatsby {
+    @apply text-base text-text;
   }
   a {
-    @apply transition duration-300 ease-in-out text-blueLink hover:underline;
+    @apply transition duration-300;
   }
-  .collapse-css-transition {
-    @apply duration-300 ease-in-out transition-height;
+
+  h1 {
+    @apply text-3xl font-heading leading-heading sm:text-4xl;
   }
-  .green-marker {
-    background-color: #000000d1;
-    padding: 5px 10px;
-    border-radius: 4px;
+  h2 {
+    @apply text-2xl font-heading leading-heading sm:text-3xl;
   }
-  .orange-box {
-    @apply px-3 py-4 text-lg font-medium leading-tight text-center bg-orange !text-white mb-6 max-w-lg mx-auto;
+  h3 {
+    @apply text-xl font-heading leading-heading sm:text-2xl;
+  }
+  h4 {
+    @apply text-lg font-heading leading-heading sm:text-xl;
+  }
+  h5 {
+    @apply text-sm font-heading leading-heading;
+  }
+  h6 {
+    @apply text-xs font-heading leading-heading;
+  }
+  table {
+    @apply mb-6;
+  }
+  blockquote {
+    @apply px-5;
+  }
+  .content ul {
+    @apply pl-6 mb-6;
+  }
+  .content ol {
+    @apply pl-6 mb-6;
+  }
+  figure {
+    @apply max-w-full;
+  }
+  figure {
+    @apply max-w-full;
+  }
+  iframe {
+    @apply max-w-full;
   }
 }
