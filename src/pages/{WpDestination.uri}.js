@@ -1,11 +1,17 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import { Layout, SidebarSocialShare } from "../components"
+import {
+  CollapseSection,
+  Layout,
+  SidebarSocialShare,
+  SocialShare,
+} from "../components"
 import PageLayout from "../components/layout/PageLayout"
 import { Newsletter } from "../components/Newsletter"
 import { window } from "browser-monads"
 import SidebarTourOperator from "../components/sidebar/SidebarTourOperator"
+import { About } from "../components/layout/About"
 
 const DestinationPage = ({ data }) => {
   const url = window.location.href
@@ -109,7 +115,21 @@ const DestinationPage = ({ data }) => {
           </div>
         }
       >
-        <h1>content</h1>
+        {/* Review */}
+        <CollapseSection title="Our review" id="our-review">
+          <About
+            writer={writer && writer[0]}
+            date={modified}
+            about={about}
+            review={review}
+            socialShare={<SocialShare url={url} />}
+            text="Know someone who would like this place to stay? Why not let them know…"
+          >
+            {/* <TitleContent title="Orientation" content={orientation} />
+          <TitleContent title="Culture & Customs" content={culture} />
+          <TitleContent title="Food & Drink" content={foodDrink} /> */}
+          </About>
+        </CollapseSection>
       </PageLayout>
     </Layout>
   )
