@@ -27,7 +27,7 @@ const SidebarTourOperator = ({
         Ask the experts
       </Typo>
       <div className="flex justify-center mt-3 mb-4">
-        <StaticImage
+        <img
           src="/images/underline.svg"
           width={111}
           height={8}

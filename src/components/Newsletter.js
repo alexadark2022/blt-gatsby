@@ -61,10 +61,10 @@ const EbookCheckboxes = ({ homeNl }) => {
 }
 
 const EbookImage = ({ ...props }) => (
-  <StaticImage
+  <img
     src="/images/newsletter-image.png"
-    objectFit="cover"
-    objectPosition="center"
+    // objectFit="cover"
+    // objectPosition="center"
     alt="newsletter image"
     {...props}
   />
@@ -91,7 +91,7 @@ const Newsletter = ({ home }) => {
           Want one of these?
         </Typo>
         <div className="flex justify-center mt-3 mb-base2">
-          <StaticImage
+          <img
             src="/images/underline.svg"
             width={111}
             height={8}
@@ -150,7 +150,7 @@ const NewsletterHome = ({ className, ...props }) => {
                 Want one of these?
               </h3>
               <div className="flex justify-center mt-3 mb-base2">
-                <StaticImage
+                <img
                   src="/images/underline.svg"
                   width={111}
                   height={8}
