@@ -10,7 +10,9 @@ export const Tabs = ({ tabs = [], className, ...props }) => {
     <div
       className={clsx(
         // 'flex flex-wrap justify-start -mx-1 md:justify-between sm:flex-nowrap',
-        `grid md:grid-cols-${tabs.length} grid-cols-2 sm:grid-cols-3 gap-1`,
+        `grid ${
+          tabs.length === 6 ? "md:grid-cols-6" : "md:grid-cols-5"
+        } grid-cols-2 sm:grid-cols-3 gap-1`,
         className
       )}
       {...props}
