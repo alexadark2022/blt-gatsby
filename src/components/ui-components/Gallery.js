@@ -7,6 +7,7 @@ import "../../styles/slick/slick.scss"
 
 export const Gallery = ({ images = [], ...props }) => {
   const isLarge = useMediaQuery("(min-width:800px)")
+  //TODO fix caption
   const desktopSettings = {
     customPaging: function customPaging(i) {
       const img = images[i]

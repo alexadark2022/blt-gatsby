@@ -5,6 +5,7 @@ import { Layout, SidebarSocialShare } from "../components"
 import PageLayout from "../components/layout/PageLayout"
 import { Newsletter } from "../components/Newsletter"
 import { window } from "browser-monads"
+import SidebarTourOperator from "../components/sidebar/SidebarTourOperator"
 
 const DestinationPage = ({ data }) => {
   const url = window.location.href
@@ -97,14 +98,14 @@ const DestinationPage = ({ data }) => {
           <div className="space-y-base2">
             <Newsletter />
             <SidebarSocialShare url={url} />
-            {/* {sidebarTourOperator &&
-            sidebarTourOperator.map((to, index) => (
-              <SidebarTourOperator
-                key={index}
-                tourOperator={to}
-                description={sbtouroperatordescription}
-              />
-            ))} */}
+            {sidebarTourOperator &&
+              sidebarTourOperator.map((to, index) => (
+                <SidebarTourOperator
+                  key={index}
+                  tourOperator={to}
+                  description={sbtouroperatordescription}
+                />
+              ))}
           </div>
         }
       >
