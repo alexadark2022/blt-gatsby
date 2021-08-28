@@ -59,6 +59,9 @@ const Page = ({ page, ctx }) => {
                   dangerouslySetInnerHTML={{ __html: title }}
                 />
               )}
+              <div className="p-10 text-5xl text-white font-script orange-box rounded-xl">
+                test
+              </div>
 
               <div
                 className="entry-content"
