@@ -1,12 +1,15 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import { Layout } from "../components"
+import { Layout, SidebarSocialShare } from "../components"
 import PageLayout from "../components/layout/PageLayout"
+import { Newsletter } from "../components/Newsletter"
+import { window } from "browser-monads"
 
 const DestinationPage = ({ data }) => {
+  const url = window.location.href
   const { wpDestination: destination } = data || {}
-  console.log("data", destination)
+
   const {
     title,
     modified,
@@ -92,8 +95,8 @@ const DestinationPage = ({ data }) => {
         intro="Best things to do & places to stay in:"
         sidebar={
           <div className="space-y-base2">
-            {/* <Newsletter /> */}
-            {/* <SidebarSocialShare url={url} /> */}
+            <Newsletter />
+            <SidebarSocialShare url={url} />
             {/* {sidebarTourOperator &&
             sidebarTourOperator.map((to, index) => (
               <SidebarTourOperator

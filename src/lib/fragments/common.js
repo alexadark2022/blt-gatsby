@@ -45,7 +45,7 @@ export const commonFragments = graphql`
   fragment ThumbImage on WpMediaItem {
     thumbLocalFile: localFile {
       childImageSharp {
-        gatsbyImageData(width: 71, aspectRatio: 1.5, layout: CONSTRAINED)
+        gatsbyImageData(width: 105, aspectRatio: 1.5, layout: CONSTRAINED)
         original {
           height
           width

@@ -1,11 +1,6 @@
-import tw, { styled } from "twin.macro"
+import styled from "@emotion/styled"
+import tw from "twin.macro"
 
-const Input = styled.input(() => [
-  tw`text-base bg-transparent`,
-  tw`border-0 border-b border-current `,
-  tw`shadow-input focus:shadow-inputFocus`,
-  tw`transition`,
-  tw`px-0 rounded-none`,
+export const Input = styled.input(() => [
+  tw`w-full border-2 border-grey2 focus:placeholder-transparent focus:border-grey3 focus:ring-transparent`,
 ])
-
-export { Input }
