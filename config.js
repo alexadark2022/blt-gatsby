@@ -7,12 +7,12 @@ const config = {
   },
   // developLimit: 100,
   gatsbySourceWordPressOptions: {
-    // schema: {
-    //   perPage: 20, // currently set to 100
-    //   requestConcurrency: 1, // currently set to 15
-    //   previewRequestConcurrency: 1, // currently set to 5
-    //   timeout: 60000,
-    // },
+    schema: {
+      perPage: 20, // currently set to 100
+      requestConcurrency: 1, // currently set to 15
+      previewRequestConcurrency: 1, // currently set to 5
+      timeout: 60000,
+    },
     develop: {
       hardCacheData: true,
     },
