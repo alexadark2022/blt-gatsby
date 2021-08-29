@@ -60,7 +60,7 @@ export const commonFragments = graphql`
     sourceUrl
     localFile {
       childImageSharp {
-        gatsbyImageData(quality: 80, layout: FULL_WIDTH)
+        gatsbyImageData(quality: 80, height: 880, layout: FULL_WIDTH)
       }
     }
   }

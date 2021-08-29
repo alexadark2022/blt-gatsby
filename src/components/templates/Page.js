@@ -1,22 +1,30 @@
-import React from "react"
-import { Container, Card } from "baseUiComponents"
-import { Layout, Sidebar } from "baseComponents"
-import { ActivatePageScripts } from "baseUtils"
+import React, { useEffect } from "react";
 
-import ParsedContent from "baseUtils/ParsedContent"
+import { Layout } from "../Layout";
 
-import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo"
-import { gutenbergStyles } from "baseStyles/gutenbergStyles"
+import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
+import { FrontPage } from "../frontPage";
 
 const Page = ({ page, ctx }) => {
-  const { title, isFrontPage, content, uri, headlesswp } = page
-  const pageTemplate = headlesswp?.pageTemplate || "default"
-  const skipTitle = headlesswp?.skipTitle || false
+  console.log("page", page);
+  const {
+    title,
+    isFrontPage,
+    content,
+    slug,
+    aboutPageContent,
+    awards,
+    contactUs,
+    faq,
+    homeHero,
+    whatWeOffer,
+    uri,
+  } = page;
 
-  console.log("ctx", ctx)
+  console.log("ctx", ctx);
 
   const featuredImage =
-    page.featuredImage?.node.localFile.childImageSharp.original
+    page.featuredImage?.node.localFile.childImageSharp.original;
   return (
     <Layout page={page} type="page">
       <Seo
@@ -33,56 +41,9 @@ const Page = ({ page, ctx }) => {
           }
         }
       />
-      <Container className="mainContainer">
-        <div
-          className="flex"
-          css={{
-            flexWrap: { base: "wrap", lg: "nowrap" },
-            alignItems: `flex-start`,
-          }}
-        >
-          <article className="entry">
-            <Card
-              className="content page-content"
-              sx={
-                pageTemplate === "full width" && {
-                  p: 0,
-                  borderRadius: 0,
-                  boxShadow: 0,
-                }
-              }
-              mb={{ base: 14, lg: 0 }}
-            >
-              {!skipTitle && pageTemplate !== "full width" && (
-                <h1
-                  className="mb-10 text-3xl text-center uppercase page-title"
-                  dangerouslySetInnerHTML={{ __html: title }}
-                />
-              )}
-              <div className="p-10 text-5xl text-white font-script orange-box rounded-xl">
-                test
-              </div>
-
-              <div
-                className="entry-content"
-                css={{
-                  ...gutenbergStyles,
-                  "&:after": {
-                    clear: "both",
-                    content: "''",
-                    display: "block",
-                  },
-                }}
-              >
-                <ActivatePageScripts />
-                <ParsedContent content={content} />
-              </div>
-            </Card>
-          </article>
-        </div>
-      </Container>
+      {isFrontPage && <FrontPage homeHero={homeHero} />}
     </Layout>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;

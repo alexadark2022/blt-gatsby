@@ -7,7 +7,6 @@ import { Footer } from "./footer";
 export const Layout = ({ children, page, type = "page", ...props }) => {
   const layoutClass = page !== undefined ? (page.slug ? page.slug : page) : "";
   const pageTemplate = page?.headlesswp?.pageTemplate;
-  console.log("page", page, pageTemplate);
 
   const fullWidthClass = pageTemplate === "full width" ? "fullWidth" : "";
   return (
@@ -35,17 +34,8 @@ export const Layout = ({ children, page, type = "page", ...props }) => {
       >
         <Header />
 
-        <main
-          className="flex-1 py-16"
-          css={{
-            ".fullWidth &": {
-              paddingTop: 0,
-              paddingBottom: 0,
-            },
-          }}
-        >
-          {children}
-        </main>
+        {children}
+
         <Footer />
       </div>
     </>
