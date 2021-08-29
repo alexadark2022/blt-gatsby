@@ -4,9 +4,10 @@ import { Layout } from "../Layout";
 
 import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
 import { FrontPage } from "../frontPage";
+import { window } from "browser-monads";
 
-const Page = ({ page, ctx }) => {
-  console.log("page", page);
+const Page = ({ page, ctx, location }) => {
+  const url = window.location.href;
   const {
     title,
     isFrontPage,
@@ -41,7 +42,14 @@ const Page = ({ page, ctx }) => {
           }
         }
       />
-      {isFrontPage && <FrontPage homeHero={homeHero} />}
+      {isFrontPage && (
+        <FrontPage
+          homeHero={homeHero}
+          whatWeOffer={whatWeOffer}
+          url={url}
+          awards={awards}
+        />
+      )}
     </Layout>
   );
 };
