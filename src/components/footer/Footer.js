@@ -1,5 +1,5 @@
 import React from "react";
-// import { RecentlyViewed } from 'components'
+import { RecentlyViewed } from "./RecentlyViewed";
 import { useStaticQuery, Link, graphql } from "gatsby";
 import clsx from "clsx";
 import { FaFacebookSquare as Fb, FaInstagram as Insta } from "react-icons/fa";
@@ -38,7 +38,7 @@ export const Footer = () => {
   const { nodes: menuItems } = data.footerMenu;
   return (
     <>
-      {/* <RecentlyNoSSR /> */}
+      <RecentlyViewed />
       <footer className="pb-10 bg-darkBlue pt-14 text-[20px]">
         <div
           className={clsx(
