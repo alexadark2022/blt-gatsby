@@ -4,7 +4,7 @@ import { CollapseSection } from "../ui-components";
 export const FaqPage = ({ faq, ...props }) => {
   return (
     <>
-      {faq.faq.map((item, i) => {
+      {faq.faq?.map((item, i) => {
         const { title, content } = item;
         return (
           <CollapseSection key={i} title={title} {...props}>

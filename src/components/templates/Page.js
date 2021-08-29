@@ -62,7 +62,7 @@ const Page = ({ page, ctx, location }) => {
             </div>
           }
         >
-          {faq && <FaqPage faq={faq} />}
+          {slug.includes("faq") && <FaqPage faq={faq} />}
         </PageLayout>
       )}
     </Layout>
