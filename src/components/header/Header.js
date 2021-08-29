@@ -1,36 +1,41 @@
-import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import { Menu, SiteBranding, SlideSidebar } from "baseComponents"
-import { Container } from "baseUiComponents"
-import Headroom from "react-headroom"
+import React from "react";
+import { Menu } from "./Menu";
+import { MobileMenu } from "./MobileMenu";
+import { HeaderSearch } from "./HeaderSearch";
+import { HeaderMobileSearch } from "./HeaderMobileSearch";
+import clsx from "clsx";
+import { window } from "browser-monads";
+
+import { Branding } from "./Branding";
 
 export const Header = () => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      wp {
-        generalSettings {
-          title
-          url
-        }
-      }
-    }
-  `)
-
-  const { title } = data.wp.generalSettings
+  const path = window.location.href;
 
   return (
-    <Headroom>
-      <header className="py-4 bg-white shadow-md">
-        <Container className="flex justify-between">
-          <div className="flex items-center">
-            <SiteBranding title={title} />
-          </div>
-          <div className="flex">
-            <Menu orientation="H" className="hidden lg:block" />
-            <SlideSidebar className="lg:hidden" />
-          </div>
-        </Container>
-      </header>
-    </Headroom>
-  )
-}
+    <header className="relative py-3 bg-darkBlue">
+      <div
+        className={clsx(
+          "flex items-center justify-between",
+          "container max-w-big",
+          "px-5 py-2 sm:py-0 2xl:px-0 "
+        )}
+      >
+        <Branding />
+
+        {path !== "/" && !path?.includes("search") && path !== "/404" && (
+          <HeaderSearch className="hidden xl:block" />
+        )}
+        <div className="flex items-center space-x-5">
+          <Menu className="hidden lg:flex" />
+          <HeaderMobileSearch className="hidden mr-5 lg:block xl:hidden" />
+        </div>
+        <div className={clsx("lg:hidden", "flex")}>
+          {path !== "/" && !path?.includes("search") && path !== "/404" && (
+            <HeaderMobileSearch className="mr-5" />
+          )}
+          <MobileMenu />
+        </div>
+      </div>
+    </header>
+  );
+};

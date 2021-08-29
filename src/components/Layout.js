@@ -1,14 +1,14 @@
-import React from "react"
-import { Footer, Header } from "baseComponents"
-import { HelmetForFavicon } from "./HelmetForFavicon"
-import clsx from "clsx"
+import React from "react";
+import { HelmetForFavicon } from "./HelmetForFavicon";
+import clsx from "clsx";
+import { Header } from "./header";
 
 export const Layout = ({ children, page, type = "page", ...props }) => {
-  const layoutClass = page !== undefined ? (page.slug ? page.slug : page) : ""
-  const pageTemplate = page?.headlesswp?.pageTemplate
-  console.log("page", page, pageTemplate)
+  const layoutClass = page !== undefined ? (page.slug ? page.slug : page) : "";
+  const pageTemplate = page?.headlesswp?.pageTemplate;
+  console.log("page", page, pageTemplate);
 
-  const fullWidthClass = pageTemplate === "full width" ? "fullWidth" : ""
+  const fullWidthClass = pageTemplate === "full width" ? "fullWidth" : "";
   return (
     <>
       <HelmetForFavicon />
@@ -45,8 +45,8 @@ export const Layout = ({ children, page, type = "page", ...props }) => {
         >
           {children}
         </main>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
-  )
-}
+  );
+};

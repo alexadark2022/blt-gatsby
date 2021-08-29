@@ -83,4 +83,11 @@ export const commonFragments = graphql`
     slug
     name
   }
+
+  fragment MenuItem on WpMenuItem {
+    label
+    path
+    id
+    cssClasses
+  }
 `;
