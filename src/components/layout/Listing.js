@@ -1,16 +1,14 @@
-import React, { useState } from "react"
-import clsx from "clsx"
-import { Image } from "../images"
-import { Link } from "gatsby"
-
-import Collapse from "@kunukn/react-collapse"
-
-import { FaChevronDown } from "react-icons/fa"
-
-import { useBucketList } from "../../lib/hooks/useBucketList"
-import { Button } from ".."
-import { Price } from "../Price"
-import { ListingBottomInfo } from "./ListingBottomInfo"
+import React, { useState } from "react";
+import clsx from "clsx";
+import { Image } from "../images";
+import { Link } from "gatsby";
+import Collapse from "@kunukn/react-collapse";
+import { FaChevronDown } from "react-icons/fa";
+import { useBucketList } from "../../lib/hooks/useBucketList";
+import { Button } from "..";
+import { Price } from "../Price";
+import { ListingBottomInfo } from "./ListingBottomInfo";
+import { AddToBlButton } from "../bucket-list/AddToBlButton";
 //TODO add LInk to button
 
 export const Listing = ({
@@ -25,17 +23,17 @@ export const Listing = ({
   nested = false,
   ...props
 }) => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
-  let { title, intro, externalLink, link } = item || {}
+  let { title, intro, externalLink, link } = item || {};
 
   let { featuredImage, uri, commonDataAttributes, customDataAttributes } = link
     ? link[0] || {}
-    : item || {}
+    : item || {};
 
-  let { standfirst, country } = commonDataAttributes || {}
+  let { standfirst, country } = commonDataAttributes || {};
 
-  const { addToBl, removeFromBl, isAdded } = useBucketList(item)
+  const { addToBl, removeFromBl, isAdded } = useBucketList(item);
 
   let {
     starRating,
@@ -49,15 +47,15 @@ export const Listing = ({
     city,
     region,
     summaryBio,
-  } = customDataAttributes || {}
+  } = customDataAttributes || {};
 
-  website = externalLink ? externalLink : website
+  website = externalLink ? externalLink : website;
   uri =
     profile === "full" || pts || itinerary || writer || roundUp || nested
       ? uri
       : website
       ? website
-      : "#"
+      : "#";
 
   const img = featuredImage ? (
     <Image
@@ -72,7 +70,7 @@ export const Listing = ({
     <div className="flex items-center justify-center col-span-1 bg-veryLightGold w-[249px] h-[166px] text-grey4 ">
       No Image
     </div>
-  )
+  );
   return (
     <div className={clsx("shadow-listing", "p-2 pr-3 mb-5", className)}>
       <div className={clsx("flex justify-between")} {...props}>
@@ -121,7 +119,7 @@ export const Listing = ({
 
         {/* Right: Buttons */}
         <div className="flex flex-col items-end justify-between">
-          {/* {!noBl ? (
+          {!noBl ? (
             isAdded ? (
               <AddToBlButton remove addToBl={removeFromBl} />
             ) : (
@@ -129,7 +127,7 @@ export const Listing = ({
             )
           ) : (
             <div></div>
-          )} */}
+          )}
           {/* Website or link to profile (read our review) */}
           {profile === "full" ||
           itinerary ||
@@ -160,8 +158,8 @@ export const Listing = ({
               secondary
               className="leading-none !text-[11px]"
               onClick={(e) => {
-                e.preventDefault()
-                setOpen(!open)
+                e.preventDefault();
+                setOpen(!open);
               }}
               css={{
                 "&:hover": {
@@ -197,5 +195,5 @@ export const Listing = ({
         </Collapse>
       )}
     </div>
-  )
-}
+  );
+};

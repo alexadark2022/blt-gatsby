@@ -1,0 +1,163 @@
+import React from "react";
+import { Image } from "../images";
+import { Link } from "gatsby";
+import clsx from "clsx";
+import { useBucketList } from "../../lib/hooks/useBucketList";
+import { Button } from "..";
+import { AddToBlButton } from "../bucket-list/AddToBlButton";
+import { ListingBottomInfo } from "./ListingBottomInfo";
+//TODO fix images
+export const ListingCard = ({
+  item,
+  pts,
+  itinerary,
+  writer,
+  noBl,
+  roundUp,
+  nested,
+  className,
+  ...props
+}) => {
+  let { title, intro, externalLink, link } = item;
+  let { featuredImage, uri, commonDataAttributes, customDataAttributes } = link
+    ? link[0] || {}
+    : item || {};
+
+  let { country, standfirst } = commonDataAttributes || {};
+
+  let {
+    city,
+    region,
+    website,
+    profile,
+    starRating,
+    minAge,
+    priceFrom,
+    duration,
+    whenIsIt,
+    summaryBio,
+  } = customDataAttributes || {};
+
+  website = externalLink ? externalLink : website;
+  uri =
+    profile === "full" || pts || itinerary || writer || roundUp || nested
+      ? uri
+      : website
+      ? website
+      : "#";
+  const { addToBl, removeFromBl, isAdded } = useBucketList(item);
+
+  const img = featuredImage ? (
+    <Image
+      img={featuredImage.node.localFile}
+      alt={title}
+      width={249}
+      height={166}
+      objectFit="cover"
+      objectPosition="center"
+    />
+  ) : (
+    <div className="flex items-center justify-center w-full h-full bg-veryLightGold">
+      no image
+    </div>
+  );
+
+  const isFull = profile === "full" || itinerary || pts || writer;
+
+  return (
+    <div className={clsx("relative", className)} {...props}>
+      {!noBl ? (
+        isAdded ? (
+          <AddToBlButton
+            remove
+            addToBl={removeFromBl}
+            className="absolute z-30 px-2 py-1 text-2xl text-white cursor-pointer top-2 right-2"
+          />
+        ) : (
+          <AddToBlButton
+            add
+            addToBl={addToBl}
+            className="absolute z-30 px-2 py-1 text-2xl text-white cursor-pointer top-2 right-2"
+          />
+        )
+      ) : (
+        <div></div>
+      )}
+      <Link
+        to={`${uri}`}
+        className="hover:no-underline"
+        target={isFull ? "_self" : "_blank"}
+        rel={isFull ? "preload" : "noopener noreferrer"}
+      >
+        <div
+          className={clsx(
+            "h-full w-[300px] lg:w-[300px] xl:w-[275px]  shadow-listing relative"
+            // 'flex flex-col justify-between'
+          )}
+          {...props}
+        >
+          <div className="h-[187px] w-full flex relative">
+            {/* Image */}
+            {img}
+          </div>
+          {/* Content */}
+
+          <div className={clsx("p-4 text-center space-y-5")}>
+            {/* Title and city */}
+            <div>
+              <h3
+                className={clsx(
+                  "leading-tight text-f-24 text-grey4 font-medium"
+                )}
+                dangerouslySetInnerHTML={{ __html: title }}
+              />
+
+              <div className={clsx("text-f-18 !text-grey4")}>
+                {city ? city : region ? region : country?.name}
+              </div>
+            </div>
+            {/* Intro */}
+            <div
+              dangerouslySetInnerHTML={{
+                __html: intro ? intro : summaryBio ? summaryBio : standfirst,
+              }}
+              className="leading-tight prose text-left "
+            />
+            {/* Website or link to profile (read our review) */}
+            <div className="space-y-5">
+              <ListingBottomInfo
+                starRating={starRating}
+                minAge={minAge}
+                priceFrom={priceFrom}
+                whenIsIt={whenIsIt}
+                card
+                className="justify-center"
+              />
+              <div className="flex justify-center">
+                {profile === "full" || itinerary || pts || writer || nested ? (
+                  <Link to={uri}>
+                    <Button secondary>
+                      {writer ? "Read more" : "Read review"}
+                    </Button>
+                  </Link>
+                ) : (
+                  website && (
+                    <Button
+                      secondary
+                      as="a"
+                      href={website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      See Website
+                    </Button>
+                  )
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </Link>
+    </div>
+  );
+};
