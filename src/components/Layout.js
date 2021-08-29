@@ -2,6 +2,7 @@ import React from "react";
 import { HelmetForFavicon } from "./HelmetForFavicon";
 import clsx from "clsx";
 import { Header } from "./header";
+import { Footer } from "./footer";
 
 export const Layout = ({ children, page, type = "page", ...props }) => {
   const layoutClass = page !== undefined ? (page.slug ? page.slug : page) : "";
@@ -45,7 +46,7 @@ export const Layout = ({ children, page, type = "page", ...props }) => {
         >
           {children}
         </main>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </>
   );
