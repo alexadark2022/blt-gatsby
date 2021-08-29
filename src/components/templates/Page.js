@@ -5,6 +5,9 @@ import { Layout } from "../Layout";
 import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
 import { FrontPage } from "../frontPage";
 import { window } from "browser-monads";
+import { FaqPage } from "../pageLayouts/FaqPage";
+import { Newsletter, SidebarSocialShare } from "..";
+import PageLayout from "../layout/PageLayout";
 
 const Page = ({ page, ctx, location }) => {
   const url = window.location.href;
@@ -42,13 +45,25 @@ const Page = ({ page, ctx, location }) => {
           }
         }
       />
-      {isFrontPage && (
+      {isFrontPage ? (
         <FrontPage
           homeHero={homeHero}
           whatWeOffer={whatWeOffer}
           url={url}
           awards={awards}
         />
+      ) : (
+        <PageLayout
+          title={title}
+          sidebar={
+            <div className="space-y-base2">
+              <Newsletter />
+              <SidebarSocialShare url={url} />
+            </div>
+          }
+        >
+          {faq && <FaqPage faq={faq} />}
+        </PageLayout>
       )}
     </Layout>
   );
