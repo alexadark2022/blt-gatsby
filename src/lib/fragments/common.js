@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 
 export const commonFragments = graphql`
   fragment LargeImage on WpMediaItem {
@@ -55,6 +55,16 @@ export const commonFragments = graphql`
     }
   }
 
+  fragment FullImage on WpMediaItem {
+    altText
+    sourceUrl
+    localFile {
+      childImageSharp {
+        gatsbyImageData(quality: 80, layout: FULL_WIDTH)
+      }
+    }
+  }
+
   fragment Tag on WpTag {
     id
     uri
@@ -73,4 +83,4 @@ export const commonFragments = graphql`
     slug
     name
   }
-`
+`;
