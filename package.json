@@ -14,10 +14,11 @@
     "analyze": "rm -rf .cache && ANALYZE_BUNDLE_SIZE=true gatsby build"
   },
   "dependencies": {
-    "@gatsbywpthemes/gatsby-plugin-gwpt-packages": "1.1.0",
+    "@gatsbywpthemes/gatsby-plugin-gwpt-packages": "1.2.0",
     "@googlemaps/js-api-loader": "^1.12.2",
     "@headlessui/react": "^1.4.0",
     "@kunukn/react-collapse": "^2.2.9",
+    "@reach/tabs": "^0.16.1",
     "@react-google-maps/api": "^2.2.0",
     "@tailwindcss/forms": "^0.3.3",
     "@tailwindcss/line-clamp": "^0.2.1",

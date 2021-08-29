@@ -5,6 +5,10 @@ const config = {
     post: "lg",
     archive: "lg",
   },
+  createCategories: false,
+  createTags: false,
+  // createPosts: false,
+  createUsers: false,
   // developLimit: 100,
   gatsbySourceWordPressOptions: {
     schema: {
