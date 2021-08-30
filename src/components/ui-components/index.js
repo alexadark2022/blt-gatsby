@@ -16,3 +16,4 @@ export * from "./Number";
 export * from "./CollapseSection";
 export * from "./Label";
 export * from "./WithCollapse";
+export * from "./Select";

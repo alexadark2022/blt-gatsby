@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { Layout } from "../Layout";
 
 import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
 import { FrontPage } from "../frontPage";
 import { window } from "browser-monads";
-import { FaqPage, AboutPage } from "../pageLayouts";
+import { FaqPage, AboutPage, ContactPage, MyAccountPage } from "../pageLayouts";
 import { Newsletter } from "../Newsletter";
-import { SidebarSocialShare } from "..";
+import { Section, SidebarSocialShare } from "..";
 import PageLayout from "../layout/PageLayout";
 
-const Page = ({ page, ctx, location }) => {
+const Page = ({ page, ctx }) => {
   const url = window.location.href;
   const {
     title,
@@ -67,6 +67,16 @@ const Page = ({ page, ctx, location }) => {
           {slug.includes("faq") && <FaqPage faq={faq} />}
           {slug.includes("about") && (
             <AboutPage aboutPageContent={aboutPageContent} />
+          )}
+          {slug.includes("contact") && (
+            <ContactPage intro={contactUs?.contactIntro} />
+          )}
+          {slug?.includes("account") && <MyAccountPage />}
+          {content && (
+            <Section
+              dangerouslySetInnerHTML={{ __html: content }}
+              className="mt-5 prose max-w-none p-base2 mb-base2"
+            />
           )}
         </PageLayout>
       )}
