@@ -78,11 +78,11 @@ export const RecentlyViewed = ({ className, ...props }) => {
                 }}
               >
                 <div className="cursor-pointer shadow-listing">
-                  <div className="relative h-[126px] group">
+                  <div className="relative h-[126px]  group">
                     <img
                       src={sourceUrl || "/images/noimage.svg"}
                       alt={altText || "no image"}
-                      className="object-cover object-center"
+                      className="object-cover object-center w-[191px] h-[127px]"
                     />
                   </div>
                   <div className="py-4 text-center px-base group h-[100px]">
@@ -108,7 +108,7 @@ export const RecentlyViewed = ({ className, ...props }) => {
                     <img
                       src={image}
                       alt={"no image"}
-                      className="object-cover object-center"
+                      className="object-cover object-center h-[127px]"
                     />
                   </div>
                   <div className="py-4 text-center px-base group h-[100px]">
