@@ -42,12 +42,37 @@ export const commonFragments = graphql`
     }
   }
 
+  fragment NlImage on WpMediaItem {
+    altText
+    sourceUrl
+    localFile {
+      childImageSharp {
+        gatsbyImageData(
+          width: 991
+          height: 658
+          quality: 80
+          layout: CONSTRAINED
+        )
+        original {
+          height
+          width
+          src
+        }
+      }
+    }
+  }
+
   fragment WriterImage on WpMediaItem {
     altText
     sourceUrl
     localFile {
       childImageSharp {
-        gatsbyImageData(width: 414, height: 276, quality: 80, layout: FIXED)
+        gatsbyImageData(
+          width: 414
+          height: 276
+          quality: 80
+          layout: CONSTRAINED
+        )
         original {
           height
           width

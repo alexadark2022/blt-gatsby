@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import { StaticImage } from "gatsby-plugin-image";
 
 import { FaEnvelope } from "react-icons/fa";
 import {
@@ -68,7 +69,11 @@ const EbookCheckboxes = ({ homeNl }) => {
 
 const EbookImage = ({ ...props }) => (
   <img
-    src="/images/newsletter-image.png"
+    src="/images/nl-image.jpg"
+    width={991}
+    height={658}
+    // quality={80}
+    // layout="fixed"
     // objectFit="cover"
     // objectPosition="center"
     alt="newsletter image"
@@ -80,11 +85,14 @@ const Newsletter = ({ home }) => {
   const isLarge = useMediaQuery("(min-width: 1024px)");
   return (
     <Section className={clsx("")}>
-      <div className="px-3 pt-3">
+      <div className={`px-3 pt-3 `}>
         <EbookImage
-          width={isLarge ? 292 : 1024}
-          height={isLarge ? 195 : 638}
-          priority={isLarge}
+          // width={isLarge ? 292 : 1024}
+          // height={isLarge ? 195 : 638}
+          // priority={isLarge}
+          cllassName={`${
+            isLarge ? "w-[292px] h-[195px] " : "w-[1024px] h-[638px]"
+          } object-cover object-center`}
         />
       </div>
       <div className="px-5 pb-5 mt-3">
