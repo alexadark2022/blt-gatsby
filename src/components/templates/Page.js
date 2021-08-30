@@ -5,8 +5,9 @@ import { Layout } from "../Layout";
 import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
 import { FrontPage } from "../frontPage";
 import { window } from "browser-monads";
-import { FaqPage } from "../pageLayouts/FaqPage";
-import { Newsletter, SidebarSocialShare } from "..";
+import { FaqPage, AboutPage } from "../pageLayouts";
+import { Newsletter } from "../Newsletter";
+import { SidebarSocialShare } from "..";
 import PageLayout from "../layout/PageLayout";
 
 const Page = ({ page, ctx, location }) => {
@@ -25,7 +26,8 @@ const Page = ({ page, ctx, location }) => {
     uri,
   } = page;
 
-  console.log("ctx", ctx);
+  //TODO correct sidebar size
+  const pageTitle = slug === "faq" ? "Frequently asked question" : title;
 
   const featuredImage =
     page.featuredImage?.node.localFile.childImageSharp.original;
@@ -54,7 +56,7 @@ const Page = ({ page, ctx, location }) => {
         />
       ) : (
         <PageLayout
-          title={title}
+          title={pageTitle}
           sidebar={
             <div className="space-y-base2">
               <Newsletter />
@@ -63,6 +65,9 @@ const Page = ({ page, ctx, location }) => {
           }
         >
           {slug.includes("faq") && <FaqPage faq={faq} />}
+          {slug.includes("about") && (
+            <AboutPage aboutPageContent={aboutPageContent} />
+          )}
         </PageLayout>
       )}
     </Layout>

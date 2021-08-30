@@ -18,6 +18,17 @@ export const pageQuery = graphql`
         ourWriters
         aboutImage {
           sourceUrl
+          altText
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                width: 420
+                height: 280
+                quality: 80
+                layout: FIXED
+              )
+            }
+          }
         }
       }
       faq {
