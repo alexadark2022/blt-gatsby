@@ -1,7 +1,7 @@
 import React from "react";
 import { HelmetForFavicon } from "./HelmetForFavicon";
 import clsx from "clsx";
-import { Header } from "./header";
+import { Header } from "./header/Header";
 import { Footer } from "./footer";
 
 export const Layout = ({ children, page, type = "page", ...props }) => {
