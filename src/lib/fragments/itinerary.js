@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 
 export const itineraryFragments = graphql`
   fragment ItineraryListing on WpItinerary {
@@ -76,13 +76,15 @@ export const itineraryFragments = graphql`
 
         links {
           ... on WpExperience {
+            __typename
             ...ExperienceListing
           }
           ... on WpPlaceToStay {
+            __typename
             ...PlaceToStayListing
           }
         }
       }
     }
   }
-`
+`;

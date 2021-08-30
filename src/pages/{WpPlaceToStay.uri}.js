@@ -88,7 +88,7 @@ const DestinationPage = ({ data }) => {
     { name: "map" },
   ];
   return (
-    <Layout page="destination">
+    <Layout page="place-to-stay">
       <PageLayout
         title={title}
         stars={parseInt(starRating)}
