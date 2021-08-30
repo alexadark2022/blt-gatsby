@@ -16,6 +16,7 @@ import { TitleContent } from "../components/layout/TitleContent";
 import { CollapseListings } from "../components/layout/CollapseListings";
 import { IntroText } from "../components/layout/IntroText";
 import { CollapseCards } from "../components/layout/CollapseCards";
+import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed";
 
 const DestinationPage = ({ data }) => {
   const url = window.location.href;
@@ -29,6 +30,9 @@ const DestinationPage = ({ data }) => {
     featuredImage,
     uri,
   } = destination || {};
+
+  const rvData = { title, featuredImage, uri };
+  useRecentlyViewed(rvData);
 
   const {
     imageGallery,
@@ -199,7 +203,7 @@ const DestinationPage = ({ data }) => {
           >
             <div className="mt-5">
               <CollapseListings listings={tourOperators} noBl />
-              {/* <CollapseCards cards={tourOperators} className="md:hidden" noBl /> */}
+              <CollapseCards cards={tourOperators} className="md:hidden" noBl />
             </div>
           </CollapseSection>
         )}
@@ -212,11 +216,11 @@ const DestinationPage = ({ data }) => {
           >
             <div className="mt-5">
               <CollapseListings listings={itineraries} itinerary />
-              {/* <CollapseCards
-              cards={itineraries}
-              className="md:hidden"
-              itineraries
-            /> */}
+              <CollapseCards
+                cards={itineraries}
+                className="md:hidden"
+                itineraries
+              />
             </div>
           </CollapseSection>
         )}
@@ -229,7 +233,7 @@ const DestinationPage = ({ data }) => {
           >
             <div className="mt-5">
               <CollapseListings listings={destinationGuides} destinationGuide />
-              {/* <CollapseCards cards={destinationGuides} className="md:hidden" /> */}
+              <CollapseCards cards={destinationGuides} className="md:hidden" />
             </div>
           </CollapseSection>
         )}
