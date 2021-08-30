@@ -1,10 +1,16 @@
-import React from "react"
-import clsx from "clsx"
-import { StaticImage } from "gatsby-plugin-image"
+import React from "react";
+import clsx from "clsx";
 
-import { FaEnvelope } from "react-icons/fa"
-import { Input, Checkbox, Section, Typo, Button } from "."
-import { useMediaQuery } from "../lib/hooks"
+import { FaEnvelope } from "react-icons/fa";
+import {
+  Input,
+  Checkbox,
+  Section,
+  Typo,
+  Button,
+  Underline,
+} from "./ui-components";
+import { useMediaQuery } from "../lib/hooks";
 
 const EnvelopeInput = ({
   placeholder,
@@ -29,8 +35,8 @@ const EnvelopeInput = ({
         )}
       />
     </div>
-  )
-}
+  );
+};
 
 const EbookCheckboxes = ({ homeNl }) => {
   return (
@@ -57,8 +63,8 @@ const EbookCheckboxes = ({ homeNl }) => {
         homeNl={homeNl}
       />
     </>
-  )
-}
+  );
+};
 
 const EbookImage = ({ ...props }) => (
   <img
@@ -69,9 +75,9 @@ const EbookImage = ({ ...props }) => (
     {...props}
   />
   //   TODO: fix image
-)
+);
 const Newsletter = ({ home }) => {
-  const isLarge = useMediaQuery("(min-width: 1024px)")
+  const isLarge = useMediaQuery("(min-width: 1024px)");
   return (
     <Section className={clsx("")}>
       <div className="px-3 pt-3">
@@ -90,16 +96,7 @@ const Newsletter = ({ home }) => {
         >
           Want one of these?
         </Typo>
-        <div className="flex justify-center mt-3 mb-base2">
-          <img
-            src="/images/underline.svg"
-            width={111}
-            height={8}
-            layout="fixed"
-            loading="eager"
-            alt="underline"
-          />
-        </div>
+        <Underline mb="mb-base2" />
         <form>
           <EbookCheckboxes />
 
@@ -121,11 +118,11 @@ const Newsletter = ({ home }) => {
         </div>
       </div>
     </Section>
-  )
-}
+  );
+};
 
 const NewsletterHome = ({ className, ...props }) => {
-  const isLarge = useMediaQuery("(min-width: 1024px)")
+  const isLarge = useMediaQuery("(min-width: 1024px)");
   return (
     <>
       {isLarge ? (
@@ -149,16 +146,7 @@ const NewsletterHome = ({ className, ...props }) => {
               <h3 className="font-light sm:text-[48px] inline-block text-grey5 leading-none">
                 Want one of these?
               </h3>
-              <div className="flex justify-center mt-3 mb-base2">
-                <img
-                  src="/images/underline.svg"
-                  width={111}
-                  height={8}
-                  layout="fixed"
-                  loading="eager"
-                  alt="underline"
-                />
-              </div>
+              <Underline mb="mb-base2" />
             </div>
             <form>
               <EbookCheckboxes homeNl />
@@ -188,8 +176,8 @@ const NewsletterHome = ({ className, ...props }) => {
         <Newsletter home />
       )}
     </>
-  )
-}
+  );
+};
 
 const NewsletterSmall = () => {
   return (
@@ -210,7 +198,7 @@ const NewsletterSmall = () => {
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export { Newsletter, NewsletterSmall, EnvelopeInput, NewsletterHome }
+export { Newsletter, NewsletterSmall, EnvelopeInput, NewsletterHome };

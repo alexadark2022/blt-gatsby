@@ -3,7 +3,7 @@ import clsx from "clsx";
 import Slider from "react-slick";
 import ls from "local-storage";
 import { Link } from "gatsby";
-import { Section } from "..";
+import { Section, Underline } from "..";
 import { useMediaQuery } from "../../lib/hooks";
 
 //TODO fix recently viewed
@@ -60,17 +60,10 @@ export const RecentlyViewed = ({ className, ...props }) => {
       )}
       {...props}
     >
-      <h2 className="text-center text-f-40 md:text-[48px] text-grey5 font-light">
+      <h2 className="text-center text-f-40 md:text-[48px] text-grey5 font-light mb-6">
         Recently viewed
       </h2>
-      <div className="flex justify-center">
-        <img
-          src="/images/underline.svg"
-          width="111px"
-          height="8px"
-          alt="underline"
-        />
-      </div>
+      <Underline />
       <Slider {...settings} css={{ ...styles }}>
         {rvData?.map((item, i) => {
           const { featuredImage, title, uri, image } = item;

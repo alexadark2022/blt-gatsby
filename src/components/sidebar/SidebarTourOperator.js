@@ -1,8 +1,7 @@
-import React from "react"
-import clsx from "clsx"
-import { Section, Typo, Button, Image } from ".."
-import { useMediaQuery } from "../../lib/hooks"
-import { StaticImage } from "gatsby-plugin-image"
+import React from "react";
+import clsx from "clsx";
+import { Section, Typo, Button, Image, Underline } from "..";
+import { useMediaQuery } from "../../lib/hooks";
 
 const SidebarTourOperator = ({
   tourOperator,
@@ -15,26 +14,18 @@ const SidebarTourOperator = ({
     featuredImage,
     commonDataAttributes,
     tourOperatorDataAttributes,
-  } = tourOperator || {}
+  } = tourOperator || {};
 
-  const isLarge = useMediaQuery("(min-width: 1024px)")
+  const isLarge = useMediaQuery("(min-width: 1024px)");
 
-  const { phone, website } = tourOperatorDataAttributes || {}
+  const { phone, website } = tourOperatorDataAttributes || {};
   //TODO fix image size
   return (
     <Section className={clsx("p-5", className)} {...props}>
       <Typo as="h3" className={clsx("text-center ")}>
         Ask the experts
       </Typo>
-      <div className="flex justify-center mt-3 mb-4">
-        <img
-          src="/images/underline.svg"
-          width={111}
-          height={8}
-          loading="eager"
-          alt="underline"
-        />
-      </div>
+      <Underline />
       <div className="space-y-5">
         <Typo as="h4" h4 className="text-center">
           {title}
@@ -74,7 +65,7 @@ const SidebarTourOperator = ({
         </div>
       </div>
     </Section>
-  )
-}
+  );
+};
 
-export default SidebarTourOperator
+export default SidebarTourOperator;

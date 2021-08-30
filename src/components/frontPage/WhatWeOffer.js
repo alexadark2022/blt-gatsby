@@ -1,5 +1,5 @@
 import React from "react";
-import { Number } from "../ui-components";
+import { Number, Underline } from "../ui-components";
 import clsx from "clsx";
 import { SocialShare } from "../social";
 
@@ -9,10 +9,10 @@ export const WhatWeOffer = ({ whatWeOffer, url }) => {
     <div className="container px-5 py-6 bg-white md:pt-4 md:pb-10 max-w-big">
       {/* Title */}
       <div className="flex flex-col items-center mb-10">
-        <h2 className="text-center text-f-40 md:text-[48px] text-grey5 font-light">
+        <h2 className="text-center text-f-40 md:text-[48px] text-grey5 font-light mb-5">
           {wwoTitle}
         </h2>
-        <img src="/images/underline.svg" width="111px" height="8px" />
+        <Underline />
       </div>
       {/* Items */}
       <div

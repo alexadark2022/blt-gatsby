@@ -17,3 +17,4 @@ export * from "./CollapseSection";
 export * from "./Label";
 export * from "./WithCollapse";
 export * from "./Select";
+export * from "./Underline";
