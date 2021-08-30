@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 
 export const writerFragments = graphql`
   fragment WriterListing on WpWriter {
@@ -43,8 +43,8 @@ export const writerFragments = graphql`
     }
     featuredImage {
       node {
-        ...ListingImage
+        ...WriterImage
       }
     }
   }
-`
+`;
