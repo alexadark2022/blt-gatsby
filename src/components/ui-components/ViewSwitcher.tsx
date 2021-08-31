@@ -16,7 +16,7 @@ const WiewButton = styled.button(() => [
 ]);
 
 export const ViewSwitcher = ({ className, setView, ...props }: any) => {
-  const path = window.location.href;
+  const path = window.location.pathname;
 
   const isClickable = !path.includes("itinerar") && !path.includes("round-up");
 

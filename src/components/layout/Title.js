@@ -1,7 +1,9 @@
-import clsx from "clsx"
-import React from "react"
-import { Typo, Button, StarIcons } from ".."
-import { useBucketList } from "../../lib/hooks/useBucketList"
+import clsx from "clsx";
+import React from "react";
+import { Typo, Button, StarIcons } from "..";
+import { useBucketList } from "../../lib/hooks/useBucketList";
+import { AddToBlButton } from "../bucket-list/AddToBlButton";
+import { window } from "browser-monads";
 
 const Title = ({
   title,
@@ -14,10 +16,10 @@ const Title = ({
   notEmpty,
   ...props
 }) => {
-  const { addToBl, removeFromBl, isAdded } = useBucketList(item || {})
-  //   const path = useRouter().pathname
-  const url = typeof window !== "undefined" ? window.location.href : ""
-  console.log("url", url)
+  const { addToBl, removeFromBl, isAdded } = useBucketList(item || {});
+  const path = window.location.pathname;
+  const url = typeof window !== "undefined" ? window.location.href : "";
+  console.log("url", url);
 
   return (
     <div
@@ -41,7 +43,7 @@ const Title = ({
             dangerouslySetInnerHTML={{ __html: title }}
             css={{ span: { border: "3px solid #d3b27d", padding: "0 5px" } }}
           />
-          {/* {bl &&
+          {bl &&
             (isAdded ? (
               <div>
                 <AddToBlButton remove addToBl={removeFromBl} />
@@ -50,18 +52,18 @@ const Title = ({
               <div>
                 <AddToBlButton add addToBl={addToBl} />
               </div>
-            ))} */}
-          {/* {path.includes("bucket") && notEmpty && (
+            ))}{" "}
+          {path.includes("bucket") && notEmpty && (
             <Button secondary onClick={handleEmpty}>
               empty
             </Button>
-          )} */}
+          )}
         </div>
 
         {stars && <StarIcons stars={stars} />}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export { Title }
+export { Title };
