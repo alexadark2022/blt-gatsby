@@ -90,7 +90,7 @@ const Newsletter = ({ home }) => {
           // width={isLarge ? 292 : 1024}
           // height={isLarge ? 195 : 638}
           // priority={isLarge}
-          cllassName={`${
+          className={`${
             isLarge ? "w-[292px] h-[195px] " : "w-[1024px] h-[638px]"
           } object-cover object-center`}
         />
