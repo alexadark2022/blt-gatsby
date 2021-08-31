@@ -12,7 +12,7 @@ const LOG_OUT_QUERY = graphql`
     wp {
       options {
         specialPagesImages {
-          logOutImage {
+          logoutImage {
             ...FullImage
           }
         }
@@ -30,8 +30,8 @@ const LOG_OUT = gql`
 `;
 
 export default function LogOut() {
-  const logOutData = useStaticQuery(LOG_OUT_QUERY);
-  const { logOutImage: image } = logOutData?.wp?.options?.specialPagesImages;
+  const logoutData = useStaticQuery(LOG_OUT_QUERY);
+  const { logoutImage: image } = logoutData?.wp?.options?.specialPagesImages;
   const [logOut, { called, loading, error, data }] = useMutation(LOG_OUT, {
     refetchQueries: [{ query: GET_USER }],
   });

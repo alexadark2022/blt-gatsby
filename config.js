@@ -9,7 +9,7 @@ const config = {
   createTags: false,
   // createPosts: false,
   createUsers: false,
-  // developLimit: 100,
+  // developLimit: 10,
   gatsbySourceWordPressOptions: {
     schema: {
       perPage: 20, // currently set to 100
@@ -36,6 +36,6 @@ const config = {
   //     ],
   //   },
   // },
-}
+};
 
-module.exports = config
+module.exports = config;

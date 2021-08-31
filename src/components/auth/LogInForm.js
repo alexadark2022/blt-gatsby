@@ -1,10 +1,9 @@
-import { Link } from "gatsby"
-import { useMutation, gql } from "@apollo/client"
+import * as React from "react";
+import { Link } from "gatsby";
+import { useMutation, gql } from "@apollo/client";
 
-import React from "react"
-
-import { Input, Button, Label } from ".."
-import { GET_USER } from "../../lib/hooks/useAuth"
+import { Input, Button, Label } from "..";
+import { GET_USER } from "../../lib/hooks/useAuth";
 
 const LOG_IN = gql`
   mutation logIn($login: String!, $password: String!) {
@@ -12,36 +11,36 @@ const LOG_IN = gql`
       status
     }
   }
-`
+`;
 
 export function LogInForm({ setTabIndex, closeModal }) {
   const [logIn, { loading, error }] = useMutation(LOG_IN, {
     refetchQueries: [{ query: GET_USER }],
-  })
-  console.log("error", error)
+  });
+  console.log("error", error, "logIn", logIn);
 
-  const errorMessage = error?.message || ""
+  const errorMessage = error?.message || "";
   const isEmailValid =
     !errorMessage.includes("empty_email") &&
     !errorMessage.includes("empty_username") &&
     !errorMessage.includes("invalid_email") &&
-    !errorMessage.includes("invalid_username")
+    !errorMessage.includes("invalid_username");
   const isPasswordValid =
     !errorMessage.includes("empty_password") &&
-    !errorMessage.includes("incorrect_password")
+    !errorMessage.includes("incorrect_password");
 
   function handleSubmit(event) {
-    event.preventDefault()
-    const data = new FormData(event.currentTarget)
-    const { email, password } = Object.fromEntries(data)
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const { email, password } = Object.fromEntries(data);
     logIn({
       variables: {
         login: email,
         password,
       },
     }).catch((error) => {
-      console.error(error)
-    })
+      console.error(error);
+    });
   }
 
   return (
@@ -103,13 +102,13 @@ export function LogInForm({ setTabIndex, closeModal }) {
           aria-label="go to sign up"
           className={`text-blueLink`}
           onClick={(e) => {
-            e.preventDefault()
-            setTabIndex(0)
+            e.preventDefault();
+            setTabIndex(0);
           }}
         >
           Sign up
         </button>
       </p>
     </form>
-  )
+  );
 }
