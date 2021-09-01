@@ -9,6 +9,7 @@ const config = {
   createTags: false,
   // createPosts: false,
   createUsers: false,
+  withApollo: false,
   // developLimit: 10,
   gatsbySourceWordPressOptions: {
     schema: {
