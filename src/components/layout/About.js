@@ -1,7 +1,7 @@
-import React, { Fragment } from "react";
-import { Link } from "gatsby";
-import { TitleContent } from "./TitleContent";
-import { Date } from "../ui-components";
+import React, { Fragment } from "react"
+import { Link } from "gatsby"
+import { TitleContent } from "./TitleContent"
+import { Date } from "../post"
 
 export const About = ({
   writer = [],
@@ -37,12 +37,12 @@ export const About = ({
 
         {children}
         {review?.map((section, i) => {
-          const { title, content } = section;
-          return <TitleContent key={i} title={title} content={content} />;
+          const { title, content } = section
+          return <TitleContent key={i} title={title} content={content} />
         })}
         <div className="text-center text-gold text-f-24">{text}</div>
         {socialShare}
       </div>
     </Fragment>
-  );
-};
+  )
+}
