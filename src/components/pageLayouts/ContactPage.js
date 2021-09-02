@@ -6,7 +6,6 @@ import { useMutation, gql } from "@apollo/client";
 import { Section, Input, Button, Label, Select } from "../ui-components";
 import { v4 as uuidv4 } from "uuid";
 
-//TODO: fix apollo error
 export const ContactPage = ({ intro }) => {
   const [mailData, setMailData] = useState({
     firstName: "",

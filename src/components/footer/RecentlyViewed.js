@@ -5,6 +5,8 @@ import ls from "local-storage";
 import { Link } from "gatsby";
 import { Section, Underline } from "..";
 import { useMediaQuery } from "../../lib/hooks";
+import { Image } from "../images";
+import { StaticImage } from "gatsby-plugin-image";
 
 //TODO fix recently viewed
 export const RecentlyViewed = ({ className, ...props }) => {
@@ -66,8 +68,8 @@ export const RecentlyViewed = ({ className, ...props }) => {
       <Underline />
       <Slider {...settings} css={{ ...styles }}>
         {rvData?.map((item, i) => {
-          const { featuredImage, title, uri, image } = item;
-          const { sourceUrl, altText } = featuredImage?.node || {};
+          const { featuredImage, title, uri } = item;
+          const { sourceUrl, altText, localFile } = featuredImage?.node || {};
           return (
             <div key={i} className="px-base py-base2 group">
               <Link
@@ -79,11 +81,14 @@ export const RecentlyViewed = ({ className, ...props }) => {
               >
                 <div className="cursor-pointer shadow-listing">
                   <div className="relative h-[126px]  group">
-                    <img
-                      src={sourceUrl || "/images/noimage.svg"}
-                      alt={altText || "no image"}
-                      className="object-cover object-center w-[191px] h-[127px]"
-                    />
+                    {localFile ? (
+                      <Image img={localFile} alt={altText} className="w-full" />
+                    ) : (
+                      <StaticImage
+                        src="../../images/noimage.svg"
+                        alt="no image"
+                      />
+                    )}
                   </div>
                   <div className="py-4 text-center px-base group h-[100px]">
                     {title && (
