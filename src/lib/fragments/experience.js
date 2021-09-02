@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 export const experienceFragments = graphql`
   fragment ExperienceListing on WpExperience {
     title
@@ -170,21 +170,25 @@ export const experienceFragments = graphql`
       theme
       whenToDoIt
       affiliateTours {
+        __typename
         ... on WpExperience {
           ...ExperienceListing
         }
       }
       experiences {
+        __typename
         ... on WpExperience {
           ...ExperienceListing
         }
       }
       destinations {
+        __typename
         ... on WpDestination {
           ...DestinationListing
         }
       }
       itineraries {
+        __typename
         ... on WpItinerary {
           ...ItineraryListing
         }
@@ -199,11 +203,13 @@ export const experienceFragments = graphql`
         }
       }
       whereToStay {
+        __typename
         ... on WpPlaceToStay {
           ...PlaceToStayListing
         }
       }
       tourOperator {
+        __typename
         ... on WpTourOperator {
           ...TourOperator
         }
@@ -222,4 +228,4 @@ export const experienceFragments = graphql`
       }
     }
   }
-`
+`;

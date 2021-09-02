@@ -135,9 +135,9 @@ export const Listing = ({
           writer ||
           nested ||
           roundUp ? (
-            <Button secondary className="!text-[11px]">
+            <Link to={uri} className="!text-[11px] btn btn-secondary">
               {writer ? "Read more" : "Read review"}
-            </Button>
+            </Link>
           ) : (
             website && (
               <Button

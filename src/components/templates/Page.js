@@ -26,7 +26,6 @@ const Page = ({ page, ctx }) => {
     uri,
   } = page;
 
-  //TODO correct sidebar size
   const pageTitle = slug === "faq" ? "Frequently asked question" : title;
 
   const featuredImage =

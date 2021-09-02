@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 
 export const placeTostayFragments = graphql`
   fragment PlaceToStayListing on WpPlaceToStay {
@@ -124,15 +124,17 @@ export const placeTostayFragments = graphql`
       latitudeOfLocation1
       longitudeOfLocation1
       experiences {
+        __typename
         ... on WpExperience {
           ...ExperienceListing
         }
       }
       destinations {
+        __typename
         ... on WpDestination {
           ...DestinationListing
         }
       }
     }
   }
-`
+`;

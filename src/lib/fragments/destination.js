@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 
 export const destinationFragments = graphql`
   fragment DestinationListing on WpDestination {
@@ -128,6 +128,7 @@ export const destinationFragments = graphql`
         content
       }
       writer {
+        __typename
         ... on WpWriter {
           title
           id
@@ -136,35 +137,41 @@ export const destinationFragments = graphql`
         }
       }
       experiences {
+        __typename
         ... on WpExperience {
           ...ExperienceListing
         }
       }
       affiliatedTours {
+        __typename
         ... on WpExperience {
           ...ExperienceListing
         }
       }
       destinationGuides: destination {
+        __typename
         ... on WpDestination {
           ...DestinationListing
         }
       }
       itineraries {
+        __typename
         ... on WpItinerary {
           ...ItineraryListing
         }
       }
       tourOperators {
+        __typename
         ... on WpTourOperator {
           ...TourOperator
         }
       }
       placesToStay {
+        __typename
         ... on WpPlaceToStay {
           ...PlaceToStayListing
         }
       }
     }
   }
-`
+`;
