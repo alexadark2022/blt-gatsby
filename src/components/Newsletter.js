@@ -82,7 +82,7 @@ const EbookCheckboxes = ({ homeNl }) => {
   );
 };
 
-const EbookImage = ({ ...props }) => {
+const EbookImage = ({ width, height, ...props }) => {
   const data = useStaticQuery(GET_NL_IMAGE);
   const { nlImage: image } = data?.wp?.options?.newsletterImage;
 
@@ -91,6 +91,8 @@ const EbookImage = ({ ...props }) => {
       img={image?.localFile}
       objectFit="cover"
       objectPosition="center"
+      width={width}
+      height={height}
       alt="newsletter image"
       {...props}
     />
@@ -102,9 +104,12 @@ const Newsletter = ({ home }) => {
     <Section className={clsx("")}>
       <div className={`px-3 pt-3 `}>
         <EbookImage
-          width={isLarge ? 292 : 1024}
-          height={isLarge ? 195 : 638}
+          width={isLarge ? 292 : 991}
+          height={isLarge ? 195 : 658}
           loading={isLarge ? "eager" : "lazy"}
+          imgClassName={`${
+            isLarge ? "w-[991px] h-[658px]" : "w-[292px] h-[195px]"
+          }`}
         />
       </div>
       <div className="px-5 pb-5 mt-3">

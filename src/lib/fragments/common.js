@@ -14,6 +14,7 @@ export const commonFragments = graphql`
           quality: 80
           aspectRatio: 1.5
           layout: CONSTRAINED
+          placeholder: BLURRED
         )
         original {
           height
@@ -34,6 +35,7 @@ export const commonFragments = graphql`
           height: 166
           quality: 80
           layout: CONSTRAINED
+          placeholder: BLURRED
         )
         original {
           height
@@ -54,6 +56,7 @@ export const commonFragments = graphql`
           height: 658
           quality: 80
           layout: CONSTRAINED
+          placeholder: BLURRED
         )
         original {
           height
@@ -74,6 +77,7 @@ export const commonFragments = graphql`
           height: 276
           quality: 80
           layout: CONSTRAINED
+          placeholder: BLURRED
         )
         original {
           height
@@ -87,7 +91,12 @@ export const commonFragments = graphql`
   fragment ThumbImage on WpMediaItem {
     thumbLocalFile: localFile {
       childImageSharp {
-        gatsbyImageData(width: 105, aspectRatio: 1.5, layout: CONSTRAINED)
+        gatsbyImageData(
+          width: 105
+          aspectRatio: 1.5
+          layout: CONSTRAINED
+          placeholder: BLURRED
+        )
         original {
           height
           width
@@ -102,7 +111,12 @@ export const commonFragments = graphql`
     sourceUrl
     localFile {
       childImageSharp {
-        gatsbyImageData(quality: 80, height: 880, layout: FULL_WIDTH)
+        gatsbyImageData(
+          quality: 80
+          height: 880
+          layout: FULL_WIDTH
+          placeholder: BLURRED
+        )
       }
     }
   }

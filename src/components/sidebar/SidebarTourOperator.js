@@ -16,10 +16,8 @@ const SidebarTourOperator = ({
     tourOperatorDataAttributes,
   } = tourOperator || {};
 
-  const isLarge = useMediaQuery("(min-width: 1024px)");
-
   const { phone, website } = tourOperatorDataAttributes || {};
-  //TODO fix image size
+
   return (
     <Section className={clsx("p-5", className)} {...props}>
       <Typo as="h3" className={clsx("text-center ")}>
@@ -30,13 +28,12 @@ const SidebarTourOperator = ({
         <Typo as="h4" h4 className="text-center">
           {title}
         </Typo>
-        <div className="flex ">
+        <div className="flex justify-center">
           <Image
             img={featuredImage?.node.localFile}
-            width={isLarge ? 276 : 1024}
-            height={isLarge ? 173 : 638}
             objectFit="cover"
             objectPosition="center"
+            className="w-full max-w-[300px]"
           />
         </div>
         <div

@@ -53,6 +53,7 @@ export const Gallery = ({ images = [], ...props }) => {
               loading="eager"
               objectFit="cover"
               objectPosition="center"
+              placeholder="blurred"
             />
             {(caption || description) && (
               <>
