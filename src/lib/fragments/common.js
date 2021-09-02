@@ -4,6 +4,8 @@ export const commonFragments = graphql`
   fragment LargeImage on WpMediaItem {
     altText
     sourceUrl
+    caption
+    description
     localFile {
       childImageSharp {
         gatsbyImageData(
