@@ -1,7 +1,7 @@
-import React, { Fragment } from "react"
-import { Link } from "gatsby"
-import { TitleContent } from "./TitleContent"
-import { Date } from "../post"
+import React, { Fragment } from "react";
+import { Link } from "gatsby";
+import { TitleContent } from "./TitleContent";
+import { Date } from "../post";
 
 export const About = ({
   writer = [],
@@ -20,12 +20,13 @@ export const About = ({
         <div className="justify-between mb-5 text-f-18 sm:flex md:text-f-22">
           <div>
             Expert travel writer:{" "}
-            <Link
-              to={author ? `/writer/${author.slug}` : writer?.uri || ""}
+            <a
+              href={author ? `/writers/${author.slug}` : writer?.uri || ""}
               target="_blank"
+              rel="noopener noreferrer"
             >
               {author ? author.name : writer?.title}
-            </Link>
+            </a>
           </div>
           <div>
             Last updated: <Date date={date} />
@@ -37,12 +38,12 @@ export const About = ({
 
         {children}
         {review?.map((section, i) => {
-          const { title, content } = section
-          return <TitleContent key={i} title={title} content={content} />
+          const { title, content } = section;
+          return <TitleContent key={i} title={title} content={content} />;
         })}
         <div className="text-center text-gold text-f-24">{text}</div>
         {socialShare}
       </div>
     </Fragment>
-  )
-}
+  );
+};

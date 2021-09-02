@@ -81,28 +81,15 @@ const EbookCheckboxes = ({ homeNl }) => {
   );
 };
 
-const EbookImage = ({ width, height, ...props }) => {
-  const data = useStaticQuery(GET_NL_IMAGE);
-  const { nlImage: image } = data?.wp?.options?.newsletterImage;
-
-  return (
-    <Image
-      img={image?.localFile}
-      objectFit="cover"
-      objectPosition="center"
-      width={width}
-      height={height}
-      alt="newsletter image"
-      {...props}
-    />
-  );
-};
 const Newsletter = ({ home }) => {
   const isLarge = useMediaQuery("(min-width: 1024px)");
+  const data = useStaticQuery(GET_NL_IMAGE);
+  const { nlImage: image } = data?.wp?.options?.newsletterImage;
   return (
     <Section className={clsx("")}>
       <div className={`px-3 pt-3 `}>
-        <EbookImage
+        <Image
+          img={image.localFile}
           width={isLarge ? 292 : 991}
           height={isLarge ? 195 : 658}
           loading={isLarge ? "eager" : "lazy"}
@@ -147,6 +134,8 @@ const Newsletter = ({ home }) => {
 
 const NewsletterHome = ({ className, ...props }) => {
   const isLarge = useMediaQuery("(min-width: 1024px)");
+  const data = useStaticQuery(GET_NL_IMAGE);
+  const { nlImage: image } = data?.wp?.options?.newsletterImage;
   return (
     <>
       {isLarge ? (
@@ -160,7 +149,8 @@ const NewsletterHome = ({ className, ...props }) => {
           )}
           {...props}
         >
-          <EbookImage
+          <Image
+            img={image.localFile}
             width={566}
             height={371}
             className="mr-14 max-w-[556px]"

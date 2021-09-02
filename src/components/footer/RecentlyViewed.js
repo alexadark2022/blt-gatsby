@@ -8,7 +8,6 @@ import { useMediaQuery } from "../../lib/hooks";
 import { Image } from "../images";
 import { StaticImage } from "gatsby-plugin-image";
 
-//TODO fix recently viewed
 export const RecentlyViewed = ({ className, ...props }) => {
   const rvData = ls("recentlyViewed") || [];
   const isLarge = useMediaQuery("(min-width:1024px)");
