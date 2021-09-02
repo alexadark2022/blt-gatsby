@@ -6,7 +6,7 @@ import { useBucketList } from "../../lib/hooks/useBucketList";
 import { Button } from "..";
 import { AddToBlButton } from "../bucket-list/AddToBlButton";
 import { ListingBottomInfo } from "./ListingBottomInfo";
-//TODO fix images
+
 export const ListingCard = ({
   item,
   pts,
@@ -51,10 +51,9 @@ export const ListingCard = ({
     <Image
       img={featuredImage.node.localFile}
       alt={title}
-      width={249}
-      height={166}
       objectFit="cover"
       objectPosition="center"
+      className="w-full"
     />
   ) : (
     <div className="flex items-center justify-center w-full h-full bg-veryLightGold">
@@ -66,23 +65,6 @@ export const ListingCard = ({
 
   return (
     <div className={clsx("relative", className)} {...props}>
-      {!noBl ? (
-        isAdded ? (
-          <AddToBlButton
-            remove
-            addToBl={removeFromBl}
-            className="absolute z-30 px-2 py-1 text-2xl text-white cursor-pointer top-2 right-2"
-          />
-        ) : (
-          <AddToBlButton
-            add
-            addToBl={addToBl}
-            className="absolute z-30 px-2 py-1 text-2xl text-white cursor-pointer top-2 right-2"
-          />
-        )
-      ) : (
-        <div></div>
-      )}
       <Link
         to={`${uri}`}
         className="hover:no-underline"
@@ -99,6 +81,23 @@ export const ListingCard = ({
           <div className="h-[187px] w-full flex relative">
             {/* Image */}
             {img}
+            {!noBl ? (
+              isAdded ? (
+                <AddToBlButton
+                  remove
+                  addToBl={removeFromBl}
+                  className="absolute z-30 px-2 py-1 text-2xl text-white cursor-pointer top-2 right-2"
+                />
+              ) : (
+                <AddToBlButton
+                  add
+                  addToBl={addToBl}
+                  className="absolute z-30 px-2 py-1 text-2xl text-white cursor-pointer top-2 right-2"
+                />
+              )
+            ) : (
+              <div></div>
+            )}
           </div>
           {/* Content */}
 

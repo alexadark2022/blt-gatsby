@@ -9,7 +9,6 @@ import { Button } from "..";
 import { Price } from "../Price";
 import { ListingBottomInfo } from "./ListingBottomInfo";
 import { AddToBlButton } from "../bucket-list/AddToBlButton";
-//TODO add LInk to button
 
 export const Listing = ({
   item = {},
