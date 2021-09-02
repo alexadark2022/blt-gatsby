@@ -1,6 +1,5 @@
 import React from "react";
 import clsx from "clsx";
-import { StaticImage } from "gatsby-plugin-image";
 import { useStaticQuery, graphql } from "gatsby";
 import { Image } from "./images";
 import { FaEnvelope } from "react-icons/fa";
@@ -165,7 +164,9 @@ const NewsletterHome = ({ className, ...props }) => {
             width={566}
             height={371}
             className="mr-14 max-w-[556px]"
+            imgClassName="max-w-[566px]"
           />
+
           <div>
             <div className="inline-block">
               <h3 className="font-light sm:text-[48px] inline-block text-grey5 leading-none">
