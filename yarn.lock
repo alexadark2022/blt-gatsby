@@ -2962,7 +2962,7 @@
     "@webassemblyjs/ast" "1.11.1"
     "@xtuc/long" "4.2.2"
 
-"@wordpress/a11y@^3.1.1", "@wordpress/a11y@^3.2.0", "@wordpress/a11y@^3.2.1":
+"@wordpress/a11y@^3.1.2", "@wordpress/a11y@^3.2.0", "@wordpress/a11y@^3.2.1":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@wordpress/a11y/-/a11y-3.2.1.tgz#87cbb71228388ecf7d04d175f2990391e2882c5e"
   integrity sha512-DSKSEkRmucjjF9ORiHHcUemtmNLckuE9auEovEVKeVfOBkLpx4qS6kMaxK8CCU9PUSBU9szfwwfoAz+YMQq6dg==
@@ -2971,7 +2971,7 @@
     "@wordpress/dom-ready" "^3.2.1"
     "@wordpress/i18n" "^4.2.1"
 
-"@wordpress/api-fetch@^5.1.1", "@wordpress/api-fetch@^5.2.0", "@wordpress/api-fetch@^5.2.1":
+"@wordpress/api-fetch@^5.1.2", "@wordpress/api-fetch@^5.2.0", "@wordpress/api-fetch@^5.2.1":
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/@wordpress/api-fetch/-/api-fetch-5.2.1.tgz#6c3c9895a931c4c28b5280550e8dbb601097dd54"
   integrity sha512-hmZnll1Z4u9A1vS3hHf9epzTvK+oIWkASLPO+Yq1BK1SwDiNGcZxwWMr+kDSEWd0ProccTsgo4EAbIS9vnhoUQ==
@@ -2980,7 +2980,7 @@
     "@wordpress/i18n" "^4.2.1"
     "@wordpress/url" "^3.2.1"
 
-"@wordpress/autop@^3.1.1", "@wordpress/autop@^3.2.0":
+"@wordpress/autop@^3.1.2", "@wordpress/autop@^3.2.0":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@wordpress/autop/-/autop-3.2.1.tgz#8676ec896796fc9f938a068e4c298d2dac65c414"
   integrity sha512-dp5jm72v53ygEHiPp6CTyE8AzLEZ/YpW7kRKJGQwYz4U7wwkkfpsoattc/9uaQsv06AP6rEzT/ioGFOVZRuv9g==
@@ -2992,14 +2992,14 @@
   resolved "https://registry.yarnpkg.com/@wordpress/base-styles/-/base-styles-3.6.0.tgz#ef4d4472457496d1703e35e482c895b4e6e1a18d"
   integrity sha512-6/vXAmc9FSX7Y17UjKgUJoVU++Pv1U1G8uMx7iClRUaLetc7/jj2DD9PTyX/cdJjHr32e3yXuLVT9wfEbo6SEg==
 
-"@wordpress/blob@^3.1.1", "@wordpress/blob@^3.2.0":
+"@wordpress/blob@^3.1.2", "@wordpress/blob@^3.2.0":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@wordpress/blob/-/blob-3.2.1.tgz#f8056ac4ca027440ad2fe73bd7e4dad40b85d3cc"
   integrity sha512-qD8wZ6n+hjoshV2dp9eGH3VismOM0kvrJn5cSe4PaoYDREqUhioJIDXktZxaohnvgWOq6xfJH6rS4Or8W0r9ew==
   dependencies:
     "@babel/runtime" "^7.13.10"
 
-"@wordpress/block-editor@^6.1.13", "@wordpress/block-editor@^6.2.0":
+"@wordpress/block-editor@^6.1.14", "@wordpress/block-editor@^6.2.0":
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/@wordpress/block-editor/-/block-editor-6.2.0.tgz#ab6be155193b2c3dd55bba4160d80890b5579f7f"
   integrity sha512-9jSpF2c6GN95g/Mt3XTNb9GF9irpv4sEaaH5KicvP9JTE1/AZcPG43HOoX+nYoiCwCu45BbAWnisJa7stvMMbw==
@@ -3045,38 +3045,38 @@
     traverse "^0.6.6"
 
 "@wordpress/block-library@^3.2.15":
-  version "3.2.18"
-  resolved "https://registry.yarnpkg.com/@wordpress/block-library/-/block-library-3.2.18.tgz#47010e4c50e2bd442ad0b95c82a3c17015fd9157"
-  integrity sha512-f61TICHWTIjvWnf8X5NvzYUDZ+RdJ944JLxWKJEhWGljk5iw0Cis+fZbPGK0QQoo8PzKXxqsTNj0oKRYpq92Pw==
+  version "3.2.19"
+  resolved "https://registry.yarnpkg.com/@wordpress/block-library/-/block-library-3.2.19.tgz#e31a3443b870a296e79175d8dbf39a58d95f7ef3"
+  integrity sha512-F/Dbg9YYmoQQ9LdtanA1Nn6Bi6z7a5mC9gUankzbl6657Aqw7EcBwvbKfuG3n1TOjbbJZpA2wCCYTge6XNXLWA==
   dependencies:
     "@babel/runtime" "^7.13.10"
-    "@wordpress/a11y" "^3.1.1"
-    "@wordpress/api-fetch" "^5.1.1"
-    "@wordpress/autop" "^3.1.1"
-    "@wordpress/blob" "^3.1.1"
-    "@wordpress/block-editor" "^6.1.13"
-    "@wordpress/blocks" "^9.1.7"
-    "@wordpress/components" "^14.1.10"
-    "@wordpress/compose" "^4.1.5"
-    "@wordpress/core-data" "^3.1.11"
-    "@wordpress/data" "^5.1.5"
-    "@wordpress/date" "^4.1.1"
-    "@wordpress/deprecated" "^3.1.1"
-    "@wordpress/dom" "^3.1.4"
-    "@wordpress/element" "^3.1.1"
-    "@wordpress/escape-html" "^2.1.1"
+    "@wordpress/a11y" "^3.1.2"
+    "@wordpress/api-fetch" "^5.1.2"
+    "@wordpress/autop" "^3.1.2"
+    "@wordpress/blob" "^3.1.2"
+    "@wordpress/block-editor" "^6.1.14"
+    "@wordpress/blocks" "^9.1.8"
+    "@wordpress/components" "^14.1.11"
+    "@wordpress/compose" "^4.1.6"
+    "@wordpress/core-data" "^3.1.12"
+    "@wordpress/data" "^5.1.6"
+    "@wordpress/date" "^4.1.2"
+    "@wordpress/deprecated" "^3.1.2"
+    "@wordpress/dom" "^3.1.5"
+    "@wordpress/element" "^3.1.2"
+    "@wordpress/escape-html" "^2.1.2"
     "@wordpress/hooks" "^3.1.1"
-    "@wordpress/i18n" "^4.1.1"
-    "@wordpress/icons" "^4.0.2"
+    "@wordpress/i18n" "^4.1.2"
+    "@wordpress/icons" "^4.0.3"
     "@wordpress/is-shallow-equal" "^4.1.1"
-    "@wordpress/keycodes" "^3.1.1"
-    "@wordpress/notices" "^3.1.5"
-    "@wordpress/primitives" "^2.1.1"
-    "@wordpress/reusable-blocks" "^2.1.16"
-    "@wordpress/rich-text" "^4.1.5"
-    "@wordpress/server-side-render" "^2.1.11"
-    "@wordpress/url" "^3.1.1"
-    "@wordpress/viewport" "^3.1.5"
+    "@wordpress/keycodes" "^3.1.2"
+    "@wordpress/notices" "^3.1.6"
+    "@wordpress/primitives" "^2.1.2"
+    "@wordpress/reusable-blocks" "^2.1.17"
+    "@wordpress/rich-text" "^4.1.6"
+    "@wordpress/server-side-render" "^2.1.12"
+    "@wordpress/url" "^3.1.2"
+    "@wordpress/viewport" "^3.1.6"
     classnames "^2.2.5"
     fast-average-color "4.3.0"
     lodash "^4.17.21"
@@ -3086,7 +3086,7 @@
     react-easy-crop "^3.0.0"
     tinycolor2 "^1.4.2"
 
-"@wordpress/block-serialization-default-parser@^4.1.1", "@wordpress/block-serialization-default-parser@^4.2.0":
+"@wordpress/block-serialization-default-parser@^4.1.2", "@wordpress/block-serialization-default-parser@^4.2.0":
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/@wordpress/block-serialization-default-parser/-/block-serialization-default-parser-4.2.1.tgz#a9b70b5eaae746727d851420a224ece23eb2fa57"
   integrity sha512-TKLGqFiysDKtLnc0pjPD1AOU5fg0LX12XfrK9Ke6QmCP2q7e57+9ZM9SRzXQ2U8GRgsIiwhjzi31R2HQGXqYng==
@@ -3121,26 +3121,26 @@
     tinycolor2 "^1.4.2"
     uuid "^8.3.0"
 
-"@wordpress/blocks@^9.1.7":
-  version "9.1.7"
-  resolved "https://registry.yarnpkg.com/@wordpress/blocks/-/blocks-9.1.7.tgz#352e3090d5dd7aa0423092efc9d849764274aa32"
-  integrity sha512-mar6I4F5sXIWSxE7bJkqanMo9cvYnS49Tg7hR0vY0gZAPTMmSeuL0Lz5i5fvquhURZtnyfryJ4qEvWix3B8/2w==
+"@wordpress/blocks@^9.1.8":
+  version "9.1.8"
+  resolved "https://registry.yarnpkg.com/@wordpress/blocks/-/blocks-9.1.8.tgz#9a40d060f07811d9a4b0dac66bbfec691084f8e5"
+  integrity sha512-RYemYN+q5/M0k5mESBkQbsB101p9hWSOTSlGLzEPBj7yXJp/OnyQVdc2hAr6CQgX16CxOyRRXx1CYQdiOtXGYg==
   dependencies:
     "@babel/runtime" "^7.13.10"
-    "@wordpress/autop" "^3.1.1"
-    "@wordpress/blob" "^3.1.1"
-    "@wordpress/block-serialization-default-parser" "^4.1.1"
-    "@wordpress/compose" "^4.1.5"
-    "@wordpress/data" "^5.1.5"
-    "@wordpress/deprecated" "^3.1.1"
-    "@wordpress/dom" "^3.1.4"
-    "@wordpress/element" "^3.1.1"
+    "@wordpress/autop" "^3.1.2"
+    "@wordpress/blob" "^3.1.2"
+    "@wordpress/block-serialization-default-parser" "^4.1.2"
+    "@wordpress/compose" "^4.1.6"
+    "@wordpress/data" "^5.1.6"
+    "@wordpress/deprecated" "^3.1.2"
+    "@wordpress/dom" "^3.1.5"
+    "@wordpress/element" "^3.1.2"
     "@wordpress/hooks" "^3.1.1"
-    "@wordpress/html-entities" "^3.1.1"
-    "@wordpress/i18n" "^4.1.1"
-    "@wordpress/icons" "^4.0.2"
+    "@wordpress/html-entities" "^3.1.2"
+    "@wordpress/i18n" "^4.1.2"
+    "@wordpress/icons" "^4.0.3"
     "@wordpress/is-shallow-equal" "^4.1.1"
-    "@wordpress/shortcode" "^3.1.1"
+    "@wordpress/shortcode" "^3.1.2"
     hpq "^1.3.0"
     lodash "^4.17.21"
     rememo "^3.0.0"
@@ -3149,7 +3149,7 @@
     tinycolor2 "^1.4.2"
     uuid "^8.3.0"
 
-"@wordpress/components@^14.1.10", "@wordpress/components@^14.2.0":
+"@wordpress/components@^14.1.11", "@wordpress/components@^14.2.0":
   version "14.2.0"
   resolved "https://registry.yarnpkg.com/@wordpress/components/-/components-14.2.0.tgz#fa7c6ed96fb8ec98e05a04f8c0a7b583a84cd56f"
   integrity sha512-a06jjuBQMcIyrfXBfk4Hyu9BLQkT1rQm3tbOIE9Ur/cV8K0os0DrMUPZlNZ37IeOORzXhz89/L5mopvRttGLJQ==
@@ -3192,7 +3192,7 @@
     tinycolor2 "^1.4.2"
     uuid "^8.3.0"
 
-"@wordpress/compose@^4.1.5", "@wordpress/compose@^4.2.0":
+"@wordpress/compose@^4.1.6", "@wordpress/compose@^4.2.0":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@wordpress/compose/-/compose-4.2.0.tgz#f9d900237cdea2e8f648438fb5b992f5d1ab7842"
   integrity sha512-8CJ4wzTXT9ZP+uIvN1d2cPBv06ZmhUh+UKzSf7v1o7T28SaYRcoZbsvDD2dnXbS2ZwWPIYAD9waNLWjCBq/izA==
@@ -3232,7 +3232,7 @@
     react-resize-aware "^3.1.0"
     use-memo-one "^1.1.1"
 
-"@wordpress/core-data@^3.1.11", "@wordpress/core-data@^3.2.0":
+"@wordpress/core-data@^3.1.12", "@wordpress/core-data@^3.2.0":
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/@wordpress/core-data/-/core-data-3.2.0.tgz#40554b22b1ad70a1224a33d4b7e6413dd47274f7"
   integrity sha512-YZCvNpumxegXM4emyuiSg+aUx9Xk2ElV7RqpmJFm04Tgw+ekli2WDTjt3B5q0HG8UUaSlwfIRvzka6BRYOrlCQ==
@@ -3262,7 +3262,7 @@
     "@wordpress/data" "^6.0.1"
     "@wordpress/deprecated" "^3.2.1"
 
-"@wordpress/data@^5.1.5", "@wordpress/data@^5.2.0":
+"@wordpress/data@^5.1.6", "@wordpress/data@^5.2.0":
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/@wordpress/data/-/data-5.2.0.tgz#14fc63788586968f503d538a7a9fbb60838afe6f"
   integrity sha512-NlPIC8PdKnPly9CnynQS1di59Af3eiCZrQgZm1VssfA620NDoJA5p3dlDYj/Ts4Ryzp78HCi7wjhkmbsHpnd6g==
@@ -3300,7 +3300,7 @@
     turbo-combine-reducers "^1.0.2"
     use-memo-one "^1.1.1"
 
-"@wordpress/date@^4.1.1", "@wordpress/date@^4.2.0":
+"@wordpress/date@^4.1.2", "@wordpress/date@^4.2.0":
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/@wordpress/date/-/date-4.2.1.tgz#4742e82018ec64075a9fefc795d26f3f21643ebc"
   integrity sha512-1I9B+PvtdJAt5R5ON6fq3ux76GUltk/V5dYjhsN8CYzmuSNpIY7hNFbbr9LgRswSdPH1zhR+a/mqhzdDU99PRA==
@@ -3309,7 +3309,7 @@
     moment "^2.22.1"
     moment-timezone "^0.5.31"
 
-"@wordpress/deprecated@^3.1.1", "@wordpress/deprecated@^3.2.0", "@wordpress/deprecated@^3.2.1":
+"@wordpress/deprecated@^3.1.2", "@wordpress/deprecated@^3.2.0", "@wordpress/deprecated@^3.2.1":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@wordpress/deprecated/-/deprecated-3.2.1.tgz#6f8fab767308e5f9660961dcbbc9f8f3c843e01c"
   integrity sha512-+mSpxeu0za9cNw30x9n0kZY/IUhmd9vhEzjZzLfT92lY3dDPXCEaE4IOSdPevcLpWTcKd7RhRMj2zXmaU5MA2g==
@@ -3324,7 +3324,7 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
 
-"@wordpress/dom@^3.1.4", "@wordpress/dom@^3.2.0", "@wordpress/dom@^3.2.2":
+"@wordpress/dom@^3.1.5", "@wordpress/dom@^3.2.0", "@wordpress/dom@^3.2.2":
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/@wordpress/dom/-/dom-3.2.2.tgz#f9313b2ccc960b77b48a48c10d6e49a2a304f820"
   integrity sha512-FRhnTsRO5/+fDBDU+Hs8WvMLd5+2eFgnu1jKCoumywqBx7WPJv6b3g5xFsiKliaj7aP1Jk0t55nYHPNMgfwBwA==
@@ -3332,7 +3332,7 @@
     "@babel/runtime" "^7.13.10"
     lodash "^4.17.21"
 
-"@wordpress/element@^3.1.1", "@wordpress/element@^3.2.0":
+"@wordpress/element@^3.1.2", "@wordpress/element@^3.2.0":
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/@wordpress/element/-/element-3.2.0.tgz#531720b3a023a1509f13d2464b2e1d670153116e"
   integrity sha512-YXJhtBF8FnFYwA9X6Dvs4k6yJf5wy1lhU04VNJVzoUDwCt/pK747RGePIPDdUWVd3X/TlyNH2yLRtcCyOC/SzQ==
@@ -3358,7 +3358,7 @@
     react "^17.0.1"
     react-dom "^17.0.1"
 
-"@wordpress/escape-html@^2.1.1", "@wordpress/escape-html@^2.2.0", "@wordpress/escape-html@^2.2.1":
+"@wordpress/escape-html@^2.1.2", "@wordpress/escape-html@^2.2.0", "@wordpress/escape-html@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@wordpress/escape-html/-/escape-html-2.2.1.tgz#5fd699cffebf59b174f5043b43b6b3dd770e2755"
   integrity sha512-+5hMa+1BLYgHdOxPK7TF+hfAaKJY1UE6osZL8s4boYeaq/O23PFv4aCPQF+z9/4cIKyvOJPGk26Z1Op6DwJLGA==
@@ -3372,14 +3372,14 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
 
-"@wordpress/html-entities@^3.1.1", "@wordpress/html-entities@^3.2.0":
+"@wordpress/html-entities@^3.1.2", "@wordpress/html-entities@^3.2.0":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@wordpress/html-entities/-/html-entities-3.2.1.tgz#05345a0bd8752fbfc321b8b5e8f528e79acda81f"
   integrity sha512-DHuIQ7MMyAcmkMM/VY8RibIcLiIcstk6Og09f4EWQegOgage6yMgnG7eI0nf2LBe65mttnda1EL51slc7XjaXg==
   dependencies:
     "@babel/runtime" "^7.13.10"
 
-"@wordpress/i18n@^4.1.1", "@wordpress/i18n@^4.2.0", "@wordpress/i18n@^4.2.1":
+"@wordpress/i18n@^4.1.2", "@wordpress/i18n@^4.2.0", "@wordpress/i18n@^4.2.1":
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/@wordpress/i18n/-/i18n-4.2.1.tgz#a6aa7ca24477faa089b53e3d362a2fea1fb8af84"
   integrity sha512-56TW1rGRTgBZd2wZiMVxTuSi+1z5INpbQrLFjPwqhQJNiasDAUuUFzu4dRojkyBexJbB+1McYA1gv9xZlsJ8lg==
@@ -3392,7 +3392,7 @@
     sprintf-js "^1.1.1"
     tannin "^1.2.0"
 
-"@wordpress/icons@^4.0.2", "@wordpress/icons@^4.1.0":
+"@wordpress/icons@^4.0.3", "@wordpress/icons@^4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@wordpress/icons/-/icons-4.1.0.tgz#12e3f6e5923c7c78200d242c152db6d068dc76a5"
   integrity sha512-1FpEjT9kJbr0cWbgdgIwd2DoeerWijcVx3qCZ/WMFKNElBH9lfZLuWPI1hpX102HGWFcEi3VlbVpdBGeCeYQWg==
@@ -3421,7 +3421,7 @@
     lodash "^4.17.21"
     rememo "^3.0.0"
 
-"@wordpress/keycodes@^3.1.1", "@wordpress/keycodes@^3.2.0", "@wordpress/keycodes@^3.2.1":
+"@wordpress/keycodes@^3.1.2", "@wordpress/keycodes@^3.2.0", "@wordpress/keycodes@^3.2.1":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@wordpress/keycodes/-/keycodes-3.2.1.tgz#107986320440e0e61ddae2c579307892a3e24f43"
   integrity sha512-mjJu6a7bmWR4y2mrWUMIfJIkqF50u09y8seP9o1YDdecrJBon8VAOjVmfh+N4W6L/bVLHfTq4/6IZQaVKCy3xw==
@@ -3430,7 +3430,7 @@
     "@wordpress/i18n" "^4.2.1"
     lodash "^4.17.21"
 
-"@wordpress/notices@^3.1.5", "@wordpress/notices@^3.2.0":
+"@wordpress/notices@^3.1.6", "@wordpress/notices@^3.2.0":
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/@wordpress/notices/-/notices-3.2.2.tgz#f4ef6e96e38d10c6e5feb8488217fbfb5b404fa6"
   integrity sha512-8RoaNpoVi6xTwwNKTHSmoSSomPDNEgI8t3fW7FxuVushXq/TbNb+YOING5M7ABJqNUEygRoQO7Zldm89PDwQYw==
@@ -3440,7 +3440,7 @@
     "@wordpress/data" "^6.0.1"
     lodash "^4.17.21"
 
-"@wordpress/primitives@^2.1.1", "@wordpress/primitives@^2.2.0":
+"@wordpress/primitives@^2.1.2", "@wordpress/primitives@^2.2.0":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@wordpress/primitives/-/primitives-2.2.0.tgz#a813c3d8a43ad1f873b8e53f0b125cb8832273b0"
   integrity sha512-WupgR+tt6fKGZE1UKy2gz3wDdpRL9MWQbVuetXv/7TPAz2ofOS2fZIsXNrl4D0HkA82gYh8w8s2TXK0XNyAAow==
@@ -3467,7 +3467,7 @@
     redux "^4.1.0"
     rungen "^0.3.2"
 
-"@wordpress/reusable-blocks@^2.1.16":
+"@wordpress/reusable-blocks@^2.1.17":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@wordpress/reusable-blocks/-/reusable-blocks-2.2.0.tgz#214afedd1e169d396374556575231c2a5977b21e"
   integrity sha512-4rUm2w14tpqH4uNqrlXhaWk5AKd1SkSgyDZ+ME79YE3nfGD0abUZZpuElZjiSGlwxU9MIc6k2or88wcnvdAvrQ==
@@ -3485,7 +3485,7 @@
     "@wordpress/url" "^3.2.0"
     lodash "^4.17.21"
 
-"@wordpress/rich-text@^4.1.5", "@wordpress/rich-text@^4.2.0":
+"@wordpress/rich-text@^4.1.6", "@wordpress/rich-text@^4.2.0":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@wordpress/rich-text/-/rich-text-4.2.0.tgz#df14810323378702e257a59ef66705cfbf44450e"
   integrity sha512-e+wfrkKtZIcFZJZLxkrikiXbxlr6nuGg+V94uKMLrzJEWdw7w/8l3dNhWHRGPkldXIEGrF/mV40ibjUa2p3Sfg==
@@ -3503,7 +3503,7 @@
     memize "^1.1.0"
     rememo "^3.0.0"
 
-"@wordpress/server-side-render@^2.1.11":
+"@wordpress/server-side-render@^2.1.12":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@wordpress/server-side-render/-/server-side-render-2.2.0.tgz#d502803248c765303f6920d5bcff705f3b49ebbe"
   integrity sha512-7nJBM8NKgvylzetEgm89vuBXr9KvdtMaUfRvqEfNzV3at9xcnD+8or8zvdWF0y6fVON1e4brpbRMQTOV/aCZVQ==
@@ -3520,7 +3520,7 @@
     "@wordpress/url" "^3.2.0"
     lodash "^4.17.21"
 
-"@wordpress/shortcode@^3.1.1", "@wordpress/shortcode@^3.2.0":
+"@wordpress/shortcode@^3.1.2", "@wordpress/shortcode@^3.2.0":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@wordpress/shortcode/-/shortcode-3.2.1.tgz#1961fe329758a97cfad9003f7d4328ce74ee8a4b"
   integrity sha512-nVELegRjoy/ShrKx2julCSCHiXlp8NTPfxYQCqNomUJzosdqVg7hj/LGt1STu7vZIqPayS8iVG3V7d0s2kGAkg==
@@ -3537,7 +3537,7 @@
     "@babel/runtime" "^7.13.10"
     lodash "^4.17.21"
 
-"@wordpress/url@^3.1.1", "@wordpress/url@^3.2.0", "@wordpress/url@^3.2.1":
+"@wordpress/url@^3.1.2", "@wordpress/url@^3.2.0", "@wordpress/url@^3.2.1":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@wordpress/url/-/url-3.2.1.tgz#2b813231c04cbfbaebf3c3beba62cc543231f32a"
   integrity sha512-+AJt74qWz+iXkT05sBUBjx5EF3niFkvr1CqaIbWCew9/j47de6r0AHjaFhaiCCsq5fg1eqRe74sZKHrMmIWKQQ==
@@ -3546,7 +3546,7 @@
     lodash "^4.17.21"
     react-native-url-polyfill "^1.1.2"
 
-"@wordpress/viewport@^3.1.5":
+"@wordpress/viewport@^3.1.6":
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/@wordpress/viewport/-/viewport-3.2.0.tgz#655d7ac9d3f35050f64be212acca5efc88decb89"
   integrity sha512-wprefD4TaSSU0RYheLoIAlGRSwF7hKNhJpMS36SwQb+RmQrqRyvGWiIMeYypLkUVeFUukQ3AnCOcjppaOXYiLQ==
@@ -3822,12 +3822,12 @@ arch@^2.1.1:
   integrity sha512-Of/R0wqp83cgHozfIYLbBMnej79U/SVGOOyuB3VVFv1NRM/PSFMK12x9KVtiYzJqmnU5WR2qp0Z5rHb7sWGnFQ==
 
 are-we-there-yet@~1.1.2:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/are-we-there-yet/-/are-we-there-yet-1.1.5.tgz#4b35c2944f062a8bfcda66410760350fe9ddfc21"
-  integrity sha512-5hYdAkZlcG8tOLujVDTgCT+uPX0VnpAH28gWsLfzpXYm7wP6mp5Q/gYyR7YQ0cKVJcXJnl3j2kpBan13PtQf6w==
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/are-we-there-yet/-/are-we-there-yet-1.1.6.tgz#bc9101d19670c7bdb1546ed036568a6c9879ee79"
+  integrity sha512-+1byPnimWdGcKFRS48zG73nxM08kamPFReUYvEmRXI3E8E4YhF4voMRDaGlfGD1UeRHEgs4NhQCE28KI8JVj1A==
   dependencies:
     delegates "^1.0.0"
-    readable-stream "^2.0.6"
+    readable-stream "^3.6.0"
 
 arg@^4.1.0:
   version "4.1.3"
@@ -4992,16 +4992,16 @@ content-type@^1.0.4, content-type@~1.0.4:
   integrity sha512-hIP3EEPs8tB9AT1L+NUqtwOAps4mk2Zob89MWXMHjHWg9milF/j4osnnQLXBCBFBk/tvIG/tUc9mOUJiPBhPXA==
 
 contentful-management@^7.5.1:
-  version "7.35.1"
-  resolved "https://registry.yarnpkg.com/contentful-management/-/contentful-management-7.35.1.tgz#125c7aa704a978d4828de45792eb940da392dde7"
-  integrity sha512-9DbowMu/B+Is4sNi0sCQvJ7NllW25pQi0FI9F5+1CAq9XEvPZi5ZGTDBRMGNLIUJqeWYGKQt43SdAKXb4uJvew==
+  version "7.36.1"
+  resolved "https://registry.yarnpkg.com/contentful-management/-/contentful-management-7.36.1.tgz#4023c3fbdda404b7717a232c88f6a06a60e43d36"
+  integrity sha512-RmK1CKslvyQ9gQEMUmH2oT9EtX+AtY1nh7kqEmvA18Ye70qZtRgtYDhOoC8XnxbwZ+tEQ6vJEdLhWavpJ/FThQ==
   dependencies:
     "@types/json-patch" "0.0.30"
     axios "^0.21.0"
     contentful-sdk-core "^6.8.0"
     fast-copy "^2.1.0"
     lodash.isplainobject "^4.0.6"
-    type-fest "^0.20.2"
+    type-fest "^0.21.3"
 
 contentful-sdk-core@^6.8.0:
   version "6.8.2"
@@ -5079,22 +5079,22 @@ core-js-compat@3.9.0:
     semver "7.0.0"
 
 core-js-compat@^3.14.0, core-js-compat@^3.16.0:
-  version "3.16.4"
-  resolved "https://registry.yarnpkg.com/core-js-compat/-/core-js-compat-3.16.4.tgz#cf28abe0e45a43645b04b2c1a073efa03d0b3b26"
-  integrity sha512-IzCSomxRdahCYb6G3HiN6pl3JCiM0NMunRcNa1pIeC7g17Vd6Ue3AT9anQiENPIm/svThUVer1pIbLMDERIsFw==
+  version "3.17.1"
+  resolved "https://registry.yarnpkg.com/core-js-compat/-/core-js-compat-3.17.1.tgz#a0264ed6712affb3334c56f6a6159f20aedad56b"
+  integrity sha512-Oqp6qybMdCFcWSroh/6Q8j7YNOjRD0ThY02cAd6rugr//FCkMYonizLV8AryLU5wNJOweauIBxQYCZoV3emfcw==
   dependencies:
     browserslist "^4.16.8"
     semver "7.0.0"
 
 core-js-pure@^3.16.0:
-  version "3.16.4"
-  resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.16.4.tgz#8b23122628d88c560f209812b9b2d9ebbce5e29c"
-  integrity sha512-bY1K3/1Jy9D8Jd12eoeVahNXHLfHFb4TXWI8SQ4y8bImR9qDPmGITBAfmcffTkgUvbJn87r8dILOTWW5kZzkgA==
+  version "3.17.1"
+  resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.17.1.tgz#4f2faa60843409a4cb4070431dbaa8cc6e602c78"
+  integrity sha512-EBMGdzQg7lHk3uI5bQ9NH56K+lx9HAl8pOmLarODePLLGkpwVEC1VydJTocuFchPlRDF7ZPxgKshyaM4CuV6Uw==
 
 core-js@^3.9.0:
-  version "3.16.4"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.16.4.tgz#0fb1029a554fc2688c0963d7c900e188188a78e0"
-  integrity sha512-Tq4GVE6XCjE+hcyW6hPy0ofN3hwtLudz5ZRdrlCnsnD/xkm/PWQRudzYHiKgZKUcefV6Q57fhDHjZHJP5dpfSg==
+  version "3.17.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.17.1.tgz#b39e086f413789cf2ca4680c4ecd1b36a50ba277"
+  integrity sha512-C8i/FNpVN2Ti89QIJcFn9ZQmnM+HaAQr2OpE+ja3TRM9Q34FigsGlAVuwPGkIgydSVClo/1l1D1grP8LVt9IYA==
 
 core-util-is@~1.0.0:
   version "1.0.3"
@@ -5845,9 +5845,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.3.564, electron-to-chromium@^1.3.811:
-  version "1.3.826"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.826.tgz#dbe356b1546b39d83bcd47e675a9c5f61dadaed2"
-  integrity sha512-bpLc4QU4B8PYmdO4MSu2ZBTMD8lAaEXRS43C09lB31BvYwuk9UxgBRXbY5OJBw7VuMGcg2MZG5FyTaP9u4PQnw==
+  version "1.3.827"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.827.tgz#c725e8db8c5be18b472a919e5f57904512df0fc1"
+  integrity sha512-ye+4uQOY/jbjRutMcE/EmOcNwUeo1qo9aKL2tPyb09cU3lmxNeyDF4RWiemmkknW+p29h7dyDqy02higTxc9/A==
 
 email-validator@^2.0.4:
   version "2.0.4"
@@ -9981,9 +9981,9 @@ natural-compare@^1.4.0:
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
 needle@^2.5.2:
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/needle/-/needle-2.9.0.tgz#c680e401f99b6c3d8d1f315756052edf3dc3bdff"
-  integrity sha512-UBLC4P8w9to3rAhWOQYXIXzTUio9yVnDzIeKxfGbF+Hngy+2bXTqqFK+6nF42EAQKfJdezXK6vzMsefUa1Y3ag==
+  version "2.9.1"
+  resolved "https://registry.yarnpkg.com/needle/-/needle-2.9.1.tgz#22d1dffbe3490c2b83e301f7709b6736cd8f2684"
+  integrity sha512-6R9fqJ5Zcmf+uYaFgdIHmLwNldn5HbK8L5ybn7Uz+ylX/rnOsSp1AHcvQSrCaFN+qNM1wpymHqD7mVasEOlHGQ==
   dependencies:
     debug "^3.2.6"
     iconv-lite "^0.4.4"
@@ -11761,7 +11761,7 @@ readable-stream@1.1.x:
     isarray "0.0.1"
     string_decoder "~0.10.x"
 
-readable-stream@^2.0.0, readable-stream@^2.0.6, readable-stream@^2.2.2:
+readable-stream@^2.0.0, readable-stream@^2.2.2:
   version "2.3.7"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.3.7.tgz#1eca1cf711aef814c04f62252a36a62f6cb23b57"
   integrity sha512-Ebho8K4jIbHAxnuxi7o42OrZgF/ZTNcsZj6nRKyUmkhLFq8CHItp/fy6hQZuZmP/n3yZ9VBUbp4zz/mX8hmYPw==

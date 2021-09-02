@@ -7,7 +7,7 @@ const config = {
   },
   createCategories: false,
   createTags: false,
-  // createPosts: false,
+  createPosts: false,
   createUsers: false,
   withApollo: false,
   // developLimit: 10,
