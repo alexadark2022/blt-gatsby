@@ -5,7 +5,7 @@ import { HeaderSearch } from "./HeaderSearch";
 import { HeaderMobileSearch } from "./HeaderMobileSearch";
 import clsx from "clsx";
 import { window } from "browser-monads";
-import Headroom from "react-headroom";
+// import Headroom from "react-headroom";
 
 import { Branding } from "./Branding";
 
@@ -13,31 +13,31 @@ export const Header = () => {
   const path = window.location.href;
 
   return (
-    <Headroom className="z-50">
-      <header className="relative z-50 py-3 bg-darkBlue">
-        <div
-          className={clsx(
-            "flex items-center justify-between",
-            "container max-w-big",
-            "px-5 py-2 sm:py-0 2xl:px-0 "
-          )}
-        >
-          <Branding />
-          {path !== "/" && !path?.includes("search") && path !== "/404" && (
-            <HeaderSearch className="hidden xl:block" />
-          )}
-          <div className="flex items-center space-x-5">
-            <Menu className="hidden lg:flex" />
-            <HeaderMobileSearch className="hidden mr-5 lg:block xl:hidden" />
-          </div>
-          <div className={clsx("lg:hidden", "flex space-x-5")}>
-            {path !== "/" && !path?.includes("search") && path !== "/404" && (
-              <HeaderMobileSearch />
-            )}
-            <MobileMenu />
-          </div>
+    // <Headroom className="z-50">
+    <header className="relative z-50 py-3 bg-darkBlue">
+      <div
+        className={clsx(
+          "flex items-center justify-between",
+          "container max-w-big",
+          "px-5 py-2 sm:py-0 2xl:px-0 "
+        )}
+      >
+        <Branding />
+        {path !== "/" && !path?.includes("search") && path !== "/404" && (
+          <HeaderSearch className="hidden xl:block" />
+        )}
+        <div className="flex items-center space-x-5">
+          <Menu className="hidden lg:flex" />
+          <HeaderMobileSearch className="hidden mr-5 lg:block xl:hidden" />
         </div>
-      </header>
-    </Headroom>
+        <div className={clsx("lg:hidden", "flex space-x-5")}>
+          {path !== "/" && !path?.includes("search") && path !== "/404" && (
+            <HeaderMobileSearch />
+          )}
+          <MobileMenu />
+        </div>
+      </div>
+    </header>
+    // </Headroom>
   );
 };
