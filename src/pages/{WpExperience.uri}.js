@@ -10,9 +10,10 @@ import { SidebarSocialShare, SocialShare } from "../components/social";
 import clsx from "clsx";
 import { CollapseSection, Layout } from "../components";
 import { About } from "../components/layout/About";
-import { CardsGrid } from "../components/layout/CardsGrid";
+
 import { CollapseListings } from "../components/layout/CollapseListings";
 import { TitleContent } from "../components/layout/TitleContent";
+import { CollapseCards } from "../components/layout/CollapseCards";
 
 const DestinationPage = ({ data }) => {
   const { wpExperience: experience } = data || {};
@@ -120,7 +121,7 @@ const DestinationPage = ({ data }) => {
           >
             <div className="mt-5">
               <CollapseListings listings={recos} pts />
-              <CardsGrid cards={recos} className="md:hidden" pts />
+              <CollapseCards cards={recos} className="md:hidden" />
             </div>
           </CollapseSection>
         )}
@@ -161,7 +162,11 @@ const DestinationPage = ({ data }) => {
           >
             <div className="mt-5">
               <CollapseListings listings={affiliateTours} noBl />
-              <CardsGrid cards={affiliateTours} className="md:hidden" noBl />
+              <CollapseCards
+                cards={affiliateTours}
+                className="md:hidden"
+                noBl
+              />
             </div>
           </CollapseSection>
         )}
@@ -175,7 +180,7 @@ const DestinationPage = ({ data }) => {
           >
             <div className="mt-5">
               <CollapseListings listings={tourOperator} noBl />
-              <CardsGrid cards={tourOperator} className="md:hidden" noBl />
+              <CollapseCards cards={tourOperator} className="md:hidden" noBl />
             </div>
           </CollapseSection>
         )}
@@ -189,7 +194,7 @@ const DestinationPage = ({ data }) => {
           >
             <div className="mt-5">
               <CollapseListings listings={whereToStay} pts />
-              <CardsGrid cards={whereToStay} className="md:hidden" pts />
+              <CollapseCards cards={whereToStay} className="md:hidden" pts />
             </div>
           </CollapseSection>
         )}
@@ -202,7 +207,11 @@ const DestinationPage = ({ data }) => {
           >
             <div className="mt-5">
               <CollapseListings listings={itineraries} itinerary />
-              <CardsGrid cards={itineraries} className="md:hidden" itinerary />
+              <CollapseCards
+                cards={itineraries}
+                className="md:hidden"
+                itinerary
+              />
             </div>
           </CollapseSection>
         )}
@@ -215,7 +224,7 @@ const DestinationPage = ({ data }) => {
           >
             <div className="mt-5">
               <CollapseListings listings={destinations} />
-              <CardsGrid cards={destinations} className="md:hidden" />
+              <CollapseCards cards={destinations} className="md:hidden" />
             </div>
           </CollapseSection>
         )}
@@ -228,7 +237,10 @@ const DestinationPage = ({ data }) => {
           >
             <div className="mt-5">
               <CollapseListings listings={bucketListExperiences} />
-              <CardsGrid cards={bucketListExperiences} className="md:hidden" />
+              <CollapseCards
+                cards={bucketListExperiences}
+                className="md:hidden"
+              />
             </div>
           </CollapseSection>
         )}
@@ -240,7 +252,7 @@ const DestinationPage = ({ data }) => {
             listings
           >
             <CollapseListings listings={otherExperiences} />
-            <CardsGrid cards={otherExperiences} className="md:hidden" />
+            <CollapseCards cards={otherExperiences} className="md:hidden" />
           </CollapseSection>
         )}
       </PageLayout>

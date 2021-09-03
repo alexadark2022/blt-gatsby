@@ -17,7 +17,6 @@ import { IntroText } from "../components/layout/IntroText";
 import { CollapseCards } from "../components/layout/CollapseCards";
 import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed";
 import clsx from "clsx";
-import { CardsGrid } from "../components/layout/CardsGrid";
 
 const DestinationPage = ({ data }) => {
   const url = window.location.href;
@@ -92,7 +91,7 @@ const DestinationPage = ({ data }) => {
               <IntroText content={about} />
               <div>
                 <CollapseListings listings={allLinks} pts />
-                <CardsGrid cards={allLinks} className="md:hidden" pts />
+                <CollapseCards cards={allLinks} className="md:hidden" pts />
               </div>
             </CollapseSection>
           );

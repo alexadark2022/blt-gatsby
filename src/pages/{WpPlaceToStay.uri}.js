@@ -22,6 +22,7 @@ import PageLayout from "../components/layout/PageLayout";
 import { Price } from "../components/Price";
 import SidebarTourOperator from "../components/sidebar/SidebarTourOperator";
 import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed";
+import { CollapseCards } from "../components/layout/CollapseCards";
 
 const DestinationPage = ({ data }) => {
   const url = window.location.href;
@@ -327,7 +328,10 @@ const DestinationPage = ({ data }) => {
           >
             <div className="mt-5">
               <CollapseListings listings={bucketListExperiences} />
-              <CardsGrid cards={bucketListExperiences} className="md:hidden" />
+              <CollapseCards
+                cards={bucketListExperiences}
+                className="md:hidden"
+              />
             </div>
           </CollapseSection>
         )}
@@ -339,7 +343,7 @@ const DestinationPage = ({ data }) => {
             listings
           >
             <CollapseListings listings={otherExperiences} />
-            <CardsGrid cards={otherExperiences} className="md:hidden" />
+            <CollapseCards cards={otherExperiences} className="md:hidden" />
           </CollapseSection>
         )}
         {/* Destination guide */}
@@ -350,7 +354,7 @@ const DestinationPage = ({ data }) => {
             listings
           >
             <CollapseListings listings={destinations} />
-            <CardsGrid cards={destinations} className="md:hidden" />
+            <CollapseCards cards={destinations} className="md:hidden" />
           </CollapseSection>
         )}
       </PageLayout>
