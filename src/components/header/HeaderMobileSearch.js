@@ -7,7 +7,7 @@ import { Disclosure, Transition } from "@headlessui/react";
 
 export const HeaderMobileSearch = ({ className, ...props }) => {
   return (
-    <div className={clsx(className)} {...props}>
+    <div className={clsx("z-50", className)} {...props}>
       <Disclosure>
         <Disclosure.Button>
           <span aria-label="search">

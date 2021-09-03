@@ -8,7 +8,7 @@ import { Link } from "gatsby";
 export const Home404Search = () => {
   const isSmall = useMediaQuery("(max-width:640px)");
   return (
-    <div className="w-auto lg:w-[950px] mx-auto">
+    <div className="w-auto lg:w-[950px] mx-auto z-10">
       <form className="relative mb-4">
         <input
           type="text"
