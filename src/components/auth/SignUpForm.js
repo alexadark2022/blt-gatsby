@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState } from "react"
-import { useMutation, gql } from "@apollo/client"
-import { Input, Label, Button, Typo } from "../ui-components"
+import React, { useState } from "react";
+import { useMutation, gql } from "@apollo/client";
+import { Input, Label, Button, Typo } from "../ui-components";
 
 const REGISTER_USER = gql`
   mutation registerUser(
@@ -22,21 +22,21 @@ const REGISTER_USER = gql`
       }
     }
   }
-`
+`;
 
 export function SignUpForm({ warning, setTabIndex }) {
-  const [variables, setVariables] = useState({})
-  const [step, setStep] = useState(1)
-  const [register, { data, loading, error }] = useMutation(REGISTER_USER)
-  const wasSignUpSuccessful = Boolean(data?.registerUser?.user?.databaseId)
+  const [variables, setVariables] = useState({});
+  const [step, setStep] = useState(1);
+  const [register, { data, loading, error }] = useMutation(REGISTER_USER);
+  const wasSignUpSuccessful = Boolean(data?.registerUser?.user?.databaseId);
 
   function handleSubmit(event) {
-    event.preventDefault()
+    event.preventDefault();
     register({
       variables,
     }).catch((error) => {
-      console.error(error)
-    })
+      console.error(error);
+    });
   }
 
   if (wasSignUpSuccessful) {
@@ -53,7 +53,7 @@ export function SignUpForm({ warning, setTabIndex }) {
           good to go...
         </p>
       </>
-    )
+    );
   }
 
   return (
@@ -69,14 +69,14 @@ export function SignUpForm({ warning, setTabIndex }) {
           </Typo>
           {warning && (
             <div className="orange-box">
-              You must sign in or create an account to add to a list. Then we
-              can save your selections.
+              Please note: if you want us to save your bucket list for next
+              time, you need to sign in or create an account.
             </div>
           )}
           <form
             onSubmit={(e) => {
-              e.preventDefault()
-              variables.email && setStep(2)
+              e.preventDefault();
+              variables.email && setStep(2);
             }}
           >
             <div>
@@ -106,8 +106,8 @@ export function SignUpForm({ warning, setTabIndex }) {
               aria-label="go to signin"
               className={`text-blueLink`}
               onClick={(e) => {
-                e.preventDefault()
-                setTabIndex(1)
+                e.preventDefault();
+                setTabIndex(1);
               }}
             >
               Sign in
@@ -172,8 +172,8 @@ export function SignUpForm({ warning, setTabIndex }) {
               <div className="flex justify-around mb-5">
                 <Button
                   onClick={(e) => {
-                    e.preventDefault()
-                    setStep(1)
+                    e.preventDefault();
+                    setStep(1);
                   }}
                 >
                   Go Back
@@ -187,5 +187,5 @@ export function SignUpForm({ warning, setTabIndex }) {
         </>
       )}
     </>
-  )
+  );
 }
