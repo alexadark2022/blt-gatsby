@@ -25,9 +25,9 @@ const MENU_QUERY = graphql`
 const MenuItem = ({ item, setIsOpen }) => {
   const { label, path, cssClasses, id } = item;
 
-  const menuItem =
-    cssClasses?.includes("button") || cssClasses?.includes("sign") ? (
-      cssClasses.includes("sign") ? (
+  return (
+    <>
+      {cssClasses.includes("sign") ? (
         <Button
           className={`h-10 text-f-14`}
           onClick={() => {
@@ -37,23 +37,18 @@ const MenuItem = ({ item, setIsOpen }) => {
           {label}
         </Button>
       ) : (
-        <Button className="h-10 text-f-14">{label}</Button>
-      )
-    ) : (
-      <a
-        className={clsx(
-          "menuItem",
-          "text-white text-f-14 uppercase tracking-[1px] hover:text-gold hover:no-underline"
-        )}
-      >
-        {label}
-      </a>
-    );
-  return (
-    <>
-      <Link key={id} to={path}>
-        {menuItem}
-      </Link>
+        <Link
+          key={id}
+          to={path}
+          className={`${
+            cssClasses?.includes("button")
+              ? "btn h-10 text-f-14"
+              : "text-white text-f-14 uppercase tracking-[1px] hover:text-gold hover:no-underline"
+          }`}
+        >
+          {label}
+        </Link>
+      )}
     </>
   );
 };
