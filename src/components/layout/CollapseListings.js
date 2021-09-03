@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Collapse from "@kunukn/react-collapse";
 import { Button } from "..";
 import { Listing } from "./Listing";
@@ -11,8 +11,16 @@ export const CollapseListings = ({
   ...props
 }) => {
   const [open, setOpen] = useState(false);
+  const collapseContainer = useRef(null);
+
+  useEffect(() => {
+    const currentElm = collapseContainer?.current;
+    if (!open) {
+      currentElm.scrollIntoView();
+    }
+  }, [open]);
   return (
-    <div className="hidden md:block" {...props}>
+    <div className="hidden md:block" ref={collapseContainer} {...props}>
       {listings?.slice(0, 4)?.map((item) => {
         const { __typename } = item;
 
