@@ -52,8 +52,8 @@ export const commonFragments = graphql`
     localFile {
       childImageSharp {
         gatsbyImageData(
-          width: 991
-          height: 658
+          width: 960
+          aspectRatio: 1.5
           quality: 80
           layout: CONSTRAINED
           placeholder: BLURRED

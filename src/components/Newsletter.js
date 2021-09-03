@@ -149,13 +149,13 @@ const NewsletterHome = ({ className, ...props }) => {
           )}
           {...props}
         >
-          <Image
-            img={image.localFile}
-            width={566}
-            height={371}
-            className="mr-14 max-w-[556px]"
-            imgClassName="max-w-[566px]"
-          />
+          <div className="max-w-[566px]">
+            <Image
+              img={image.localFile}
+              className="mr-14 max-w-[556px]"
+              imgClassName="max-w-[566px]"
+            />
+          </div>
 
           <div>
             <div className="inline-block">
