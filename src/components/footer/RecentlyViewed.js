@@ -68,7 +68,7 @@ export const RecentlyViewed = ({ className, ...props }) => {
       <Slider {...settings} css={{ ...styles }}>
         {rvData?.map((item, i) => {
           const { featuredImage, title, uri } = item;
-          const { sourceUrl, altText, localFile } = featuredImage?.node || {};
+          const { altText, localFile } = featuredImage?.node || {};
           return (
             <div key={i} className="px-base py-base2 group">
               <Link
@@ -81,7 +81,11 @@ export const RecentlyViewed = ({ className, ...props }) => {
                 <div className="cursor-pointer shadow-listing">
                   <div className="relative h-[126px]  group">
                     {localFile ? (
-                      <Image img={localFile} alt={altText} className="w-full" />
+                      <Image
+                        img={localFile}
+                        alt={altText}
+                        className="w-full h-[127px]"
+                      />
                     ) : (
                       <StaticImage
                         src="../../images/noimage.svg"
