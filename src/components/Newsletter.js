@@ -81,21 +81,19 @@ const EbookCheckboxes = ({ homeNl }) => {
   );
 };
 
-const Newsletter = ({ home }) => {
+const Newsletter = ({ home, ...props }) => {
   const isLarge = useMediaQuery("(min-width: 1024px)");
   const data = useStaticQuery(GET_NL_IMAGE);
   const { nlImage: image } = data?.wp?.options?.newsletterImage;
   return (
-    <Section className={clsx("")}>
-      <div className={`px-3 pt-3 `}>
+    <Section {...props}>
+      <div className={`px-3 pt-3`}>
         <Image
           img={image.localFile}
-          width={isLarge ? 292 : 991}
-          height={isLarge ? 195 : 658}
           loading={isLarge ? "eager" : "lazy"}
-          imgClassName={`${
-            isLarge ? "w-[991px] h-[658px]" : "w-[292px] h-[195px]"
-          }`}
+          // imgClassName={`${
+          //   isLarge ? "w-[991px] h-[658px]" : "w-[292px] h-[195px]"
+          // }`}
         />
       </div>
       <div className="px-5 pb-5 mt-3">
@@ -133,64 +131,61 @@ const Newsletter = ({ home }) => {
 };
 
 const NewsletterHome = ({ className, ...props }) => {
-  const isLarge = useMediaQuery("(min-width: 1024px)");
   const data = useStaticQuery(GET_NL_IMAGE);
   const { nlImage: image } = data?.wp?.options?.newsletterImage;
   return (
     <>
-      {isLarge ? (
-        <div
-          className={clsx(
-            "container max-w-big",
-            "border border-grey2 shadow-section bg-white",
-            "px-16 py-12",
-            "lg:flex",
-            className
-          )}
-          {...props}
-        >
-          <div className="max-w-[566px]">
-            <Image
-              img={image.localFile}
-              className="mr-14 max-w-[556px]"
-              imgClassName="max-w-[566px]"
-            />
-          </div>
+      <div
+        className={clsx(
+          "container max-w-big",
+          "border border-grey2 shadow-section bg-white",
+          "px-16 py-12",
+          "hidden lg:flex",
+          className
+        )}
+        {...props}
+      >
+        <div className="max-w-[566px]">
+          <Image
+            img={image.localFile}
+            className="mr-14 max-w-[556px]"
+            imgClassName="max-w-[566px]"
+          />
+        </div>
 
-          <div>
-            <div className="inline-block">
-              <h3 className="font-light sm:text-[48px] inline-block text-grey5 leading-none">
-                Want one of these?
-              </h3>
-              <Underline mb="mb-base2" />
+        <div>
+          <div className="inline-block">
+            <h3 className="font-light sm:text-[48px] inline-block text-grey5 leading-none">
+              Want one of these?
+            </h3>
+            <Underline mb="mb-base2" />
+          </div>
+          <form>
+            <EbookCheckboxes homeNl />
+            <div className="relative">
+              <EnvelopeInput
+                grey
+                height="h-[58px]"
+                enveloppeTop="top-[21px]"
+                placeholder="Enter your email here"
+                className="text-[20px]"
+              />
+              <Button
+                as="input"
+                type="submit"
+                value="submit"
+                className={clsx("absolute top-0 right-0", "w-[131px] h-full")}
+              />
             </div>
-            <form>
-              <EbookCheckboxes homeNl />
-              <div className="relative">
-                <EnvelopeInput
-                  grey
-                  height="h-[58px]"
-                  enveloppeTop="top-[21px]"
-                  placeholder="Enter your email here"
-                  className="text-[20px]"
-                />
-                <Button
-                  as="input"
-                  type="submit"
-                  value="submit"
-                  className={clsx("absolute top-0 right-0", "w-[131px] h-full")}
-                />
-              </div>
-            </form>
-            <div className="mt-4 text-center text-grey3">
-              We promise you won’t get any marketing from us other than what you
-              specify above
-            </div>
+          </form>
+          <div className="mt-4 text-center text-grey3">
+            We promise you won’t get any marketing from us other than what you
+            specify above
           </div>
         </div>
-      ) : (
-        <Newsletter home />
-      )}
+      </div>
+
+      <Newsletter home className="lg:hidden" />
     </>
   );
 };
