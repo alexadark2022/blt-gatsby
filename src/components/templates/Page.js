@@ -57,7 +57,7 @@ const Page = ({ page, ctx }) => {
         <PageLayout
           title={pageTitle}
           sidebar={
-            <div className="space-y-base2">
+            <div className="space-y-base2 sticky top-0">
               <Newsletter />
               <SidebarSocialShare url={url} />
             </div>

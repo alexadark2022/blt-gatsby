@@ -109,17 +109,19 @@ const DestinationPage = ({ data }) => {
         images={imageGallery}
         intro="Best things to do & places to stay in:"
         sidebar={
-          <div className="space-y-base2">
+          <div className="space-y-base2 h-full">
             <Newsletter />
-            <SidebarSocialShare url={url} />
-            {sidebarTourOperator &&
-              sidebarTourOperator.map((to, index) => (
-                <SidebarTourOperator
-                  key={index}
-                  tourOperator={to}
-                  description={sbtouroperatordescription}
-                />
-              ))}
+            <div className="sticky top-0 space-y-base2">
+              <SidebarSocialShare url={url} />
+              {sidebarTourOperator &&
+                sidebarTourOperator.map((to, index) => (
+                  <SidebarTourOperator
+                    key={index}
+                    tourOperator={to}
+                    description={sbtouroperatordescription}
+                  />
+                ))}
+            </div>
           </div>
         }
       >
