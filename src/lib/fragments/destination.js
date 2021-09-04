@@ -6,6 +6,7 @@ export const destinationFragments = graphql`
     uri
     slug
     id
+    databaseId
 
     featuredImage {
       node {
@@ -46,6 +47,7 @@ export const destinationFragments = graphql`
     uri
     slug
     id
+    databaseId
     date
     modified
     featuredImage {

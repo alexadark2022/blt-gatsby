@@ -1,7 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMutation, gql } from "@apollo/client";
 import { Input, Label, Button, Typo } from "../ui-components";
+import ls from "local-storage";
 
 const REGISTER_USER = gql`
   mutation registerUser(
@@ -24,17 +25,42 @@ const REGISTER_USER = gql`
   }
 `;
 
+const CREATE_BUCKET_LIST = gql`
+  mutation ($input: BlMutationInput!) {
+    blMutation(input: $input) {
+      bucketListCreated
+      clientMutationId
+    }
+  }
+`;
+
 export function SignUpForm({ warning, setTabIndex }) {
   const [variables, setVariables] = useState({});
   const [step, setStep] = useState(1);
   const [register, { data, loading, error }] = useMutation(REGISTER_USER);
+
+  const [blMutation] = useMutation(CREATE_BUCKET_LIST);
   const wasSignUpSuccessful = Boolean(data?.registerUser?.user?.databaseId);
+
+  const linksInput = ls("bucketList")?.map((item) => item.databaseId);
+  const createBlMutationInput = () => {
+    return {
+      clientMutationId: Date.now().toString(),
+      emailInput: variables.email,
+      linksInput,
+    };
+  };
 
   function handleSubmit(event) {
     event.preventDefault();
-    register({
-      variables,
+    blMutation({
+      variables: {
+        input: createBlMutationInput(),
+      },
     }).catch((error) => {
+      console.error(error);
+    });
+    register({ variables }).catch((error) => {
       console.error(error);
     });
   }

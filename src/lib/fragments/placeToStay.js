@@ -5,6 +5,7 @@ export const placeTostayFragments = graphql`
     id
     title
     slug
+    databaseId
     uri
     categories {
       nodes {
@@ -47,7 +48,7 @@ export const placeTostayFragments = graphql`
 
   fragment PlaceToStayPage on WpPlaceToStay {
     id
-
+    databaseId
     title
     uri
     # viewCount

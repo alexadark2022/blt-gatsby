@@ -5,6 +5,7 @@ export const experienceFragments = graphql`
     uri
     slug
     id
+    databaseId
     date
     modified
     featuredImage {
@@ -67,6 +68,7 @@ export const experienceFragments = graphql`
     uri
     slug
     id
+    databaseId
     date
     modified
     experienceTypes {
