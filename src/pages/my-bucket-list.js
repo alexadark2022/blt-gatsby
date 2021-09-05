@@ -34,21 +34,10 @@ const BucketListPage = () => {
     ? data?.bucketLists?.nodes[0].bucketListElements?.blLinks
     : lsItems;
 
-  console.log("data", data, "items", items);
   const emptyBl = () => {
     setLsItems([]);
     setIsOpenModal(false);
   };
-
-  // const roundUpsItems = items?.filter(
-  //   (item) => item.__typename === "RoundUp_Roundupdataattributes_links"
-  // );
-  // const otherItems = items?.filter(
-  //   (item) => item.__typename !== "RoundUp_Roundupdataattributes_links"
-  // );
-  // const roundUpsCountries = roundUpsItems?.map(
-  //   (item) => item.link[0].commonDataAttributes?.country?.name
-  // ) || ["1"];
 
   const countries = uniq(
     items?.map((item) => item.commonDataAttributes?.country?.name) || ["1"]
@@ -84,15 +73,10 @@ const BucketListPage = () => {
       >
         {items?.length > 0 ? (
           countries?.map((country, i) => {
-            // const countryRoundUps = roundUpsItems.filter(
-            //   (item) =>
-            //     item.link[0].commonDataAttributes?.country?.name === country
-            // );
-
             const itemsByCountry = items.filter(
               (item) => item?.commonDataAttributes?.country?.name === country
             );
-            // const allItems = [...countryRoundUps, ...otherItemsByCountry];
+
             return (
               <CollapseSection title={country} key={i} listings>
                 <div className="mt-5">
