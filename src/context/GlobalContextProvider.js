@@ -6,6 +6,7 @@ export const GlobalDispatchContext = createContext();
 
 const initialState = {
   bucketListId: null,
+  items: [],
 };
 
 function reducer(state, action) {
@@ -14,6 +15,12 @@ function reducer(state, action) {
       return {
         ...state,
         bucketListId: action.bucketListId,
+      };
+    }
+    case "SET_BL_ITEMS": {
+      return {
+        ...state,
+        items: action.items,
       };
     }
     default:
