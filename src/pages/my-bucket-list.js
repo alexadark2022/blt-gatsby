@@ -10,6 +10,7 @@ import useLocalStorage from "../lib/hooks/use-local-storage";
 import { useAuth } from "../lib/hooks/useAuth";
 import { useQuery } from "@apollo/client";
 import { GET_BUCKET_LIST } from "../lib/queries";
+import { GlobalStateContext } from "../context/GlobalContextProvider";
 
 const BucketListPage = () => {
   //   const { data: filters } = filtersData

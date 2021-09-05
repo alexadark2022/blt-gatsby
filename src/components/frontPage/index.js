@@ -21,15 +21,17 @@ export const FrontPage = ({ homeHero, whatWeOffer, url, awards }) => {
   const bl = data?.bucketLists?.nodes[0];
 
   useEffect(() => {
-    dispatch({
-      type: "SET_BL_ID",
-      bucketListId: bl?.databaseId,
-    });
-    dispatch({
-      type: "SET_BL_ITEMS",
-      items: bl?.bucketListElements?.blLinks,
-    });
-  }, [user?.email]);
+    user &&
+      dispatch({
+        type: "SET_BL_ID",
+        bucketListId: bl?.databaseId,
+      });
+    user &&
+      dispatch({
+        type: "SET_BL_ITEMS",
+        items: bl?.bucketListElements?.blLinks,
+      });
+  }, [user]);
 
   console.log("state", useContext(GlobalStateContext));
 

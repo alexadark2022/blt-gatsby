@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { useMutation, gql } from "@apollo/client";
 
 import { Layout } from "../components";
@@ -6,6 +6,10 @@ import { useStaticQuery, graphql } from "gatsby";
 
 import { PasswordPagesLayout } from "../components/layout/PasswordPagesLayout";
 import { GET_USER } from "../lib/hooks/useAuth";
+import {
+  GlobalDispatchContext,
+  GlobalStateContext,
+} from "../context/GlobalContextProvider";
 
 const LOG_OUT_QUERY = graphql`
   query {
@@ -36,9 +40,18 @@ export default function LogOut() {
     refetchQueries: [{ query: GET_USER }],
   });
   const loggedOut = Boolean(data?.logout?.status);
+  const dispatch = useContext(GlobalDispatchContext);
 
   useEffect(() => {
     logOut();
+    dispatch({
+      type: "SET_BL_ID",
+      bucketListId: undefined,
+    });
+    dispatch({
+      type: "SET_BL_ITEMS",
+      items: [],
+    });
   }, [logOut]);
 
   return (
