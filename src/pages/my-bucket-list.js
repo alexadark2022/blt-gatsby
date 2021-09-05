@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import uniq from "lodash/uniq";
 import { CollapseSection, Layout } from "../components";
 import { EmptyModal } from "../components/bucket-list/EmptyModal";
@@ -7,9 +7,6 @@ import { CollapseListings } from "../components/layout/CollapseListings";
 import PageLayout from "../components/layout/PageLayout";
 import { NoResults } from "../components/search";
 import useLocalStorage from "../lib/hooks/use-local-storage";
-import { useAuth } from "../lib/hooks/useAuth";
-import { useQuery } from "@apollo/client";
-import { GET_BUCKET_LIST } from "../lib/queries";
 import { GlobalStateContext } from "../context/GlobalContextProvider";
 
 const BucketListPage = () => {
@@ -18,22 +15,9 @@ const BucketListPage = () => {
   //   const [openFilters, setOpenFilters] = useState(false)
   let [isOpenModal, setIsOpenModal] = useState(false);
 
-  const { loggedIn, user } = useAuth();
+  const { bucketListId, items: blItems } = useContext(GlobalStateContext);
 
-  // const userItems = (email) => {
-  //   const { data, loading, error } = useQuery(GET_BUCKET_LIST, {
-  //     variables: { title: email },
-  //   });
-  //   const items = data.bucketLists.nodes;
-  //   return { data, loading, error };
-  // };
-  const { data, loading, error } = useQuery(GET_BUCKET_LIST, {
-    variables: { title: user?.email },
-  });
-
-  const items = user
-    ? data?.bucketLists?.nodes[0].bucketListElements?.blLinks
-    : lsItems;
+  const items = bucketListId ? blItems : lsItems;
 
   const emptyBl = () => {
     setLsItems([]);
