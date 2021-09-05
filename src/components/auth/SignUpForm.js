@@ -43,19 +43,16 @@ export function SignUpForm({ warning, setTabIndex }) {
   const wasSignUpSuccessful = Boolean(data?.registerUser?.user?.databaseId);
 
   const linksInput = ls("bucketList")?.map((item) => item.databaseId);
-  const createBlMutationInput = () => {
-    return {
-      clientMutationId: Date.now().toString(),
-      emailInput: variables.email,
-      linksInput,
-    };
-  };
 
   function handleSubmit(event) {
     event.preventDefault();
     blMutation({
       variables: {
-        input: createBlMutationInput(),
+        input: {
+          clientMutationId: Date.now().toString(),
+          emailInput: variables.email,
+          linksInput,
+        },
       },
     }).catch((error) => {
       console.error(error);

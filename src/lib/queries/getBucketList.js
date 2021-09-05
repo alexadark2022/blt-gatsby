@@ -1,0 +1,114 @@
+import { gql } from "@apollo/client";
+
+export const GET_BUCKET_LIST = gql`
+  query ($title: String) {
+    bucketLists(where: { title: $title }) {
+      nodes {
+        databaseId
+        title
+        bucketListElements {
+          blLinks {
+            ... on Experience {
+              title
+              uri
+              slug
+              id
+              databaseId
+              date
+              modified
+              featuredImage {
+                node {
+                  sourceUrl
+                  altText
+                }
+              }
+
+              commonDataAttributes {
+                standfirst
+                country {
+                  name
+                  slug
+                }
+              }
+              experienceTypes {
+                nodes {
+                  slug
+                }
+              }
+              customDataAttributes: experienceDataAttr {
+                address
+                city
+                duration
+                minAge
+                isAffiliateTour
+                isBucketList
+                profile
+                priceFrom
+                region
+                type
+                website
+              }
+            }
+            ... on PlaceToStay {
+              id
+              title
+              slug
+              databaseId
+              uri
+
+              commonDataAttributes {
+                standfirst
+                country {
+                  name
+                  slug
+                }
+              }
+              customDataAttributes: ptsDataAttr {
+                website
+                starRating
+                region
+                city
+
+                priceCheckingLinks {
+                  url
+                  logo {
+                    altText
+                    sourceUrl
+                  }
+                }
+              }
+              featuredImage {
+                node {
+                  sourceUrl
+                  altText
+                }
+              }
+            }
+            ... on Destination {
+              title
+              uri
+              slug
+              id
+              databaseId
+
+              featuredImage {
+                node {
+                  sourceUrl
+                  altText
+                }
+              }
+
+              commonDataAttributes {
+                standfirst
+                country {
+                  name
+                  slug
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;

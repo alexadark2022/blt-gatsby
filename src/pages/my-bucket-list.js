@@ -7,33 +7,54 @@ import { CollapseListings } from "../components/layout/CollapseListings";
 import PageLayout from "../components/layout/PageLayout";
 import { NoResults } from "../components/search";
 import useLocalStorage from "../lib/hooks/use-local-storage";
+import { useAuth } from "../lib/hooks/useAuth";
+import { useQuery } from "@apollo/client";
+import { GET_BUCKET_LIST } from "../lib/queries";
 
 const BucketListPage = () => {
   //   const { data: filters } = filtersData
-  const [items, setItems] = useLocalStorage("bucketList", []);
+  let [lsItems, setLsItems] = useLocalStorage("bucketList", []);
   //   const [openFilters, setOpenFilters] = useState(false)
   let [isOpenModal, setIsOpenModal] = useState(false);
 
+  const { loggedIn, user } = useAuth();
+
+  // const userItems = (email) => {
+  //   const { data, loading, error } = useQuery(GET_BUCKET_LIST, {
+  //     variables: { title: email },
+  //   });
+  //   const items = data.bucketLists.nodes;
+  //   return { data, loading, error };
+  // };
+  const { data, loading, error } = useQuery(GET_BUCKET_LIST, {
+    variables: { title: user?.email },
+  });
+
+  const items = user
+    ? data?.bucketLists?.nodes[0].bucketListElements?.blLinks
+    : lsItems;
+
+  console.log("data", data, "items", items);
   const emptyBl = () => {
-    setItems([]);
+    setLsItems([]);
     setIsOpenModal(false);
   };
 
-  const roundUpsItems = items?.filter(
-    (item) => item.__typename === "RoundUp_Roundupdataattributes_links"
-  );
-  const otherItems = items?.filter(
-    (item) => item.__typename !== "RoundUp_Roundupdataattributes_links"
-  );
-  const roundUpsCountries = roundUpsItems?.map(
-    (item) => item.link[0].commonDataAttributes?.country?.name
-  ) || ["1"];
+  // const roundUpsItems = items?.filter(
+  //   (item) => item.__typename === "RoundUp_Roundupdataattributes_links"
+  // );
+  // const otherItems = items?.filter(
+  //   (item) => item.__typename !== "RoundUp_Roundupdataattributes_links"
+  // );
+  // const roundUpsCountries = roundUpsItems?.map(
+  //   (item) => item.link[0].commonDataAttributes?.country?.name
+  // ) || ["1"];
 
-  const otherCountries = otherItems?.map(
-    (item) => item.commonDataAttributes?.country?.name
-  ) || ["1"];
+  const countries = uniq(
+    items?.map((item) => item.commonDataAttributes?.country?.name) || ["1"]
+  );
 
-  const countries = uniq([...roundUpsCountries, ...otherCountries]);
+  // const countries = uniq([...roundUpsCountries, ...otherCountries]);
   return (
     <Layout>
       {/* <Toaster position="bottom-center" reverseOrder={false} /> */}
@@ -50,7 +71,7 @@ const BucketListPage = () => {
         // openFilters={openFilters}
         // setOpenFilters={setOpenFilters}
         handleEmpty={() => setIsOpenModal(true)}
-        notEmpty={items.length > 0}
+        notEmpty={items?.length > 0}
         // sidebar={
         //   bucket.length > 0 && (
         //     <SidebarFilters
@@ -63,20 +84,20 @@ const BucketListPage = () => {
       >
         {items?.length > 0 ? (
           countries?.map((country, i) => {
-            const countryRoundUps = roundUpsItems.filter(
-              (item) =>
-                item.link[0].commonDataAttributes?.country?.name === country
-            );
+            // const countryRoundUps = roundUpsItems.filter(
+            //   (item) =>
+            //     item.link[0].commonDataAttributes?.country?.name === country
+            // );
 
-            const otherItemsByCountry = otherItems.filter(
+            const itemsByCountry = items.filter(
               (item) => item?.commonDataAttributes?.country?.name === country
             );
-            const allItems = [...countryRoundUps, ...otherItemsByCountry];
+            // const allItems = [...countryRoundUps, ...otherItemsByCountry];
             return (
               <CollapseSection title={country} key={i} listings>
                 <div className="mt-5">
-                  <CollapseListings listings={allItems} />
-                  <CardsGrid cards={allItems} className="md:hidden" />
+                  <CollapseListings listings={itemsByCountry} />
+                  <CardsGrid cards={itemsByCountry} className="md:hidden" />
                 </div>
               </CollapseSection>
             );
