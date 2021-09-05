@@ -13,7 +13,7 @@ function reducer(state, action) {
     case "SET_BL_ID": {
       return {
         ...state,
-        bucketListId: action.databaseId,
+        bucketListId: action.bucketListId,
       };
     }
     default:
