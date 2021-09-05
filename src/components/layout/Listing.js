@@ -57,14 +57,24 @@ export const Listing = ({
       : "#";
 
   const img = featuredImage ? (
-    <Image
-      img={featuredImage.node.localFile}
-      alt={title}
-      width={249}
-      height={166}
-      objectFit="cover"
-      objectPosition="center"
-    />
+    featuredImage.node.localFile ? (
+      <Image
+        img={featuredImage.node.localFile}
+        alt={title}
+        width={249}
+        height={166}
+        objectFit="cover"
+        objectPosition="center"
+      />
+    ) : (
+      <img
+        src={featuredImage.node.sourceUrl}
+        width={249}
+        height={166}
+        alt=""
+        className="object-cover object-center"
+      />
+    )
   ) : (
     <div className="flex items-center justify-center col-span-1 bg-veryLightGold w-[249px] h-[166px] text-grey4 ">
       No Image
