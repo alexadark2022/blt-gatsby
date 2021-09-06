@@ -7,12 +7,15 @@ import { CollapseListings } from "../components/layout/CollapseListings";
 import PageLayout from "../components/layout/PageLayout";
 import { NoResults } from "../components/search";
 import useLocalStorage from "../lib/hooks/use-local-storage";
-import { GlobalDispatchContext, GlobalStateContext } from "../context/GlobalContextProvider";
+import {
+  GlobalDispatchContext,
+  GlobalStateContext,
+} from "../context/GlobalContextProvider";
 import { useDbBucketList } from "../lib/hooks/useDbBucketList";
 import { useAuth } from "../lib/hooks/useAuth";
 import { GET_BUCKET_LIST } from "../lib/queries";
 import { useQuery } from "@apollo/client";
-
+import { useUpdateBucketList } from "../lib/hooks/useUpdateBucketList";
 
 const BucketListPage = () => {
   //   const { data: filters } = filtersData
@@ -21,44 +24,47 @@ const BucketListPage = () => {
   let [isOpenModal, setIsOpenModal] = useState(false);
 
   const { bucketListId, items } = useContext(GlobalStateContext);
-
-
-  const emptyBl = () => {
-    setLsItems([]);
-    setIsOpenModal(false);
-  };
+  const updateBlMutation = useUpdateBucketList();
 
   const { user, loggedIn } = useAuth();
   const { data, loading, error } = useQuery(GET_BUCKET_LIST, {
     variables: { title: user?.email },
   });
 
-  // const items = blItems ;
+  const bl = data?.bucketLists?.nodes[0];
 
   const dispatch = useContext(GlobalDispatchContext);
-  console.log("user before", user, "state before", useContext(GlobalStateContext));
 
-  const bl = data?.bucketLists?.nodes[0];
-  useEffect( () => {
+  const emptyBl = () => {
+    setLsItems([]);
+    setIsOpenModal(false);
+    updateBlMutation({
+      variables: {
+        input: {
+          idInput: bl?.databaseId,
+          linksInput: [],
+        },
+      },
+    });
+    dispatch({
+      type: "SET_BL_ITEMS",
+      items: [],
+    });
+  };
 
-       loggedIn && dispatch({
+  useEffect(() => {
+    loggedIn &&
+      dispatch({
         type: "SET_BL_ID",
         bucketListId: bl?.databaseId,
       });
 
-      loggedIn && dispatch({
+    loggedIn &&
+      dispatch({
         type: "SET_BL_ITEMS",
         items: bl?.bucketListElements?.blLinks,
       });
-      // console.log("user inside", user,"state inside" , blItems, "bl inside", bl);
-
-  }, [bl?.bucketListElements?.blLinks,bl?.databaseId, dispatch, loggedIn ]);
-
-
-
-
-
-  console.log("state after", useContext(GlobalStateContext), "user after", useAuth());
+  }, [bl?.bucketListElements?.blLinks, bl?.databaseId, dispatch, loggedIn]);
 
   const countries = uniq(
     items?.map((item) => item.commonDataAttributes?.country?.name) || ["1"]

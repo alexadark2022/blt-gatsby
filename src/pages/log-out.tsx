@@ -53,8 +53,7 @@ export default function LogOut() {
       items: [],
     });
     console.log("flushed bl context");
-
-  }, [logOut]);
+  }, [logOut, dispatch]);
 
   return (
     <Layout>

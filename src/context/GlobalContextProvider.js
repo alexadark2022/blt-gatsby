@@ -6,7 +6,7 @@ export const GlobalDispatchContext = createContext();
 
 const initialState = {
   bucketListId: undefined,
-  items: undefined,
+  items: [],
 };
 
 function reducer(state, action) {
