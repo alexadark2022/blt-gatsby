@@ -26,13 +26,6 @@ const BucketListPage = () => {
   const { bucketListId, items } = useContext(GlobalStateContext);
   const updateBlMutation = useUpdateBucketList();
 
-  const { user, loggedIn } = useAuth();
-  const { data, loading, error } = useQuery(GET_BUCKET_LIST, {
-    variables: { title: user?.email },
-  });
-
-  const bl = data?.bucketLists?.nodes[0];
-
   const dispatch = useContext(GlobalDispatchContext);
 
   const emptyBl = () => {
@@ -41,7 +34,7 @@ const BucketListPage = () => {
     updateBlMutation({
       variables: {
         input: {
-          idInput: bl?.databaseId,
+          idInput: bucketListId,
           linksInput: [],
         },
       },
@@ -52,19 +45,7 @@ const BucketListPage = () => {
     });
   };
 
-  useEffect(() => {
-    loggedIn &&
-      dispatch({
-        type: "SET_BL_ID",
-        bucketListId: bl?.databaseId,
-      });
-
-    loggedIn &&
-      dispatch({
-        type: "SET_BL_ITEMS",
-        items: bl?.bucketListElements?.blLinks,
-      });
-  }, [bl?.bucketListElements?.blLinks, bl?.databaseId, dispatch, loggedIn]);
+  useDbBucketList();
 
   const countries = uniq(
     items?.map((item) => item.commonDataAttributes?.country?.name) || ["1"]
