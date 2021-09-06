@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import uniq from "lodash/uniq";
 import { CollapseSection, Layout } from "../components";
 import { EmptyModal } from "../components/bucket-list/EmptyModal";
@@ -7,7 +7,12 @@ import { CollapseListings } from "../components/layout/CollapseListings";
 import PageLayout from "../components/layout/PageLayout";
 import { NoResults } from "../components/search";
 import useLocalStorage from "../lib/hooks/use-local-storage";
-import { GlobalStateContext } from "../context/GlobalContextProvider";
+import { GlobalDispatchContext, GlobalStateContext } from "../context/GlobalContextProvider";
+import { useDbBucketList } from "../lib/hooks/useDbBucketList";
+import { useAuth } from "../lib/hooks/useAuth";
+import { GET_BUCKET_LIST } from "../lib/queries";
+import { useQuery } from "@apollo/client";
+
 
 const BucketListPage = () => {
   //   const { data: filters } = filtersData
@@ -23,6 +28,31 @@ const BucketListPage = () => {
     setLsItems([]);
     setIsOpenModal(false);
   };
+
+  const { user, loggedIn } = useAuth();
+  const { data, loading, error } = useQuery(GET_BUCKET_LIST, {
+    variables: { title: user?.email },
+  });
+
+  const dispatch = useContext(GlobalDispatchContext);
+  console.log("user before", user);
+
+  useEffect(() => {
+    const bl = data?.bucketLists?.nodes[0];
+
+      loggedIn && dispatch({
+        type: "SET_BL_ID",
+        bucketListId: bl?.databaseId,
+      });
+
+      loggedIn && dispatch({
+        type: "SET_BL_ITEMS",
+        items: bl?.bucketListElements?.blLinks,
+      });
+      console.log("user inside", user);
+  }, []);
+
+  console.log("state", useContext(GlobalStateContext), "user after", useAuth());
 
   const countries = uniq(
     items?.map((item) => item.commonDataAttributes?.country?.name) || ["1"]

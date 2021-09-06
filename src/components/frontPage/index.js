@@ -12,28 +12,28 @@ import {
 } from "../../context/GlobalContextProvider";
 
 export const FrontPage = ({ homeHero, whatWeOffer, url, awards }) => {
-  const { user } = useAuth();
-  const { data, loading, error } = useQuery(GET_BUCKET_LIST, {
-    variables: { title: user?.email },
-  });
+  // const { user } = useAuth();
+  // const { data, loading, error } = useQuery(GET_BUCKET_LIST, {
+  //   variables: { title: user?.email },
+  // });
 
-  const dispatch = useContext(GlobalDispatchContext);
-  const bl = data?.bucketLists?.nodes[0];
+  // const dispatch = useContext(GlobalDispatchContext);
+  // const bl = data?.bucketLists?.nodes[0];
 
-  useEffect(() => {
-    user &&
-      dispatch({
-        type: "SET_BL_ID",
-        bucketListId: bl?.databaseId,
-      });
-    user &&
-      dispatch({
-        type: "SET_BL_ITEMS",
-        items: bl?.bucketListElements?.blLinks,
-      });
-  }, [user]);
+  // useEffect(() => {
+  //   user &&
+  //     dispatch({
+  //       type: "SET_BL_ID",
+  //       bucketListId: bl?.databaseId,
+  //     });
+  //   user &&
+  //     dispatch({
+  //       type: "SET_BL_ITEMS",
+  //       items: bl?.bucketListElements?.blLinks,
+  //     });
+  // }, [user]);
 
-  console.log("state", useContext(GlobalStateContext));
+  // console.log("state", useContext(GlobalStateContext));
 
   return (
     <>

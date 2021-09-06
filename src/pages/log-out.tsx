@@ -52,6 +52,8 @@ export default function LogOut() {
       type: "SET_BL_ITEMS",
       items: [],
     });
+    console.log("flushed bl context");
+
   }, [logOut]);
 
   return (
