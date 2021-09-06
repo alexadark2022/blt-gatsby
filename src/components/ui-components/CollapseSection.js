@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from "react"
-import { Transition } from "@headlessui/react"
-import { FaChevronRight } from "react-icons/fa"
-import clsx from "clsx"
-import Collapse from "@kunukn/react-collapse"
-import { Section, Typo, Button, Number } from "."
+import React, { useState, useEffect, useRef } from "react";
+import { Transition } from "@headlessui/react";
+import { FaChevronRight } from "react-icons/fa";
+import clsx from "clsx";
+import Collapse from "@kunukn/react-collapse";
+import { Section, Typo, Button, Number } from ".";
 
 export const CollapseSection = ({
   children,
@@ -17,21 +17,21 @@ export const CollapseSection = ({
 
   // const isDefaultOpen = exists(window) ? min768 : undefined
 
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(true);
 
   useEffect(() => {
-    const isDefaultOpen = window.matchMedia("(min-width: 768px)").matches
-    !isDefaultOpen && setOpen(isDefaultOpen)
-  }, [])
+    const isDefaultOpen = window.matchMedia("(min-width: 768px)").matches;
+    !isDefaultOpen && setOpen(isDefaultOpen);
+  }, []);
 
-  const collapseContainer = useRef(null)
+  const collapseContainer = useRef(null);
   useEffect(() => {
-    const isDefaultOpen = window.matchMedia("(min-width: 768px)").matches
-    const currentElm = collapseContainer?.current
+    const isDefaultOpen = window.matchMedia("(min-width: 768px)").matches;
+    const currentElm = collapseContainer?.current;
     if (!open && !isDefaultOpen) {
-      currentElm.scrollIntoView()
+      currentElm.scrollIntoView();
     }
-  }, [open])
+  }, [open]);
   return (
     <Section
       ref={collapseContainer}
@@ -94,5 +94,5 @@ export const CollapseSection = ({
         </Collapse>
       </>
     </Section>
-  )
-}
+  );
+};
