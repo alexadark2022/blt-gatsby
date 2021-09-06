@@ -3,6 +3,7 @@ import { GlobalDispatchContext, GlobalStateContext } from "../../context/GlobalC
 import { GET_BUCKET_LIST } from "../queries";
 import { useQuery } from "@apollo/client";
 import { useAuth } from "./useAuth";
+import ls from 'local-storage'
 
 export const useDbBucketList = () => {
     const { user, loggedIn } = useAuth();
@@ -14,15 +15,15 @@ export const useDbBucketList = () => {
     const bl = data?.bucketLists?.nodes[0];
 
     useEffect(() => {
-      user &&
+      loggedIn &&
         dispatch({
           type: "SET_BL_ID",
           bucketListId: bl?.databaseId,
         });
-      user &&
+      loggedIn &&
         dispatch({
           type: "SET_BL_ITEMS",
-          items: bl?.bucketListElements?.blLinks,
+          items: data ? bl?.bucketListElements?.blLinks : ls("bucketList"),
         });
     }, []);
 

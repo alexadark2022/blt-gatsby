@@ -20,9 +20,8 @@ const BucketListPage = () => {
   //   const [openFilters, setOpenFilters] = useState(false)
   let [isOpenModal, setIsOpenModal] = useState(false);
 
-  const { bucketListId, items: blItems } = useContext(GlobalStateContext);
+  const { bucketListId, items } = useContext(GlobalStateContext);
 
-  const items = bucketListId ? blItems : lsItems;
 
   const emptyBl = () => {
     setLsItems([]);
@@ -34,13 +33,15 @@ const BucketListPage = () => {
     variables: { title: user?.email },
   });
 
+  // const items = blItems ;
+
   const dispatch = useContext(GlobalDispatchContext);
-  console.log("user before", user);
+  console.log("user before", user, "state before", useContext(GlobalStateContext));
 
-  useEffect(() => {
-    const bl = data?.bucketLists?.nodes[0];
+  const bl = data?.bucketLists?.nodes[0];
+  useEffect( () => {
 
-      loggedIn && dispatch({
+       loggedIn && dispatch({
         type: "SET_BL_ID",
         bucketListId: bl?.databaseId,
       });
@@ -49,10 +50,15 @@ const BucketListPage = () => {
         type: "SET_BL_ITEMS",
         items: bl?.bucketListElements?.blLinks,
       });
-      console.log("user inside", user);
-  }, []);
+      // console.log("user inside", user,"state inside" , blItems, "bl inside", bl);
 
-  console.log("state", useContext(GlobalStateContext), "user after", useAuth());
+  }, [bl?.bucketListElements?.blLinks,bl?.databaseId, dispatch, loggedIn ]);
+
+
+
+
+
+  console.log("state after", useContext(GlobalStateContext), "user after", useAuth());
 
   const countries = uniq(
     items?.map((item) => item.commonDataAttributes?.country?.name) || ["1"]
