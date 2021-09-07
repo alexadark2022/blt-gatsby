@@ -29,4 +29,6 @@ export const useDbBucketList = () => {
         items: data ? bl?.bucketListElements?.blLinks : ls("bucketList"),
       });
   }, [bl?.bucketListElements?.blLinks, bl?.databaseId, dispatch, loggedIn]);
+
+  return { data, error, loading };
 };

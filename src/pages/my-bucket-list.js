@@ -23,7 +23,9 @@ const BucketListPage = () => {
   //   const [openFilters, setOpenFilters] = useState(false)
   let [isOpenModal, setIsOpenModal] = useState(false);
 
-  const { bucketListId, items } = useContext(GlobalStateContext);
+  let { bucketListId, items } = useContext(GlobalStateContext);
+  const { loggedIn } = useAuth();
+  items = loggedIn ? items : lsItems;
   const updateBlMutation = useUpdateBucketList();
 
   const dispatch = useContext(GlobalDispatchContext);

@@ -4,6 +4,7 @@ import {
   GlobalDispatchContext,
 } from "../../context/GlobalContextProvider";
 import useLocalStorage from "./use-local-storage";
+import { useDbBucketList } from "./useDbBucketList";
 import { useUpdateBucketList } from "./useUpdateBucketList";
 
 export const useBucketList = (item) => {
@@ -18,7 +19,16 @@ export const useBucketList = (item) => {
     typeof item === "object" ? item.databaseId : item
   );
 
-  const isAdded = bucket.find((i) => i.id == item.id);
+  const isAdded =
+    item.__typename === "RoundUp_Roundupdataattributes_links"
+      ? bucket.find((i) =>
+          i.__typename === "RoundUp_Roundupdataattributes_links"
+            ? i.link[0].id === item.link[0].id
+            : i.id === item.link[0].id
+        )
+      : bucket.find((i) => i.id == item.id);
+  const { data, error, loading } = useDbBucketList();
+  const bl = data?.bucketLists?.nodes[0];
 
   const addToBl = () => {
     setBucket([...bucket, item]);
@@ -33,13 +43,20 @@ export const useBucketList = (item) => {
 
     dispatch({
       type: "SET_BL_ITEMS",
-      items: [...items, item],
+      items: bl?.bucketListElements?.blLinks,
     });
     console.log("items", items, "itemIds", itemIds);
   };
 
   const removeFromBl = () => {
-    const newBucket = bucket.filter((i) => i.id != item.id);
+    const newBucket =
+      item.__typename === "RoundUp_Roundupdataattributes_links"
+        ? bucket.filter((i) => {
+            return i.__typename === "RoundUp_Roundupdataattributes_links"
+              ? i.link[0].id != item.link[0].id
+              : i.id != item.link[0].id;
+          })
+        : bucket.filter((i) => i.id != item.id);
 
     setBucket(newBucket);
   };
