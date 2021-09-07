@@ -20,9 +20,9 @@ export const useBucketList = (item) => {
   );
 
   const isAdded =
-    item.__typename === "RoundUp_Roundupdataattributes_links"
+    item.__typename === "WpRoundUp_Roundupdataattributes_links"
       ? bucket.find((i) =>
-          i.__typename === "RoundUp_Roundupdataattributes_links"
+          i.__typename === "WpRoundUp_Roundupdataattributes_links"
             ? i.link[0].id === item.link[0].id
             : i.id === item.link[0].id
         )
@@ -50,9 +50,9 @@ export const useBucketList = (item) => {
 
   const removeFromBl = () => {
     const newBucket =
-      item.__typename === "RoundUp_Roundupdataattributes_links"
+      item.__typename === "WpRoundUp_Roundupdataattributes_links"
         ? bucket.filter((i) => {
-            return i.__typename === "RoundUp_Roundupdataattributes_links"
+            return i.__typename === "WpRoundUp_Roundupdataattributes_links"
               ? i.link[0].id != item.link[0].id
               : i.id != item.link[0].id;
           })

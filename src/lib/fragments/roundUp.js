@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 
 export const roundUpFragments = graphql`
   fragment RoundUpPage on WpRoundUp {
@@ -24,9 +24,10 @@ export const roundUpFragments = graphql`
       standfirst
     }
     customDataAttributes: roundUpDataAttributes {
+      __typename
       type
-
       links {
+        __typename
         title
         intro
         externalLink
@@ -45,4 +46,4 @@ export const roundUpFragments = graphql`
       }
     }
   }
-`
+`;

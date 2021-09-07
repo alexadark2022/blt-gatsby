@@ -7,10 +7,10 @@ import { NoResults } from "../search";
 
 const BucketList = ({ items }) => {
   const roundUpsItems = items?.filter(
-    (item) => item.__typename === "RoundUp_Roundupdataattributes_links"
+    (item) => item.__typename === "WpRoundUp_Roundupdataattributes_links"
   );
   const otherItems = items?.filter(
-    (item) => item.__typename !== "RoundUp_Roundupdataattributes_links"
+    (item) => item.__typename !== "WpRoundUp_Roundupdataattributes_links"
   );
   const roundUpsCountries = roundUpsItems?.map(
     (item) => item.link[0].commonDataAttributes?.country?.name
