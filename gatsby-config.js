@@ -1,19 +1,19 @@
-const fs = require("fs")
+const fs = require("fs");
 require("dotenv").config({
   path:
     (fs.existsSync(`.env.${process.env.NODE_ENV}`) &&
       `.env.${process.env.NODE_ENV}`) ||
     ".env",
-})
-const path = require("path")
+});
+const path = require("path");
 const {
   title,
   author,
   description,
   pathPrefix,
   ...options
-} = require("./config")
-const siteUrl = process.env.GATSBY_SITE_URL || options.siteUrl
+} = require("./config");
+const siteUrl = process.env.GATSBY_SITE_URL || options.siteUrl;
 module.exports = {
   pathPrefix,
   siteMetadata: {
@@ -28,7 +28,14 @@ module.exports = {
     `gatsby-plugin-sass`,
     `gatsby-plugin-postcss`,
     `gatsby-plugin-emotion`,
-
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: process.env.GATSBY_ALGOLIA_APP_ID,
+        apiKey: process.env.ALGOLIA_ADMIN_KEY,
+        queries: require("./src/utils/algolia-queries"),
+      },
+    },
     {
       resolve: `@gatsbywpthemes/gatsby-theme-blog-data`,
       options: {
@@ -49,4 +56,4 @@ module.exports = {
       },
     },
   ],
-}
+};

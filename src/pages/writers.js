@@ -20,7 +20,6 @@ const GET_ALL_WRITERS = graphql`
 const WritersPage = () => {
   const data = useStaticQuery(GET_ALL_WRITERS);
   let writers = data?.allWpWriter?.nodes;
-  console.log("data", data);
 
   return (
     <Layout>
