@@ -30,6 +30,8 @@ const BucketListPage = () => {
 
   const dispatch = useContext(GlobalDispatchContext);
 
+  useDbBucketList();
+
   const emptyBl = () => {
     setLsItems([]);
     setIsOpenModal(false);
@@ -47,11 +49,21 @@ const BucketListPage = () => {
     });
   };
 
-  useDbBucketList();
-
-  const countries = uniq(
-    items?.map((item) => item.commonDataAttributes?.country?.name) || ["1"]
+  const roundUpsItems = items?.filter(
+    (item) => item.__typename === "WpRoundUp_Roundupdataattributes_links"
   );
+  const otherItems = items?.filter(
+    (item) => item.__typename !== "WpRoundUp_Roundupdataattributes_links"
+  );
+  const roundUpsCountries = roundUpsItems?.map(
+    (item) => item.link[0].commonDataAttributes?.country?.name
+  ) || ["1"];
+
+  const otherCountries = otherItems?.map(
+    (item) => item.commonDataAttributes?.country?.name
+  ) || ["1"];
+
+  const countries = uniq([...roundUpsCountries, ...otherCountries]);
 
   // const countries = uniq([...roundUpsCountries, ...otherCountries]);
   return (
@@ -83,15 +95,20 @@ const BucketListPage = () => {
       >
         {items?.length > 0 ? (
           countries?.map((country, i) => {
-            const itemsByCountry = items.filter(
-              (item) => item?.commonDataAttributes?.country?.name === country
+            const countryRoundUps = roundUpsItems.filter(
+              (item) =>
+                item.link[0].commonDataAttributes?.country?.name === country
             );
 
+            const otherItemsByCountry = otherItems.filter(
+              (item) => item?.commonDataAttributes?.country?.name === country
+            );
+            const allItems = [...countryRoundUps, ...otherItemsByCountry];
             return (
               <CollapseSection title={country} key={i} listings>
                 <div className="mt-5">
-                  <CollapseListings listings={itemsByCountry} />
-                  <CardsGrid cards={itemsByCountry} className="md:hidden" />
+                  <CollapseListings listings={allItems} />
+                  <CardsGrid cards={allItems} className="md:hidden" />
                 </div>
               </CollapseSection>
             );

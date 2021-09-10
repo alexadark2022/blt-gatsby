@@ -26,7 +26,7 @@ export const useDbBucketList = () => {
     loggedIn &&
       dispatch({
         type: "SET_BL_ITEMS",
-        items: data ? bl?.bucketListElements?.blLinks : ls("bucketList"),
+        items: bl?.bucketListElements?.blLinks,
       });
   }, [bl?.bucketListElements?.blLinks, bl?.databaseId, dispatch, loggedIn]);
 

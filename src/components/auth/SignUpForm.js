@@ -46,6 +46,7 @@ export function SignUpForm({ warning, setTabIndex }) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    // Create Bucket List for new user containing items present in local storage
     blMutation({
       variables: {
         input: {
