@@ -11,7 +11,7 @@ import { ListingBottomInfo } from "./ListingBottomInfo";
 import { AddToBlButton } from "../bucket-list/AddToBlButton";
 
 export const Listing = ({
-  item = {},
+  item,
   search = false,
   noBl = false,
   className = null,
@@ -31,8 +31,9 @@ export const Listing = ({
     : item || {};
 
   let { standfirst, country } = commonDataAttributes || {};
+  const blItem = item.link ? item.link[0] : item;
 
-  const { addToBl, removeFromBl, isAdded } = useBucketList(item);
+  const { addToBl, removeFromBl, isAdded } = useBucketList(blItem);
 
   let {
     starRating,
