@@ -23,14 +23,20 @@ const BucketListPage = () => {
   //   const [openFilters, setOpenFilters] = useState(false)
   let [isOpenModal, setIsOpenModal] = useState(false);
 
-  let { bucketListId, items } = useContext(GlobalStateContext);
+  // let { bucketListId, items } = useContext(GlobalStateContext);
   const { loggedIn } = useAuth();
-  items = loggedIn ? items : lsItems;
+
   const updateBlMutation = useUpdateBucketList();
 
   const dispatch = useContext(GlobalDispatchContext);
+  useEffect(() => {
+    getBucketList();
+  }, []);
 
-  useDbBucketList();
+  const { data, error, loading, getBucketList, called } = useDbBucketList();
+  const bl = data?.bucketLists?.nodes[0];
+  const blItems = bl?.bucketListElements?.blLinks;
+  const items = loggedIn ? blItems : lsItems;
 
   const emptyBl = () => {
     setLsItems([]);
@@ -38,7 +44,7 @@ const BucketListPage = () => {
     updateBlMutation({
       variables: {
         input: {
-          idInput: bucketListId,
+          idInput: bl?.databaseId,
           linksInput: [],
         },
       },

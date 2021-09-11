@@ -4,18 +4,28 @@ import {
   GlobalStateContext,
 } from "../../context/GlobalContextProvider";
 import { GET_BUCKET_LIST } from "../queries";
-import { useQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import { useAuth } from "./useAuth";
 import ls from "local-storage";
 
 export const useDbBucketList = () => {
   const { user, loggedIn } = useAuth();
-  const { data, loading, error } = useQuery(GET_BUCKET_LIST, {
-    variables: { title: user?.email },
-  });
+  const [getBucketList, { called, loading, data, error }] = useLazyQuery(
+    GET_BUCKET_LIST,
+    {
+      variables: { title: user?.email },
+    }
+  );
+
+  useEffect(() => {
+    getBucketList();
+  }, []);
 
   const dispatch = useContext(GlobalDispatchContext);
   const bl = data?.bucketLists?.nodes[0];
+  const blId = bl?.databaseId;
+  const blItems = bl?.bucketListElements?.blLinks;
+  const blItemsIds = blItems?.map((item) => item.databaseId);
 
   useEffect(() => {
     loggedIn &&
@@ -30,5 +40,15 @@ export const useDbBucketList = () => {
       });
   }, [bl?.bucketListElements?.blLinks, bl?.databaseId, dispatch, loggedIn]);
 
-  return { data, error, loading };
+  return {
+    data,
+    error,
+    loading,
+    called,
+    getBucketList,
+    bl,
+    blItems,
+    blId,
+    blItemsIds,
+  };
 };

@@ -27,23 +27,33 @@ export const useBucketList = (item) => {
             : i.id === item.link[0].id
         )
       : bucket.find((i) => i.id == item.id);
-  const { data, error, loading } = useDbBucketList();
-  const bl = data?.bucketLists?.nodes[0];
+
+  const {
+    data,
+    error,
+    loading,
+    getBucketList,
+    called,
+    blItems,
+    blItemsIds,
+    blId,
+  } = useDbBucketList();
 
   const addToBl = () => {
     setBucket([...bucket, item]);
     updateBlMutation({
       variables: {
         input: {
-          idInput: bucketListId,
-          linksInput: [...itemIds, item.databaseId],
+          idInput: blId,
+          linksInput: [...blItemsIds, item.databaseId],
         },
       },
     });
+    getBucketList();
 
     dispatch({
       type: "SET_BL_ITEMS",
-      items: bl?.bucketListElements?.blLinks,
+      items: blItems,
     });
     console.log("items", items, "itemIds", itemIds);
   };
