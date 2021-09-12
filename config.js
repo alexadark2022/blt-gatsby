@@ -24,6 +24,12 @@ const config = {
     production: {
       hardCacheMediaFiles: true,
     },
+    auth: {
+      htaccess: {
+        username: "bltgatsbydev",
+        password: "123456",
+      },
+    },
   },
 
   // webfontsOptions: {
