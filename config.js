@@ -10,16 +10,26 @@ const config = {
   createPosts: false,
   createUsers: false,
   withApollo: false,
-  // developLimit: 10,
+  developLimit: 50,
   gatsbySourceWordPressOptions: {
     schema: {
-      perPage: 20, // currently set to 100
+      perPage: 1, // currently set to 100
       requestConcurrency: 1, // currently set to 15
       previewRequestConcurrency: 1, // currently set to 5
       timeout: 90000,
+      queryDepth: 1,
+      circularQueryLimit: 1,
+    },
+    type: {
+      MediaItem: {
+        localFile: {
+          requestConcurrency: 1,
+        },
+      },
     },
     develop: {
       hardCacheData: true,
+      nodeUpdateInterval: 20000,
     },
     production: {
       hardCacheMediaFiles: true,
