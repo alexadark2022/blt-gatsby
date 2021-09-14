@@ -10,15 +10,15 @@ const config = {
   createPosts: false,
   createUsers: false,
   withApollo: false,
-  developLimit: 50,
+  // developLimit: 50,
   gatsbySourceWordPressOptions: {
     schema: {
-      perPage: 1, // currently set to 100
-      requestConcurrency: 1, // currently set to 15
+      perPage: 5, // currently set to 100
+      requestConcurrency: 5, // currently set to 15
       previewRequestConcurrency: 1, // currently set to 5
       timeout: 90000,
-      queryDepth: 1,
-      circularQueryLimit: 1,
+      queryDepth: 5,
+      circularQueryLimit: 5,
     },
     type: {
       MediaItem: {

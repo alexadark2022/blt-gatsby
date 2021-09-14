@@ -59,7 +59,8 @@ export function SignUpForm({ warning, setTabIndex }) {
       }).catch((error) => {
         console.error(error);
       });
-  }, [data]);
+    console.log("bl created");
+  }, [data, blMutation, linksInput, variables.email, wasSignUpSuccessful]);
 
   function handleSubmit(event) {
     event.preventDefault();
