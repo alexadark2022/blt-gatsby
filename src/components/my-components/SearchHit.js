@@ -7,8 +7,8 @@ const SearchHit = ({ hits, hasMore, view, refineNext }) => {
   return (
     <>
       <div
-        className={clsx("listings", {
-          "listings p-5 border shadow-lg": view === "list",
+        className={clsx("listings listings p-5 border shadow-lg", {
+          "p-0 border-0 shadow-none": view === "grid",
         })}
       >
         <div
