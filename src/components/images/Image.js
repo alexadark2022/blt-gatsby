@@ -1,6 +1,6 @@
 // @ts-nocheck
-import React from "react"
-import { GatsbyImage } from "gatsby-plugin-image"
+import React from "react";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 export const Image = ({
   img,
@@ -12,10 +12,10 @@ export const Image = ({
     !!img && (
       <GatsbyImage
         loading={loading}
-        image={img.childImageSharp.gatsbyImageData}
+        image={img?.childImageSharp?.gatsbyImageData}
         alt={img.altText}
         {...props}
       />
     )
-  )
-}
+  );
+};
