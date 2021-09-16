@@ -19,7 +19,7 @@ export const Header = () => {
         className={clsx(
           "flex items-center justify-between",
           "container max-w-big",
-          "px-5 py-2 sm:py-0 2xl:px-0 "
+          "px-5 sm:py-0 2xl:px-0 "
         )}
       >
         <Branding />
