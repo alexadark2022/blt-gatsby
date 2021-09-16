@@ -64,7 +64,7 @@ const SearchPage = () => {
   const [mainState, setMainState] = useState("All");
   const [view, setView] = useState("");
   const [openFilters, setOpenFilters] = useState(false);
-  console.log({ mainState, continentsFilter, nodeType });
+  console.log(mainState);
 
   return (
     <Layout>
