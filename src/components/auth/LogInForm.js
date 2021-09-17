@@ -5,6 +5,7 @@ import { useMutation, gql } from "@apollo/client";
 import { Input, Button, Label } from "..";
 import { GET_USER } from "../../lib/hooks/useAuth";
 import ls from "local-storage";
+import { useDbBucketList } from "../../lib/hooks/useDbBucketList";
 
 const LOG_IN = gql`
   mutation logIn($login: String!, $password: String!) {
@@ -19,9 +20,11 @@ export function LogInForm({ setTabIndex, closeModal }) {
     refetchQueries: [{ query: GET_USER }],
   });
   console.log("error", error, "logIn", logIn, "data", data);
+  const { blItems } = useDbBucketList();
+  console.log("blItems", blItems);
 
   useEffect(() => {
-    ls("bucketList", []);
+    data && ls("bucketList", blItems);
     console.log("empty bl");
   }, [data]);
 

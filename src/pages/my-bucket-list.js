@@ -41,14 +41,15 @@ const BucketListPage = () => {
   const emptyBl = () => {
     setLsItems([]);
     setIsOpenModal(false);
-    updateBlMutation({
-      variables: {
-        input: {
-          idInput: bl?.databaseId,
-          linksInput: [],
+    loggedIn &&
+      updateBlMutation({
+        variables: {
+          input: {
+            idInput: bl?.databaseId,
+            linksInput: [],
+          },
         },
-      },
-    });
+      });
     dispatch({
       type: "SET_BL_ITEMS",
       items: [],

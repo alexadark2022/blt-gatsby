@@ -41,21 +41,21 @@ export const useBucketList = (item) => {
 
   const addToBl = () => {
     setBucket([...bucket, item]);
-    updateBlMutation({
-      variables: {
-        input: {
-          idInput: blId,
-          linksInput: [...blItemsIds, item.databaseId],
-        },
-      },
-    });
-    getBucketList();
+    // updateBlMutation({
+    //   variables: {
+    //     input: {
+    //       idInput: blId,
+    //       linksInput: [...blItemsIds, item.databaseId],
+    //     },
+    //   },
+    // });
+    // getBucketList();
 
-    dispatch({
-      type: "SET_BL_ITEMS",
-      items: blItems,
-    });
-    console.log("items", items, "itemIds", itemIds);
+    // dispatch({
+    //   type: "SET_BL_ITEMS",
+    //   items: blItems,
+    // });
+    // console.log("items", items, "itemIds", itemIds);
   };
 
   const removeFromBl = () => {
