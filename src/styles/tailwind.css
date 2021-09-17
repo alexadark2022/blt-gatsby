@@ -5,8 +5,8 @@
 @layer base {
   @font-face {
     font-family: "Adinda Melia";
-    src: url("/fonts/AdindaMelia.woff2") format("woff2"),
-      url("/fonts/AdindaMelia.woff") format("woff");
+    src: url("/fonts/font.woff2") format("woff2"),
+      url("/fonts/font.woff") format("woff");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
