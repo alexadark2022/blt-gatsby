@@ -1,8 +1,5 @@
-import { useContext, useEffect } from "react";
-import {
-  GlobalStateContext,
-  GlobalDispatchContext,
-} from "../../context/GlobalContextProvider";
+import { useEffect } from "react";
+
 import useLocalStorage from "./use-local-storage";
 import { useAuth } from "./useAuth";
 import { useDbBucketList } from "./useDbBucketList";
@@ -10,10 +7,6 @@ import { useUpdateBucketList } from "./useUpdateBucketList";
 
 export const useBucketList = (item) => {
   const [bucket, setBucket] = useLocalStorage("bucketList", []);
-  console.log(
-    "bucket",
-    bucket.map((item) => item.databaseId)
-  );
 
   const updateBlMutation = useUpdateBucketList();
   const { loggedIn } = useAuth();
@@ -28,7 +21,6 @@ export const useBucketList = (item) => {
       : bucket.find((i) => i.id == item.id);
 
   const { blId } = useDbBucketList();
-  console.log("blId", blId);
 
   useEffect(() => {
     loggedIn &&
@@ -40,19 +32,10 @@ export const useBucketList = (item) => {
           },
         },
       });
-    console.log("update db");
   }, [bucket]);
 
   const addToBl = () => {
     setBucket([...bucket, item]);
-
-    // getBucketList();
-
-    // dispatch({
-    //   type: "SET_BL_ITEMS",
-    //   items: blItems,
-    // });
-    // console.log("items", items, "itemIds", itemIds);
   };
 
   const removeFromBl = () => {
