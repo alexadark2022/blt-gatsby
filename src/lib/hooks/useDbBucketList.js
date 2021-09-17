@@ -13,7 +13,7 @@ export const useDbBucketList = () => {
   const [getBucketList, { called, loading, data, error }] = useLazyQuery(
     GET_BUCKET_LIST,
     {
-      variables: { title: user?.email },
+      variables: { author: user?.databaseId },
     }
   );
 

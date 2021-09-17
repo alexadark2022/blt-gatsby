@@ -1,9 +1,10 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import { Link } from "gatsby";
 import { useMutation, gql } from "@apollo/client";
 
 import { Input, Button, Label } from "..";
 import { GET_USER } from "../../lib/hooks/useAuth";
+import ls from "local-storage";
 
 const LOG_IN = gql`
   mutation logIn($login: String!, $password: String!) {
@@ -14,10 +15,15 @@ const LOG_IN = gql`
 `;
 
 export function LogInForm({ setTabIndex, closeModal }) {
-  const [logIn, { loading, error }] = useMutation(LOG_IN, {
+  const [logIn, { loading, error, data }] = useMutation(LOG_IN, {
     refetchQueries: [{ query: GET_USER }],
   });
-  console.log("error", error, "logIn", logIn);
+  console.log("error", error, "logIn", logIn, "data", data);
+
+  useEffect(() => {
+    ls("bucketList", []);
+    console.log("empty bl");
+  }, [data]);
 
   const errorMessage = error?.message || "";
   const isEmailValid =

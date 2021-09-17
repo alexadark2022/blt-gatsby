@@ -60,7 +60,7 @@ export function SignUpForm({ warning, setTabIndex }) {
         console.error(error);
       });
     console.log("bl created");
-  }, [data, blMutation, linksInput, variables.email, wasSignUpSuccessful]);
+  }, [wasSignUpSuccessful]);
 
   function handleSubmit(event) {
     event.preventDefault();
