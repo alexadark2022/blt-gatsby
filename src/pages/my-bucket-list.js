@@ -7,15 +7,10 @@ import { CollapseListings } from "../components/layout/CollapseListings";
 import PageLayout from "../components/layout/PageLayout";
 import { NoResults } from "../components/search";
 import useLocalStorage from "../lib/hooks/use-local-storage";
-import {
-  GlobalDispatchContext,
-  GlobalStateContext,
-} from "../context/GlobalContextProvider";
 import { useDbBucketList } from "../lib/hooks/useDbBucketList";
 import { useAuth } from "../lib/hooks/useAuth";
-import { GET_BUCKET_LIST } from "../lib/queries";
-import { useQuery } from "@apollo/client";
 import { useUpdateBucketList } from "../lib/hooks/useUpdateBucketList";
+import Loader from "react-spinners/BeatLoader";
 
 const BucketListPage = () => {
   //   const { data: filters } = filtersData
@@ -28,7 +23,6 @@ const BucketListPage = () => {
 
   const updateBlMutation = useUpdateBucketList();
 
-  const dispatch = useContext(GlobalDispatchContext);
   useEffect(() => {
     getBucketList();
   }, []);
@@ -41,18 +35,15 @@ const BucketListPage = () => {
   const emptyBl = () => {
     setLsItems([]);
     setIsOpenModal(false);
-    updateBlMutation({
-      variables: {
-        input: {
-          idInput: bl?.databaseId,
-          linksInput: [],
+    loggedIn &&
+      updateBlMutation({
+        variables: {
+          input: {
+            idInput: bl?.databaseId,
+            linksInput: [],
+          },
         },
-      },
-    });
-    dispatch({
-      type: "SET_BL_ITEMS",
-      items: [],
-    });
+      });
   };
 
   const roundUpsItems = items?.filter(
@@ -119,6 +110,10 @@ const BucketListPage = () => {
               </CollapseSection>
             );
           })
+        ) : loading ? (
+          <div className="flex justify-center py-20">
+            <Loader size={20} color="#d3b27d" />
+          </div>
         ) : (
           <NoResults
             title="Your bucket list is empty"

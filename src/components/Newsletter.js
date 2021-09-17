@@ -88,13 +88,15 @@ const Newsletter = ({ home, ...props }) => {
   return (
     <Section {...props}>
       <div className={`px-3 pt-3`}>
-        <Image
-          img={image.localFile}
-          loading={isLarge ? "eager" : "lazy"}
-          // imgClassName={`${
-          //   isLarge ? "w-[991px] h-[658px]" : "w-[292px] h-[195px]"
-          // }`}
-        />
+        {image && (
+          <Image
+            img={image?.localFile}
+            loading={isLarge ? "eager" : "lazy"}
+            // imgClassName={`${
+            //   isLarge ? "w-[991px] h-[658px]" : "w-[292px] h-[195px]"
+            // }`}
+          />
+        )}
       </div>
       <div className="px-5 pb-5 mt-3">
         <Typo
@@ -146,11 +148,13 @@ const NewsletterHome = ({ className, ...props }) => {
         {...props}
       >
         <div className="max-w-[566px]">
-          <Image
-            img={image.localFile}
-            className="mr-14 max-w-[556px]"
-            imgClassName="max-w-[566px]"
-          />
+          {image && (
+            <Image
+              img={image?.localFile}
+              className="mr-14 max-w-[556px]"
+              imgClassName="max-w-[566px]"
+            />
+          )}
         </div>
 
         <div>

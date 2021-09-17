@@ -12,7 +12,7 @@ const REGISTER_USER = gql`
   ) {
     registerUser(
       input: {
-        username: $email
+        username: $firstName
         email: $email
         firstName: $firstName
         lastName: $lastName
@@ -38,26 +38,33 @@ export function SignUpForm({ warning, setTabIndex }) {
   const [variables, setVariables] = useState({});
   const [step, setStep] = useState(1);
   const [register, { data, loading, error }] = useMutation(REGISTER_USER);
+  console.log("data register", data);
 
   const [blMutation] = useMutation(CREATE_BUCKET_LIST);
   const wasSignUpSuccessful = Boolean(data?.registerUser?.user?.databaseId);
 
   const linksInput = ls("bucketList")?.map((item) => item.databaseId);
+  useEffect(() => {
+    // Create Bucket List for new user containing items present in local storage
+    wasSignUpSuccessful &&
+      blMutation({
+        variables: {
+          input: {
+            clientMutationId: Date.now().toString(),
+            emailInput: variables.email,
+            idInput: data?.registerUser?.user?.databaseId,
+            linksInput,
+          },
+        },
+      }).catch((error) => {
+        console.error(error);
+      });
+    console.log("bl created");
+  }, [wasSignUpSuccessful]);
 
   function handleSubmit(event) {
     event.preventDefault();
-    // Create Bucket List for new user containing items present in local storage
-    blMutation({
-      variables: {
-        input: {
-          clientMutationId: Date.now().toString(),
-          emailInput: variables.email,
-          linksInput,
-        },
-      },
-    }).catch((error) => {
-      console.error(error);
-    });
+
     register({ variables }).catch((error) => {
       console.error(error);
     });

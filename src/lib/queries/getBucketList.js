@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const GET_BUCKET_LIST = gql`
-  query ($title: String) {
-    bucketLists(where: { title: $title }) {
+  query ($author: Int) {
+    bucketLists(where: { author: $author }) {
       nodes {
         databaseId
         title
