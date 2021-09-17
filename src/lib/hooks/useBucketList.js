@@ -4,20 +4,19 @@ import {
   GlobalDispatchContext,
 } from "../../context/GlobalContextProvider";
 import useLocalStorage from "./use-local-storage";
+import { useAuth } from "./useAuth";
 import { useDbBucketList } from "./useDbBucketList";
 import { useUpdateBucketList } from "./useUpdateBucketList";
 
 export const useBucketList = (item) => {
   const [bucket, setBucket] = useLocalStorage("bucketList", []);
+  console.log(
+    "bucket",
+    bucket.map((item) => item.databaseId)
+  );
 
   const updateBlMutation = useUpdateBucketList();
-  let { bucketListId, items } = useContext(GlobalStateContext);
-  const dispatch = useContext(GlobalDispatchContext);
-
-  items = items ? items : [];
-  const itemIds = items.map((item) =>
-    typeof item === "object" ? item.databaseId : item
-  );
+  const { loggedIn } = useAuth();
 
   const isAdded =
     item.__typename === "WpRoundUp_Roundupdataattributes_links"
@@ -28,27 +27,25 @@ export const useBucketList = (item) => {
         )
       : bucket.find((i) => i.id == item.id);
 
-  const {
-    data,
-    error,
-    loading,
-    getBucketList,
-    called,
-    blItems,
-    blItemsIds,
-    blId,
-  } = useDbBucketList();
+  const { blId } = useDbBucketList();
+  console.log("blId", blId);
+
+  useEffect(() => {
+    loggedIn &&
+      updateBlMutation({
+        variables: {
+          input: {
+            idInput: blId,
+            linksInput: bucket.map((item) => item.databaseId),
+          },
+        },
+      });
+    console.log("update db");
+  }, [bucket]);
 
   const addToBl = () => {
     setBucket([...bucket, item]);
-    // updateBlMutation({
-    //   variables: {
-    //     input: {
-    //       idInput: blId,
-    //       linksInput: [...blItemsIds, item.databaseId],
-    //     },
-    //   },
-    // });
+
     // getBucketList();
 
     // dispatch({
