@@ -12,7 +12,7 @@ const REGISTER_USER = gql`
   ) {
     registerUser(
       input: {
-        username: $firstName
+        username: $email
         email: $email
         firstName: $firstName
         lastName: $lastName

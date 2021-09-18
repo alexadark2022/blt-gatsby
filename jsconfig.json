@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": "/",
-    "checkjs": true,
+    // "checkjs": true,
     "jsx": "react"
   }
 }

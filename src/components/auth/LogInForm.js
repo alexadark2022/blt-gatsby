@@ -16,17 +16,29 @@ const LOG_IN = gql`
 `;
 
 export function LogInForm({ setTabIndex, closeModal }) {
-  const [logIn, { loading, error, data }] = useMutation(LOG_IN, {
+  const [logIn, { loading, error, data: loginData }] = useMutation(LOG_IN, {
     refetchQueries: [{ query: GET_USER }],
   });
-  console.log("error", error, "logIn", logIn, "data", data);
+  console.log("error", error, "logIn", logIn, "data", loginData);
   const { blItems } = useDbBucketList();
   console.log("blItems", blItems);
 
   useEffect(() => {
-    data && ls("bucketList", blItems);
-    console.log("empty bl");
-  }, [data]);
+    if (loginData?.loginWithCookies?.status === "SUCCESS") {
+      ls("bucketlist", []);
+    }
+  }, [loginData]);
+
+  // useEffect(() => {
+  //   data && ls("bucketList", blItems);
+  //   console.log("empty bl");
+  // }, [data]);
+
+  useEffect(() => {
+    if (loginData?.loginWithCookies?.status === "SUCCESS") {
+      ls("bucketList", blItems);
+    }
+  }, [loginData]);
 
   const errorMessage = error?.message || "";
   const isEmailValid =
