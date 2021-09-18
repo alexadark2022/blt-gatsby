@@ -399,10 +399,7 @@ const queries = [
 module.exports = queries;
 
 const mergeArray = (items) => {
-  const isArray = Array.isArray(items);
+  const isArray = Array.isArray(items.nodes);
   if (!isArray) return [];
-
-  if (items.length) {
-    return items.nodes.map((item) => item.name);
-  }
+  return items.nodes.map((item) => item.name);
 };
