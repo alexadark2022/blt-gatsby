@@ -13,6 +13,7 @@ import SearchBox from "../components/my-components/SearchBox";
 import ViewSwitcher from "../components/my-components/ViewSwitcher";
 import CustomRefinementList from "../components/my-components/CustomRefinementList";
 import ClearAllFilters from "../components/my-components/ClearAllFilters";
+import Loading from "../components/my-components/Loading";
 import { IoCloseSharp as Close } from "react-icons/io5";
 import { Typo, Button, WithCollapse } from "../components/ui-components";
 
@@ -224,36 +225,37 @@ const SearchPage = () => {
                 <div className="flex justify-center mb-3">
                   <ClearAllFilters />
                 </div>
-                {!continentsFilter && <p>Loading...</p>}
-                <div className="">
-                  <div className="flex flex-col justify-between">
-                    <CustomRefinementList
-                      values={continentsFilter}
-                      attribute="commonDataAttributes.textContinent"
-                      title="CONTINENT"
-                    />
-                    <CustomRefinementList
-                      values={settingsFilter}
-                      attribute="settings"
-                      title="SETTING"
-                    />
-                    <CustomRefinementList
-                      values={bestTimeFilter}
-                      attribute="bestTimes"
-                      title="BEST TIME"
-                    />
-                    <CustomRefinementList
-                      values={themesFilter}
-                      attribute="factoryThemes"
-                      title="THEME"
-                    />
-                    <CustomRefinementList
-                      values={especiallyForFilter}
-                      attribute="especiallyFors"
-                      title="ESPECIALLY FOR"
-                    />
+                <Loading>
+                  <div className="">
+                    <div className="flex flex-col justify-between">
+                      <CustomRefinementList
+                        values={continentsFilter}
+                        attribute="commonDataAttributes.textContinent"
+                        title="CONTINENT"
+                      />
+                      <CustomRefinementList
+                        values={settingsFilter}
+                        attribute="settings"
+                        title="SETTING"
+                      />
+                      <CustomRefinementList
+                        values={bestTimeFilter}
+                        attribute="bestTimes"
+                        title="BEST TIME"
+                      />
+                      <CustomRefinementList
+                        values={themesFilter}
+                        attribute="factoryThemes"
+                        title="THEME"
+                      />
+                      <CustomRefinementList
+                        values={especiallyForFilter}
+                        attribute="especiallyFors"
+                        title="ESPECIALLY FOR"
+                      />
+                    </div>
                   </div>
-                </div>
+                </Loading>
               </div>
             </div>
           </WithCollapse>
