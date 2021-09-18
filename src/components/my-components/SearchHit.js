@@ -27,6 +27,7 @@ const SearchHit = ({ hits, hasMore, view, refineNext }) => {
             }
           )}
         >
+          {!hits && <p>Loading...</p>}
           {hits.map((hit) => {
             return (
               <div
