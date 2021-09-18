@@ -309,10 +309,10 @@ const queries = [
       return data.allWpItinerary.nodes.map((item) => {
         return {
           ...item,
-          bestTimes: mergeArray(item?.bestTimes ?? []),
-          settings: mergeArray(item?.settings ?? []),
-          especiallyFors: mergeArray(item?.especiallyFors ?? []),
-          factoryThemes: mergeArray(item?.factoryThemes ?? []),
+          bestTimes: mergeArray(item.bestTimes ?? []),
+          settings: mergeArray(item.settings ?? []),
+          especiallyFors: mergeArray(item.especiallyFors ?? []),
+          factoryThemes: mergeArray(item.factoryThemes ?? []),
         };
       });
     },
@@ -324,11 +324,11 @@ const queries = [
       return data.allWpRoundUp.nodes.map((item) => {
         return {
           ...item,
-          bestTimes: mergeArray(item?.bestTimes ?? []),
-          settings: mergeArray(item?.settings ?? []),
-          especiallyFors: mergeArray(item?.especiallyFors ?? []),
-          factoryThemes: mergeArray(item?.factoryThemes ?? []),
-          recommendationTypes: mergeArray(item?.recommendationTypes ?? []),
+          bestTimes: mergeArray(item.bestTimes ?? []),
+          settings: mergeArray(item.settings ?? []),
+          especiallyFors: mergeArray(item.especiallyFors ?? []),
+          factoryThemes: mergeArray(item.factoryThemes ?? []),
+          recommendationTypes: mergeArray(item.recommendationTypes ?? []),
         };
       });
     },
@@ -340,19 +340,19 @@ const queries = [
       return data.allWpPlaceToStay.nodes.map((item) => {
         return {
           ...item,
-          bestTimes: mergeArray(item?.bestTimes ?? []),
-          settings: mergeArray(item?.settings ?? []),
-          especiallyFors: mergeArray(item?.especiallyFors ?? []),
-          factoryThemes: mergeArray(item?.factoryThemes ?? []),
-          hotelBrands: mergeArray(item?.hotelBrands ?? []),
-          standards: mergeArray(item?.standards ?? []),
-          accommodationTypes: mergeArray(item?.accommodationTypes ?? []),
-          roomTypes: mergeArray(item?.roomTypes ?? []),
-          hotelFacilities: mergeArray(item?.hotelFacilities ?? []),
-          forFamilies: mergeArray(item?.forFamilies ?? []),
-          skiFacilities: mergeArray(item?.skiFacilities ?? []),
-          priceRangePounds: mergeArray(item?.priceRangePounds ?? []),
-          allInclusives: mergeArray(item?.allInclusives ?? []),
+          bestTimes: mergeArray(item.bestTimes ?? []),
+          settings: mergeArray(item.settings ?? []),
+          especiallyFors: mergeArray(item.especiallyFors ?? []),
+          factoryThemes: mergeArray(item.factoryThemes ?? []),
+          hotelBrands: mergeArray(item.hotelBrands ?? []),
+          standards: mergeArray(item.standards ?? []),
+          accommodationTypes: mergeArray(item.accommodationTypes ?? []),
+          roomTypes: mergeArray(item.roomTypes ?? []),
+          hotelFacilities: mergeArray(item.hotelFacilities ?? []),
+          forFamilies: mergeArray(item.forFamilies ?? []),
+          skiFacilities: mergeArray(item.skiFacilities ?? []),
+          priceRangePounds: mergeArray(item.priceRangePounds ?? []),
+          allInclusives: mergeArray(item.allInclusives ?? []),
         };
       });
     },
@@ -364,9 +364,9 @@ const queries = [
       return data.allWpDestination.nodes.map((item) => {
         return {
           ...item,
-          bestTimes: mergeArray(item?.bestTimes ?? []),
-          settings: mergeArray(item?.settings ?? []),
-          especiallyFors: mergeArray(item?.especiallyFors ?? []),
+          bestTimes: mergeArray(item.bestTimes ?? []),
+          settings: mergeArray(item.settings ?? []),
+          especiallyFors: mergeArray(item.especiallyFors ?? []),
         };
       });
     },
@@ -378,17 +378,17 @@ const queries = [
       return data.allWpExperience.nodes.map((item) => {
         return {
           ...item,
-          bestTimes: mergeArray(item?.bestTimes ?? []),
-          settings: mergeArray(item?.settings ?? []),
-          factoryThemes: mergeArray(item?.factoryThemes ?? []),
-          especiallyFors: mergeArray(item?.especiallyFors ?? []),
-          whenAvailables: mergeArray(item?.whenAvailables ?? []),
-          experienceTypes: mergeArray(item?.experienceTypes ?? []),
-          attractionTypes: mergeArray(item?.attractionTypes ?? []),
-          activityTypes: mergeArray(item?.activityTypes ?? []),
-          eventTypes: mergeArray(item?.eventTypes ?? []),
-          priceRanges: mergeArray(item?.priceRanges ?? []),
-          ageGroups: mergeArray(item?.ageGroups ?? []),
+          bestTimes: mergeArray(item.bestTimes ?? []),
+          settings: mergeArray(item.settings ?? []),
+          factoryThemes: mergeArray(item.factoryThemes ?? []),
+          especiallyFors: mergeArray(item.especiallyFors ?? []),
+          whenAvailables: mergeArray(item.whenAvailables ?? []),
+          experienceTypes: mergeArray(item.experienceTypes ?? []),
+          attractionTypes: mergeArray(item.attractionTypes ?? []),
+          activityTypes: mergeArray(item.activityTypes ?? []),
+          eventTypes: mergeArray(item.eventTypes ?? []),
+          priceRanges: mergeArray(item.priceRanges ?? []),
+          ageGroups: mergeArray(item.ageGroups ?? []),
         };
       });
     },
