@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Layout, Section } from "../components";
 import clsx from "clsx";
 import algoliasearch from "algoliasearch/lite";
-import { InstantSearch, MenuSelect } from "react-instantsearch-dom";
+import {
+  InstantSearch,
+  MenuSelect,
+  RefinementList,
+} from "react-instantsearch-dom";
 import SearchHit from "../components/my-components/SearchHit";
 import StaticRefinementList from "../components/my-components/MainSearchList";
 import SearchBox from "../components/my-components/SearchBox";
@@ -24,14 +28,6 @@ searchClient
     {
       indexName,
       params: {
-        facetName: "nodeType",
-        facetQuery: "",
-        maxFacetHits: 50,
-      },
-    },
-    {
-      indexName,
-      params: {
         facetName: "commonDataAttributes.textContinent",
         facetQuery: "",
         maxFacetHits: 50,
@@ -39,17 +35,8 @@ searchClient
     },
   ])
   .then((filters) => {
-    nodeType.push(
-      ...filters[0].facetHits.map((facet) => ({
-        ...facet,
-        label: facet.value,
-        value: facet.value,
-        isRefined: false,
-        count: 0,
-      }))
-    );
     continentsFilter.push(
-      ...filters[1].facetHits.map((facet) => ({
+      ...filters[0].facetHits.map((facet) => ({
         ...facet,
         label: facet.value,
         value: facet.value,
@@ -87,14 +74,13 @@ const SearchPage = () => {
             <StaticRefinementList
               attribute="nodeType"
               setMainState={setMainState}
-              values={nodeType}
-              // values={[
-              //   { label: "Experience", value: "Experience" },
-              //   { label: "PlaceToStay", value: "PlaceToStay" },
-              //   { label: "Destination", value: "Destination" },
-              //   { label: "RoundUp", value: "RoundUp" },
-              //   { label: "Itinerary", value: "Itinerary" },
-              // ]}
+              values={[
+                { label: "Experience", value: "Experience" },
+                { label: "PlaceToStay", value: "PlaceToStay" },
+                { label: "Destination", value: "Destination" },
+                { label: "RoundUp", value: "RoundUp" },
+                { label: "Itinerary", value: "Itinerary" },
+              ]}
             />
             <div className="flex items-center justify-between mt-4 mb-4 space-x-2">
               {/* <Select
@@ -174,6 +160,22 @@ const SearchPage = () => {
                       values={continentsFilter}
                       attribute="commonDataAttributes.textContinent"
                     />
+                    <div className="item">
+                      <p>SETTING</p>
+                      <RefinementList attribute="settings" />
+                    </div>
+                    <div className="item">
+                      <p>BEST TIME</p>
+                      <RefinementList attribute="bestTimes" />
+                    </div>
+                    <div className="item">
+                      <p>THEME</p>
+                      <RefinementList attribute="factoryThemes" />
+                    </div>
+                    <div className="item">
+                      <p>ESPECIALLY FOR</p>
+                      <RefinementList attribute="especiallyFors" />
+                    </div>
                   </div>
                 </div>
               </div>
