@@ -6,6 +6,8 @@ import tw, { styled } from "twin.macro";
 import { AuthContent } from "../auth";
 import { useAuth } from "../../lib/hooks/useAuth";
 import { useMutation, gql } from "@apollo/client";
+import "react-tippy/dist/tippy.css";
+import { Tooltip } from "react-tippy";
 
 const UPDATE_USER = gql`
   mutation ($input: UpdateUserInput!) {
@@ -47,43 +49,87 @@ export const MyAccountPage = () => {
   };
   const { user } = useAuth();
   console.log("user", user);
+  const questionMarkStyles =
+    "flex items-center justify-center w-5 h-5 border border-gray-500 rounded-full bg-lightBlue text-black text-sm";
   return (
     <AuthContent>
       <Section className={clsx("px-10 pt-10 pb-24 ")}>
-        <Typo as="h3" h3 className="font-semibold">
+        <Typo as="h3" h3 className="mb-8 font-semibold">
           My details
         </Typo>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="grid-cols-2 gap-16 md:grid">
-            <div>
-              <Label htmlFor="loaction">First Name</Label>
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full">
+          <div className="w-full mb-8 space-x-14 md:flex">
+            <div className="md:w-1/2">
+              <div className="flex space-x-3">
+                <Label htmlFor="firstName">
+                  <span>First Name</span>
+                </Label>
+                <Tooltip
+                  title="Please tell us your first name, so we know how to address you in any communications.
+                "
+                  arrow
+                  theme="light"
+                  distance={15}
+                >
+                  <span className={questionMarkStyles}>?</span>
+                </Tooltip>
+              </div>
               <Input
                 type="text"
                 id="firstName"
-                className=""
+                className="w-full h-14"
                 {...register("firstName")}
               />
               {/* {errors.firstName && (
                 <ErrorMessage>This field is required</ErrorMessage>
               )} */}
             </div>
-            <div>
-              <Label htmlFor="location">Location(e.g. city, town)</Label>
-              <Input type="text" id="location" {...register("location")} />
+            <div className="md:w-1/2">
+              <div className="flex space-x-3">
+                <Label htmlFor="location">Location (e.g. city, town)</Label>
+                <Tooltip
+                  title="
+                    Please tell us your approximate location, so we can make our recommendations more relevant to you
+                  "
+                  arrow
+                  theme="light"
+                  distance={15}
+                >
+                  <span className={questionMarkStyles}>?</span>
+                </Tooltip>
+              </div>
+              <Input
+                type="text"
+                id="location"
+                className="h-14"
+                {...register("location")}
+              />
               {/* {errors.location && (
                 <ErrorMessage>This field is required</ErrorMessage>
               )} */}
             </div>
-            <div>
+          </div>
+          <div className=" space-x-14 md:flex">
+            <div className="md:w-1/2">
               <Label htmlFor="location">Email</Label>
-              <Input type="email" id="email" {...register("email")} />
+              <Input
+                type="email"
+                id="email"
+                className="h-14"
+                {...register("email")}
+              />
               {/* {errors.location && (
                 <ErrorMessage>This field is required</ErrorMessage>
               )} */}
             </div>
-            <div>
+            <div className="mb-5 md:w-1/2">
               <Label htmlFor="location">Password</Label>
-              <Input type="password" id="password" {...register("password")} />
+              <Input
+                type="password"
+                id="password"
+                className="h-14"
+                {...register("password")}
+              />
               {/* {errors.location && (
                 <ErrorMessage>This field is required</ErrorMessage>
               )} */}
@@ -95,6 +141,7 @@ export const MyAccountPage = () => {
             </Button>
           </div>
         </form>
+        <div className="w-full h-[1px] bg-gray-300 my-base2" />
       </Section>
     </AuthContent>
   );
