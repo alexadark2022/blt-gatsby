@@ -22,13 +22,48 @@ const searchClient = algoliasearch(
   "8878e427a5a3d373a179bab058ca2641"
 );
 let continentsFilter = [];
-let nodeType = [];
+let settingsFilter = [];
+let themesFilter = [];
+let bestTimeFilter = [];
+let especiallyForFilter = [];
 searchClient
   .searchForFacetValues([
     {
       indexName,
       params: {
         facetName: "commonDataAttributes.textContinent",
+        facetQuery: "",
+        maxFacetHits: 50,
+      },
+    },
+    {
+      indexName,
+      params: {
+        facetName: "settings",
+        facetQuery: "",
+        maxFacetHits: 50,
+      },
+    },
+    {
+      indexName,
+      params: {
+        facetName: "bestTimes",
+        facetQuery: "",
+        maxFacetHits: 50,
+      },
+    },
+    {
+      indexName,
+      params: {
+        facetName: "factoryThemes",
+        facetQuery: "",
+        maxFacetHits: 50,
+      },
+    },
+    {
+      indexName,
+      params: {
+        facetName: "especiallyFors",
         facetQuery: "",
         maxFacetHits: 50,
       },
@@ -44,9 +79,44 @@ searchClient
         count: 0,
       }))
     );
+    settingsFilter.push(
+      ...filters[1].facetHits.map((facet) => ({
+        ...facet,
+        label: facet.value,
+        value: facet.value,
+        isRefined: false,
+        count: 0,
+      }))
+    );
+    bestTimeFilter.push(
+      ...filters[2].facetHits.map((facet) => ({
+        ...facet,
+        label: facet.value,
+        value: facet.value,
+        isRefined: false,
+        count: 0,
+      }))
+    );
+    themesFilter.push(
+      ...filters[3].facetHits.map((facet) => ({
+        ...facet,
+        label: facet.value,
+        value: facet.value,
+        isRefined: false,
+        count: 0,
+      }))
+    );
+    especiallyForFilter.push(
+      ...filters[4].facetHits.map((facet) => ({
+        ...facet,
+        label: facet.value,
+        value: facet.value,
+        isRefined: false,
+        count: 0,
+      }))
+    );
   });
 
-const currentRefinement = new Set();
 const SearchPage = () => {
   const [mainState, setMainState] = useState("All");
   const [view, setView] = useState("");
@@ -159,23 +229,28 @@ const SearchPage = () => {
                     <CustomRefinementList
                       values={continentsFilter}
                       attribute="commonDataAttributes.textContinent"
+                      title="CONTINENT"
                     />
-                    <div className="item">
-                      <p>SETTING</p>
-                      <RefinementList attribute="settings" />
-                    </div>
-                    <div className="item">
-                      <p>BEST TIME</p>
-                      <RefinementList attribute="bestTimes" />
-                    </div>
-                    <div className="item">
-                      <p>THEME</p>
-                      <RefinementList attribute="factoryThemes" />
-                    </div>
-                    <div className="item">
-                      <p>ESPECIALLY FOR</p>
-                      <RefinementList attribute="especiallyFors" />
-                    </div>
+                    <CustomRefinementList
+                      values={settingsFilter}
+                      attribute="settings"
+                      title="SETTING"
+                    />
+                    <CustomRefinementList
+                      values={bestTimeFilter}
+                      attribute="bestTimes"
+                      title="BEST TIME"
+                    />
+                    <CustomRefinementList
+                      values={themesFilter}
+                      attribute="factoryThemes"
+                      title="THEME"
+                    />
+                    <CustomRefinementList
+                      values={especiallyForFilter}
+                      attribute="especiallyFors"
+                      title="ESPECIALLY FOR"
+                    />
                   </div>
                 </div>
               </div>
