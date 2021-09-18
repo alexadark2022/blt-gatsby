@@ -43,7 +43,7 @@ const allWpExperienceQuery = `
           name
         }
       }
-      experianceTypes {
+      experienceTypes {
         nodes {
           name
         }
@@ -302,111 +302,6 @@ const allWpItineraryQuery = `
 
 `;
 
-const AllSearchQuery = `{
-  allWpExperience {
-    nodes {
-      id
-      title
-      uri
-      date
-      nodeType
-      featuredImage {
-        node {
-          sourceUrl
-          altText
-        }
-      }
-      commonDataAttributes {
-        textCountry
-        textContinent
-        standfirst
-      }
-    }
-  }
-  allWpDestination {
-    nodes {
-      id
-      title
-      uri
-      date
-      nodeType
-      featuredImage {
-        node {
-          sourceUrl
-          altText
-        }
-      }
-      commonDataAttributes {
-        textCountry
-        textContinent
-        standfirst
-      }
-    }
-  }
-  allWpPlaceToStay {
-    nodes {
-      id
-      title
-      uri
-      date
-      nodeType
-      featuredImage {
-        node {
-          sourceUrl
-          altText
-        }
-      }
-      commonDataAttributes {
-        textCountry
-        textContinent
-        standfirst
-      }
-    }
-  }
-  allWpRoundUp {
-    nodes {
-      id
-      title
-      uri
-      date
-      nodeType
-      featuredImage {
-        node {
-          sourceUrl
-          altText
-        }
-      }
-      commonDataAttributes {
-        textCountry
-        textContinent
-        standfirst
-      }
-    }
-  }
-  allWpItinerary {
-    nodes {
-      id
-      title
-      uri
-      date
-      nodeType
-      featuredImage {
-        node {
-          sourceUrl
-          altText
-        }
-      }
-      commonDataAttributes {
-        textCountry
-        textContinent
-        standfirst
-      }
-    }
-  }
-}
-
-`;
-
 const queries = [
   {
     query: allWpItineraryQuery,
@@ -488,7 +383,7 @@ const queries = [
           factoryThemes: mergeArray(item?.factoryThemes),
           especiallyFors: mergeArray(item?.especiallyFors),
           whenAvailables: mergeArray(item?.whenAvailables),
-          experianceTypes: mergeArray(item?.experianceTypes),
+          experienceTypes: mergeArray(item?.experienceTypes),
           attractionTypes: mergeArray(item?.attractionTypes),
           activityTypes: mergeArray(item?.activityTypes),
           eventTypes: mergeArray(item?.eventTypes),
