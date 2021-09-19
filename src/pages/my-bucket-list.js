@@ -25,7 +25,7 @@ const BucketListPage = () => {
 
   useEffect(() => {
     getBucketList();
-  }, []);
+  }, [getBucketList, data]);
 
   const { data, error, loading, getBucketList, called } = useDbBucketList();
   const bl = data?.bucketLists?.nodes[0];

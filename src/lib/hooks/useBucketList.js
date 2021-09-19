@@ -9,6 +9,7 @@ export const useBucketList = (item) => {
   const [bucket, setBucket] = useLocalStorage("bucketList", []);
 
   const updateBlMutation = useUpdateBucketList();
+
   const { loggedIn } = useAuth();
 
   const isAdded =

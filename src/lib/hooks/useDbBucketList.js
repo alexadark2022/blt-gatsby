@@ -1,8 +1,5 @@
-import React, { useEffect, useContext } from "react";
-import {
-  GlobalDispatchContext,
-  GlobalStateContext,
-} from "../../context/GlobalContextProvider";
+import { useEffect } from "react";
+
 import { GET_BUCKET_LIST } from "../queries";
 import { useLazyQuery } from "@apollo/client";
 import { useAuth } from "./useAuth";
