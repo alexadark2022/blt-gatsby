@@ -8,6 +8,8 @@ import { useAuth } from "../../lib/hooks/useAuth";
 import { useMutation, gql } from "@apollo/client";
 import "react-tippy/dist/tippy.css";
 import { Tooltip } from "react-tippy";
+import { Link, navigate } from "gatsby";
+import { useDbBucketList } from "../../lib/hooks/useDbBucketList";
 
 const UPDATE_USER = gql`
   mutation ($input: UpdateUserInput!) {
@@ -20,8 +22,45 @@ const UPDATE_USER = gql`
   }
 `;
 
+const DELETE_USER = gql`
+  mutation ($input: DeleteUserInput!) {
+    deleteUser(input: $input) {
+      deletedId
+    }
+  }
+`;
+
+const DELETE_BUCKET_LIST = gql`
+  mutation ($input: DeleteBucketListInput!) {
+    deleteBucketList(input: $input) {
+      deletedId
+    }
+  }
+`;
+
 export const MyAccountPage = () => {
   const [updateUser] = useMutation(UPDATE_USER);
+  const [deleteUser] = useMutation(DELETE_USER);
+  const [deleteBucketList] = useMutation(DELETE_BUCKET_LIST);
+  const { bl } = useDbBucketList();
+
+  const handleDeleteUser = () => {
+    deleteBucketList({
+      variables: {
+        input: {
+          id: bl?.id,
+        },
+      },
+    });
+    deleteUser({
+      variables: {
+        input: {
+          id: user?.id,
+        },
+      },
+    });
+    navigate("/log-out");
+  };
   const {
     register,
     handleSubmit,
@@ -142,6 +181,25 @@ export const MyAccountPage = () => {
           </div>
         </form>
         <div className="w-full h-[1px] bg-gray-300 my-base2" />
+        {/* My lists */}
+        <Typo as="h3" h3 className="mb-8 font-semibold">
+          My lists
+        </Typo>
+        <div className="flex space-x-base">
+          <Link to="/my-bucket-list" className="btn btn-secondary">
+            {" "}
+            View & Edit{" "}
+          </Link>
+          <div>My bucket list</div>
+        </div>
+        <div className="w-full h-[1px] bg-gray-300 my-base2" />
+        {/* Delete */}
+        <button
+          onClick={handleDeleteUser}
+          className="w-[184px] border-red-500 btn btn-secondary hover:bg-red-500 hover:text-white"
+        >
+          delete account
+        </button>
       </Section>
     </AuthContent>
   );

@@ -5,6 +5,7 @@ export const GET_BUCKET_LIST = gql`
     bucketLists(where: { author: $author }) {
       nodes {
         databaseId
+        id
         title
         bucketListElements {
           blLinks {
