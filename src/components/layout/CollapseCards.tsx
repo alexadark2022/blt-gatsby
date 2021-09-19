@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import Collapse from "@kunukn/react-collapse";
 import clsx from "clsx";
 import { Button } from "..";
@@ -15,15 +15,6 @@ export const CollapseCards = ({
   ...props
 }: any) => {
   const [open, setOpen] = useState(false);
-
-  const collapseContainer = useRef(null);
-
-  useEffect(() => {
-    const currentElm = collapseContainer?.current;
-    if (!open) {
-      currentElm.scrollIntoView();
-    }
-  }, [open]);
   return (
     <div
       className={clsx(
@@ -32,7 +23,6 @@ export const CollapseCards = ({
         }`,
         className
       )}
-      ref={collapseContainer}
       {...props}
     >
       {cards?.slice(0, 4).map((item: any) => {
