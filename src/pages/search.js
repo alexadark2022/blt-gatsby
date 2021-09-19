@@ -1,129 +1,55 @@
-import React, { useState, useEffect } from "react";
-import { Layout, Section } from "../components";
+import React, { useState, useEffect, useCallback } from "react";
+import { Layout } from "../components";
 import clsx from "clsx";
 import algoliasearch from "algoliasearch/lite";
-import {
-  InstantSearch,
-  MenuSelect,
-  RefinementList,
-} from "react-instantsearch-dom";
+import { InstantSearch, MenuSelect } from "react-instantsearch-dom";
 import SearchHit from "../components/my-components/SearchHit";
 import StaticRefinementList from "../components/my-components/MainSearchList";
 import SearchBox from "../components/my-components/SearchBox";
 import ViewSwitcher from "../components/my-components/ViewSwitcher";
-import CustomRefinementList from "../components/my-components/CustomRefinementList";
 import ClearAllFilters from "../components/my-components/ClearAllFilters";
 import Loading from "../components/my-components/Loading";
+import AllFilters from "../components/my-components/AllFilters";
 import { IoCloseSharp as Close } from "react-icons/io5";
 import { Typo, Button, WithCollapse } from "../components/ui-components";
+import isEmptyObject from "./../utils/isEmptyObject";
 
 const indexName = "Alldata";
 const searchClient = algoliasearch(
   "E4TS2J6OFT",
   "8878e427a5a3d373a179bab058ca2641"
 );
-let continentsFilter = [];
-let settingsFilter = [];
-let themesFilter = [];
-let bestTimeFilter = [];
-let especiallyForFilter = [];
-searchClient
-  .searchForFacetValues([
-    {
-      indexName,
-      params: {
-        facetName: "commonDataAttributes.textContinent",
-        facetQuery: "",
-        maxFacetHits: 50,
-      },
-    },
-    {
-      indexName,
-      params: {
-        facetName: "settings",
-        facetQuery: "",
-        maxFacetHits: 50,
-      },
-    },
-    {
-      indexName,
-      params: {
-        facetName: "bestTimes",
-        facetQuery: "",
-        maxFacetHits: 50,
-      },
-    },
-    {
-      indexName,
-      params: {
-        facetName: "factoryThemes",
-        facetQuery: "",
-        maxFacetHits: 50,
-      },
-    },
-    {
-      indexName,
-      params: {
-        facetName: "especiallyFors",
-        facetQuery: "",
-        maxFacetHits: 50,
-      },
-    },
-  ])
-  .then((filters) => {
-    continentsFilter.push(
-      ...filters[0].facetHits.map((facet) => ({
-        ...facet,
-        label: facet.value,
-        value: facet.value,
-        isRefined: false,
-        count: 0,
-      }))
-    );
-    settingsFilter.push(
-      ...filters[1].facetHits.map((facet) => ({
-        ...facet,
-        label: facet.value,
-        value: facet.value,
-        isRefined: false,
-        count: 0,
-      }))
-    );
-    bestTimeFilter.push(
-      ...filters[2].facetHits.map((facet) => ({
-        ...facet,
-        label: facet.value,
-        value: facet.value,
-        isRefined: false,
-        count: 0,
-      }))
-    );
-    themesFilter.push(
-      ...filters[3].facetHits.map((facet) => ({
-        ...facet,
-        label: facet.value,
-        value: facet.value,
-        isRefined: false,
-        count: 0,
-      }))
-    );
-    especiallyForFilter.push(
-      ...filters[4].facetHits.map((facet) => ({
-        ...facet,
-        label: facet.value,
-        value: facet.value,
-        isRefined: false,
-        count: 0,
-      }))
-    );
-  });
+const index = searchClient.initIndex("Alldata");
 
 const SearchPage = () => {
   const [mainState, setMainState] = useState("All");
   const [view, setView] = useState("");
   const [openFilters, setOpenFilters] = useState(false);
-  console.log(mainState);
+  const [filters, setFilters] = useState([]);
 
+  const facets = useCallback(() => {
+    const filtersArray = Object.entries(filters);
+    return filtersArray.reduce(function (state, name) {
+      const filterName = name[0];
+      const itemsArray = Object.entries(name[1]);
+      state[filterName] = itemsArray.map((facet) => ({
+        label: facet[0],
+        value: facet[0],
+        isRefined: false,
+        count: 0,
+      }));
+      return state;
+    }, {});
+  }, [filters]);
+  useEffect(() => {
+    index
+      .search("", {
+        facets: ["*"],
+      })
+      .then((res) => {
+        setFilters(res.facets);
+      });
+  }, []);
   return (
     <Layout>
       <InstantSearch searchClient={searchClient} indexName={indexName}>
@@ -177,7 +103,6 @@ const SearchPage = () => {
             Filters
           </Button> */}
               <MenuSelect attribute="nodeType" />
-
               <Button
                 small
                 className={`w-[125px] lg:!hidden ${openFilters && "!hidden"}`}
@@ -226,35 +151,9 @@ const SearchPage = () => {
                   <ClearAllFilters />
                 </div>
                 <Loading>
-                  <div className="">
-                    <div className="flex flex-col justify-between">
-                      <CustomRefinementList
-                        values={continentsFilter}
-                        attribute="commonDataAttributes.textContinent"
-                        title="CONTINENT"
-                      />
-                      <CustomRefinementList
-                        values={settingsFilter}
-                        attribute="settings"
-                        title="SETTING"
-                      />
-                      <CustomRefinementList
-                        values={bestTimeFilter}
-                        attribute="bestTimes"
-                        title="BEST TIME"
-                      />
-                      <CustomRefinementList
-                        values={themesFilter}
-                        attribute="factoryThemes"
-                        title="THEME"
-                      />
-                      <CustomRefinementList
-                        values={especiallyForFilter}
-                        attribute="especiallyFors"
-                        title="ESPECIALLY FOR"
-                      />
-                    </div>
-                  </div>
+                  {!isEmptyObject(facets()) && (
+                    <AllFilters mainState={mainState} facets={facets()} />
+                  )}
                 </Loading>
               </div>
             </div>

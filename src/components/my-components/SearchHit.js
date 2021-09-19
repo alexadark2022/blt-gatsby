@@ -6,7 +6,6 @@ import { FaTrashAlt as Trash } from "react-icons/fa";
 import { Button } from "../ui-components/Button";
 const SearchHit = ({ hits, hasMore, view, refineNext }) => {
   let listView = view || "list";
-  console.log({ listView, view });
   return (
     <>
       <div
@@ -164,12 +163,8 @@ const SearchHit = ({ hits, hasMore, view, refineNext }) => {
                         <Trash className="text-gold text-[20px]" />
                       </Button>
                     </div>
-                    <Link
-                      className="hover:no-underline"
-                      href={hit?.uri ?? "/"}
-                      passHref
-                    >
-                      <Button as="a" secondary className="!text-[11px]">
+                    <Link className="hover:no-underline" to={hit?.uri ?? "/"}>
+                      <Button secondary className="!text-[11px]">
                         Read review
                       </Button>
                     </Link>

@@ -3,9 +3,8 @@ import clsx from "clsx";
 import React, { useState } from "react";
 import { Button } from "../ui-components/Button";
 import { WithCollapse } from "../ui-components/WithCollapse";
-import { Checkbox } from "../ui-components/Checkbox";
 import { FaChevronDown } from "react-icons/fa";
-import Collapse from "@kunukn/react-collapse";
+
 const CustomRefinementList = (props) => {
   const {
     values,
@@ -13,13 +12,16 @@ const CustomRefinementList = (props) => {
     items,
     refine,
     title = "CONTINENT",
+    className,
   } = props;
   const [open, setOpen] = useState(false);
   const [arraySize, setArraySize] = useState(4);
   const [openFilterSet, setOpenFilterSet] = useState(false);
-
+  if (!values) {
+    return null;
+  }
   return (
-    <div>
+    <div className={className}>
       <div className="py-4 border-b border-grey2">
         {/* Title */}
         <div className="flex justify-between">
@@ -43,56 +45,60 @@ const CustomRefinementList = (props) => {
           className="duration-500 ease-in-out transition-height"
         >
           <ul>
-            {values.slice(0, arraySize).map((staticItem) => {
-              const { isRefined } = items.find(
-                (item) => item.label === staticItem.label
-              ) || {
-                isRefined: false,
-              };
-              const countArray = items.map((item) => {
-                if (item.label === staticItem.label) return item.count;
-                return 0;
-              });
-              const count = countArray.reduce((previousValue, currentValue) => {
-                return previousValue + currentValue;
-              }, 0);
-              return (
-                <li
-                  className={clsx("item", {
-                    "opacity-50 cursor-not-allowed ": !count,
-                  })}
-                  key={staticItem.value}
-                >
-                  <label
-                    className={clsx("input-item", {
-                      "cursor-not-allowed ": !count,
+            {!!values &&
+              values.slice(0, arraySize).map((staticItem) => {
+                const { isRefined } = items.find(
+                  (item) => item.label === staticItem.label
+                ) || {
+                  isRefined: false,
+                };
+                const countArray = items.map((item) => {
+                  if (item.label === staticItem.label) return item.count;
+                  return 0;
+                });
+                const count = countArray.reduce(
+                  (previousValue, currentValue) => {
+                    return previousValue + currentValue;
+                  },
+                  0
+                );
+                return (
+                  <li
+                    className={clsx("item", {
+                      "opacity-50 cursor-not-allowed ": !count,
                     })}
+                    key={staticItem.value}
                   >
-                    <input
-                      type="checkbox"
-                      value={staticItem.value}
-                      checked={isRefined}
+                    <label
                       className={clsx("input-item", {
                         "cursor-not-allowed ": !count,
                       })}
-                      disabled={!count}
-                      onChange={(event) => {
-                        const value = event.currentTarget.value;
-                        const next = currentRefinement.includes(value)
-                          ? currentRefinement.filter(
-                              (current) => current !== value
-                            )
-                          : currentRefinement.concat(value);
+                    >
+                      <input
+                        type="checkbox"
+                        value={staticItem.value}
+                        checked={isRefined}
+                        className={clsx("input-item", {
+                          "cursor-not-allowed ": !count,
+                        })}
+                        disabled={!count}
+                        onChange={(event) => {
+                          const value = event.currentTarget.value;
+                          const next = currentRefinement.includes(value)
+                            ? currentRefinement.filter(
+                                (current) => current !== value
+                              )
+                            : currentRefinement.concat(value);
 
-                        refine(next);
-                      }}
-                    />
-                    {staticItem.label} <span className="ml-1">[{count}]</span>
-                  </label>
-                </li>
-              );
-            })}
-            {values.length > 0 && (
+                          refine(next);
+                        }}
+                      />
+                      {staticItem.label} <span className="ml-1">[{count}]</span>
+                    </label>
+                  </li>
+                );
+              })}
+            {!!values && values.length > 0 && (
               <>
                 <Button
                   small
