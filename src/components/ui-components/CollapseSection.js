@@ -18,6 +18,7 @@ export const CollapseSection = ({
   // const isDefaultOpen = exists(window) ? min768 : undefined
 
   const [open, setOpen] = useState(true);
+  const [buttonLocation, setButtonLocation] = useState(false);
 
   useEffect(() => {
     const isDefaultOpen = window.matchMedia("(min-width: 768px)").matches;
@@ -28,7 +29,7 @@ export const CollapseSection = ({
   useEffect(() => {
     const isDefaultOpen = window.matchMedia("(min-width: 768px)").matches;
     const currentElm = collapseContainer?.current;
-    if (!open && !isDefaultOpen) {
+    if (!open && !isDefaultOpen && buttonLocation) {
       currentElm.scrollIntoView();
     }
   }, [open]);
@@ -49,7 +50,10 @@ export const CollapseSection = ({
           <div
             role="button"
             className="flex items-center cursor-pointer focus:outline-none"
-            onClick={() => setOpen(!open)}
+            onClick={() => {
+              setOpen(!open);
+              setButtonLocation(false);
+            }}
           >
             <div>
               <FaChevronRight
@@ -84,7 +88,13 @@ export const CollapseSection = ({
               <div className={clsx("overflow-hidden")}>
                 {children}
                 <div className="flex justify-center mt-base2 md:hidden">
-                  <Button small onClick={() => setOpen(false)}>
+                  <Button
+                    small
+                    onClick={() => {
+                      setOpen(false);
+                      setButtonLocation(true);
+                    }}
+                  >
                     Close
                   </Button>
                 </div>
