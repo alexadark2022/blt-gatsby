@@ -16,7 +16,7 @@ export const CollapseSection = ({
   // const min768 = useMediaQuery('(min-width: 768px)')
 
   // const isDefaultOpen = exists(window) ? min768 : undefined
-
+  console.log(title);
   const [open, setOpen] = useState(true);
   const [buttonLocation, setButtonLocation] = useState(false);
 
@@ -37,7 +37,7 @@ export const CollapseSection = ({
     <Section
       ref={collapseContainer}
       className={clsx(
-        " py-5 sm:py-8 my-3 sm:my-base2",
+        " py-5 sm:py-8 my-3 sm:my-base2 accordion",
 
         "transition-max-h duration-500   ease-out",
         { "px-4 sm:px-7": !listings },

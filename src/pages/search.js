@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Layout } from "../components";
 import clsx from "clsx";
 import algoliasearch from "algoliasearch/lite";
-import { InstantSearch, MenuSelect } from "react-instantsearch-dom";
+import { InstantSearch, MenuSelect, Configure } from "react-instantsearch-dom";
 import SearchHit from "../components/my-components/SearchHit";
 import StaticRefinementList from "../components/my-components/MainSearchList";
 import SearchBox from "../components/my-components/SearchBox";
@@ -53,6 +53,7 @@ const SearchPage = () => {
   return (
     <Layout>
       <InstantSearch searchClient={searchClient} indexName={indexName}>
+        <Configure hitsPerPage={12} />
         <SearchBox />
         <div
           className={clsx(
@@ -150,11 +151,9 @@ const SearchPage = () => {
                 <div className="flex justify-center mb-3">
                   <ClearAllFilters />
                 </div>
-                <Loading>
-                  {!isEmptyObject(facets()) && (
-                    <AllFilters mainState={mainState} facets={facets()} />
-                  )}
-                </Loading>
+                {!isEmptyObject(facets()) && (
+                  <AllFilters mainState={mainState} facets={facets()} />
+                )}
               </div>
             </div>
           </WithCollapse>

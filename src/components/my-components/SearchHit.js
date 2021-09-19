@@ -180,7 +180,13 @@ const SearchHit = ({ hits, hasMore, view, refineNext }) => {
           "mt-6": listView === "list",
         })}
       >
-        <Button disabled={!hasMore} onClick={refineNext} className="h-10">
+        <Button
+          disabled={!hasMore}
+          onClick={refineNext}
+          className={clsx("h-10 block", {
+            "!hidden": !hasMore,
+          })}
+        >
           Load More
         </Button>
       </div>
