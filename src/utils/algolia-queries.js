@@ -1,439 +1,436 @@
 const allWpExperienceQuery = `
-{
-  allWpExperience {
-    nodes {
-      experienceDataAttr {
-        city
-        latitudeOfLocation1
-        latitudeOfLocation2
-        latitudeOfLocation3
-        longitudeOfLocation1
-        longitudeOfLocation2
-        longitudeOfLocation3
-        profile
-        region
-        priceFrom
-        minAge
-        whenIsIt
-      }
-      id
-      title
-      uri
-      date
-      nodeType
-      featuredImage {
-        node {
-          altText
-          sourceUrl
-          caption
-          description
-          localFile {
-            childImageSharp {
-              gatsbyImageData(
-                # width: 940
-                # height: 626
-                quality: 80
-                aspectRatio: 1.5
-                layout: CONSTRAINED
-                placeholder: BLURRED
-              )
-              original {
-                height
-                width
-                src
+  {
+    allWpExperience {
+      nodes {
+        customDataAttributes:experienceDataAttr {
+          city
+          latitudeOfLocation1
+          latitudeOfLocation2
+          latitudeOfLocation3
+          longitudeOfLocation1
+          longitudeOfLocation2
+          longitudeOfLocation3
+          profile
+          region
+          priceFrom
+          minAge
+          whenIsIt
+        }
+        id
+        title
+        uri
+        date
+        nodeType
+        featuredImage {
+          node {
+            altText
+            sourceUrl
+            caption
+            description
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  # width: 940
+                  # height: 626
+                  quality: 80
+                  aspectRatio: 1.5
+                  layout: CONSTRAINED
+                  placeholder: BLURRED
+                )
+                original {
+                  height
+                  width
+                  src
+                }
               }
             }
           }
         }
-      }
-      commonDataAttributes {
-        textCountry
-        textContinent
-        standfirst
-      }
-      bestTimes {
-        nodes {
-          name
+        commonDataAttributes {
+          textCountry
+          textContinent
+          standfirst
         }
-      }
-      settings {
-        nodes {
-          name
+        bestTimes {
+          nodes {
+            name
+          }
         }
-      }
-      factoryThemes {
-        nodes {
-          name
+        settings {
+          nodes {
+            name
+          }
         }
-      }
-      especiallyFors {
-        nodes {
-          name
+        factoryThemes {
+          nodes {
+            name
+          }
         }
-      }
-      whenAvailables {
-        nodes {
-          name
+        especiallyFors {
+          nodes {
+            name
+          }
         }
-      }
-      experienceTypes {
-        nodes {
-          name
+        whenAvailables {
+          nodes {
+            name
+          }
         }
-      }
-      attractionTypes {
-        nodes {
-          name
+        experienceTypes {
+          nodes {
+            name
+          }
         }
-      }
-      activityTypes {
-        nodes {
-          name
+        attractionTypes {
+          nodes {
+            name
+          }
         }
-      }
-      eventTypes {
-        nodes {
-          name
+        activityTypes {
+          nodes {
+            name
+          }
         }
-      }
-      priceRanges {
-        nodes {
-          name
+        eventTypes {
+          nodes {
+            name
+          }
         }
-      }
-      ageGroups {
-        nodes {
-          name
+        priceRanges {
+          nodes {
+            name
+          }
+        }
+        ageGroups {
+          nodes {
+            name
+          }
         }
       }
     }
   }
-}
 `;
 const allWpDestinationQuery = `
-{
-  allWpDestination {
-    nodes {
-      destinationDataAttributes {
-        latitudeOfLocation1
-        longitudeOfLocation1
-        region
-      }
-      id
-      title
-      uri
-      date
-      nodeType
-      featuredImage {
-        node {
-          altText
-          sourceUrl
-          caption
-          description
-          localFile {
-            childImageSharp {
-              gatsbyImageData(
-                # width: 940
-                # height: 626
-                quality: 80
-                aspectRatio: 1.5
-                layout: CONSTRAINED
-                placeholder: BLURRED
-              )
-              original {
-                height
-                width
-                src
+  {
+    allWpDestination {
+      nodes {
+        customDataAttributes:destinationDataAttributes {
+          latitudeOfLocation1
+          longitudeOfLocation1
+          region
+        }
+        id
+        title
+        uri
+        date
+        nodeType
+        featuredImage {
+          node {
+            altText
+            sourceUrl
+            caption
+            description
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  # width: 940
+                  # height: 626
+                  quality: 80
+                  aspectRatio: 1.5
+                  layout: CONSTRAINED
+                  placeholder: BLURRED
+                )
+                original {
+                  height
+                  width
+                  src
+                }
               }
             }
           }
         }
-      }
-      commonDataAttributes {
-        textCountry
-        textContinent
-        standfirst
-      }
-      bestTimes {
-        nodes {
-          name
+        commonDataAttributes {
+          textCountry
+          textContinent
+          standfirst
         }
-      }
-      settings {
-        nodes {
-          name
+        bestTimes {
+          nodes {
+            name
+          }
         }
-      }
-      especiallyFors {
-        nodes {
-          name
+        settings {
+          nodes {
+            name
+          }
+        }
+        especiallyFors {
+          nodes {
+            name
+          }
         }
       }
     }
   }
-}
-
 `;
 const allWpPlaceToStayQuery = `
-{
-  allWpPlaceToStay {
-    nodes {
-      ptsDataAttr {
-        city
-        latitudeOfLocation1
-        longitudeOfLocation1
-        priceCheckingLinks {
-          url
-          logo {
-            sourceUrl
-            title
-            altText
+  {
+    allWpPlaceToStay {
+      nodes {
+        customDataAttributes:ptsDataAttr {
+          city
+          latitudeOfLocation1
+          longitudeOfLocation1
+          priceCheckingLinks {
+            url
+            logo {
+              sourceUrl
+              title
+              altText
+            }
           }
+          website
+          starRating
         }
-        website
-        starRating
-      }
-      id
-      title
-      uri
-      date
-      nodeType
-      featuredImage {
-        node {
-          altText
-          sourceUrl
-          caption
-          description
-          localFile {
-            childImageSharp {
-              gatsbyImageData(
-                # width: 940
-                # height: 626
-                quality: 80
-                aspectRatio: 1.5
-                layout: CONSTRAINED
-                placeholder: BLURRED
-              )
-              original {
-                height
-                width
-                src
+        id
+        title
+        uri
+        date
+        nodeType
+        featuredImage {
+          node {
+            altText
+            sourceUrl
+            caption
+            description
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  # width: 940
+                  # height: 626
+                  quality: 80
+                  aspectRatio: 1.5
+                  layout: CONSTRAINED
+                  placeholder: BLURRED
+                )
+                original {
+                  height
+                  width
+                  src
+                }
               }
             }
           }
         }
-      }
-      commonDataAttributes {
-        textCountry
-        textContinent
-        standfirst
-      }
-      bestTimes {
-        nodes {
-          name
+        commonDataAttributes {
+          textCountry
+          textContinent
+          standfirst
         }
-      }
-      settings {
-        nodes {
-          name
+        bestTimes {
+          nodes {
+            name
+          }
         }
-      }
-      factoryThemes {
-        nodes {
-          name
+        settings {
+          nodes {
+            name
+          }
         }
-      }
-      especiallyFors {
-        nodes {
-          name
+        factoryThemes {
+          nodes {
+            name
+          }
         }
-      }
-      hotelBrands {
-        nodes {
-          name
+        especiallyFors {
+          nodes {
+            name
+          }
         }
-      }
-      standards {
-        nodes {
-          name
+        hotelBrands {
+          nodes {
+            name
+          }
         }
-      }
-      accommodationTypes {
-        nodes {
-          name
+        standards {
+          nodes {
+            name
+          }
         }
-      }
-      roomTypes {
-        nodes {
-          name
+        accommodationTypes {
+          nodes {
+            name
+          }
         }
-      }
-      hotelFacilities {
-        nodes {
-          name
+        roomTypes {
+          nodes {
+            name
+          }
         }
-      }
-      forFamilies {
-        nodes {
-          name
+        hotelFacilities {
+          nodes {
+            name
+          }
         }
-      }
-      skiFacilities {
-        nodes {
-          name
+        forFamilies {
+          nodes {
+            name
+          }
         }
-      }
-      priceRangePounds {
-        nodes {
-          name
+        skiFacilities {
+          nodes {
+            name
+          }
         }
-      }
-      allInclusives {
-        nodes {
-          name
+        priceRangePounds {
+          nodes {
+            name
+          }
+        }
+        allInclusives {
+          nodes {
+            name
+          }
         }
       }
     }
   }
-}
-
 `;
 const allWpRoundUpQuery = `
-{
-  allWpRoundUp {
-    nodes {
-      id
-      title
-      uri
-      date
-      nodeType
-      featuredImage {
-        node {
-          altText
-          sourceUrl
-          caption
-          description
-          localFile {
-            childImageSharp {
-              gatsbyImageData(
-                # width: 940
-                # height: 626
-                quality: 80
-                aspectRatio: 1.5
-                layout: CONSTRAINED
-                placeholder: BLURRED
-              )
-              original {
-                height
-                width
-                src
+  {
+    allWpRoundUp {
+      nodes {
+        id
+        title
+        uri
+        date
+        nodeType
+        featuredImage {
+          node {
+            altText
+            sourceUrl
+            caption
+            description
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  # width: 940
+                  # height: 626
+                  quality: 80
+                  aspectRatio: 1.5
+                  layout: CONSTRAINED
+                  placeholder: BLURRED
+                )
+                original {
+                  height
+                  width
+                  src
+                }
               }
             }
           }
         }
-      }
-      commonDataAttributes {
-        textCountry
-        textContinent
-        standfirst
-      }
-      bestTimes {
-        nodes {
-          name
+        commonDataAttributes {
+          textCountry
+          textContinent
+          standfirst
         }
-      }
-      settings {
-        nodes {
-          name
+        bestTimes {
+          nodes {
+            name
+          }
         }
-      }
-      factoryThemes {
-        nodes {
-          name
+        settings {
+          nodes {
+            name
+          }
         }
-      }
-      especiallyFors {
-        nodes {
-          name
+        factoryThemes {
+          nodes {
+            name
+          }
         }
-      }
-      recommendationTypes {
-        nodes {
-          name
+        especiallyFors {
+          nodes {
+            name
+          }
+        }
+        recommendationTypes {
+          nodes {
+            name
+          }
         }
       }
     }
   }
-}
 `;
 const allWpItineraryQuery = `
-{
-  allWpItinerary {
-    nodes {
-      itineraryDataAttributes {
-        latitudeOfLocation1
-        longitudeOfLocation1
-        minAge
-      }
-      id
-      title
-      uri
-      date
-      nodeType
-      featuredImage {
-        node {
-          altText
-          sourceUrl
-          caption
-          description
-          localFile {
-            childImageSharp {
-              gatsbyImageData(
-                # width: 940
-                # height: 626
-                quality: 80
-                aspectRatio: 1.5
-                layout: CONSTRAINED
-                placeholder: BLURRED
-              )
-              original {
-                height
-                width
-                src
+  {
+    allWpItinerary {
+      nodes {
+        itineraryDataAttributes {
+          latitudeOfLocation1
+          longitudeOfLocation1
+          minAge
+        }
+        id
+        title
+        uri
+        date
+        nodeType
+        featuredImage {
+          node {
+            altText
+            sourceUrl
+            caption
+            description
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  # width: 940
+                  # height: 626
+                  quality: 80
+                  aspectRatio: 1.5
+                  layout: CONSTRAINED
+                  placeholder: BLURRED
+                )
+                original {
+                  height
+                  width
+                  src
+                }
               }
             }
           }
         }
-      }
-      commonDataAttributes {
-        textCountry
-        textContinent
-        standfirst
-      }
-      bestTimes {
-        nodes {
-          name
+        commonDataAttributes {
+          textCountry
+          textContinent
+          standfirst
         }
-      }
-      settings {
-        nodes {
-          name
+        bestTimes {
+          nodes {
+            name
+          }
         }
-      }
-      factoryThemes {
-        nodes {
-          name
+        settings {
+          nodes {
+            name
+          }
         }
-      }
-      especiallyFors {
-        nodes {
-          name
+        factoryThemes {
+          nodes {
+            name
+          }
+        }
+        especiallyFors {
+          nodes {
+            name
+          }
         }
       }
     }
   }
-}
-
 `;
 
 const queries = [

@@ -7,6 +7,43 @@ import { FaTrashAlt as Trash } from "react-icons/fa";
 import { Button } from "../ui-components/Button";
 const SearchHit = ({ hits, hasMore, view, refineNext }) => {
   let listView = view || "list";
+  const ptsHits = hits
+    .filter((hit) => hit.ptsDataAttr)
+    .map((hit) => {
+      hit.customDataAttributes = hit.ptsDataAttr;
+      delete hit.ptsDataAttr;
+      return hit;
+    });
+  const expHits = hits
+    .filter((hit) => hit.experienceDataAttr)
+    .map((hit) => {
+      hit.customDataAttributes = hit.experienceDataAttr;
+      delete hit.experienceDataAttr;
+      return hit;
+    });
+  const destinationHits = hits
+    .filter((hit) => hit.destinationDataAttributes)
+    .map((hit) => {
+      hit.customDataAttributes = hit.destinationDataAttributes;
+      delete hit.destinationDataAttributes;
+      return hit;
+    });
+  const roundupHits = hits.filter((hit) => hit.uri.includes("round"));
+  const itineraryHits = hits.filter((hit) => hit.uri.includes("itinerar"));
+  const reformatedHits = {
+    ...ptsHits,
+    ...expHits,
+    ...destinationHits,
+    ...roundupHits,
+    ...itineraryHits,
+  };
+  console.log("hits", reformatedHits);
+  // const reformatedHits = hits.map(hit => {
+  //   return {
+  //     ...hit,
+
+  //   }
+  // })
   return (
     <>
       <div
