@@ -8,11 +8,12 @@ import StaticRefinementList from "../components/my-components/MainSearchList";
 import SearchBox from "../components/my-components/SearchBox";
 import ViewSwitcher from "../components/my-components/ViewSwitcher";
 import ClearAllFilters from "../components/my-components/ClearAllFilters";
-import Loading from "../components/my-components/Loading";
+import qs from "qs";
 import AllFilters from "../components/my-components/AllFilters";
 import { IoCloseSharp as Close } from "react-icons/io5";
 import { Typo, Button, WithCollapse } from "../components/ui-components";
 import isEmptyObject from "./../utils/isEmptyObject";
+import { useNavigate, useLocation } from "@reach/router";
 
 const indexName = "Alldata";
 const searchClient = algoliasearch(
@@ -50,6 +51,7 @@ const SearchPage = () => {
         setFilters(res.facets);
       });
   }, []);
+
   return (
     <Layout>
       <InstantSearch searchClient={searchClient} indexName={indexName}>

@@ -309,6 +309,7 @@ const queries = [
       return data.allWpItinerary.nodes.map((item) => {
         return {
           ...item,
+          date_timestamp: new Date(item.date).getTime(),
           bestTimes: mergeArray(item.bestTimes),
           settings: mergeArray(item.settings),
           especiallyFors: mergeArray(item.especiallyFors),
@@ -324,6 +325,7 @@ const queries = [
       return data.allWpRoundUp.nodes.map((item) => {
         return {
           ...item,
+          date_timestamp: new Date(item.date).getTime(),
           bestTimes: mergeArray(item.bestTimes),
           settings: mergeArray(item.settings),
           especiallyFors: mergeArray(item.especiallyFors),
@@ -340,6 +342,7 @@ const queries = [
       return data.allWpPlaceToStay.nodes.map((item) => {
         return {
           ...item,
+          date_timestamp: new Date(item.date).getTime(),
           bestTimes: mergeArray(item.bestTimes),
           settings: mergeArray(item.settings),
           especiallyFors: mergeArray(item.especiallyFors),
@@ -364,6 +367,7 @@ const queries = [
       return data.allWpDestination.nodes.map((item) => {
         return {
           ...item,
+          date_timestamp: new Date(item.date).getTime(),
           bestTimes: mergeArray(item.bestTimes),
           settings: mergeArray(item.settings),
           especiallyFors: mergeArray(item.especiallyFors),
@@ -378,6 +382,7 @@ const queries = [
       return data.allWpExperience.nodes.map((item) => {
         return {
           ...item,
+          date_timestamp: new Date(item.date).getTime(),
           bestTimes: mergeArray(item.bestTimes),
           settings: mergeArray(item.settings),
           factoryThemes: mergeArray(item.factoryThemes),

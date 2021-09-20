@@ -1,5 +1,6 @@
 import React from "react";
 import { connectInfiniteHits } from "react-instantsearch-dom";
+import { StaticImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
 import clsx from "clsx";
 import { FaTrashAlt as Trash } from "react-icons/fa";
@@ -65,11 +66,13 @@ const SearchHit = ({ hits, hasMore, view, refineNext }) => {
                     )}
                   >
                     <div className="image">
-                      <div className="w-[249px] h-[166px]">
-                        <img
-                          src={hit?.featuredImage?.node?.sourceUrl ?? ""}
-                          alt=""
-                        />
+                      <div className="w-[249px] h-[166px] bg-gray-200">
+                        {hit?.featuredImage?.node?.sourceUrl && (
+                          <img
+                            src={hit?.featuredImage?.node?.sourceUrl}
+                            alt="A kitten"
+                          />
+                        )}
                       </div>
                     </div>
                     <div
