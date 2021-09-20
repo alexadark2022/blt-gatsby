@@ -64,9 +64,11 @@ const BucketListPage = () => {
       {/* <Toaster position="bottom-center" reverseOrder={false} /> */}
 
       <EmptyModal
+        title="Empty bucket list"
+        text="Are you sure? this cannot be undone."
         isOpen={isOpenModal}
         setIsOpen={setIsOpenModal}
-        emptyBl={emptyBl}
+        action={emptyBl}
       />
       <PageLayout
         title="My bucket list"

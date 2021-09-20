@@ -2,7 +2,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import React, { Fragment } from "react";
 import { Button } from "../ui-components";
 
-export const EmptyModal = ({ isOpen, setIsOpen, emptyBl }) => {
+export const EmptyModal = ({ isOpen, setIsOpen, action, title, text }) => {
   function closeModal() {
     setIsOpen(false);
   }
@@ -48,14 +48,14 @@ export const EmptyModal = ({ isOpen, setIsOpen, emptyBl }) => {
                 as="h3"
                 className="text-lg font-bold leading-6 text-center"
               >
-                Empty bucket list
+                {title}
               </Dialog.Title>
               <div className="mt-2">
                 <p>Are you sure? this cannot be undone.</p>
               </div>
 
               <div className="flex mt-4 space-x-3">
-                <Button className="w-[120px]" onClick={emptyBl}>
+                <Button className="w-[120px]" onClick={action}>
                   Yes
                 </Button>
                 <Button className="w-[120px]" onClick={closeModal}>

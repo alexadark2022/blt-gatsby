@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Section, Typo } from "../ui-components";
 import clsx from "clsx";
 
@@ -9,6 +9,7 @@ import "react-tippy/dist/tippy.css";
 import { Link, navigate } from "gatsby";
 import { useDbBucketList } from "../../lib/hooks/useDbBucketList";
 import { AccountForm } from "../account";
+import { EmptyModal } from "../bucket-list/EmptyModal";
 
 const UPDATE_USER = gql`
   mutation ($input: UpdateUserInput!) {
@@ -41,6 +42,7 @@ export const MyAccountPage = () => {
   const [updateUser] = useMutation(UPDATE_USER);
   const [deleteUser] = useMutation(DELETE_USER);
   const [deleteBucketList] = useMutation(DELETE_BUCKET_LIST);
+  let [isOpenModal, setIsOpenModal] = useState(false);
 
   const { bl } = useDbBucketList();
 
@@ -81,6 +83,13 @@ export const MyAccountPage = () => {
 
   return (
     <AuthContent>
+      <EmptyModal
+        title="Delete my account"
+        text="Are you sure? All of your selections in your bucket list will be deleted, and cannot be recovered"
+        isOpen={isOpenModal}
+        setIsOpen={setIsOpenModal}
+        action={handleDeleteUser}
+      />
       <Section className={clsx("px-10 pt-10 pb-24 ")}>
         <Typo as="h3" h3 className="mb-8 font-semibold">
           My details
@@ -103,7 +112,7 @@ export const MyAccountPage = () => {
         <div className="w-full h-[1px] bg-gray-300 my-base2" />
         {/* Delete */}
         <button
-          onClick={handleDeleteUser}
+          onClick={() => setIsOpenModal(true)}
           className="w-[184px] border-red-500 btn btn-secondary hover:bg-red-500 hover:text-white"
         >
           delete account

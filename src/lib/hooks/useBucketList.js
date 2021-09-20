@@ -13,13 +13,13 @@ export const useBucketList = (item) => {
   const { loggedIn } = useAuth();
 
   const isAdded =
-    item.__typename === "WpRoundUp_Roundupdataattributes_links"
-      ? bucket.find((i) =>
+    item?.__typename === "WpRoundUp_Roundupdataattributes_links"
+      ? bucket?.find((i) =>
           i.__typename === "WpRoundUp_Roundupdataattributes_links"
             ? i.link[0].id === item.link[0].id
             : i.id === item.link[0].id
         )
-      : bucket.find((i) => i.id == item.id);
+      : bucket?.find((i) => i.id === item.id);
 
   const { blId } = useDbBucketList();
 
@@ -29,7 +29,7 @@ export const useBucketList = (item) => {
         variables: {
           input: {
             idInput: blId,
-            linksInput: bucket.map((item) => item.databaseId),
+            linksInput: bucket?.map((item) => item?.databaseId),
           },
         },
       });
@@ -44,10 +44,10 @@ export const useBucketList = (item) => {
       item.__typename === "WpRoundUp_Roundupdataattributes_links"
         ? bucket.filter((i) => {
             return i.__typename === "WpRoundUp_Roundupdataattributes_links"
-              ? i.link[0].id != item.link[0].id
-              : i.id != item.link[0].id;
+              ? i.link[0].id !== item.link[0].id
+              : i.id !== item.link[0].id;
           })
-        : bucket.filter((i) => i.id != item.id);
+        : bucket.filter((i) => i.id !== item.id);
 
     setBucket(newBucket);
   };
