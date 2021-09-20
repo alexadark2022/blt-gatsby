@@ -88,7 +88,7 @@ const DestinationPage = ({ data }) => {
         bl
         item={experience}
         sidebar={
-          <div className="space-y-base2">
+          <div className="space-y-base2 sticky top-0">
             <Newsletter />
             <SidebarSocialShare url={url} />
             {sidebarTourOperator &&
