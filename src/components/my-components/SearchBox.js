@@ -35,6 +35,7 @@ const SearchBox = ({ currentRefinement, isSearchStalled, refine }) => {
                 "sm:pl-20",
                 "border-none shadow-input placeholder-grey3 font-semibold text-f-18 focus:placeholder-transparent  focus:ring-grey2 focus:border-none"
               )}
+              value={currentRefinement}
               onChange={(event) => refine(event.currentTarget.value)}
             />
             <Button
