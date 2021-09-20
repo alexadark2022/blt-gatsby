@@ -45,7 +45,9 @@ export const ListingCard = ({
       : website
       ? website
       : "#";
-  const { addToBl, removeFromBl, isAdded } = useBucketList(item);
+
+  const blItem = item.link ? item.link[0] : item;
+  const { addToBl, removeFromBl, isAdded } = useBucketList(blItem);
 
   const img = featuredImage ? (
     <Image
@@ -65,98 +67,98 @@ export const ListingCard = ({
 
   return (
     <div className={clsx("relative", className)} {...props}>
-      <Link
-        to={`${uri}`}
-        className="hover:no-underline"
-        target={isFull ? "_self" : "_blank"}
-        rel={isFull ? "preload" : "noopener noreferrer"}
+      <div
+        className={clsx(
+          "h-full w-[300px] lg:w-[300px] xl:w-[275px]  shadow-listing relative"
+          // 'flex flex-col justify-between'
+        )}
+        {...props}
       >
-        <div
-          className={clsx(
-            "h-full w-[300px] lg:w-[300px] xl:w-[275px]  shadow-listing relative"
-            // 'flex flex-col justify-between'
-          )}
-          {...props}
-        >
-          <div className="h-[187px] w-full flex relative">
-            {/* Image */}
-            {img}
-            {!noBl ? (
-              isAdded ? (
-                <AddToBlButton
-                  remove
-                  addToBl={removeFromBl}
-                  className="absolute z-30 px-2 py-1 text-2xl text-white cursor-pointer top-2 right-2"
-                />
-              ) : (
-                <AddToBlButton
-                  add
-                  addToBl={addToBl}
-                  className="absolute z-30 px-2 py-1 text-2xl text-white cursor-pointer top-2 right-2"
-                />
-              )
+        <div className="h-[187px] w-full flex relative">
+          {/* Image */}
+          {img}
+          {!noBl ? (
+            isAdded ? (
+              <AddToBlButton
+                remove
+                addToBl={removeFromBl}
+                className="absolute z-30 px-2 py-1 text-2xl text-white cursor-pointer top-2 right-2"
+              />
             ) : (
-              <div></div>
-            )}
-          </div>
-          {/* Content */}
+              <AddToBlButton
+                add
+                addToBl={addToBl}
+                className="absolute z-30 px-2 py-1 text-2xl text-white cursor-pointer top-2 right-2"
+              />
+            )
+          ) : (
+            <div></div>
+          )}
+        </div>
+        {/* Content */}
 
-          <div className={clsx("p-4 text-center space-y-5")}>
-            {/* Title and city */}
-            <div>
+        <div className={clsx("p-4 text-center space-y-5")}>
+          {/* Title and city */}
+          <div>
+            <Link
+              to={`${uri}`}
+              className="hover:no-underline"
+              target={isFull ? "_self" : "_blank"}
+              rel={isFull ? "preload" : "noopener noreferrer"}
+            >
               <h3
                 className={clsx(
                   "leading-tight text-f-24 text-grey4 font-medium"
                 )}
                 dangerouslySetInnerHTML={{ __html: title }}
               />
+            </Link>
 
-              <div className={clsx("text-f-18 !text-grey4")}>
-                {city ? city : region ? region : country?.name}
-              </div>
+            <div className={clsx("text-f-18 !text-grey4")}>
+              {city ? city : region ? region : country?.name}
             </div>
-            {/* Intro */}
-            <div
-              dangerouslySetInnerHTML={{
-                __html: intro ? intro : summaryBio ? summaryBio : standfirst,
-              }}
-              className="leading-tight prose text-left "
+          </div>
+          {/* Intro */}
+          <div
+            dangerouslySetInnerHTML={{
+              __html: intro ? intro : summaryBio ? summaryBio : standfirst,
+            }}
+            className="leading-tight prose text-left "
+          />
+          {/* Website or link to profile (read our review) */}
+          <div className="space-y-5">
+            <ListingBottomInfo
+              starRating={starRating}
+              minAge={minAge}
+              priceFrom={priceFrom}
+              whenIsIt={whenIsIt}
+              card
+              className="justify-center"
             />
-            {/* Website or link to profile (read our review) */}
-            <div className="space-y-5">
-              <ListingBottomInfo
-                starRating={starRating}
-                minAge={minAge}
-                priceFrom={priceFrom}
-                whenIsIt={whenIsIt}
-                card
-                className="justify-center"
-              />
-              <div className="flex justify-center">
-                {profile === "full" || itinerary || pts || writer || nested ? (
-                  <Link to={uri}>
-                    <Button secondary>
-                      {writer ? "Read more" : "Read review"}
-                    </Button>
-                  </Link>
-                ) : (
-                  website && (
-                    <Button
-                      secondary
-                      as="a"
-                      href={website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      See Website
-                    </Button>
-                  )
-                )}
-              </div>
+            <div className="flex justify-center">
+              {profile === "full" || itinerary || pts || writer || nested ? (
+                <Link to={uri}>
+                  <Button secondary>
+                    {writer ? "Read more" : "Read review"}
+                  </Button>
+                </Link>
+              ) : (
+                website && (
+                  <Button
+                    secondary
+                    as="a"
+                    href={website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    See Website
+                  </Button>
+                )
+              )}
             </div>
           </div>
         </div>
-      </Link>
+      </div>
     </div>
   );
 };
