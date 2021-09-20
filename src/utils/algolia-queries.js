@@ -2,6 +2,20 @@ const allWpExperienceQuery = `
 {
   allWpExperience {
     nodes {
+      experienceDataAttr {
+        city
+        latitudeOfLocation1
+        latitudeOfLocation2
+        latitudeOfLocation3
+        longitudeOfLocation1
+        longitudeOfLocation2
+        longitudeOfLocation3
+        profile
+        region
+        priceFrom
+        minAge
+        whenIsIt
+      }
       id
       title
       uri
@@ -9,8 +23,27 @@ const allWpExperienceQuery = `
       nodeType
       featuredImage {
         node {
-          sourceUrl
           altText
+          sourceUrl
+          caption
+          description
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                # width: 940
+                # height: 626
+                quality: 80
+                aspectRatio: 1.5
+                layout: CONSTRAINED
+                placeholder: BLURRED
+              )
+              original {
+                height
+                width
+                src
+              }
+            }
+          }
         }
       }
       commonDataAttributes {
@@ -81,6 +114,11 @@ const allWpDestinationQuery = `
 {
   allWpDestination {
     nodes {
+      destinationDataAttributes {
+        latitudeOfLocation1
+        longitudeOfLocation1
+        region
+      }
       id
       title
       uri
@@ -88,8 +126,27 @@ const allWpDestinationQuery = `
       nodeType
       featuredImage {
         node {
-          sourceUrl
           altText
+          sourceUrl
+          caption
+          description
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                # width: 940
+                # height: 626
+                quality: 80
+                aspectRatio: 1.5
+                layout: CONSTRAINED
+                placeholder: BLURRED
+              )
+              original {
+                height
+                width
+                src
+              }
+            }
+          }
         }
       }
       commonDataAttributes {
@@ -121,6 +178,21 @@ const allWpPlaceToStayQuery = `
 {
   allWpPlaceToStay {
     nodes {
+      ptsDataAttr {
+        city
+        latitudeOfLocation1
+        longitudeOfLocation1
+        priceCheckingLinks {
+          url
+          logo {
+            sourceUrl
+            title
+            altText
+          }
+        }
+        website
+        starRating
+      }
       id
       title
       uri
@@ -128,8 +200,27 @@ const allWpPlaceToStayQuery = `
       nodeType
       featuredImage {
         node {
-          sourceUrl
           altText
+          sourceUrl
+          caption
+          description
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                # width: 940
+                # height: 626
+                quality: 80
+                aspectRatio: 1.5
+                layout: CONSTRAINED
+                placeholder: BLURRED
+              )
+              original {
+                height
+                width
+                src
+              }
+            }
+          }
         }
       }
       commonDataAttributes {
@@ -218,8 +309,27 @@ const allWpRoundUpQuery = `
       nodeType
       featuredImage {
         node {
-          sourceUrl
           altText
+          sourceUrl
+          caption
+          description
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                # width: 940
+                # height: 626
+                quality: 80
+                aspectRatio: 1.5
+                layout: CONSTRAINED
+                placeholder: BLURRED
+              )
+              original {
+                height
+                width
+                src
+              }
+            }
+          }
         }
       }
       commonDataAttributes {
@@ -260,6 +370,11 @@ const allWpItineraryQuery = `
 {
   allWpItinerary {
     nodes {
+      itineraryDataAttributes {
+        latitudeOfLocation1
+        longitudeOfLocation1
+        minAge
+      }
       id
       title
       uri
@@ -267,8 +382,27 @@ const allWpItineraryQuery = `
       nodeType
       featuredImage {
         node {
-          sourceUrl
           altText
+          sourceUrl
+          caption
+          description
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                # width: 940
+                # height: 626
+                quality: 80
+                aspectRatio: 1.5
+                layout: CONSTRAINED
+                placeholder: BLURRED
+              )
+              original {
+                height
+                width
+                src
+              }
+            }
+          }
         }
       }
       commonDataAttributes {
