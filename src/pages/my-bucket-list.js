@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
 import uniq from "lodash/uniq";
 import { CollapseSection, Layout } from "../components";
 import { EmptyModal } from "../components/bucket-list/EmptyModal";
@@ -23,14 +23,10 @@ const BucketListPage = () => {
 
   const updateBlMutation = useUpdateBucketList();
 
-  useEffect(() => {
-    getBucketList();
-  }, []);
-
-  const { data, error, loading, getBucketList, called } = useDbBucketList();
+  const { data, loading } = useDbBucketList();
   const bl = data?.bucketLists?.nodes[0];
-  const blItems = bl?.bucketListElements?.blLinks;
-  const items = loggedIn ? blItems : lsItems;
+  // const blItems = bl?.bucketListElements?.blLinks;
+  const items = lsItems;
 
   const emptyBl = () => {
     setLsItems([]);
