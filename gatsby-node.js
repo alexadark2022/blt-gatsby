@@ -16,7 +16,6 @@ exports.sourceNodes = async ({
     }
   );
   const data = await response.json();
-  console.log("data viator", data);
 
   //   Creating nodes
   for (const result of data.products) {
