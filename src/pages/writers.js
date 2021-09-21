@@ -1,6 +1,6 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
-import { Layout, Section } from "../components";
+import { Layout, Section, TravelQuote } from "../components";
 import { Newsletter } from "../components/Newsletter";
 import clsx from "clsx";
 import { Listing } from "../components/layout/Listing";
@@ -51,6 +51,11 @@ const WritersPage = () => {
           })}
         </Section>
       </PageLayout>
+      {/* Quote */}
+      <TravelQuote author="Martin Buber">
+        “All journeys have secret destinations of which the traveller is
+        unaware.”
+      </TravelQuote>
     </Layout>
   );
 };

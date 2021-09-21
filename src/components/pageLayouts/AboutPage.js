@@ -10,10 +10,15 @@ export const AboutPage = ({ aboutPageContent }) => {
       {ourStory && (
         <CollapseSection title="Our story">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            <div
-              className="prose max-w-none"
-              dangerouslySetInnerHTML={{ __html: ourStory }}
-            />
+            <div>
+              <div
+                className="prose max-w-none"
+                dangerouslySetInnerHTML={{ __html: ourStory }}
+              />
+              <div className="mt-10 text-right font-script text-gold text-f-40">
+                Matt
+              </div>
+            </div>
             <div className="space-y-12">
               <div className="flex justify-center">
                 <Image

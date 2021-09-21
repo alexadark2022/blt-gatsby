@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout } from "../components";
+import { Layout, TravelQuote } from "../components";
 import { useStaticQuery, graphql } from "gatsby";
 import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
 import { Image } from "../components/images";
@@ -58,6 +58,10 @@ const NotFoundPage = () => {
           </div>
         </div>
       </div>
+      {/* Quote */}
+      <TravelQuote author="Saint Augustine">
+        “The world is a book, and those who do not travel read only a page”
+      </TravelQuote>
     </Layout>
   );
 };

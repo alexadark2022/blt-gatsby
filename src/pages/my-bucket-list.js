@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import uniq from "lodash/uniq";
-import { CollapseSection, Layout } from "../components";
+import { CollapseSection, Layout, TravelQuote } from "../components";
 import { EmptyModal } from "../components/bucket-list/EmptyModal";
 import { CardsGrid } from "../components/layout/CardsGrid";
 import { CollapseListings } from "../components/layout/CollapseListings";
@@ -120,6 +120,13 @@ const BucketListPage = () => {
           />
         )}
       </PageLayout>
+      {/* Quote */}
+      <TravelQuote author="Mark Twain">
+        “Twenty years from now you will be more disappointed by the things that
+        you didn’t do than by the ones you did do. So throw off the bowlines.
+        Sail away from the safe harbor. Catch the trade winds in your sails.
+        Explore. Dream. Discover.”
+      </TravelQuote>
     </Layout>
   );
 };

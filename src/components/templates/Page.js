@@ -9,6 +9,7 @@ import { FaqPage, AboutPage, ContactPage, MyAccountPage } from "../pageLayouts";
 import { Newsletter } from "../Newsletter";
 import { Section, SidebarSocialShare } from "..";
 import PageLayout from "../layout/PageLayout";
+import { TravelQuote } from "..";
 
 const Page = ({ page, ctx }) => {
   const url = window.location.href;
@@ -57,7 +58,7 @@ const Page = ({ page, ctx }) => {
         <PageLayout
           title={pageTitle}
           sidebar={
-            <div className="space-y-base2 sticky top-0">
+            <div className="sticky top-0 space-y-base2">
               <Newsletter />
               <SidebarSocialShare url={url} />
             </div>
@@ -79,6 +80,34 @@ const Page = ({ page, ctx }) => {
           )}
         </PageLayout>
       )}
+      {slug.includes("faq") && (
+        <TravelQuote author="Mohammed">
+          “Don't tell me how educated you are tell me how much you have
+          travelled”
+        </TravelQuote>
+      )}
+      {slug.includes("about") && (
+        <TravelQuote author="Moorish proverb">
+          “He who does not travel does not know the value of men.”
+        </TravelQuote>
+      )}
+      {slug.includes("terms") && (
+        <div className="container md:px-10">
+          <TravelQuote author="Maya Angelou">
+            “Perhaps travel cannot prevent bigotry, but by demonstrating that
+            all peoples cry, laugh, eat, worry, and die, it can introduce the
+            idea that if we try and understand each other, we may even become
+            friends.”
+          </TravelQuote>
+        </div>
+      )}
+      {slug.includes("account") ||
+        (slug.includes("contact") && (
+          <TravelQuote author="John A. Shedd">
+            “A ship in harbour is safe, but that is not what ships are built
+            for”
+          </TravelQuote>
+        ))}
     </Layout>
   );
 };

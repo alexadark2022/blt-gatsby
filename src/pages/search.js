@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Layout } from "../components";
+import { Layout, TravelQuote } from "../components";
 import clsx from "clsx";
 import algoliasearch from "algoliasearch/lite";
 import { InstantSearch, MenuSelect, Configure } from "react-instantsearch-dom";
@@ -162,6 +162,10 @@ const SearchPage = () => {
         </div>
         {/* old */}
       </InstantSearch>
+      {/* Quote */}
+      <TravelQuote author="Dalai Lama">
+        “Once a year, go somewhere you have never been before”
+      </TravelQuote>
     </Layout>
   );
 };
