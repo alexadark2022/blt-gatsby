@@ -10,20 +10,22 @@ import { NoResults } from "../search";
 const SearchHit = ({ hits, hasMore, view, refineNext }) => {
   let listView = view || "list";
 
-  const results = hits.map((hit) => {
-    const customAttr = hit.ptsDataAttr
-      ? hit.ptsDataAttr
-      : hit.experienceDataAttr
-      ? hit.experienceDataAttr
-      : hit.destinationDataAttributes
-      ? hit.destinationDataAttributes
-      : null;
-    hit.customDataAttributes = customAttr;
-    delete hit.ptsDataAttr;
-    delete hit.experienceDataAttr;
-    delete hit.destinationDataAttributes;
-    return hit;
-  });
+  // const results = hits.map((hit) => {
+  //   const customAttr = hit.ptsDataAttr
+  //     ? hit.ptsDataAttr
+  //     : hit.experienceDataAttr
+  //     ? hit.experienceDataAttr
+  //     : hit.destinationDataAttributes
+  //     ? hit.destinationDataAttributes
+  //     : null;
+  //   hit.customDataAttributes = customAttr;
+  //   delete hit.ptsDataAttr;
+  //   delete hit.experienceDataAttr;
+  //   delete hit.destinationDataAttributes;
+  //   return hit;
+  // });
+  const results = hits;
+  console.log("results", results);
 
   const isList = useMediaQuery("(min-width:768px)");
 
