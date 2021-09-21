@@ -15,7 +15,7 @@ export const NoResults = ({ className, title, subtitle }) => {
   return (
     <>
       <Section className={clsx("p-5 md:py-10 md:px-12 mb-base2", className)}>
-        <div className="text-center text-orange text-f-24 md:text-f-36">
+        <div className="leading-normal text-center text-orange text-f-24 md:text-f-36">
           {title}
         </div>
         {subtitle && <div className="text-[20px] mt-5">{subtitle}</div>}
