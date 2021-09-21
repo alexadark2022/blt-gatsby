@@ -6,6 +6,7 @@ import {
   Layout,
   SidebarSocialShare,
   SocialShare,
+  TravelQuote,
 } from "../components";
 import PageLayout from "../components/layout/PageLayout";
 import { Newsletter } from "../components/Newsletter";
@@ -109,7 +110,7 @@ const DestinationPage = ({ data }) => {
         images={imageGallery}
         intro="Best things to do & places to stay in:"
         sidebar={
-          <div className="space-y-base2 h-full">
+          <div className="h-full space-y-base2">
             <Newsletter />
             <div className="sticky top-0 space-y-base2">
               <SidebarSocialShare url={url} />
@@ -240,6 +241,12 @@ const DestinationPage = ({ data }) => {
           </CollapseSection>
         )}
       </PageLayout>
+
+      {/* Quote */}
+      <TravelQuote author="J. R. R. Tolkien">
+        “All that is gold does not glitter and not all those who wander are
+        lost”
+      </TravelQuote>
     </Layout>
   );
 };

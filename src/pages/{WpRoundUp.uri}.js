@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Layout, Section, SocialShare } from "../components";
+import { Layout, Section, SocialShare, TravelQuote } from "../components";
 import PageLayout from "../components/layout/PageLayout";
 import { SidebarFilters } from "../components/sidebar/SidebarFilters";
 import clsx from "clsx";
@@ -95,6 +95,11 @@ const RoundupPage = ({ data }) => {
         {view === "grid" && <CardsGrid cards={links} className="mb-base2" />}
         {view === "map" && "map view here"}
       </PageLayout>
+      {/* Quote */}
+      <TravelQuote author="Daranna Gidel">
+        “You lose sight of things… and when you travel, everything balances
+        out.”
+      </TravelQuote>
     </Layout>
   );
 };

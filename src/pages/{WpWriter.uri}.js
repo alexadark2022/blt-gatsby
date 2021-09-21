@@ -19,6 +19,7 @@ import {
   SidebarSocialShare,
   SocialShare,
   Typo,
+  TravelQuote,
 } from "../components";
 import PageLayout from "../components/layout/PageLayout";
 import { Newsletter } from "../components/Newsletter";
@@ -195,6 +196,13 @@ const DestinationPage = ({ data }) => {
           </div>
         </Section>
       </PageLayout>
+      {/* Quote */}
+      <div className="container sm:px-11">
+        <TravelQuote author="Oscar Wilde" className="sm:mt-5">
+          “I never travel without my diary. One should always have something
+          sensational to read in the train.”
+        </TravelQuote>
+      </div>
     </Layout>
   );
 };

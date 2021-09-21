@@ -16,7 +16,7 @@ import {
   Feature,
 } from "../components/layout/HotelFeatures";
 import { About } from "../components/layout/About";
-import { CardsGrid } from "../components/layout/CardsGrid";
+
 import { CollapseListings } from "../components/layout/CollapseListings";
 import PageLayout from "../components/layout/PageLayout";
 import { Price } from "../components/Price";

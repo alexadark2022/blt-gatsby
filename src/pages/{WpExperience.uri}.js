@@ -8,7 +8,7 @@ import SidebarTourOperator from "../components/sidebar/SidebarTourOperator";
 import { Newsletter } from "../components/Newsletter";
 import { SidebarSocialShare, SocialShare } from "../components/social";
 import clsx from "clsx";
-import { CollapseSection, Layout } from "../components";
+import { CollapseSection, Layout, TravelQuote } from "../components";
 import { About } from "../components/layout/About";
 
 import { CollapseListings } from "../components/layout/CollapseListings";
@@ -88,7 +88,7 @@ const DestinationPage = ({ data }) => {
         bl
         item={experience}
         sidebar={
-          <div className="space-y-base2 sticky top-0">
+          <div className="sticky top-0 space-y-base2">
             <Newsletter />
             <SidebarSocialShare url={url} />
             {sidebarTourOperator &&
@@ -256,6 +256,10 @@ const DestinationPage = ({ data }) => {
           </CollapseSection>
         )}
       </PageLayout>
+      {/* Quote */}
+      <TravelQuote author="Unknown">
+        “Travel is the only thing you can buy that makes you richer”
+      </TravelQuote>
     </Layout>
   );
 };
