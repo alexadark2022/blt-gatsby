@@ -1,235 +1,97 @@
 import React from "react";
 import { connectInfiniteHits } from "react-instantsearch-dom";
-import { StaticImage } from "gatsby-plugin-image";
-import { Link } from "gatsby";
 import clsx from "clsx";
-import { FaTrashAlt as Trash } from "react-icons/fa";
 import { Button } from "../ui-components/Button";
+import { useMediaQuery } from "../../lib/hooks";
+import { Section } from "..";
+import { Listing } from "../layout/Listing";
+import { ListingCard } from "../layout/ListingCard";
+import { NoResults } from "../search";
 const SearchHit = ({ hits, hasMore, view, refineNext }) => {
   let listView = view || "list";
-  const ptsHits = hits
-    .filter((hit) => hit.ptsDataAttr)
-    .map((hit) => {
-      hit.customDataAttributes = hit.ptsDataAttr;
-      delete hit.ptsDataAttr;
-      return hit;
-    });
-  const expHits = hits
-    .filter((hit) => hit.experienceDataAttr)
-    .map((hit) => {
-      hit.customDataAttributes = hit.experienceDataAttr;
-      delete hit.experienceDataAttr;
-      return hit;
-    });
-  const destinationHits = hits
-    .filter((hit) => hit.destinationDataAttributes)
-    .map((hit) => {
-      hit.customDataAttributes = hit.destinationDataAttributes;
-      delete hit.destinationDataAttributes;
-      return hit;
-    });
-  const roundupHits = hits.filter((hit) => hit.uri.includes("round"));
-  const itineraryHits = hits.filter((hit) => hit.uri.includes("itinerar"));
-  const reformatedHits = {
-    ...ptsHits,
-    ...expHits,
-    ...destinationHits,
-    ...roundupHits,
-    ...itineraryHits,
-  };
-  console.log("hits", reformatedHits);
-  // const reformatedHits = hits.map(hit => {
-  //   return {
-  //     ...hit,
 
-  //   }
-  // })
+  const results = hits.map((hit) => {
+    const customAttr = hit.ptsDataAttr
+      ? hit.ptsDataAttr
+      : hit.experienceDataAttr
+      ? hit.experienceDataAttr
+      : hit.destinationDataAttributes
+      ? hit.destinationDataAttributes
+      : null;
+    hit.customDataAttributes = customAttr;
+    delete hit.ptsDataAttr;
+    delete hit.experienceDataAttr;
+    delete hit.destinationDataAttributes;
+    return hit;
+  });
+
+  const isList = useMediaQuery("(min-width:768px)");
+
   return (
     <>
-      <div
-        className={clsx("listings listings p-5 sm:border sm:shadow-lg", {
-          "p-0 border-0 sm:border-0 shadow-none sm:shadow-none":
-            listView === "grid",
-        })}
-      >
-        <div
-          className={clsx(
-            "other ",
-            {
-              "grid grid-cols-1 sm:grid-cols-2  xl:grid-cols-3 gap-x-4":
-                listView === "grid",
-            },
-            {
-              "grid  grid-cols-1 gap-x-4": listView === "list",
-            }
+      {results.length === 0 ? (
+        <NoResults
+          className="mt-10"
+          title=" Sorry - we have no recommendations for that search term. Please try
+    again!"
+        />
+      ) : (
+        <>
+          {listView === "list" && isList && (
+            <Section className={clsx("p-5 md:p-8  mb-base2")}>
+              {results.map((item) => {
+                const { id, nodeType } = item;
+
+                return (
+                  <Listing
+                    key={id}
+                    item={item}
+                    search
+                    pts={nodeType === "PlaceToStay"}
+                    itinerary={nodeType === "Itinerary"}
+                    roundUp={nodeType === "RoundUp"}
+                    noBl={nodeType === "RoundUp"}
+                  />
+                );
+              })}
+            </Section>
           )}
-        >
-          {!hits && <p>Loading...</p>}
-          {hits.map((hit) => {
-            return (
-              <div
-                key={hit.objectID}
-                className={clsx(
-                  {
-                    "shadow-listing pb-4 mb-5 relative max-w-[249px] mx-auto ":
-                      listView === "grid",
-                  },
-                  {
-                    "shadow-listing pb-4 sm:pb-3 sm:p-2 mb-5 relative max-w-[249px]  mx-auto sm:max-w-none":
-                      listView === "list",
-                  }
-                )}
-              >
-                <div
-                  className={clsx(
-                    {
-                      "flex flex-col justify-between": listView === "grid",
-                    },
-                    {
-                      "flex flex-col sm:flex-row justify-between":
-                        listView === "list",
-                    }
-                  )}
-                >
-                  <div
-                    className={clsx(
-                      {
-                        "flex flex-col": listView === "grid",
-                      },
-                      {
-                        "flex flex-col sm:flex-row  sm:space-x-4":
-                          listView === "list",
-                      }
-                    )}
-                  >
-                    <div className="image">
-                      <div className="w-[249px] h-[166px] bg-gray-200">
-                        {hit?.featuredImage?.node?.sourceUrl && (
-                          <img
-                            src={hit?.featuredImage?.node?.sourceUrl}
-                            alt="A kitten"
-                          />
-                        )}
-                      </div>
-                    </div>
-                    <div
-                      className={clsx(
-                        {
-                          "rest p-4": listView === "grid",
-                        },
-                        {
-                          "rest p-4 sm:p-0": listView === "list",
-                        }
-                      )}
-                    >
-                      <div className="max-w-[470px] flex flex-col justify-between">
-                        <div>
-                          <Link
-                            className={clsx(
-                              {
-                                "hover:no-underline text-center":
-                                  listView === "grid",
-                              },
-                              {
-                                "hover:no-underline text-center sm:text-left":
-                                  listView === "list",
-                              }
-                            )}
-                            to={hit?.uri ?? "/"}
-                          >
-                            <div
-                              dangerouslySetInnerHTML={{
-                                __html: hit.title,
-                              }}
-                              className="font-bold leading-none text-grey4 text-f-24"
-                            >
-                              {/* {hit.title} */}
-                            </div>
-                          </Link>
-                          <div
-                            className={clsx(
-                              {
-                                "text-center": listView === "grid",
-                              },
-                              {
-                                "text-center sm:text-left": listView === "list",
-                              }
-                            )}
-                          >
-                            {hit.commonDataAttributes.textCountry}
-                          </div>
-                          <div className="mt-4 mb-3 mr-2 leading-tight prose">
-                            <div
-                              dangerouslySetInnerHTML={{
-                                __html: hit.commonDataAttributes.standfirst,
-                              }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+          {(listView === "grid" || !isList) && (
+            <div
+              className={clsx(
+                "grid grid-cols-1 sm:grid-cols-2  xl:grid-cols-3 gap-10"
+              )}
+            >
+              {results?.map((item) => {
+                const { id, nodeType } = item;
+                return (
+                  <div className="flex justify-center" key={id}>
+                    <ListingCard
+                      item={item}
+                      itinerary={nodeType === "Itinerary"}
+                      pts={nodeType === "PlaceToStay"}
+                      roundUp={nodeType === "RoundUp"}
+                      noBl={nodeType === "RoundUp"}
+                    />
                   </div>
-                  <div
-                    className={clsx(
-                      {
-                        "action flex flex-col items-center justify-between":
-                          listView === "grid",
-                      },
-                      {
-                        "action flex flex-col items-center sm:items-end justify-between":
-                          listView === "list",
-                      }
-                    )}
-                  >
-                    <div
-                      className={clsx(
-                        {
-                          "absolute top-0 right-0 mr-4 mt-4":
-                            listView === "grid",
-                        },
-                        {
-                          "absolute top-0 right-0 mr-4 mt-4 sm:relative sm:mr-0 sm:mt-0":
-                            listView === "list",
-                        }
-                      )}
-                    >
-                      <Button
-                        type="button"
-                        secondary
-                        className={clsx(
-                          "w-10 h-10 !p-0 !bg-transparent cursor-pointer hover:!bg-lightBlue"
-                        )}
-                      >
-                        <Trash className="text-gold text-[20px]" />
-                      </Button>
-                    </div>
-                    <Link className="hover:no-underline" to={hit?.uri ?? "/"}>
-                      <Button secondary className="!text-[11px]">
-                        Read review
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-      <div
-        className={clsx("flex justify-center", {
-          "mt-6": listView === "list",
-        })}
-      >
-        <Button
-          disabled={!hasMore}
-          onClick={refineNext}
-          className={clsx("h-10 block", {
-            "!hidden": !hasMore,
-          })}
-        >
-          Load More
-        </Button>
-      </div>
+                );
+              })}
+            </div>
+          )}
+
+          <div className={clsx("flex justify-center mt-6")}>
+            <Button
+              disabled={!hasMore}
+              onClick={refineNext}
+              className={clsx("h-10 block", {
+                "!hidden": !hasMore,
+              })}
+            >
+              Load More
+            </Button>
+          </div>
+        </>
+      )}
     </>
   );
 };
