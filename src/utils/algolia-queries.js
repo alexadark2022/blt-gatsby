@@ -1,10 +1,8 @@
-const { gql } = require("@apollo/client");
-
-const allWpExperienceQuery = gql`
+const allWpExperienceQuery = `
   {
     allWpExperience {
       nodes {
-        customDataAttributes: experienceDataAttr {
+     experienceDataAttr {
           city
           latitudeOfLocation1
           latitudeOfLocation2
@@ -112,11 +110,11 @@ const allWpExperienceQuery = gql`
     }
   }
 `;
-const allWpDestinationQuery = gql`
+const allWpDestinationQuery = `
   {
     allWpDestination {
       nodes {
-        customDataAttributes: destinationDataAttributes {
+       destinationDataAttributes {
           latitudeOfLocation1
           longitudeOfLocation1
           region
@@ -175,11 +173,11 @@ const allWpDestinationQuery = gql`
     }
   }
 `;
-const allWpPlaceToStayQuery = gql`
+const allWpPlaceToStayQuery = `
   {
     allWpPlaceToStay {
       nodes {
-        customDataAttributes: ptsDataAttr {
+        ptsDataAttr {
           city
           latitudeOfLocation1
           longitudeOfLocation1
@@ -298,7 +296,7 @@ const allWpPlaceToStayQuery = gql`
     }
   }
 `;
-const allWpRoundUpQuery = gql`
+const allWpRoundUpQuery = `
   {
     allWpRoundUp {
       nodes {
@@ -366,7 +364,7 @@ const allWpRoundUpQuery = gql`
     }
   }
 `;
-const allWpItineraryQuery = gql`
+const allWpItineraryQuery = `
   {
     allWpItinerary {
       nodes {
