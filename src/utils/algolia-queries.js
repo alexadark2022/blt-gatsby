@@ -472,6 +472,7 @@ const queries = [
           settings: mergeArray(item.settings),
           especiallyFors: mergeArray(item.especiallyFors),
           factoryThemes: mergeArray(item.factoryThemes),
+          tags: mergeArray(item.tags),
         };
       });
     },
@@ -489,6 +490,7 @@ const queries = [
           especiallyFors: mergeArray(item.especiallyFors),
           factoryThemes: mergeArray(item.factoryThemes),
           recommendationTypes: mergeArray(item.recommendationTypes),
+          tags: mergeArray(item.tags),
         };
       });
     },
@@ -515,6 +517,7 @@ const queries = [
           priceRangePounds: mergeArray(item.priceRangePounds),
           allInclusives: mergeArray(item.allInclusives),
           customDataAttributes: item.ptsDataAttr,
+          tags: mergeArray(item.tags),
         };
       });
     },
@@ -531,6 +534,7 @@ const queries = [
           settings: mergeArray(item.settings),
           especiallyFors: mergeArray(item.especiallyFors),
           customDataAttributes: item.destinationDataAttributes,
+          tags: mergeArray(item.tags),
         };
       });
     },
@@ -555,6 +559,7 @@ const queries = [
           priceRanges: mergeArray(item.priceRanges),
           ageGroups: mergeArray(item.ageGroups),
           customDataAttributes: item.experienceDataAttr,
+          tags: mergeArray(item.tags),
         };
       });
     },
