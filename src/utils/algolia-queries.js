@@ -19,6 +19,7 @@ const allWpExperienceQuery = gql`
           whenIsIt
         }
         id
+        databaseId
         title
         uri
         date
@@ -127,6 +128,7 @@ const allWpDestinationQuery = gql`
           region
         }
         id
+        databaseId
         title
         uri
         date
@@ -205,6 +207,7 @@ const allWpPlaceToStayQuery = gql`
           starRating
         }
         id
+        databaseId
         title
         uri
         date
@@ -318,6 +321,7 @@ const allWpRoundUpQuery = gql`
     allWpRoundUp {
       nodes {
         id
+        databaseId
         title
         uri
         date
@@ -396,6 +400,7 @@ const allWpItineraryQuery = gql`
           minAge
         }
         id
+        databaseId
         title
         uri
         date

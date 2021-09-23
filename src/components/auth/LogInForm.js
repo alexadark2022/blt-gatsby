@@ -29,11 +29,6 @@ export function LogInForm({ setTabIndex, closeModal }) {
     }
   }, [loginData]);
 
-  // useEffect(() => {
-  //   data && ls("bucketList", blItems);
-  //   console.log("empty bl");
-  // }, [data]);
-
   useEffect(() => {
     if (loginData?.loginWithCookies?.status === "SUCCESS") {
       ls("bucketList", blItems);
