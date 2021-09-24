@@ -7,7 +7,7 @@ export const EmptyModal = ({ isOpen, setIsOpen, action, title, text }) => {
     setIsOpen(false);
   }
   return (
-    <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+    <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeModal={closeModal}>
       <div className="inline-block w-full max-w-md p-8 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
         <Dialog.Title
           as="h3"

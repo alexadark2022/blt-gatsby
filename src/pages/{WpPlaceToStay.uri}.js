@@ -24,7 +24,7 @@ import SidebarTourOperator from "../components/sidebar/SidebarTourOperator";
 import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed";
 import { CollapseCards } from "../components/layout/CollapseCards";
 
-const DestinationPage = ({ data }) => {
+const PlaceToStayPage = ({ data }) => {
   const url = window.location.href;
   const { wpPlaceToStay: pts } = data || {};
 
@@ -368,7 +368,7 @@ const DestinationPage = ({ data }) => {
   );
 };
 
-export default DestinationPage;
+export default PlaceToStayPage;
 
 export const pageQuery = graphql`
   query ($uri: String!) {

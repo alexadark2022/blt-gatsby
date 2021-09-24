@@ -14,8 +14,9 @@ import { About } from "../components/layout/About";
 import { CollapseListings } from "../components/layout/CollapseListings";
 import { TitleContent } from "../components/layout/TitleContent";
 import { CollapseCards } from "../components/layout/CollapseCards";
+import ExperienceMap from "../components/maps/ExperienceMap";
 
-const DestinationPage = ({ data }) => {
+const ExperiencePage = ({ data }) => {
   const { wpExperience: experience } = data || {};
   const {
     title,
@@ -80,6 +81,7 @@ const DestinationPage = ({ data }) => {
 
   return (
     <Layout page="experience">
+      <ExperienceMap experience={experience} />
       <PageLayout
         title={title}
         tabs={tabs}
@@ -264,7 +266,7 @@ const DestinationPage = ({ data }) => {
   );
 };
 
-export default DestinationPage;
+export default ExperiencePage;
 
 export const pageQuery = graphql`
   query ($uri: String!) {

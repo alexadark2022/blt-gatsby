@@ -7,6 +7,7 @@ export const GlobalDispatchContext = createContext();
 const initialState = {
   bucketListId: undefined,
   items: [],
+  isMapOpen: false,
 };
 
 function reducer(state, action) {
@@ -21,6 +22,24 @@ function reducer(state, action) {
       return {
         ...state,
         items: action.items,
+      };
+    }
+    case "SET_MAP_OPEN": {
+      return {
+        ...state,
+        isMapOpen: true,
+      };
+    }
+    case "TOGGLE_MAP_OPEN": {
+      return {
+        ...state,
+        isMapOpen: !state.isMapOpen,
+      };
+    }
+    case "SET_MAP_CLOSE": {
+      return {
+        ...state,
+        isMapOpen: false,
       };
     }
     default:

@@ -92,7 +92,7 @@ const CheckList = ({ array, title, value }) => {
   );
 };
 
-const DestinationPage = ({ data }) => {
+const WriterPage = ({ data }) => {
   const { wpWriter: writer } = data || {};
 
   const { title, featuredImage, customDataAttributes } = writer || {};
@@ -207,7 +207,7 @@ const DestinationPage = ({ data }) => {
   );
 };
 
-export default DestinationPage;
+export default WriterPage;
 
 export const pageQuery = graphql`
   query ($uri: String!) {

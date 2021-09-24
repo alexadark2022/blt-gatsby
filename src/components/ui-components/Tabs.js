@@ -1,11 +1,15 @@
 // @ts-nocheck
-import React from "react"
-import clsx from "clsx"
-import slugify from "slugify"
-import AnchorLink from "react-anchor-link-smooth-scroll"
-import { Button } from "./Button"
+import React, { useContext } from "react";
+import clsx from "clsx";
+import slugify from "slugify";
+import AnchorLink from "react-anchor-link-smooth-scroll";
+import { Button } from "./Button";
+import { GlobalDispatchContext } from "../../context/GlobalContextProvider";
 
 export const Tabs = ({ tabs = [], className, ...props }) => {
+  const dispatch = useContext(GlobalDispatchContext);
+  const closeModal = () => dispatch({ type: "SET_MAP_CLOSE" });
+  const toggleModal = () => dispatch({ type: "TOGGLE_MAP_OPEN" });
   return (
     <div
       className={clsx(
@@ -30,27 +34,23 @@ export const Tabs = ({ tabs = [], className, ...props }) => {
               )}
               key={tab.name}
               href={`#${slugify(tab.name.toLowerCase())}`}
+              onClick={closeModal}
             >
               {tab.name}
             </Button>
-          )
+          );
         } else if (tab.name == "map") {
           return (
-            // <Link
-            //   href={`${router.asPath}/${slugify(tab.name.toLowerCase())}`}
-            //   key={tab.name}
-            // >
-            //   <a
-            //     className={`block hover:no-underline md:min-w-1/${tabs.length} sm:min-w-1/3 min-w-1/2`}
-            //   >
-            <Button className={clsx("h-[54px]", "!text-grey4")} tab>
+            <Button
+              className={clsx("h-[54px]", "!text-grey4")}
+              onClick={toggleModal}
+              tab
+            >
               {tab.name}
             </Button>
-            //   </a>
-            // </Link>
-          )
+          );
         }
       })}
     </div>
-  )
-}
+  );
+};

@@ -19,7 +19,7 @@ import { CollapseCards } from "../components/layout/CollapseCards";
 import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed";
 import clsx from "clsx";
 
-const DestinationPage = ({ data }) => {
+const ItineraryPage = ({ data }) => {
   const url = window.location.href;
   const { wpItinerary: itinerary } = data || {};
 
@@ -109,7 +109,7 @@ const DestinationPage = ({ data }) => {
   );
 };
 
-export default DestinationPage;
+export default ItineraryPage;
 
 export const pageQuery = graphql`
   query ($uri: String!) {
