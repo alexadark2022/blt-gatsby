@@ -21,7 +21,7 @@ export const TravelQuote = ({ author, children, className, ...props }) => {
       <Typo as="h2" travelQuote>
         {children}
       </Typo>
-      <div className="text-center text-gold font-light capitalize text-[20px] mt-4">
+      <div className="text-center text-gold font-light capitalize text-[30px] mt-10">
         {author}
       </div>
     </div>
