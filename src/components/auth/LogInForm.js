@@ -19,7 +19,7 @@ export function LogInForm({ setTabIndex, closeModal }) {
   const [logIn, { loading, error, data: loginData }] = useMutation(LOG_IN, {
     refetchQueries: [{ query: GET_USER }],
   });
-  console.log("error", error, "logIn", logIn, "data", loginData);
+  console.log("error login", error, "logIn", logIn, "data", loginData);
   const { blItems } = useDbBucketList();
   console.log("blItems", blItems);
 

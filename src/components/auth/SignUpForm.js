@@ -38,7 +38,7 @@ export function SignUpForm({ warning, setTabIndex }) {
   const [variables, setVariables] = useState({});
   const [step, setStep] = useState(1);
   const [register, { data, loading, error }] = useMutation(REGISTER_USER);
-  console.log("data register", data);
+  console.log("data register", data, "error regsiter", error);
 
   const [blMutation] = useMutation(CREATE_BUCKET_LIST);
   const wasSignUpSuccessful = Boolean(data?.registerUser?.user?.databaseId);
@@ -59,7 +59,6 @@ export function SignUpForm({ warning, setTabIndex }) {
       }).catch((error) => {
         console.error(error);
       });
-    console.log("bl created");
   }, [wasSignUpSuccessful]);
 
   function handleSubmit(event) {
@@ -197,7 +196,8 @@ export function SignUpForm({ warning, setTabIndex }) {
 
               {error ? (
                 <p className="orange-box">
-                  An account with that email already exists.
+                  {/* An account with that email already exists. */}
+                  {error}
                 </p>
               ) : null}
               <div className="flex justify-around mb-5">
