@@ -38,7 +38,7 @@ const allWpExperienceQuery = gql`
                   quality: 80
                   aspectRatio: 1.5
                   layout: CONSTRAINED
-                  placeholder: BLURRED
+                  # placeholder: BLURRED
                 )
                 original {
                   height
@@ -147,7 +147,7 @@ const allWpDestinationQuery = gql`
                   quality: 80
                   aspectRatio: 1.5
                   layout: CONSTRAINED
-                  placeholder: BLURRED
+                  # placeholder: BLURRED
                 )
                 original {
                   height
@@ -226,7 +226,7 @@ const allWpPlaceToStayQuery = gql`
                   quality: 80
                   aspectRatio: 1.5
                   layout: CONSTRAINED
-                  placeholder: BLURRED
+                  # placeholder: BLURRED
                 )
                 original {
                   height
@@ -340,7 +340,7 @@ const allWpRoundUpQuery = gql`
                   quality: 80
                   aspectRatio: 1.5
                   layout: CONSTRAINED
-                  placeholder: BLURRED
+                  # placeholder: BLURRED
                 )
                 original {
                   height
@@ -419,7 +419,7 @@ const allWpItineraryQuery = gql`
                   quality: 80
                   aspectRatio: 1.5
                   layout: CONSTRAINED
-                  placeholder: BLURRED
+                  # placeholder: BLURRED
                 )
                 original {
                   height
