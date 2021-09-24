@@ -8,6 +8,7 @@ import {
   GlobalStateContext,
   GlobalDispatchContext,
 } from "../../context/GlobalContextProvider";
+import MapBox from "./MapBox";
 
 const ExperienceMap = ({ experience = {} }: any) => {
   const { title, commonDataAttributes, customDataAttributes } =
@@ -54,12 +55,12 @@ const ExperienceMap = ({ experience = {} }: any) => {
         className="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle md:w-5/6 sm:p-6"
       >
         <div className="w-full h-full pb-10">
-          {/* <MapBox
+          <MapBox
             mainData={mainData}
             experiences={experiences || null}
             recommendations={recommendations || null}
             whereToStay={whereToStay || null}
-          /> */}
+          />
         </div>
 
         <button

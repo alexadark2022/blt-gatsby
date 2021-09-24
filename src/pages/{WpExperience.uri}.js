@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { graphql } from "gatsby";
 
 import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed";
@@ -15,8 +15,23 @@ import { CollapseListings } from "../components/layout/CollapseListings";
 import { TitleContent } from "../components/layout/TitleContent";
 import { CollapseCards } from "../components/layout/CollapseCards";
 import ExperienceMap from "../components/maps/ExperienceMap";
+import { Loader } from "@googlemaps/js-api-loader";
 
 const ExperiencePage = ({ data }) => {
+  const [loadMap, setLoadMap] = useState(false);
+  const loader = new Loader({
+    apiKey: "AIzaSyCJkZohj9sqn6H_LrfHMNG5cY794SWFJgA",
+    libraries: ["places"],
+  });
+  loader
+    .load()
+    .then(() => {
+      setLoadMap(true);
+    })
+    .catch((e) => {
+      console.log("error loading Google Maps API");
+    });
+
   const { wpExperience: experience } = data || {};
   const {
     title,
@@ -81,7 +96,7 @@ const ExperiencePage = ({ data }) => {
 
   return (
     <Layout page="experience">
-      <ExperienceMap experience={experience} />
+      {loadMap && <ExperienceMap experience={experience} />}
       <PageLayout
         title={title}
         tabs={tabs}
