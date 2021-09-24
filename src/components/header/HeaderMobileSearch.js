@@ -27,7 +27,7 @@ export const HeaderMobileSearch = ({ className, ...props }) => {
           leaveTo="opacity-0"
         >
           <Disclosure.Panel>
-            <div className="absolute inset-0 top-[63px] sm:top-[79px] w-full">
+            <div className="absolute inset-0 top-[54px] sm:top-[68px] w-full">
               <form className="relative w-full">
                 <input
                   type="text"

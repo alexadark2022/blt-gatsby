@@ -12,6 +12,7 @@ import PageLayout from "../layout/PageLayout";
 import { TravelQuote } from "..";
 
 const Page = ({ page, ctx }) => {
+  console.log("page ctx", ctx);
   const url = window.location.href;
   const {
     title,
