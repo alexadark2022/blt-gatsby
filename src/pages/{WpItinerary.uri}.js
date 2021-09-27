@@ -35,7 +35,7 @@ const ItineraryPage = ({ data }) => {
 
   useRecentlyViewed({ title, featuredImage, uri });
 
-  const { about, sidebarTourOperator, sbtouroperatordescription } =
+  const { about, sidebarTourOperator, sbtouroperatordescription, review } =
     commonDataAttributes || {};
   const { days, longitudeOfLocation1, latitudeOfLocation1 } =
     customDataAttributes || {};
@@ -71,6 +71,7 @@ const ItineraryPage = ({ data }) => {
             socialShare={<SocialShare url={url} />}
             text="Know someone who would like this itinerary? Why not let them know…"
             about={about}
+            review={review}
           />
         </section>
         {days?.map((day, index) => {

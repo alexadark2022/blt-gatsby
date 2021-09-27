@@ -61,6 +61,10 @@ export const placeTostayFragments = graphql`
     modified
     commonDataAttributes {
       about
+      review {
+        title
+        content
+      }
       standfirst
       country {
         name

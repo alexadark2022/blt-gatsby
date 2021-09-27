@@ -46,6 +46,10 @@ export const itineraryFragments = graphql`
     }
     commonDataAttributes {
       about
+      review {
+        title
+        content
+      }
       standfirst
       sidebarTourOperator {
         ... on WpTourOperator {

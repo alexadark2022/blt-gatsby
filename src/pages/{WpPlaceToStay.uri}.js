@@ -44,6 +44,7 @@ const PlaceToStayPage = ({ data }) => {
     about,
     sidebarTourOperator,
     sbtouroperatordescription,
+    review,
   } = commonDataAttributes || {};
 
   const {
@@ -120,7 +121,7 @@ const PlaceToStayPage = ({ data }) => {
             socialShare={<SocialShare url={url} />}
             date={modified}
             about={about}
-            // review={review}
+            review={review}
             text="Know someone who would like this place to stay? Why not let them know…"
           />
         </CollapseSection>
