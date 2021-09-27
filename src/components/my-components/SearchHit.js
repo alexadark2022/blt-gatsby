@@ -35,7 +35,7 @@ const SearchHit = ({ hits, hasMore, view, refineNext }) => {
                     key={id}
                     item={item}
                     search
-                    profile="full"
+                    // profile="full"
                     pts={nodeType === "PlaceToStay"}
                     itinerary={nodeType === "Itinerary"}
                     roundUp={nodeType === "RoundUp"}

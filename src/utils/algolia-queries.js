@@ -17,6 +17,7 @@ const allWpExperienceQuery = gql`
           priceFrom
           minAge
           whenIsIt
+          profile
         }
         id
         databaseId
@@ -53,6 +54,7 @@ const allWpExperienceQuery = gql`
           textCountry
           textContinent
           standfirst
+          website
         }
         tags {
           nodes {
@@ -162,6 +164,7 @@ const allWpDestinationQuery = gql`
           textCountry
           textContinent
           standfirst
+          website
         }
         tags {
           nodes {
@@ -241,6 +244,7 @@ const allWpPlaceToStayQuery = gql`
           textCountry
           textContinent
           standfirst
+          website
         }
         tags {
           nodes {
@@ -522,6 +526,7 @@ const queries = [
           priceRangePounds: mergeArray(item.priceRangePounds),
           allInclusives: mergeArray(item.allInclusives),
           customDataAttributes: item.ptsDataAttr,
+          ptsDataAttr: null,
           tags: mergeArray(item.tags),
         };
       });
@@ -541,6 +546,7 @@ const queries = [
           customDataAttributes: item.destinationDataAttributes,
           tags: mergeArray(item.tags),
         };
+        delete item.destinationDataAttributes;
       });
     },
     indexName: `Alldata`,
