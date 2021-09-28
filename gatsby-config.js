@@ -29,6 +29,16 @@ module.exports = {
     `gatsby-plugin-postcss`,
     `gatsby-plugin-emotion`,
     {
+      resolve: 'gatsby-plugin-gatsby-cloud',
+      options: {
+        headers: {
+           "/*": [
+             'Referrer-Policy: strict-origin-when-cross-origin'
+           ]
+        }
+      }
+    }​,
+    {
       resolve: `gatsby-plugin-algolia`,
       options: {
         appId: process.env.GATSBY_ALGOLIA_APP_ID,
