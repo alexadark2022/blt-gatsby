@@ -29,15 +29,13 @@ module.exports = {
     `gatsby-plugin-postcss`,
     `gatsby-plugin-emotion`,
     {
-      resolve: 'gatsby-plugin-gatsby-cloud',
+      resolve: "gatsby-plugin-gatsby-cloud",
       options: {
         headers: {
-           "/*": [
-             'Referrer-Policy: strict-origin-when-cross-origin'
-           ]
-        }
-      }
-    }​,
+          "/*": ["Referrer-Policy: strict-origin-when-cross-origin"],
+        },
+      },
+    },
     {
       resolve: `gatsby-plugin-algolia`,
       options: {
