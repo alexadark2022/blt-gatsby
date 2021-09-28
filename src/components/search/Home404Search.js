@@ -1,17 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { useMediaQuery } from "../../lib/hooks";
 import clsx from "clsx";
 import { Button } from "../ui-components";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "gatsby";
+import { navigate } from "@reach/router";
 
 export const Home404Search = () => {
   const isSmall = useMediaQuery("(max-width:640px)");
+  const [searchText, setSearchtext] = useState("");
   return (
     <div className="w-auto lg:w-[950px] mx-auto z-10">
-      <form className="relative mb-4">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          navigate(`/search/?q=${searchText}`, { replace: true });
+        }}
+        className="relative mb-4"
+      >
         <input
           type="text"
+          value={searchText}
+          onChange={(event) => setSearchtext(event.currentTarget.value)}
           placeholder={
             isSmall
               ? "destinations | experiences | places to stay"
