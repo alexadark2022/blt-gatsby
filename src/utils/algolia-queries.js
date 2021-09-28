@@ -18,6 +18,7 @@ const allWpExperienceQuery = gql`
           minAge
           whenIsIt
           profile
+          website
         }
         id
         databaseId
@@ -54,7 +55,6 @@ const allWpExperienceQuery = gql`
           textCountry
           textContinent
           standfirst
-          website
         }
         tags {
           nodes {
@@ -164,7 +164,6 @@ const allWpDestinationQuery = gql`
           textCountry
           textContinent
           standfirst
-          website
         }
         tags {
           nodes {
@@ -196,6 +195,7 @@ const allWpPlaceToStayQuery = gql`
       nodes {
         ptsDataAttr {
           city
+          website
           latitudeOfLocation1
           longitudeOfLocation1
           priceCheckingLinks {
@@ -244,7 +244,6 @@ const allWpPlaceToStayQuery = gql`
           textCountry
           textContinent
           standfirst
-          website
         }
         tags {
           nodes {
