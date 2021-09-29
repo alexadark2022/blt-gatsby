@@ -507,7 +507,7 @@ const queries = [
   {
     query: allWpPlaceToStayQuery,
     transformer: ({ data }) => {
-      return data.allWpPlaceToStay.nodes.map((item) => {
+      return data.allWpPlaceToStay.nodes.map(({ ptsDataAttr, ...item }) => {
         return {
           ...item,
           date_timestamp: new Date(item.date).getTime(),
@@ -524,8 +524,7 @@ const queries = [
           skiFacilities: mergeArray(item.skiFacilities),
           priceRangePounds: mergeArray(item.priceRangePounds),
           allInclusives: mergeArray(item.allInclusives),
-          customDataAttributes: item.ptsDataAttr,
-          ptsDataAttr: null,
+          customDataAttributes: ptsDataAttr,
           tags: mergeArray(item.tags),
         };
       });
@@ -535,43 +534,46 @@ const queries = [
   {
     query: allWpDestinationQuery,
     transformer: ({ data }) => {
-      return data.allWpDestination.nodes.map((item) => {
-        return {
-          ...item,
-          date_timestamp: new Date(item.date).getTime(),
-          bestTimes: mergeArray(item.bestTimes),
-          settings: mergeArray(item.settings),
-          especiallyFors: mergeArray(item.especiallyFors),
-          customDataAttributes: item.destinationDataAttributes,
-          tags: mergeArray(item.tags),
-        };
-        delete item.destinationDataAttributes;
-      });
+      return data.allWpDestination.nodes.map(
+        ({ destinationDataAttributes, ...item }) => {
+          return {
+            ...item,
+            date_timestamp: new Date(item.date).getTime(),
+            bestTimes: mergeArray(item.bestTimes),
+            settings: mergeArray(item.settings),
+            especiallyFors: mergeArray(item.especiallyFors),
+            customDataAttributes: destinationDataAttributes,
+            tags: mergeArray(item.tags),
+          };
+        }
+      );
     },
     indexName: `Alldata`,
   },
   {
     query: allWpExperienceQuery,
     transformer: ({ data }) => {
-      return data.allWpExperience.nodes.map((item) => {
-        return {
-          ...item,
-          date_timestamp: new Date(item.date).getTime(),
-          bestTimes: mergeArray(item.bestTimes),
-          settings: mergeArray(item.settings),
-          factoryThemes: mergeArray(item.factoryThemes),
-          especiallyFors: mergeArray(item.especiallyFors),
-          whenAvailables: mergeArray(item.whenAvailables),
-          experienceTypes: mergeArray(item.experienceTypes),
-          attractionTypes: mergeArray(item.attractionTypes),
-          activityTypes: mergeArray(item.activityTypes),
-          eventTypes: mergeArray(item.eventTypes),
-          priceRanges: mergeArray(item.priceRanges),
-          ageGroups: mergeArray(item.ageGroups),
-          customDataAttributes: item.experienceDataAttr,
-          tags: mergeArray(item.tags),
-        };
-      });
+      return data.allWpExperience.nodes.map(
+        ({ experienceDataAttr, ...item }) => {
+          return {
+            ...item,
+            date_timestamp: new Date(item.date).getTime(),
+            bestTimes: mergeArray(item.bestTimes),
+            settings: mergeArray(item.settings),
+            factoryThemes: mergeArray(item.factoryThemes),
+            especiallyFors: mergeArray(item.especiallyFors),
+            whenAvailables: mergeArray(item.whenAvailables),
+            experienceTypes: mergeArray(item.experienceTypes),
+            attractionTypes: mergeArray(item.attractionTypes),
+            activityTypes: mergeArray(item.activityTypes),
+            eventTypes: mergeArray(item.eventTypes),
+            priceRanges: mergeArray(item.priceRanges),
+            ageGroups: mergeArray(item.ageGroups),
+            customDataAttributes: experienceDataAttr,
+            tags: mergeArray(item.tags),
+          };
+        }
+      );
     },
     indexName: `Alldata`,
   },
