@@ -1,4 +1,4 @@
-import { graphql } from "gatsby";
+import { graphql } from "gatsby"
 
 export const destinationFragments = graphql`
   fragment DestinationListing on WpDestination {
@@ -35,7 +35,6 @@ export const destinationFragments = graphql`
       region
       profile
       bestMonthFrom1
-      bestMonthTo1
       latitudeOfLocation1
       longitudeOfLocation1
     }
@@ -105,8 +104,6 @@ export const destinationFragments = graphql`
     customDataAttributes: destinationDataAttributes {
       bestMonthFrom1
       bestMonthFrom2
-      bestMonthTo1
-      bestMonthTo2
       latitudeOfLocation1
       longitudeOfLocation1
       culture
@@ -176,4 +173,4 @@ export const destinationFragments = graphql`
       }
     }
   }
-`;
+`

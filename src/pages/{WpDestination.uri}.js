@@ -1,5 +1,5 @@
-import React from "react";
-import { graphql } from "gatsby";
+import React from "react"
+import { graphql } from "gatsby"
 
 import {
   CollapseSection,
@@ -7,21 +7,21 @@ import {
   SidebarSocialShare,
   SocialShare,
   TravelQuote,
-} from "../components";
-import PageLayout from "../components/layout/PageLayout";
-import { Newsletter } from "../components/Newsletter";
-import { window } from "browser-monads";
-import SidebarTourOperator from "../components/sidebar/SidebarTourOperator";
-import { About } from "../components/layout/About";
-import { TitleContent } from "../components/layout/TitleContent";
-import { CollapseListings } from "../components/layout/CollapseListings";
-import { IntroText } from "../components/layout/IntroText";
-import { CollapseCards } from "../components/layout/CollapseCards";
-import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed";
+} from "../components"
+import PageLayout from "../components/layout/PageLayout"
+import { Newsletter } from "../components/Newsletter"
+import { window } from "browser-monads"
+import SidebarTourOperator from "../components/sidebar/SidebarTourOperator"
+import { About } from "../components/layout/About"
+import { TitleContent } from "../components/layout/TitleContent"
+import { CollapseListings } from "../components/layout/CollapseListings"
+import { IntroText } from "../components/layout/IntroText"
+import { CollapseCards } from "../components/layout/CollapseCards"
+import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed"
 
 const DestinationPage = ({ data }) => {
-  const url = window.location.href;
-  const { wpDestination: destination } = data || {};
+  const url = window.location.href
+  const { wpDestination: destination } = data || {}
 
   const {
     title,
@@ -30,10 +30,10 @@ const DestinationPage = ({ data }) => {
     customDataAttributes,
     featuredImage,
     uri,
-  } = destination || {};
+  } = destination || {}
 
-  const rvData = { title, featuredImage, uri };
-  useRecentlyViewed(rvData);
+  const rvData = { title, featuredImage, uri }
+  useRecentlyViewed(rvData)
 
   const {
     imageGallery,
@@ -41,13 +41,11 @@ const DestinationPage = ({ data }) => {
     about,
     sidebarTourOperator,
     sbtouroperatordescription,
-  } = commonDataAttributes || {};
+  } = commonDataAttributes || {}
   const {
     writer,
     bestMonthFrom1,
     bestMonthFrom2,
-    bestMonthTo1,
-    bestMonthTo2,
     culture,
     foodDrink,
     gettingAround,
@@ -73,14 +71,14 @@ const DestinationPage = ({ data }) => {
     affiliatedTours,
     destinationGuides,
     itineraries,
-  } = customDataAttributes || {};
+  } = customDataAttributes || {}
 
   const bucketListExperiences = experiences?.filter(
     (exp) => exp.customDataAttributes.isBucketList === "yes"
-  );
+  )
   const otherExperiences = experiences?.filter(
     (exp) => exp.customDataAttributes.isBucketList === "no"
-  );
+  )
 
   const allExperiences = [
     {
@@ -90,7 +88,7 @@ const DestinationPage = ({ data }) => {
     },
     { title: "Other experiences", experiences: otherExperiences },
     { title: "Destination tickets & tours", experiences: affiliatedTours },
-  ];
+  ]
 
   const tabs = [
     { name: "our review" },
@@ -99,7 +97,7 @@ const DestinationPage = ({ data }) => {
     { name: "logistics" },
     { name: "who to go with" },
     { name: "map" },
-  ];
+  ]
   return (
     <Layout page="destination">
       <PageLayout
@@ -145,7 +143,7 @@ const DestinationPage = ({ data }) => {
         {/* Experiences */}
         {experiences &&
           allExperiences?.map((exp) => {
-            const { title, experiences, id } = exp;
+            const { title, experiences, id } = exp
             return (
               <CollapseSection
                 key={id}
@@ -159,7 +157,7 @@ const DestinationPage = ({ data }) => {
                   <CollapseCards cards={experiences} className="md:hidden" />
                 </div>
               </CollapseSection>
-            );
+            )
           })}
         {/* Where to stay */}
         {placesToStay && (
@@ -191,8 +189,8 @@ const DestinationPage = ({ data }) => {
             <TitleContent title="Where to shop" content={whereToShop} />
             <TitleContent title="Health & Safety" content={healthSafety} />
             {additionalSections?.map((section, i) => {
-              const { title, content } = section;
-              return <TitleContent key={i} title={title} content={content} />;
+              const { title, content } = section
+              return <TitleContent key={i} title={title} content={content} />
             })}
           </div>
         </CollapseSection>
@@ -248,10 +246,10 @@ const DestinationPage = ({ data }) => {
         lost”
       </TravelQuote>
     </Layout>
-  );
-};
+  )
+}
 
-export default DestinationPage;
+export default DestinationPage
 
 export const pageQuery = graphql`
   query ($uri: String!) {
@@ -259,4 +257,4 @@ export const pageQuery = graphql`
       ...DestinationPage
     }
   }
-`;
+`

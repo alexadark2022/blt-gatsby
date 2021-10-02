@@ -1,4 +1,4 @@
-import { graphql } from "gatsby";
+import { graphql } from "gatsby"
 export const experienceFragments = graphql`
   fragment ExperienceListing on WpExperience {
     title
@@ -136,12 +136,8 @@ export const experienceFragments = graphql`
       attractionSubType
       availableMonthFrom1
       availableMonthFrom2
-      availableMonthTo1
-      availableMonthTo2
       bestMonthFrom1
       bestMonthFrom2
-      bestMonthTo1
-      bestMonthTo2
       city
       duration
       eventSubType
@@ -230,4 +226,4 @@ export const experienceFragments = graphql`
       }
     }
   }
-`;
+`

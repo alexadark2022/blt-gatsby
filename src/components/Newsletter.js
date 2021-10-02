@@ -36,7 +36,7 @@ const EnvelopeInput = ({
   return (
     <div className="relative">
       <FaEnvelope
-        className={`absolute w-4 text-grey3 ${enveloppeTop} left-4`}
+        className={`absolute left-4 w-4 text-grey3 ${enveloppeTop}`}
       />
       <Input
         type="email"
@@ -101,7 +101,7 @@ const Newsletter = ({ home, ...props }) => {
       <div className="px-5 pb-5 mt-3">
         <Typo
           as="h3"
-          className={clsx("text-center ", {
+          className={clsx("text-center", {
             "!text-f-40 leading-none !font-light !text-grey4": home,
           })}
         >
@@ -120,7 +120,7 @@ const Newsletter = ({ home, ...props }) => {
             as="input"
             type="submit"
             value="submit"
-            className="w-full my-5 h-50px"
+            className="my-5 w-full h-50px"
           />
         </form>
         <div className="text-sm text-center text-grey3">
@@ -140,7 +140,7 @@ const NewsletterHome = ({ className, ...props }) => {
       <div
         className={clsx(
           "container max-w-big",
-          "border border-grey2 shadow-section bg-white",
+          "bg-white border border-grey2 shadow-section",
           "px-16 py-12",
           "hidden lg:flex",
           className
@@ -178,7 +178,7 @@ const NewsletterHome = ({ className, ...props }) => {
                 as="input"
                 type="submit"
                 value="submit"
-                className={clsx("absolute top-0 right-0", "w-[131px] h-full")}
+                className={clsx("absolute top-0 right-0", "h-full w-[131px]")}
               />
             </div>
           </form>
