@@ -1,20 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import tw, { styled } from "twin.macro";
-import { useMutation, gql } from "@apollo/client";
+import React, { useState } from "react"
+import { useForm } from "react-hook-form"
+import tw, { styled } from "twin.macro"
+import { useMutation, gql } from "@apollo/client"
 
-import { Section, Input, Button, Label, Select } from "../ui-components";
-import { v4 as uuidv4 } from "uuid";
+import { Section, Input, Button, Label, Select } from "../ui-components"
+import { v4 as uuidv4 } from "uuid"
 
 export const ContactPage = ({ intro }) => {
-  const [mailData, setMailData] = useState({
-    firstName: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-  console.log("mailData", mailData);
-  const { firstName, email, subject, message } = mailData;
+  const [isMailSent, setIsMailSent] = useState(false)
+  console.log("mail sent", isMailSent)
 
   const SEND_EMAIL = gql`
     mutation ($input: SendEmailInput!) {
@@ -24,19 +18,18 @@ export const ContactPage = ({ intro }) => {
         message
       }
     }
-  `;
-  const [sendEmail] = useMutation(SEND_EMAIL);
+  `
+  const [sendEmail] = useMutation(SEND_EMAIL)
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => setMailData(data);
+    reset,
+  } = useForm()
 
-  console.log("errors", errors);
-
-  useEffect(() => {
+  const onSubmit = (data) => {
+    const { firstName, email, subject, message } = data
     sendEmail({
       variables: {
         input: {
@@ -47,13 +40,14 @@ export const ContactPage = ({ intro }) => {
           clientMutationId: uuidv4(),
         },
       },
-    });
-    console.log("email sent");
-  }, [email, firstName, message, subject, sendEmail]);
+    })
+    setIsMailSent(true)
+    reset()
+  }
 
   const ErrorMessage = styled.div(() => [
     tw`max-w-md px-5 py-2 my-2 text-center text-red-500 bg-red-100 rounded-md`,
-  ]);
+  ])
 
   return (
     <Section className="pb-20 px-base2 pt-base2">
@@ -131,6 +125,13 @@ export const ContactPage = ({ intro }) => {
           </div>
         </div>
       </form>
+      {isMailSent && (
+        <div className="flex justify-center">
+          <div className="px-5 py-2 text-center text-green-500 bg-green-100 rounded-lg">
+            Your email has been sent
+          </div>
+        </div>
+      )}
     </Section>
-  );
-};
+  )
+}
