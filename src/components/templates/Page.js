@@ -1,19 +1,20 @@
-import React from "react";
+import React from "react"
 
-import { Layout } from "../Layout";
+import { Layout } from "../Layout"
 
-import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
-import { FrontPage } from "../frontPage";
-import { window } from "browser-monads";
-import { FaqPage, AboutPage, ContactPage, MyAccountPage } from "../pageLayouts";
-import { Newsletter } from "../Newsletter";
-import { Section, SidebarSocialShare } from "..";
-import PageLayout from "../layout/PageLayout";
-import { TravelQuote } from "..";
+import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo"
+import { FrontPage } from "../frontPage"
+import { window } from "browser-monads"
+import { FaqPage, AboutPage, ContactPage, MyAccountPage } from "../pageLayouts"
+import { Newsletter } from "../Newsletter"
+import { Section, SidebarSocialShare } from ".."
+import PageLayout from "../layout/PageLayout"
+import { TravelQuote } from ".."
+import { Breadcrumbs } from "../Breadcrumbs"
 
 const Page = ({ page, ctx }) => {
-  console.log("page ctx", ctx);
-  const url = window.location.href;
+  console.log("page ctx", ctx)
+  const url = window.location.href
   const {
     title,
     isFrontPage,
@@ -26,12 +27,14 @@ const Page = ({ page, ctx }) => {
     homeHero,
     whatWeOffer,
     uri,
-  } = page;
+  } = page
 
-  const pageTitle = slug === "faq" ? "Frequently asked question" : title;
+  const pageTitle = slug === "faq" ? "Frequently asked question" : title
+
+  const breadcrumbTerms = [{ name: "home", link: "/" }, { name: title }]
 
   const featuredImage =
-    page.featuredImage?.node.localFile.childImageSharp.original;
+    page.featuredImage?.node.localFile.childImageSharp.original
   return (
     <Layout page={page} type="page">
       <Seo
@@ -56,30 +59,33 @@ const Page = ({ page, ctx }) => {
           awards={awards}
         />
       ) : (
-        <PageLayout
-          title={pageTitle}
-          sidebar={
-            <div className="sticky top-0 space-y-base2">
-              <Newsletter />
-              <SidebarSocialShare url={url} />
-            </div>
-          }
-        >
-          {slug.includes("faq") && <FaqPage faq={faq} />}
-          {slug.includes("about") && (
-            <AboutPage aboutPageContent={aboutPageContent} />
-          )}
-          {slug.includes("contact") && (
-            <ContactPage intro={contactUs?.contactIntro} />
-          )}
-          {slug?.includes("account") && <MyAccountPage />}
-          {content && (
-            <Section
-              dangerouslySetInnerHTML={{ __html: content }}
-              className="mt-5 prose max-w-none p-base2 mb-base2"
-            />
-          )}
-        </PageLayout>
+        <div>
+          <Breadcrumbs terms={breadcrumbTerms} />
+          <PageLayout
+            title={pageTitle}
+            sidebar={
+              <div className="sticky top-0 space-y-base2">
+                <Newsletter />
+                <SidebarSocialShare url={url} />
+              </div>
+            }
+          >
+            {slug.includes("faq") && <FaqPage faq={faq} />}
+            {slug.includes("about") && (
+              <AboutPage aboutPageContent={aboutPageContent} />
+            )}
+            {slug.includes("contact") && (
+              <ContactPage intro={contactUs?.contactIntro} />
+            )}
+            {slug?.includes("account") && <MyAccountPage />}
+            {content && (
+              <Section
+                dangerouslySetInnerHTML={{ __html: content }}
+                className="mt-5 prose max-w-none p-base2 mb-base2"
+              />
+            )}
+          </PageLayout>
+        </div>
       )}
       {slug.includes("faq") && (
         <TravelQuote author="Mohammed">
@@ -110,7 +116,7 @@ const Page = ({ page, ctx }) => {
           </TravelQuote>
         ))}
     </Layout>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page
