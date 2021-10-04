@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import clsx from "clsx";
-import { FaSearch as Search } from "react-icons/fa";
-import { IoSearch } from "react-icons/io5";
-import { Button } from "../ui-components";
-import { Disclosure, Transition } from "@headlessui/react";
-import { navigate } from "@reach/router";
+import React, { useState } from "react"
+import clsx from "clsx"
+import { FaSearch as Search } from "react-icons/fa"
+import { IoSearch } from "react-icons/io5"
+import { Button } from "../ui-components"
+import { Disclosure, Transition } from "@headlessui/react"
+import { navigate } from "@reach/router"
 
 export const HeaderMobileSearch = ({ className, ...props }) => {
-  const [searchText, setSearchtext] = useState("");
+  const [searchText, setSearchtext] = useState("")
   return (
     <div className={clsx("z-50", className)} {...props}>
       <Disclosure>
@@ -29,11 +29,11 @@ export const HeaderMobileSearch = ({ className, ...props }) => {
           leaveTo="opacity-0"
         >
           <Disclosure.Panel>
-            <div className="absolute inset-0 top-[63px] sm:top-[79px] w-full">
+            <div className="absolute inset-0 top-[53px] sm:top-[67px] w-full">
               <form
                 onSubmit={(e) => {
-                  e.preventDefault();
-                  navigate(`/search/?q=${searchText}`, { replace: true });
+                  e.preventDefault()
+                  navigate(`/search/?q=${searchText}`, { replace: true })
                 }}
                 className="relative w-full"
               >
@@ -60,5 +60,5 @@ export const HeaderMobileSearch = ({ className, ...props }) => {
         </Transition>
       </Disclosure>
     </div>
-  );
-};
+  )
+}

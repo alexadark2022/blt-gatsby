@@ -1,16 +1,16 @@
-import React from "react";
-import { Menu } from "./Menu";
-import { MobileMenu } from "./MobileMenu";
-import { HeaderSearch } from "./HeaderSearch";
-import { HeaderMobileSearch } from "./HeaderMobileSearch";
-import clsx from "clsx";
-import { window } from "browser-monads";
+import React from "react"
+import { Menu } from "./Menu"
+import { MobileMenu } from "./MobileMenu"
+import { HeaderSearch } from "./HeaderSearch"
+import { HeaderMobileSearch } from "./HeaderMobileSearch"
+import clsx from "clsx"
+import { window } from "browser-monads"
 // import Headroom from "react-headroom";
 
-import { Branding } from "./Branding";
+import { Branding } from "./Branding"
 
 export const Header = () => {
-  const path = window.location.href;
+  const path = window.location.pathname
 
   return (
     // <Headroom className="z-50">
@@ -39,5 +39,5 @@ export const Header = () => {
       </div>
     </header>
     // </Headroom>
-  );
-};
+  )
+}
