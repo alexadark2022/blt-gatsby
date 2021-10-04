@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "gatsby";
-import clsx from "clsx";
+import React from "react"
+import { Link } from "gatsby"
+import clsx from "clsx"
 
 export const Branding = ({ className, ...props }) => {
   return (
@@ -21,5 +21,5 @@ export const Branding = ({ className, ...props }) => {
         />
       </Link>
     </h1>
-  );
-};
+  )
+}
