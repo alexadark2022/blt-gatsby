@@ -18,6 +18,7 @@ import { CollapseListings } from "../components/layout/CollapseListings"
 import { IntroText } from "../components/layout/IntroText"
 import { CollapseCards } from "../components/layout/CollapseCards"
 import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed"
+import { Breadcrumbs } from "../components/Breadcrumbs"
 
 const DestinationPage = ({ data }) => {
   const url = window.location.href
@@ -41,6 +42,8 @@ const DestinationPage = ({ data }) => {
     about,
     sidebarTourOperator,
     sbtouroperatordescription,
+    continent,
+    country,
   } = commonDataAttributes || {}
   const {
     writer,
@@ -98,8 +101,17 @@ const DestinationPage = ({ data }) => {
     { name: "who to go with" },
     { name: "map" },
   ]
+
+  const breadcrumbsTerms = [
+    { name: "home", link: "/" },
+    { name: continent, link: `/search/?q=${continent}` },
+    { name: country.name, link: `/search/?q=${country.name}` },
+    { name: region, link: `/search/?q=${region}` },
+  ].filter((term) => term.name)
+
   return (
     <Layout page="destination">
+      <Breadcrumbs terms={breadcrumbsTerms} />
       <PageLayout
         title={title}
         bl

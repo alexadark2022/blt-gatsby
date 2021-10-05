@@ -1,6 +1,6 @@
-import React from "react";
-import { graphql } from "gatsby";
-import { window } from "browser-monads";
+import React from "react"
+import { graphql } from "gatsby"
+import { window } from "browser-monads"
 
 import {
   CollapseSection,
@@ -8,25 +8,26 @@ import {
   SidebarSocialShare,
   SocialShare,
   TravelQuote,
-} from "../components";
-import { Newsletter } from "../components/Newsletter";
+} from "../components"
+import { Newsletter } from "../components/Newsletter"
 import {
   HotelFeatures,
   FeatureRow,
   Feature,
-} from "../components/layout/HotelFeatures";
-import { About } from "../components/layout/About";
+} from "../components/layout/HotelFeatures"
+import { About } from "../components/layout/About"
 
-import { CollapseListings } from "../components/layout/CollapseListings";
-import PageLayout from "../components/layout/PageLayout";
-import { Price } from "../components/Price";
-import SidebarTourOperator from "../components/sidebar/SidebarTourOperator";
-import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed";
-import { CollapseCards } from "../components/layout/CollapseCards";
+import { CollapseListings } from "../components/layout/CollapseListings"
+import PageLayout from "../components/layout/PageLayout"
+import { Price } from "../components/Price"
+import SidebarTourOperator from "../components/sidebar/SidebarTourOperator"
+import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed"
+import { CollapseCards } from "../components/layout/CollapseCards"
+import { Breadcrumbs } from "../components/Breadcrumbs"
 
 const PlaceToStayPage = ({ data }) => {
-  const url = window.location.href;
-  const { wpPlaceToStay: pts } = data || {};
+  const url = window.location.href
+  const { wpPlaceToStay: pts } = data || {}
 
   const {
     title,
@@ -35,9 +36,9 @@ const PlaceToStayPage = ({ data }) => {
     customDataAttributes,
     featuredImage,
     uri,
-  } = pts || {};
+  } = pts || {}
 
-  useRecentlyViewed({ title, featuredImage, uri });
+  useRecentlyViewed({ title, featuredImage, uri })
 
   const {
     imageGallery,
@@ -45,7 +46,9 @@ const PlaceToStayPage = ({ data }) => {
     sidebarTourOperator,
     sbtouroperatordescription,
     review,
-  } = commonDataAttributes || {};
+    continent,
+    country,
+  } = commonDataAttributes || {}
 
   const {
     writer,
@@ -61,6 +64,7 @@ const PlaceToStayPage = ({ data }) => {
     otherHotelFacilities,
     pool,
     parking,
+    region,
     wifi,
     starRating,
     ski,
@@ -69,18 +73,18 @@ const PlaceToStayPage = ({ data }) => {
     latitudeOfLocation1,
     experiences,
     destinations,
-  } = customDataAttributes || {};
+  } = customDataAttributes || {}
 
-  const hf = otherHotelFacilities?.map((item) => item.toLowerCase());
-  const poolFeatures = pool?.map((item) => item.toLowerCase());
-  const fd = fdFeatures?.map((item) => item.toLowerCase());
+  const hf = otherHotelFacilities?.map((item) => item.toLowerCase())
+  const poolFeatures = pool?.map((item) => item.toLowerCase())
+  const fd = fdFeatures?.map((item) => item.toLowerCase())
 
   const bucketListExperiences = experiences?.filter(
     (exp) => exp.customDataAttributes.isBucketList === "yes"
-  );
+  )
   const otherExperiences = experiences?.filter(
     (exp) => exp.customDataAttributes.isBucketList === "no"
-  );
+  )
 
   const tabs = [
     { name: "our review" },
@@ -88,9 +92,17 @@ const PlaceToStayPage = ({ data }) => {
     { name: "amenities" },
     { name: "experiences nearby" },
     { name: "map" },
-  ];
+  ]
+
+  const breadcrumbsTerms = [
+    { name: "home", link: "/" },
+    { name: continent, link: `/search/?q=${continent}` },
+    { name: country.name, link: `/search/?q=${country.name}` },
+    { name: region, link: `/search/?q=${region}` },
+  ].filter((term) => term.name)
   return (
     <Layout page="place-to-stay">
+      <Breadcrumbs terms={breadcrumbsTerms} />
       <PageLayout
         title={title}
         stars={parseInt(starRating)}
@@ -366,10 +378,10 @@ const PlaceToStayPage = ({ data }) => {
         shall be happily infected until the end of my life”
       </TravelQuote>
     </Layout>
-  );
-};
+  )
+}
 
-export default PlaceToStayPage;
+export default PlaceToStayPage
 
 export const pageQuery = graphql`
   query ($uri: String!) {
@@ -377,4 +389,4 @@ export const pageQuery = graphql`
       ...PlaceToStayPage
     }
   }
-`;
+`

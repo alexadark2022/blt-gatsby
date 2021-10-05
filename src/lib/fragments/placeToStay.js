@@ -1,4 +1,4 @@
-import { graphql } from "gatsby";
+import { graphql } from "gatsby"
 
 export const placeTostayFragments = graphql`
   fragment PlaceToStayListing on WpPlaceToStay {
@@ -66,6 +66,7 @@ export const placeTostayFragments = graphql`
         content
       }
       standfirst
+      continent
       country {
         name
         slug
@@ -118,6 +119,7 @@ export const placeTostayFragments = graphql`
           sourceUrl
         }
       }
+      region
       roomFeatures
       roomForFamilies
       roomType
@@ -142,4 +144,4 @@ export const placeTostayFragments = graphql`
       }
     }
   }
-`;
+`
