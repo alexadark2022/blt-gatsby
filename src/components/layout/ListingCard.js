@@ -39,6 +39,7 @@ export const ListingCard = ({
   } = customDataAttributes || {}
 
   website = externalLink ? externalLink : website
+  profile = profile ? profile : "full"
   uri =
     profile === "full" || pts || itinerary || writer || roundUp || nested
       ? uri
