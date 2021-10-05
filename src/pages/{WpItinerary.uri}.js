@@ -1,5 +1,5 @@
-import React from "react";
-import { graphql } from "gatsby";
+import React from "react"
+import { graphql } from "gatsby"
 
 import {
   CollapseSection,
@@ -7,21 +7,22 @@ import {
   SidebarSocialShare,
   SocialShare,
   TravelQuote,
-} from "../components";
-import PageLayout from "../components/layout/PageLayout";
-import { Newsletter } from "../components/Newsletter";
-import { window } from "browser-monads";
-import SidebarTourOperator from "../components/sidebar/SidebarTourOperator";
-import { About } from "../components/layout/About";
-import { CollapseListings } from "../components/layout/CollapseListings";
-import { IntroText } from "../components/layout/IntroText";
-import { CollapseCards } from "../components/layout/CollapseCards";
-import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed";
-import clsx from "clsx";
+} from "../components"
+import PageLayout from "../components/layout/PageLayout"
+import { Newsletter } from "../components/Newsletter"
+import { window } from "browser-monads"
+import SidebarTourOperator from "../components/sidebar/SidebarTourOperator"
+import { About } from "../components/layout/About"
+import { CollapseListings } from "../components/layout/CollapseListings"
+import { IntroText } from "../components/layout/IntroText"
+import { CollapseCards } from "../components/layout/CollapseCards"
+import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed"
+import clsx from "clsx"
+import { Breadcrumbs } from "../components/Breadcrumbs"
 
 const ItineraryPage = ({ data }) => {
-  const url = window.location.href;
-  const { wpItinerary: itinerary } = data || {};
+  const url = window.location.href
+  const { wpItinerary: itinerary } = data || {}
 
   const {
     modified,
@@ -31,16 +32,22 @@ const ItineraryPage = ({ data }) => {
     commonDataAttributes,
     customDataAttributes,
     featuredImage,
-  } = itinerary || {};
+  } = itinerary || {}
 
-  useRecentlyViewed({ title, featuredImage, uri });
+  useRecentlyViewed({ title, featuredImage, uri })
 
   const { about, sidebarTourOperator, sbtouroperatordescription, review } =
-    commonDataAttributes || {};
+    commonDataAttributes || {}
   const { days, longitudeOfLocation1, latitudeOfLocation1 } =
-    customDataAttributes || {};
+    customDataAttributes || {}
+
+  const breadcrumbsTerms = [
+    { name: "home", link: "/" },
+    { name: "Itineraries" },
+  ]
   return (
     <Layout page="itinerary">
+      <Breadcrumbs terms={breadcrumbsTerms} />
       <PageLayout
         title={title}
         intro="Recommended itinerary:"
@@ -75,15 +82,15 @@ const ItineraryPage = ({ data }) => {
           />
         </section>
         {days?.map((day, index) => {
-          const { about, links } = day;
-          console.log("links", links);
+          const { about, links } = day
+          console.log("links", links)
           const expLinks = links.filter(
             (link) => link.__typename === "WpExperience"
-          );
+          )
           const ptsLinks = links.filter(
             (link) => link.__typename === "WpPlaceToStay"
-          );
-          const allLinks = [...expLinks, ...ptsLinks];
+          )
+          const allLinks = [...expLinks, ...ptsLinks]
           return (
             <CollapseSection
               key={index}
@@ -96,7 +103,7 @@ const ItineraryPage = ({ data }) => {
                 <CollapseCards cards={allLinks} className="md:hidden" pts />
               </div>
             </CollapseSection>
-          );
+          )
         })}
       </PageLayout>
       {/* Quote */}
@@ -107,10 +114,10 @@ const ItineraryPage = ({ data }) => {
         Explore. Dream. Discover.”
       </TravelQuote>
     </Layout>
-  );
-};
+  )
+}
 
-export default ItineraryPage;
+export default ItineraryPage
 
 export const pageQuery = graphql`
   query ($uri: String!) {
@@ -118,4 +125,4 @@ export const pageQuery = graphql`
       ...ItineraryPage
     }
   }
-`;
+`
