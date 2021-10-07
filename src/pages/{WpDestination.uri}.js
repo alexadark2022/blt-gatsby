@@ -19,6 +19,9 @@ import { IntroText } from "../components/layout/IntroText"
 import { CollapseCards } from "../components/layout/CollapseCards"
 import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed"
 import { Breadcrumbs } from "../components/Breadcrumbs"
+import slugify from "slugify"
+
+const slugs = (string) => slugify(string, { lower: true, strict: true })
 
 const DestinationPage = ({ data }) => {
   const url = window.location.href
@@ -105,8 +108,13 @@ const DestinationPage = ({ data }) => {
   const breadcrumbsTerms = [
     { name: "home", link: "/" },
     { name: continent, link: `/search/?q=${continent}` },
-    { name: country.name, link: `/search/?q=${country.name}` },
-    { name: region, link: `/search/?q=${region}` },
+    { name: country?.name, link: `/search/?q=${country?.name}` },
+    {
+      name: region,
+      link: `/destination/${slugs(region)}`
+        ? `/destination/${slugs(region)}`
+        : `/search/?q=${region}`,
+    },
   ].filter((term) => term.name)
 
   return (
