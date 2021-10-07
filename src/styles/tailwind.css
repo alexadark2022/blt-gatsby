@@ -65,7 +65,7 @@
     @apply px-3 py-4 text-lg font-medium leading-tight text-center bg-orange !text-white mb-6 max-w-lg mx-auto;
   }
   .btn {
-    @apply flex items-center justify-center px-4 leading-tight tracking-wider text-center uppercase transition duration-300 rounded-sm cursor-pointer focus:outline-none font-semiBold text-grey5 hover:no-underline bg-lightBlue hover:bg-veryLightBlue border-3 border-veryLightBlue;
+    @apply flex items-center justify-center leading-tight px-1 tracking-wider text-center uppercase transition duration-300 rounded-sm cursor-pointer focus:outline-none font-semiBold text-grey5 hover:no-underline bg-lightBlue hover:bg-veryLightBlue border-3 border-veryLightBlue;
   }
   .btn-secondary {
     @apply h-10 leading-none bg-white border-2 xl:text-f-14 text-f-12 border-lightBlue hover:bg-lightBlue;
