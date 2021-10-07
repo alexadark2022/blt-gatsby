@@ -10,11 +10,12 @@ import { CardsGrid } from "../components/layout/CardsGrid";
 import { Listing } from "../components/layout/Listing";
 import { ViewSwitcher } from "../components/ui-components/ViewSwitcher";
 import { graphql } from "gatsby";
+import PlaceToStayFilter from "../components/my-components/PlaceToStayFilter";
 
 const RoundupPage = ({ data }) => {
   console.log("data", data);
   const { wpRoundUp: roundUp } = data || {};
-
+  const contentType = roundUp.customDataAttributes.type;
   const [view, setView] = useState("list");
 
   useEffect(() => {
@@ -37,6 +38,7 @@ const RoundupPage = ({ data }) => {
   const { links } = customDataAttributes || {};
   return (
     <Layout page="round-up">
+      {contentType === "Places to stay" && <PlaceToStayFilter />}
       <PageLayout
         title={title}
         smallMargin

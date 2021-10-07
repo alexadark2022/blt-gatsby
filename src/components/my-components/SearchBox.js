@@ -1,4 +1,4 @@
-import { connectSearchBox, Stats } from "react-instantsearch-dom";
+import { connectSearchBox } from "react-instantsearch-dom";
 import React, { useState, useEffect } from "react";
 import { IoSearch } from "react-icons/io5";
 import qs from "query-string";
@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { useMediaQuery } from "../../lib/hooks";
 import { Button } from "../ui-components/Button";
 import isBrowser from "./../../utils/isBrowser";
-
+import CustomStats from "./CustomStats";
 const SearchBox = ({ currentRefinement, refine }) => {
   const isSmall = useMediaQuery("(max-width:639px)");
   const [searchText, setSearchtext] = useState("");
@@ -74,7 +74,7 @@ const SearchBox = ({ currentRefinement, refine }) => {
           </div>
           <div className="flex items-center mt-5">
             <div className="ml-3 font-bold text-f-26">
-              <Stats />
+              <CustomStats searchText={searchText} />
             </div>
           </div>
         </form>
