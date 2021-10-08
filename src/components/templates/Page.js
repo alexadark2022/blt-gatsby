@@ -29,7 +29,7 @@ const Page = ({ page, ctx }) => {
     uri,
   } = page
 
-  const pageTitle = slug === "faq" ? "Frequently asked question" : title
+  const pageTitle = slug === "faq" ? "Frequently asked questions" : title
 
   const breadcrumbTerms = [{ name: "home", link: "/" }, { name: title }]
 
