@@ -111,8 +111,8 @@ const DestinationPage = ({ data }) => {
     { name: country?.name, link: `/search/?q=${country?.name}` },
     {
       name: region,
-      link: `/destination/${slugs(region)}`
-        ? `/destination/${slugs(region)}`
+      link: `/destination/${region && slugs(region)}`
+        ? `/destination/${region && slugs(region)}`
         : `/search/?q=${region}`,
     },
   ].filter((term) => term.name)
