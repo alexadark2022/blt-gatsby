@@ -78,7 +78,7 @@ export const RecentlyViewed = ({ className, ...props }) => {
                 }}
               >
                 <div className="cursor-pointer shadow-listing">
-                  <div className="aspect-w-3 aspect-h-2  group">
+                  <div className="aspect-w-6 aspect-h-4 group">
                     {localFile ? (
                       <Image
                         img={localFile}
@@ -86,7 +86,10 @@ export const RecentlyViewed = ({ className, ...props }) => {
                         // className="w-full h-[233px] sm:h-[127px]"
                       />
                     ) : (
-                      <div className="w-full h-[127px] bg-veryLightGold" />
+                      // <div className="aspect-6 aspect-h-4">
+                      //   <img src="/images/noimage.svg" alt="no-image" />
+                      // </div>
+                      <div className="relative aspect-w-6 aspect-h-4 bg-veryLightGold" />
                     )}
                   </div>
                   <div className="py-4 text-center px-base group h-[100px]">
@@ -108,13 +111,13 @@ export const RecentlyViewed = ({ className, ...props }) => {
             return (
               <div key={i} className="px-base py-base2 ">
                 <div className="cursor-pointer shadow-listing ">
-                  <div className="relative h-[127px] w-full bg-vreyLightGold">
-                    {/* <img
+                  <div className="relative aspect-w-6 aspect-h-4 bg-veryLightGold" />
+                  {/* <img
                       src={image}
                       alt={"no image"}
                       className="object-cover object-center h-[127px]"
                     /> */}
-                  </div>
+
                   <div className="py-4 text-center px-base group h-[100px]">
                     <h3
                       className="text-[20px] font-medium text-grey5 "
