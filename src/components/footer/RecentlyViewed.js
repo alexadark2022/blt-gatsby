@@ -78,7 +78,7 @@ export const RecentlyViewed = ({ className, ...props }) => {
                 }}
               >
                 <div className="cursor-pointer shadow-listing">
-                  <div className="aspect-w-6 aspect-h-4 group">
+                  <div className="aspect-w-6 aspect-h-4 max-h-[127px] group">
                     {localFile ? (
                       <Image
                         img={localFile}
@@ -111,7 +111,7 @@ export const RecentlyViewed = ({ className, ...props }) => {
             return (
               <div key={i} className="px-base py-base2 ">
                 <div className="cursor-pointer shadow-listing ">
-                  <div className="relative aspect-w-6 aspect-h-4 bg-veryLightGold" />
+                  <div className="relative aspect-w-6 aspect-h-4 bg-veryLightGold max-h-[127px]" />
                   {/* <img
                       src={image}
                       alt={"no image"}
