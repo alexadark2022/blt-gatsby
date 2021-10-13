@@ -90,7 +90,7 @@ export const MyAccountPage = () => {
         setIsOpen={setIsOpenModal}
         action={handleDeleteUser}
       />
-      <Section className={clsx("px-10 pt-10 pb-24 ")}>
+      <Section className={clsx("sm:px-10 px-5 pt-10 pb-24 ")}>
         <Typo as="h3" h3 className="mb-8 font-semibold">
           My details
         </Typo>

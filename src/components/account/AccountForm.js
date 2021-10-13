@@ -21,7 +21,7 @@ export const AccountForm = ({ onSubmit }) => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-        <div className="w-full mb-8 space-x-14 md:flex">
+        <div className="w-full mb-8 md:space-x-14 md:flex">
           <div className="md:w-1/2">
             <div className="flex space-x-3">
               <Label htmlFor="firstName">
@@ -72,7 +72,7 @@ export const AccountForm = ({ onSubmit }) => {
             )} */}
           </div>
         </div>
-        <div className=" space-x-14 md:flex">
+        <div className=" md:space-x-14 md:flex">
           <div className="md:w-1/2">
             <Label htmlFor="location">Email</Label>
             <Input
