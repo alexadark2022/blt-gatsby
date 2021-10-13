@@ -17,6 +17,9 @@ import { CollapseCards } from "../components/layout/CollapseCards"
 import ExperienceMap from "../components/maps/ExperienceMap"
 import { Loader } from "@googlemaps/js-api-loader"
 import { Breadcrumbs } from "../components/Breadcrumbs"
+import slugify from "slugify"
+
+const slugs = (string) => slugify(string, { lower: true, strict: true })
 
 const ExperiencePage = ({ data }) => {
   const [loadMap, setLoadMap] = useState(false)
@@ -86,7 +89,9 @@ const ExperiencePage = ({ data }) => {
     { name: "home", link: "/" },
     { name: brContinent, link: `/search/?q=${brContinent}` },
     { name: country.name, link: `/search/?q=${country.name}` },
-    { name: region, link: `/search/?q=${region}` },
+    { name: region, link: `/destination/${region && slugs(region)}`
+    ? `/destination/${region && slugs(region)}`
+    : `/search/?q=${region}`,},
   ].filter((term) => term.name)
 
   const expReco =

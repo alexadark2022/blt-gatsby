@@ -77,7 +77,7 @@ const DestinationPage = ({ data }) => {
     itineraries,
   } = customDataAttributes || {}
 
-  console.log('continent', continent);
+
 
   const bucketListExperiences = experiences?.filter(
     (exp) => exp.customDataAttributes.isBucketList === "yes"

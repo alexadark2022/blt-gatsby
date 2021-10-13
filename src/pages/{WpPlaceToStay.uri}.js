@@ -24,6 +24,9 @@ import SidebarTourOperator from "../components/sidebar/SidebarTourOperator"
 import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed"
 import { CollapseCards } from "../components/layout/CollapseCards"
 import { Breadcrumbs } from "../components/Breadcrumbs"
+import slugify from "slugify"
+
+const slugs = (string) => slugify(string, { lower: true, strict: true })
 
 const PlaceToStayPage = ({ data }) => {
   const url = window.location.href
@@ -98,7 +101,9 @@ const PlaceToStayPage = ({ data }) => {
     { name: "home", link: "/" },
     { name: brContinent, link: `/search/?q=${brContinent}` },
     { name: country.name, link: `/search/?q=${country.name}` },
-    { name: region, link: `/search/?q=${region}` },
+    { name: region,   link: `/destination/${region && slugs(region)}`
+    ? `/destination/${region && slugs(region)}`
+    : `/search/?q=${region}`, },
   ].filter((term) => term.name)
   return (
     <Layout page="place-to-stay">
