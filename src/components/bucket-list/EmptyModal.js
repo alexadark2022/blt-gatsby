@@ -8,24 +8,25 @@ export const EmptyModal = ({ isOpen, setIsOpen, action, title, text }) => {
   }
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeModal={closeModal}>
-      <div className="inline-block w-full max-w-md p-8 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+      <div className="inline-block px-5 pt-5 pb-16 my-8 overflow-hidden text-center align-middle transition-all transform bg-white shadow-xl sm:px-11">
         <Dialog.Title
-          as="h3"
-          className="text-lg font-bold leading-6 text-center"
+          as="h2"
+          className="mt-4 mb-6 leading-tight sm:text-f-60 text-f-40 text-grey4"
         >
           {title}
         </Dialog.Title>
-        <div className="mt-2">
+        <div className="mb-10 text-lg">
           <p>Are you sure? this cannot be undone.</p>
         </div>
 
-        <div className="flex mt-4 space-x-3">
-          <Button className="w-[120px]" onClick={action}>
-            Yes
-          </Button>
-          <Button className="w-[120px]" onClick={closeModal}>
+        <div className="flex justify-between max-w-md mx-auto mt-4 space-x-3">
+        <Button className="w-[120px] h-10" onClick={closeModal}>
             Cancel
           </Button>
+          <Button className="w-[120px] h-10" onClick={action}>
+            Yes
+          </Button>
+
         </div>
       </div>
     </Modal>
