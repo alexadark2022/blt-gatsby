@@ -16,6 +16,7 @@ import { TitleContent } from "../components/layout/TitleContent"
 import { CollapseCards } from "../components/layout/CollapseCards"
 import ExperienceMap from "../components/maps/ExperienceMap"
 import { Loader } from "@googlemaps/js-api-loader"
+import { Breadcrumbs } from "../components/Breadcrumbs"
 
 const ExperiencePage = ({ data }) => {
   const [loadMap, setLoadMap] = useState(false)
@@ -48,6 +49,8 @@ const ExperiencePage = ({ data }) => {
     sbtouroperatordescription,
     about,
     review,
+    continent,
+    country,
   } = commonDataAttributes || {}
 
   const {
@@ -58,7 +61,7 @@ const ExperiencePage = ({ data }) => {
     destinations,
     whenIsIt,
     bestMonthFrom1,
-
+    region,
     ageBestSuitedFrom,
     whenToDoIt,
     gettingThere,
@@ -80,6 +83,13 @@ const ExperiencePage = ({ data }) => {
     { name: "map" },
   ]
 
+  const breadcrumbsTerms = [
+    { name: "home", link: "/" },
+    { name: continent, link: `/search/?q=${continent}` },
+    { name: country.name, link: `/search/?q=${country.name}` },
+    { name: region, link: `/search/?q=${region}` },
+  ].filter((term) => term.name)
+
   const expReco =
     recommendations?.filter((item) => item.__typename === "WpExperience") || []
   const ptsReco =
@@ -95,6 +105,7 @@ const ExperiencePage = ({ data }) => {
 
   return (
     <Layout page="experience">
+      <Breadcrumbs terms={breadcrumbsTerms} />
       {loadMap && <ExperienceMap experience={experience} />}
       <PageLayout
         title={title}

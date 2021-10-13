@@ -1,4 +1,4 @@
-import { graphql } from "gatsby";
+import { graphql } from "gatsby"
 
 export const commonFragments = graphql`
   fragment LargeImage on WpMediaItem {
@@ -31,8 +31,9 @@ export const commonFragments = graphql`
     localFile {
       childImageSharp {
         gatsbyImageData(
-          width: 249
-          height: 166
+          # width: 249
+          # height: 166
+          aspectRatio: 1.5
           quality: 80
           layout: CONSTRAINED
           # placeholder: BLURRED
@@ -92,7 +93,7 @@ export const commonFragments = graphql`
     thumbLocalFile: localFile {
       childImageSharp {
         gatsbyImageData(
-          width: 105
+          width: 110
           aspectRatio: 1.5
           layout: CONSTRAINED
           # placeholder: BLURRED
@@ -145,4 +146,4 @@ export const commonFragments = graphql`
     id
     cssClasses
   }
-`;
+`

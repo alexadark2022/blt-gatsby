@@ -1,25 +1,24 @@
-import React from "react";
-import clsx from "clsx";
-import Slider from "react-slick";
-import ls from "local-storage";
-import { Link } from "gatsby";
-import { Section, Underline } from "..";
-import { useMediaQuery } from "../../lib/hooks";
-import { Image } from "../images";
-import { StaticImage } from "gatsby-plugin-image";
+import React from "react"
+import clsx from "clsx"
+import Slider from "react-slick"
+import ls from "local-storage"
+import { Link } from "gatsby"
+import { Section, Underline } from ".."
+import { useMediaQuery } from "../../lib/hooks"
+import { Image } from "../images"
 
 export const RecentlyViewed = ({ className, ...props }) => {
-  const rvData = ls("recentlyViewed") || [];
-  const isLarge = useMediaQuery("(min-width:1024px)");
-  const isMedium = useMediaQuery("(min-width:600px)");
-  const isSmall = useMediaQuery("(min-width:480px)");
+  const rvData = ls("recentlyViewed")?.reverse() || []
+  const isLarge = useMediaQuery("(min-width:1024px)")
+  const isMedium = useMediaQuery("(min-width:600px)")
+  const isSmall = useMediaQuery("(min-width:480px)")
 
-  const ArrayLength = isLarge ? 6 : isMedium ? 3 : isSmall ? 2 : 1;
+  const ArrayLength = isLarge ? 6 : isMedium ? 3 : isSmall ? 2 : 1
   const dummyArray = new Array(
     ArrayLength > rvData.length ? ArrayLength - rvData.length : 0
   ).fill({
     image: "/images/noimage.svg",
-  });
+  })
 
   const settings = {
     infinite: true,
@@ -50,7 +49,7 @@ export const RecentlyViewed = ({ className, ...props }) => {
         },
       },
     ],
-  };
+  }
   return (
     <Section
       className={clsx(
@@ -67,8 +66,8 @@ export const RecentlyViewed = ({ className, ...props }) => {
       <Underline />
       <Slider {...settings} css={{ ...styles }}>
         {rvData?.map((item, i) => {
-          const { featuredImage, title, uri } = item;
-          const { altText, localFile } = featuredImage?.node || {};
+          const { featuredImage, title, uri } = item
+          const { altText, localFile } = featuredImage?.node || {}
           return (
             <div key={i} className="px-base py-base2 group">
               <Link
@@ -79,18 +78,18 @@ export const RecentlyViewed = ({ className, ...props }) => {
                 }}
               >
                 <div className="cursor-pointer shadow-listing">
-                  <div className="relative h-[126px]  group">
+                  <div className="aspect-w-6 aspect-h-4 max-h-[127px] group">
                     {localFile ? (
                       <Image
                         img={localFile}
                         alt={altText}
-                        className="w-full h-[127px]"
+                        // className="w-full h-[233px] sm:h-[127px]"
                       />
                     ) : (
-                      <StaticImage
-                        src="../../images/noimage.svg"
-                        alt="no image"
-                      />
+                      // <div className="aspect-6 aspect-h-4">
+                      //   <img src="/images/noimage.svg" alt="no-image" />
+                      // </div>
+                      <div className="relative aspect-w-6 aspect-h-4 bg-veryLightGold" />
                     )}
                   </div>
                   <div className="py-4 text-center px-base group h-[100px]">
@@ -104,21 +103,21 @@ export const RecentlyViewed = ({ className, ...props }) => {
                 </div>
               </Link>
             </div>
-          );
+          )
         })}
         {rvData.length <= ArrayLength &&
           dummyArray.map((item, i) => {
-            const { image, title } = item;
+            const { image, title } = item
             return (
               <div key={i} className="px-base py-base2 ">
                 <div className="cursor-pointer shadow-listing ">
-                  <div className="relative h-[126px]">
-                    <img
+                  <div className="relative aspect-w-6 aspect-h-4 bg-veryLightGold max-h-[127px]" />
+                  {/* <img
                       src={image}
                       alt={"no image"}
                       className="object-cover object-center h-[127px]"
-                    />
-                  </div>
+                    /> */}
+
                   <div className="py-4 text-center px-base group h-[100px]">
                     <h3
                       className="text-[20px] font-medium text-grey5 "
@@ -127,12 +126,12 @@ export const RecentlyViewed = ({ className, ...props }) => {
                   </div>
                 </div>
               </div>
-            );
+            )
           })}
       </Slider>
     </Section>
-  );
-};
+  )
+}
 
 const styles = {
   ".slick-thumbs": {
@@ -161,6 +160,9 @@ const styles = {
     height: 50,
     position: `absolute`,
     top: 0,
+    "@media only screen and (max-width: 480px)": {
+      top: 60,
+    },
   },
   ".slick-prev": {
     "&:before": {
@@ -186,4 +188,4 @@ const styles = {
       },
     },
   },
-};
+}

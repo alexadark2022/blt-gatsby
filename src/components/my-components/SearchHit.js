@@ -1,17 +1,19 @@
-import React from "react";
-import { connectInfiniteHits } from "react-instantsearch-dom";
-import clsx from "clsx";
-import { Button } from "../ui-components/Button";
-import { useMediaQuery } from "../../lib/hooks";
-import { Section } from "..";
-import { Listing } from "../layout/Listing";
-import { ListingCard } from "../layout/ListingCard";
-import { NoResults } from "../search";
+import React from "react"
+import { connectInfiniteHits } from "react-instantsearch-dom"
+import clsx from "clsx"
+import { Button } from "../ui-components/Button"
+import { useMediaQuery } from "../../lib/hooks"
+import { Section } from ".."
+import { Listing } from "../layout/Listing"
+import { ListingCard } from "../layout/ListingCard"
+import { NoResults } from "../search"
 const SearchHit = ({ hits, hasMore, view, refineNext }) => {
-  let listView = view || "list";
+  let listView = view || "list"
 
-  const results = hits;
-  const isList = useMediaQuery("(min-width:768px)");
+  const results = hits
+  console.log("results", results)
+
+  const isList = useMediaQuery("(min-width:768px)")
 
   return (
     <>
@@ -26,20 +28,20 @@ const SearchHit = ({ hits, hasMore, view, refineNext }) => {
           {listView === "list" && isList && (
             <Section className={clsx("p-5 md:p-8  mb-base2")}>
               {results.map((item) => {
-                const { id, nodeType } = item;
+                const { id, nodeType } = item
 
                 return (
                   <Listing
                     key={id}
                     item={item}
                     search
-                    // profile="full"
                     pts={nodeType === "PlaceToStay"}
                     itinerary={nodeType === "Itinerary"}
                     roundUp={nodeType === "RoundUp"}
                     noBl={nodeType === "RoundUp"}
+                    // destination={nodeType === "Destination"}
                   />
-                );
+                )
               })}
             </Section>
           )}
@@ -50,7 +52,7 @@ const SearchHit = ({ hits, hasMore, view, refineNext }) => {
               )}
             >
               {results?.map((item) => {
-                const { id, nodeType } = item;
+                const { id, nodeType } = item
                 return (
                   <div className="flex justify-center" key={id}>
                     <ListingCard
@@ -61,7 +63,7 @@ const SearchHit = ({ hits, hasMore, view, refineNext }) => {
                       noBl={nodeType === "RoundUp"}
                     />
                   </div>
-                );
+                )
               })}
             </div>
           )}
@@ -80,6 +82,6 @@ const SearchHit = ({ hits, hasMore, view, refineNext }) => {
         </>
       )}
     </>
-  );
-};
-export default connectInfiniteHits(SearchHit);
+  )
+}
+export default connectInfiniteHits(SearchHit)

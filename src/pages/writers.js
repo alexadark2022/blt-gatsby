@@ -1,11 +1,12 @@
-import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
-import { Layout, Section, TravelQuote } from "../components";
-import { Newsletter } from "../components/Newsletter";
-import clsx from "clsx";
-import { Listing } from "../components/layout/Listing";
-import { ListingCard } from "../components/layout/ListingCard";
-import PageLayout from "../components/layout/PageLayout";
+import React from "react"
+import { useStaticQuery, graphql } from "gatsby"
+import { Layout, Section, TravelQuote } from "../components"
+import { Newsletter } from "../components/Newsletter"
+import clsx from "clsx"
+import { Listing } from "../components/layout/Listing"
+import { ListingCard } from "../components/layout/ListingCard"
+import PageLayout from "../components/layout/PageLayout"
+import { Breadcrumbs } from "../components/Breadcrumbs"
 
 const GET_ALL_WRITERS = graphql`
   query MyQuery {
@@ -15,14 +16,22 @@ const GET_ALL_WRITERS = graphql`
       }
     }
   }
-`;
+`
 
 const WritersPage = () => {
-  const data = useStaticQuery(GET_ALL_WRITERS);
-  let writers = data?.allWpWriter?.nodes;
+  const data = useStaticQuery(GET_ALL_WRITERS)
+  let writers = data?.allWpWriter?.nodes
+
+  const breadcrumbsTerms = [
+    { name: "home", link: "/" },
+    { name: "About us", link: "/about-us" },
+    { name: "Our Writers" },
+  ]
 
   return (
     <Layout>
+      <Breadcrumbs terms={breadcrumbsTerms} />
+
       <PageLayout
         title="Our writers"
         smallMargin
@@ -47,7 +56,7 @@ const WritersPage = () => {
                   <ListingCard key={item.id} item={item} writer noBl />
                 </div>
               </>
-            );
+            )
           })}
         </Section>
       </PageLayout>
@@ -57,7 +66,7 @@ const WritersPage = () => {
         unaware.”
       </TravelQuote>
     </Layout>
-  );
-};
+  )
+}
 
-export default WritersPage;
+export default WritersPage

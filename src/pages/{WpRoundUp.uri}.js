@@ -1,29 +1,29 @@
-import React, { useState, useEffect } from "react";
-
-import { Layout, Section, SocialShare, TravelQuote } from "../components";
-import PageLayout from "../components/layout/PageLayout";
-import { SidebarFilters } from "../components/sidebar/SidebarFilters";
-import clsx from "clsx";
-import { window } from "browser-monads";
-import { About } from "../components/layout/About";
-import { CardsGrid } from "../components/layout/CardsGrid";
-import { Listing } from "../components/layout/Listing";
-import { ViewSwitcher } from "../components/ui-components/ViewSwitcher";
-import { graphql } from "gatsby";
+import React, { useState, useEffect } from "react"
+import { Layout, Section, SocialShare, TravelQuote } from "../components"
+import PageLayout from "../components/layout/PageLayout"
+import { SidebarFilters } from "../components/sidebar/SidebarFilters"
+import clsx from "clsx"
+import { window } from "browser-monads"
+import { About } from "../components/layout/About"
+import { CardsGrid } from "../components/layout/CardsGrid"
+import { Listing } from "../components/layout/Listing"
+import { ViewSwitcher } from "../components/ui-components/ViewSwitcher"
+import { graphql } from "gatsby"
+import { Breadcrumbs } from "../components/Breadcrumbs"
 import PlaceToStayFilter from "../components/my-components/PlaceToStayFilter";
-
 const RoundupPage = ({ data }) => {
-  console.log("data", data);
-  const { wpRoundUp: roundUp } = data || {};
+  console.log("data", data)
+  const { wpRoundUp: roundUp } = data || {}
   const contentType = roundUp.customDataAttributes.type;
-  const [view, setView] = useState("list");
+  const [view, setView] = useState("list")
+
 
   useEffect(() => {
-    const isLarge = window.matchMedia("(min-width: 768px)").matches;
-    isLarge ? setView("list") : setView("grid");
-  }, []);
+    const isLarge = window.matchMedia("(min-width: 768px)").matches
+    isLarge ? setView("list") : setView("grid")
+  }, [])
 
-  const url = window.location.href;
+  const url = window.location.href
 
   const {
     id,
@@ -32,13 +32,16 @@ const RoundupPage = ({ data }) => {
     customDataAttributes,
     modified,
     author,
-  } = roundUp || {};
+  } = roundUp || {}
 
-  const { about } = commonDataAttributes || {};
-  const { links } = customDataAttributes || {};
+  const { about } = commonDataAttributes || {}
+  const { links } = customDataAttributes || {}
+  const breadcrumbsTerms = [{ name: "home", link: "/" }, { name: "Round-ups" }]
   return (
     <Layout page="round-up">
-      {contentType === "Places to stay" && <PlaceToStayFilter />}
+   {contentType === "Places to stay" && <PlaceToStayFilter />}
+      <Breadcrumbs terms={breadcrumbsTerms} />
+
       <PageLayout
         title={title}
         smallMargin
@@ -81,7 +84,7 @@ const RoundupPage = ({ data }) => {
         {view === "list" && (
           <Section className={clsx("p-5 md:p-8  mb-base2")}>
             {links?.map((item, i) => {
-              const type = item.link[0].__typename;
+              const type = item.link[0].__typename
 
               return (
                 <Listing
@@ -90,7 +93,7 @@ const RoundupPage = ({ data }) => {
                   pts={type === "PlaceToStay"}
                   itinerary={type === "Itinerary"}
                 />
-              );
+              )
             })}
           </Section>
         )}
@@ -103,9 +106,9 @@ const RoundupPage = ({ data }) => {
         out.”
       </TravelQuote>
     </Layout>
-  );
-};
-export default RoundupPage;
+  )
+}
+export default RoundupPage
 
 export const pageQuery = graphql`
   query ($uri: String!) {
@@ -113,4 +116,4 @@ export const pageQuery = graphql`
       ...RoundUpPage
     }
   }
-`;
+`

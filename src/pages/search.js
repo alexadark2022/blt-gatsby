@@ -17,46 +17,50 @@ import AllFilters from "../components/my-components/AllFilters";
 import { IoCloseSharp as Close } from "react-icons/io5";
 import { Typo, Button, WithCollapse } from "../components/ui-components";
 import isEmptyObject from "./../utils/isEmptyObject";
+import { Breadcrumbs } from "../components/Breadcrumbs"
 
-const indexName = "Alldata";
+const indexName = "Alldata"
 const searchClient = algoliasearch(
   "E4TS2J6OFT",
   "8878e427a5a3d373a179bab058ca2641"
-);
-const index = searchClient.initIndex("Alldata");
+)
+const index = searchClient.initIndex("Alldata")
+const breadcrumbsTerms = [{ name: "home", link: "/" }, { name: "search" }]
 
 const SearchPage = () => {
-  const [mainState, setMainState] = useState("All");
-  const [view, setView] = useState("");
-  const [openFilters, setOpenFilters] = useState(false);
-  const [filters, setFilters] = useState([]);
+  const [mainState, setMainState] = useState("All")
+  const [view, setView] = useState("")
+  const [openFilters, setOpenFilters] = useState(false)
+  const [filters, setFilters] = useState([])
 
   const facets = useCallback(() => {
-    const filtersArray = Object.entries(filters);
+    const filtersArray = Object.entries(filters)
     return filtersArray.reduce(function (state, name) {
-      const filterName = name[0];
-      const itemsArray = Object.entries(name[1]);
+      const filterName = name[0]
+      const itemsArray = Object.entries(name[1])
       state[filterName] = itemsArray.map((facet) => ({
         label: facet[0],
         value: facet[0],
         isRefined: false,
         count: 0,
-      }));
-      return state;
-    }, {});
-  }, [filters]);
+      }))
+      return state
+    }, {})
+  }, [filters])
   useEffect(() => {
     index
       .search("", {
         facets: ["*"],
       })
       .then((res) => {
-        setFilters(res.facets);
-      });
-  }, []);
+        setFilters(res.facets)
+      })
+  }, [])
 
   return (
     <Layout>
+      <Breadcrumbs terms={breadcrumbsTerms} />
+
       <InstantSearch searchClient={searchClient} indexName={indexName}>
         <Configure hitsPerPage={12} />
         <SearchBox />
@@ -120,8 +124,8 @@ const SearchPage = () => {
                 small
                 className={`w-[125px] lg:!hidden ${openFilters && "!hidden"}`}
                 onClick={(e) => {
-                  e.preventDefault();
-                  setOpenFilters(true);
+                  e.preventDefault()
+                  setOpenFilters(true)
                 }}
               >
                 Filters
@@ -147,8 +151,8 @@ const SearchPage = () => {
                 <div
                   className="absolute flex items-center justify-center border-2 cursor-pointer top-4 right-4 w-base2 h-base2 border-lightBlue lg:hidden"
                   onClick={(e) => {
-                    e.preventDefault();
-                    setOpenFilters(false);
+                    e.preventDefault()
+                    setOpenFilters(false)
                   }}
                 >
                   <Close className="absolute text-xl text-lightBlue " />
@@ -177,7 +181,7 @@ const SearchPage = () => {
         “Once a year, go somewhere you have never been before”
       </TravelQuote>
     </Layout>
-  );
-};
+  )
+}
 
-export default SearchPage;
+export default SearchPage

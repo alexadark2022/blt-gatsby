@@ -1,20 +1,20 @@
-import React from "react"
+import React from "react";
 
-import { Layout } from "../Layout"
+import { Layout } from "../Layout";
 
-import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo"
-import { FrontPage } from "../frontPage"
-import { window } from "browser-monads"
-import { FaqPage, AboutPage, ContactPage, MyAccountPage } from "../pageLayouts"
-import { Newsletter } from "../Newsletter"
-import { Section, SidebarSocialShare } from ".."
-import PageLayout from "../layout/PageLayout"
-import { TravelQuote } from ".."
-import { Breadcrumbs } from "../Breadcrumbs"
+import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
+import { FrontPage } from "../frontPage";
+import { window } from "browser-monads";
+import { FaqPage, AboutPage, ContactPage, MyAccountPage } from "../pageLayouts";
+import { Newsletter } from "../Newsletter";
+import { Section, SidebarSocialShare } from "..";
+import PageLayout from "../layout/PageLayout";
+import { TravelQuote } from "..";
+import { Breadcrumbs } from "../Breadcrumbs";
 
 const Page = ({ page, ctx }) => {
-  console.log("page ctx", ctx)
-  const url = window.location.href
+  console.log("page ctx", ctx);
+  const url = window.location.href;
   const {
     title,
     isFrontPage,
@@ -27,21 +27,21 @@ const Page = ({ page, ctx }) => {
     homeHero,
     whatWeOffer,
     uri,
-  } = page
+  } = page;
 
-  const pageTitle = slug === "faq" ? "Frequently asked question" : title
+  const pageTitle = slug === "faq" ? "Frequently asked questions" : title;
 
-  const breadcrumbTerms = [{ name: "home", link: "/" }, { name: title }]
+  const breadcrumbTerms = [{ name: "home", link: "/" }, { name: title }];
 
   const featuredImage =
-    page.featuredImage?.node.localFile.childImageSharp.original
+    page.featuredImage?.node.localFile.childImageSharp.original;
   return (
     <Layout page={page} type="page">
       <Seo
         isFrontPage={isFrontPage}
         title={title}
         uri={uri}
-        yoastSeo={ctx.yoastSeo}
+        yoastSeo={true}
         seo={ctx.seo}
         featuredImage={
           featuredImage && {
@@ -116,7 +116,7 @@ const Page = ({ page, ctx }) => {
           </TravelQuote>
         ))}
     </Layout>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;

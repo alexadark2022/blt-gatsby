@@ -160,6 +160,7 @@ module.exports = {
     require("@tailwindcss/forms"),
     require("tailwindcss-debug-screens"),
     require("@tailwindcss/line-clamp"),
+    require("@tailwindcss/aspect-ratio"),
   ],
   corePlugins: {
     preflight: true,

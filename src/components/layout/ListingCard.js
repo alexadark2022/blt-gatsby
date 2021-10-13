@@ -39,6 +39,7 @@ export const ListingCard = ({
   } = customDataAttributes || {}
 
   website = externalLink ? externalLink : website
+  profile = profile ? profile : "full"
   uri =
     profile === "full" || pts || itinerary || writer || roundUp || nested
       ? uri
@@ -127,14 +128,16 @@ export const ListingCard = ({
           /> */}
           {/* Website or link to profile (read our review) */}
           <div className="space-y-5">
-            <ListingBottomInfo
-              starRating={starRating}
-              minAge={minAge}
-              priceFrom={priceFrom}
-              whenIsIt={whenIsIt}
-              card
-              className="justify-center"
-            />
+            {pts && (
+              <ListingBottomInfo
+                starRating={starRating}
+                // minAge={minAge}
+                // priceFrom={priceFrom}
+                // whenIsIt={whenIsIt}
+                card
+                className="justify-center"
+              />
+            )}
             <div className="flex justify-center">
               {profile === "full" || itinerary || pts || writer || nested ? (
                 <Link to={uri}>
