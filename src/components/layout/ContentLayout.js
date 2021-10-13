@@ -18,8 +18,8 @@ export const ContentLayout = ({
         className={clsx(
           "w-full  lg:w-2/3 xl:w-[940px]",
 
-          "mb-7 lg:mb-0 mr-14 xl:ml-14 ",
-          { "mr-7 xl:w-[960px]": smallMargin, "order-2 lg:order-1": isFilters }
+          "mb-7 lg:mb-0 mr-7 xl:ml-14 ",
+          { "order-2 lg:order-1": isFilters }
         )}
       >
         {children}
