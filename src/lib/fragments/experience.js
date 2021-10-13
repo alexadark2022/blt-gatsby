@@ -49,7 +49,6 @@ export const experienceFragments = graphql`
       specificTime
       whenIsIt
       bestMonthFrom1
-      bestMonthFrom2
       ageBestSuitedFrom
       whenToDoIt
       gettingThere
@@ -135,9 +134,7 @@ export const experienceFragments = graphql`
       ageBestSuitedFrom
       attractionSubType
       availableMonthFrom1
-      availableMonthFrom2
       bestMonthFrom1
-      bestMonthFrom2
       city
       duration
       eventSubType

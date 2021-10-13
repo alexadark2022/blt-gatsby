@@ -50,8 +50,6 @@ const DestinationPage = ({ data }) => {
   } = commonDataAttributes || {}
   const {
     writer,
-    bestMonthFrom1,
-    bestMonthFrom2,
     culture,
     foodDrink,
     gettingAround,

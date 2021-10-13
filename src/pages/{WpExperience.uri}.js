@@ -60,7 +60,6 @@ const ExperiencePage = ({ data }) => {
     tourOperator,
     destinations,
     whenIsIt,
-    bestMonthFrom1,
     region,
     ageBestSuitedFrom,
     whenToDoIt,
@@ -165,9 +164,7 @@ const ExperiencePage = ({ data }) => {
             </div>
             <div>Minimum Age: {minAge === null ? "Any" : minAge}</div>
             <div>Age suitable: {ageBestSuitedFrom}+</div>
-            {/* <div>
-              Best time: {bestMonthFrom1[1]}-{bestMonthTo1[1]}
-            </div> */}
+
             <div>When: {whenIsIt === null ? "All year around" : whenIsIt}</div>
           </div>
           <div className="space-y-base2">

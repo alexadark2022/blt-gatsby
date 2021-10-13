@@ -103,7 +103,6 @@ export const destinationFragments = graphql`
 
     customDataAttributes: destinationDataAttributes {
       bestMonthFrom1
-      bestMonthFrom2
       latitudeOfLocation1
       longitudeOfLocation1
       culture
