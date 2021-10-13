@@ -7,6 +7,7 @@ import { window } from "browser-monads"
 import { About } from "../components/layout/About"
 import { CardsGrid } from "../components/layout/CardsGrid"
 import { Listing } from "../components/layout/Listing"
+import { ListingCard } from "../components/layout/ListingCard"
 import { ViewSwitcher } from "../components/ui-components/ViewSwitcher"
 import { graphql } from "gatsby"
 import { Breadcrumbs } from "../components/Breadcrumbs"
@@ -87,12 +88,24 @@ const RoundupPage = ({ data }) => {
               const type = item.link[0].__typename
 
               return (
+                <>
                 <Listing
                   item={item}
                   key={item.link[0].id}
                   pts={type === "PlaceToStay"}
                   itinerary={type === "Itinerary"}
+                  className="hidden md:block"
                 />
+                <div className="flex justify-center">
+                  <ListingCard
+                    item={item}
+                    key={item.link[0].id}
+                    pts={type === "PlaceToStay"}
+                    itinerary={type === "Itinerary"}
+                    className="md:hidden mb-10"
+                  />
+                </div>
+                </>
               )
             })}
           </Section>
