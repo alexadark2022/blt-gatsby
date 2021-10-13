@@ -120,12 +120,12 @@ export const ListingCard = ({
             </div>
           </div>
           {/* Intro */}
-          {/* <div
+          <div
             dangerouslySetInnerHTML={{
               __html: intro ? intro : summaryBio ? summaryBio : standfirst,
             }}
-            className="leading-tight prose text-left "
-          /> */}
+            className="leading-tight prose text-left md:hidden "
+          />
           {/* Website or link to profile (read our review) */}
           <div className="space-y-5">
             {pts && (
