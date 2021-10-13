@@ -47,7 +47,7 @@ export const HeaderMobileSearch = ({ className, ...props }) => {
             </Transition.Child>
             <div
               className={clsx(
-                "fixed inset-x-0 top-[67px]",
+                "fixed inset-x-0 top-[52px] sm:top-[67px]",
                 "flex",
                 "max-w-full"
               )}
@@ -80,8 +80,8 @@ export const HeaderMobileSearch = ({ className, ...props }) => {
                           setSearchtext(event.currentTarget.value)
                         }
                         className={clsx(
-                          "w-full h-12",
-                          "border border-grey2 bg-white ",
+                          "w-full h-14",
+                          "border border-grey2 bg-white text-lg ",
                           "focus:outline-none focus:border-none focus:ring-2 focus:ring- focus:ring-lightBlue focus:ring-inset"
                         )}
                       />
@@ -89,10 +89,10 @@ export const HeaderMobileSearch = ({ className, ...props }) => {
                         aria-label="search"
                         className={clsx(
                           "absolute right-0 top-0",
-                          "h-12 w-12 !p-0"
+                          "h-14 w-14 !p-0"
                         )}
                       >
-                        <IoSearch className={clsx("text-f-24 text-grey4")} />
+                        <IoSearch className={clsx("text-f-28 text-grey4")} />
                       </Button>
                     </form>
                   </div>
