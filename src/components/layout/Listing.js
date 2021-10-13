@@ -147,8 +147,8 @@ export const Listing = ({
           writer ||
           nested ||
           roundUp ? (
-            <Link to={uri} className="!text-[11px] btn btn-secondary">
-              {writer ? "Read more" : "Read review"}
+            <Link to={uri} className="!text-[11px] btn h-10">
+              {writer ? "Read more" : "Review"}
             </Link>
           ) : (
             website && (
@@ -160,7 +160,7 @@ export const Listing = ({
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                See Website
+                Website
               </Button>
             )
           )}
