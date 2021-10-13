@@ -1,19 +1,22 @@
-import React, { useState, useEffect, useCallback } from "react"
-import { Layout, TravelQuote } from "../components"
-import clsx from "clsx"
-import algoliasearch from "algoliasearch/lite"
-import { InstantSearch, MenuSelect, Configure } from "react-instantsearch-dom"
-import SearchHit from "../components/my-components/SearchHit"
-import StaticRefinementList from "../components/my-components/MainSearchList"
-import SearchBox from "../components/my-components/SearchBox"
-import ViewSwitcher from "../components/my-components/ViewSwitcher"
-import ClearAllFilters from "../components/my-components/ClearAllFilters"
-import qs from "qs"
-import AllFilters from "../components/my-components/AllFilters"
-import { IoCloseSharp as Close } from "react-icons/io5"
-import { Typo, Button, WithCollapse } from "../components/ui-components"
-import isEmptyObject from "./../utils/isEmptyObject"
-import { useNavigate, useLocation } from "@reach/router"
+import React, { useState, useEffect, useCallback } from "react";
+import { Layout, TravelQuote } from "../components";
+import clsx from "clsx";
+import algoliasearch from "algoliasearch/lite";
+import {
+  InstantSearch,
+  MenuSelect,
+  Configure,
+  SortBy,
+} from "react-instantsearch-dom";
+import SearchHit from "../components/my-components/SearchHit";
+import StaticRefinementList from "../components/my-components/MainSearchList";
+import SearchBox from "../components/my-components/SearchBox";
+import ViewSwitcher from "../components/my-components/ViewSwitcher";
+import ClearAllFilters from "../components/my-components/ClearAllFilters";
+import AllFilters from "../components/my-components/AllFilters";
+import { IoCloseSharp as Close } from "react-icons/io5";
+import { Typo, Button, WithCollapse } from "../components/ui-components";
+import isEmptyObject from "./../utils/isEmptyObject";
 import { Breadcrumbs } from "../components/Breadcrumbs"
 
 const indexName = "Alldata"
@@ -109,6 +112,13 @@ const SearchPage = () => {
           >
             Filters
           </Button> */}
+              <SortBy
+                defaultRefinement="Alldata"
+                items={[
+                  { value: "Alldata", label: "Featured" },
+                  { value: "date_timestamp", label: "Price asc." },
+                ]}
+              />
               <MenuSelect attribute="nodeType" />
               <Button
                 small

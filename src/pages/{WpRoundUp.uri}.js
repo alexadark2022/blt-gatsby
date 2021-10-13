@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-
 import { Layout, Section, SocialShare, TravelQuote } from "../components"
 import PageLayout from "../components/layout/PageLayout"
 import { SidebarFilters } from "../components/sidebar/SidebarFilters"
@@ -11,12 +10,13 @@ import { Listing } from "../components/layout/Listing"
 import { ViewSwitcher } from "../components/ui-components/ViewSwitcher"
 import { graphql } from "gatsby"
 import { Breadcrumbs } from "../components/Breadcrumbs"
-
+import PlaceToStayFilter from "../components/my-components/PlaceToStayFilter";
 const RoundupPage = ({ data }) => {
   console.log("data", data)
   const { wpRoundUp: roundUp } = data || {}
-
+  const contentType = roundUp.customDataAttributes.type;
   const [view, setView] = useState("list")
+
 
   useEffect(() => {
     const isLarge = window.matchMedia("(min-width: 768px)").matches
@@ -39,6 +39,7 @@ const RoundupPage = ({ data }) => {
   const breadcrumbsTerms = [{ name: "home", link: "/" }, { name: "Round-ups" }]
   return (
     <Layout page="round-up">
+   {contentType === "Places to stay" && <PlaceToStayFilter />}
       <Breadcrumbs terms={breadcrumbsTerms} />
 
       <PageLayout
