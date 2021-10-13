@@ -77,6 +77,8 @@ const DestinationPage = ({ data }) => {
     itineraries,
   } = customDataAttributes || {}
 
+  console.log('continent', continent);
+
   const bucketListExperiences = experiences?.filter(
     (exp) => exp.customDataAttributes.isBucketList === "yes"
   )
@@ -103,9 +105,11 @@ const DestinationPage = ({ data }) => {
     { name: "map" },
   ]
 
+  const brContinent = continent?.length === 1 ? continent[0] : null
+
   const breadcrumbsTerms = [
     { name: "home", link: "/" },
-    { name: continent, link: `/search/?q=${continent}` },
+    { name: brContinent, link: `/search/?q=${brContinent}` },
     { name: country?.name, link: `/search/?q=${country?.name}` },
     {
       name: region,

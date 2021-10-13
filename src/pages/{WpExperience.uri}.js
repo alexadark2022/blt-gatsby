@@ -81,10 +81,10 @@ const ExperiencePage = ({ data }) => {
     { name: "where to stay" },
     { name: "map" },
   ]
-
+  const brContinent = continent?.length === 1 ? continent[0] : null
   const breadcrumbsTerms = [
     { name: "home", link: "/" },
-    { name: continent, link: `/search/?q=${continent}` },
+    { name: brContinent, link: `/search/?q=${brContinent}` },
     { name: country.name, link: `/search/?q=${country.name}` },
     { name: region, link: `/search/?q=${region}` },
   ].filter((term) => term.name)
