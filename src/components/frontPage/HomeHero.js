@@ -11,7 +11,6 @@ const Sentences = ({ topSentences }) => {
     <>
       <p
         className="text-gold font-bold text-[20px] sm:text-f-22  mb-4 sm:mb-0 "
-        css={!isSmall && { textShadow: "1px 2px 3px #000" }}
       >
         For those who want to:
       </p>
@@ -34,6 +33,7 @@ export const HomeHero = ({ homeHero }) => {
       <div className={clsx("relative")}>
         <div className="z-0">
           {heroImage && (
+            <>
             <Image
               img={heroImage?.localFile}
               alt={heroImage?.altText}
@@ -42,9 +42,20 @@ export const HomeHero = ({ homeHero }) => {
               objectPosition="center"
               className="h-[277px] sm:h-[578px]"
             />
+            <div
+                  className={clsx(
+                    "absolute left-0 bottom-0  w-full h-[50%] z-0",
+                    "flex flex-col justify-end",
+                    "bg-gradient-to-b from-transparent to-darkBlue",
+                    "text-white",
+                    "leading-none"
+                  )}
+                  />
+                  </>
           )}
         </div>
-        <div className="absolute top-0 left-0 z-10 w-full h-full bg-darkBlue mix-blend-soft-light"></div>
+
+        <div className="absolute top-0 left-0 z-10 w-full h-full"></div>
 
         <div
           className={clsx(
@@ -55,7 +66,7 @@ export const HomeHero = ({ homeHero }) => {
         >
           {/* Top sentences */}
           <div className={clsx("container max-w-big")}>
-            <div className="hidden sm:block">
+            <div className="hidden p-6 bg-opacity-50 sm:inline-block bg-darkBlue">
               <Sentences topSentences={topSentences} />
             </div>
           </div>

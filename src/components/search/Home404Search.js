@@ -49,8 +49,8 @@ export const Home404Search = () => {
         css={{ textShadow: "1px 2px 4px #000" }}
       >
         {isSmall
-          ? "Browse all recommendatons"
-          : "BROWSE ALL OF OUR RECOMMENDATIONS"}
+          ? "Browse all recommendations"
+          : "BROWSE ALL RECOMMENDATIONS & filter"}
       </Link>
     </div>
   );
