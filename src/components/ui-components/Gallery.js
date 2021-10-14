@@ -69,13 +69,13 @@ export const Gallery = ({ images = [], ...props }) => {
                   <div className="pb-3">
                     {caption && caption !== description && (
                       <div
-                        className="sm:text-f-18"
+                        className="mb-1 sm:text-f-22"
                         dangerouslySetInnerHTML={{ __html: caption }}
                       />
                     )}
                     {description && (
                       <div
-                        className="text-[10px] font-light"
+                        className="text-sm font-light text-grey3"
                         dangerouslySetInnerHTML={{ __html: description }}
                       />
                     )}
