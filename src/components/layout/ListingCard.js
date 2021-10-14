@@ -98,42 +98,43 @@ export const ListingCard = ({
         </div>
         {/* Content */}
 
-        <div className={clsx("p-4 text-center space-y-5")}>
+        <div className={clsx("p-4 text-center flex-col justify-between space-y-5")}>
           {/* Title and city */}
-          <div>
-            <Link
-              to={`${uri}`}
-              className="hover:no-underline"
-              target={isFull ? "_self" : "_blank"}
-              rel={isFull ? "preload" : "noopener noreferrer"}
-            >
-              <h3
-                className={clsx(
-                  "leading-tight text-f-24 text-grey4 font-medium"
-                )}
-                dangerouslySetInnerHTML={{ __html: title }}
-              />
-            </Link>
-
-            <div className={clsx("text-f-18 !text-grey4")}>
-              {city ? city : region ? region : country?.name}
+          <div className="space-y-5 ">
+            <div>
+              <Link
+                to={`${uri}`}
+                className="hover:no-underline"
+                target={isFull ? "_self" : "_blank"}
+                rel={isFull ? "preload" : "noopener noreferrer"}
+              >
+                <h3
+                  className={clsx(
+                    "leading-tight text-f-24 text-grey4 font-medium"
+                  )}
+                  dangerouslySetInnerHTML={{ __html: title }}
+                />
+              </Link>
+              <div className={clsx("text-f-18 !text-grey4")}>
+                {city ? city : region ? region : country?.name}
+              </div>
             </div>
+            {/* Intro */}
+            <div
+              dangerouslySetInnerHTML={{
+                __html: intro ? intro : summaryBio ? summaryBio : standfirst,
+              }}
+              className="leading-tight prose text-left md:hidden "
+            />
           </div>
-          {/* Intro */}
-          <div
-            dangerouslySetInnerHTML={{
-              __html: intro ? intro : summaryBio ? summaryBio : standfirst,
-            }}
-            className="leading-tight prose text-left md:hidden "
-          />
           {/* Website or link to profile (read our review) */}
           <div className="space-y-5">
             {pts && (
               <ListingBottomInfo
                 starRating={starRating}
-                // minAge={minAge}
-                // priceFrom={priceFrom}
-                // whenIsIt={whenIsIt}
+                minAge={minAge}
+                priceFrom={priceFrom}
+                whenIsIt={whenIsIt}
                 card
                 className="justify-center"
               />
@@ -141,7 +142,7 @@ export const ListingCard = ({
             <div className="flex justify-center">
               {profile === "full" || itinerary || pts || writer || nested ? (
                 <Link to={uri}>
-                  <Button secondary>
+                  <Button className="h-10" >
                     {writer ? "Read more" : "Read review"}
                   </Button>
                 </Link>

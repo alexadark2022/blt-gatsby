@@ -155,7 +155,7 @@ export const Listing = ({
               <Button
                 secondary
                 as="a"
-                className="!text-[11px]"
+                // className="!text-[11px]"
                 href={website}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -168,7 +168,7 @@ export const Listing = ({
           {priceCheckingLinks ? (
             <Button
               secondary
-              className="leading-none !text-[11px]"
+              // className="leading-none !text-[11px]"
               onClick={(e) => {
                 e.preventDefault()
                 setOpen(!open)
