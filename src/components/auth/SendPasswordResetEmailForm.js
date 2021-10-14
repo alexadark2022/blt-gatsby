@@ -40,9 +40,8 @@ export function SendPasswordResetEmailForm() {
   if (wasEmailSent) {
     return (
       <div>
-        <p className={`orange-box`}>
-          Please check your email,
-          <br />a password reset link has been sent to you
+        <p className={`orange-box text-f-20`}>
+          Please check your email, a password reset link has been sent to you
           <button
             aria-label="go to signin"
             className={`text-blueLink mt-3 text-center font-bold mx-auto w-full`}
