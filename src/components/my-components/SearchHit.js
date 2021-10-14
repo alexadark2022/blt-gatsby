@@ -21,7 +21,7 @@ const SearchHit = ({ hits, hasMore, view, refineNext }) => {
         <NoResults
           className="mt-10"
           title=" Sorry - we have no recommendations for that search term. Please try
-    again!"
+    again"
         />
       ) : (
         <>
