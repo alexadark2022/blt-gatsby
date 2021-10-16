@@ -98,7 +98,7 @@ const CheckList = ({ array, title, value }) => {
 const WriterPage = ({ data }) => {
   const { wpWriter: writer } = data || {};
 
-  const { title, featuredImage, customDataAttributes } = writer || {};
+  const { title, featuredImage, customDataAttributes, uri } = writer || {};
   const {
     about,
     awards,

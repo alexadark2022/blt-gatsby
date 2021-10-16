@@ -34,6 +34,8 @@ const RoundupPage = ({ data }) => {
     customDataAttributes,
     modified,
     author,
+    featuredImage,
+    uri,
   } = roundUp || {};
 
   const seoGeneral = useSeoGeneral();

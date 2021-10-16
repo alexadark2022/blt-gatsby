@@ -47,7 +47,7 @@ const PlaceToStayPage = ({ data }) => {
 
   const seoGeneral = useSeoGeneral();
   const seo = {
-    page: placeToStay?.seo,
+    page: pts?.seo,
     general: seoGeneral?.wp?.seo,
   };
   const seoImage = featuredImage?.node.localFile.childImageSharp.original;
