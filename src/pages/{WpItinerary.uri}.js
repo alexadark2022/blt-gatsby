@@ -1,5 +1,5 @@
-import React from "react"
-import { graphql } from "gatsby"
+import React from "react";
+import { graphql } from "gatsby";
 
 import {
   CollapseSection,
@@ -7,22 +7,24 @@ import {
   SidebarSocialShare,
   SocialShare,
   TravelQuote,
-} from "../components"
-import PageLayout from "../components/layout/PageLayout"
-import { Newsletter } from "../components/Newsletter"
-import { window } from "browser-monads"
-import SidebarTourOperator from "../components/sidebar/SidebarTourOperator"
-import { About } from "../components/layout/About"
-import { CollapseListings } from "../components/layout/CollapseListings"
-import { IntroText } from "../components/layout/IntroText"
-import { CollapseCards } from "../components/layout/CollapseCards"
-import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed"
-import clsx from "clsx"
-import { Breadcrumbs } from "../components/Breadcrumbs"
+} from "../components";
+import PageLayout from "../components/layout/PageLayout";
+import { Newsletter } from "../components/Newsletter";
+import { window } from "browser-monads";
+import SidebarTourOperator from "../components/sidebar/SidebarTourOperator";
+import { About } from "../components/layout/About";
+import { CollapseListings } from "../components/layout/CollapseListings";
+import { IntroText } from "../components/layout/IntroText";
+import { CollapseCards } from "../components/layout/CollapseCards";
+import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed";
+import clsx from "clsx";
+import { Breadcrumbs } from "../components/Breadcrumbs";
+import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
+import { useSeoGeneral } from "../lib/hooks/useSeoGeneral";
 
 const ItineraryPage = ({ data }) => {
-  const url = window.location.href
-  const { wpItinerary: itinerary } = data || {}
+  const url = window.location.href;
+  const { wpItinerary: itinerary } = data || {};
 
   const {
     modified,
@@ -32,21 +34,41 @@ const ItineraryPage = ({ data }) => {
     commonDataAttributes,
     customDataAttributes,
     featuredImage,
-  } = itinerary || {}
+  } = itinerary || {};
 
-  useRecentlyViewed({ title, featuredImage, uri })
+  useRecentlyViewed({ title, featuredImage, uri });
+
+  const seoGeneral = useSeoGeneral();
+  const seo = {
+    page: itinerary?.seo,
+    general: seoGeneral?.wp?.seo,
+  };
+  const seoImage = featuredImage?.node.localFile.childImageSharp.original;
 
   const { about, sidebarTourOperator, sbtouroperatordescription, review } =
-    commonDataAttributes || {}
+    commonDataAttributes || {};
   const { days, longitudeOfLocation1, latitudeOfLocation1 } =
-    customDataAttributes || {}
+    customDataAttributes || {};
 
   const breadcrumbsTerms = [
     { name: "home", link: "/" },
     { name: "Itineraries" },
-  ]
+  ];
   return (
     <Layout page="itinerary">
+      <Seo
+        title={title}
+        uri={uri}
+        yoastSeo={true}
+        seo={seo}
+        featuredImage={
+          seoImage && {
+            src: seoImage.src,
+            width: seoImage.width,
+            height: seoImage.height,
+          }
+        }
+      />
       <Breadcrumbs terms={breadcrumbsTerms} />
       <PageLayout
         title={title}
@@ -82,15 +104,15 @@ const ItineraryPage = ({ data }) => {
           />
         </section>
         {days?.map((day, index) => {
-          const { about, links } = day
-          console.log("links", links)
+          const { about, links } = day;
+          console.log("links", links);
           const expLinks = links.filter(
             (link) => link.__typename === "WpExperience"
-          )
+          );
           const ptsLinks = links.filter(
             (link) => link.__typename === "WpPlaceToStay"
-          )
-          const allLinks = [...expLinks, ...ptsLinks]
+          );
+          const allLinks = [...expLinks, ...ptsLinks];
           return (
             <CollapseSection
               key={index}
@@ -103,7 +125,7 @@ const ItineraryPage = ({ data }) => {
                 <CollapseCards cards={allLinks} className="md:hidden" pts />
               </div>
             </CollapseSection>
-          )
+          );
         })}
       </PageLayout>
       {/* Quote */}
@@ -114,10 +136,10 @@ const ItineraryPage = ({ data }) => {
         Explore. Dream. Discover.”
       </TravelQuote>
     </Layout>
-  )
-}
+  );
+};
 
-export default ItineraryPage
+export default ItineraryPage;
 
 export const pageQuery = graphql`
   query ($uri: String!) {
@@ -125,4 +147,4 @@ export const pageQuery = graphql`
       ...ItineraryPage
     }
   }
-`
+`;

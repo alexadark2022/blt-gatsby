@@ -46,8 +46,6 @@ const DestinationPage = ({ data }) => {
     general: seoGeneral?.wp?.seo,
   };
 
-  console.log("seo", seo);
-
   const rvData = { title, featuredImage, uri };
   useRecentlyViewed(rvData);
 

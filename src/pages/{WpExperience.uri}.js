@@ -1,42 +1,44 @@
-import React, { useState } from "react"
-import { graphql } from "gatsby"
+import React, { useState } from "react";
+import { graphql } from "gatsby";
 
-import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed"
-import { window } from "browser-monads"
-import PageLayout from "../components/layout/PageLayout"
-import SidebarTourOperator from "../components/sidebar/SidebarTourOperator"
-import { Newsletter } from "../components/Newsletter"
-import { SidebarSocialShare, SocialShare } from "../components/social"
-import clsx from "clsx"
-import { CollapseSection, Layout, TravelQuote } from "../components"
-import { About } from "../components/layout/About"
+import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed";
+import { window } from "browser-monads";
+import PageLayout from "../components/layout/PageLayout";
+import SidebarTourOperator from "../components/sidebar/SidebarTourOperator";
+import { Newsletter } from "../components/Newsletter";
+import { SidebarSocialShare, SocialShare } from "../components/social";
+import clsx from "clsx";
+import { CollapseSection, Layout, TravelQuote } from "../components";
+import { About } from "../components/layout/About";
 
-import { CollapseListings } from "../components/layout/CollapseListings"
-import { TitleContent } from "../components/layout/TitleContent"
-import { CollapseCards } from "../components/layout/CollapseCards"
-import ExperienceMap from "../components/maps/ExperienceMap"
-import { Loader } from "@googlemaps/js-api-loader"
-import { Breadcrumbs } from "../components/Breadcrumbs"
-import slugify from "slugify"
+import { CollapseListings } from "../components/layout/CollapseListings";
+import { TitleContent } from "../components/layout/TitleContent";
+import { CollapseCards } from "../components/layout/CollapseCards";
+import ExperienceMap from "../components/maps/ExperienceMap";
+import { Loader } from "@googlemaps/js-api-loader";
+import { Breadcrumbs } from "../components/Breadcrumbs";
+import slugify from "slugify";
+import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
+import { useSeoGeneral } from "../lib/hooks/useSeoGeneral";
 
-const slugs = (string) => slugify(string, { lower: true, strict: true })
+const slugs = (string) => slugify(string, { lower: true, strict: true });
 
 const ExperiencePage = ({ data }) => {
-  const [loadMap, setLoadMap] = useState(false)
+  const [loadMap, setLoadMap] = useState(false);
   const loader = new Loader({
     apiKey: "AIzaSyCJkZohj9sqn6H_LrfHMNG5cY794SWFJgA",
     libraries: ["places"],
-  })
+  });
   loader
     .load()
     .then(() => {
-      setLoadMap(true)
+      setLoadMap(true);
     })
     .catch((e) => {
-      console.log("error loading Google Maps API")
-    })
+      console.log("error loading Google Maps API");
+    });
 
-  const { wpExperience: experience } = data || {}
+  const { wpExperience: experience } = data || {};
   const {
     title,
     uri,
@@ -44,7 +46,7 @@ const ExperiencePage = ({ data }) => {
     modified,
     commonDataAttributes,
     customDataAttributes,
-  } = experience || {}
+  } = experience || {};
 
   const {
     imageGallery,
@@ -54,7 +56,7 @@ const ExperiencePage = ({ data }) => {
     review,
     continent,
     country,
-  } = commonDataAttributes || {}
+  } = commonDataAttributes || {};
 
   const {
     writer,
@@ -72,10 +74,17 @@ const ExperiencePage = ({ data }) => {
     affiliateTours,
     experiences,
     itineraries,
-  } = customDataAttributes || {}
+  } = customDataAttributes || {};
 
-  useRecentlyViewed({ title, featuredImage, uri })
-  const url = window.location.href
+  const seoGeneral = useSeoGeneral();
+  const seo = {
+    page: experience?.seo,
+    general: seoGeneral?.wp?.seo,
+  };
+  const seoImage = featuredImage?.node.localFile.childImageSharp.original;
+
+  useRecentlyViewed({ title, featuredImage, uri });
+  const url = window.location.href;
 
   const tabs = [
     { name: "our review" },
@@ -83,32 +92,49 @@ const ExperiencePage = ({ data }) => {
     { name: "who to go with" },
     { name: "where to stay" },
     { name: "map" },
-  ]
-  const brContinent = continent?.length === 1 ? continent[0] : null
+  ];
+  const brContinent = continent?.length === 1 ? continent[0] : null;
   const breadcrumbsTerms = [
     { name: "home", link: "/" },
     { name: brContinent, link: `/search/?q=${brContinent}` },
     { name: country.name, link: `/search/?q=${country.name}` },
-    { name: region, link: `/destination/${region && slugs(region)}`
-    ? `/destination/${region && slugs(region)}`
-    : `/search/?q=${region}`,},
-  ].filter((term) => term.name)
+    {
+      name: region,
+      link: `/destination/${region && slugs(region)}`
+        ? `/destination/${region && slugs(region)}`
+        : `/search/?q=${region}`,
+    },
+  ].filter((term) => term.name);
 
   const expReco =
-    recommendations?.filter((item) => item.__typename === "WpExperience") || []
+    recommendations?.filter((item) => item.__typename === "WpExperience") || [];
   const ptsReco =
-    recommendations?.filter((item) => item.__typename === "WpPlaceToStay") || []
-  const recos = [...expReco, ...ptsReco]
+    recommendations?.filter((item) => item.__typename === "WpPlaceToStay") ||
+    [];
+  const recos = [...expReco, ...ptsReco];
 
   const bucketListExperiences = experiences?.filter(
     (exp) => exp.customDataAttributes.isBucketList === "yes"
-  )
+  );
   const otherExperiences = experiences?.filter(
     (exp) => exp.customDataAttributes.isBucketList === "no"
-  )
+  );
 
   return (
     <Layout page="experience">
+      <Seo
+        title={title}
+        uri={uri}
+        yoastSeo={true}
+        seo={seo}
+        featuredImage={
+          seoImage && {
+            src: seoImage.src,
+            width: seoImage.width,
+            height: seoImage.height,
+          }
+        }
+      />
       <Breadcrumbs terms={breadcrumbsTerms} />
       {loadMap && <ExperienceMap experience={experience} />}
       <PageLayout
@@ -290,10 +316,10 @@ const ExperiencePage = ({ data }) => {
         “Travel is the only thing you can buy that makes you richer”
       </TravelQuote>
     </Layout>
-  )
-}
+  );
+};
 
-export default ExperiencePage
+export default ExperiencePage;
 
 export const pageQuery = graphql`
   query ($uri: String!) {
@@ -301,4 +327,4 @@ export const pageQuery = graphql`
       ...ExperiencePage
     }
   }
-`
+`;

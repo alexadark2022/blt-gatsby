@@ -1,7 +1,9 @@
-import React from "react"
-import { graphql } from "gatsby"
-import { Image } from "../components/images"
-import { Breadcrumbs } from "../components/Breadcrumbs"
+import React from "react";
+import { graphql } from "gatsby";
+import { Image } from "../components/images";
+import { Breadcrumbs } from "../components/Breadcrumbs";
+import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
+import { useSeoGeneral } from "../lib/hooks/useSeoGeneral";
 
 import {
   FaFacebookSquare as Fb,
@@ -11,8 +13,8 @@ import {
   FaWikipediaW as Wiki,
   FaLinkedin as Linkedin,
   FaCheck as Check,
-} from "react-icons/fa"
-import { IoGlobeOutline as Website } from "react-icons/io5"
+} from "react-icons/fa";
+import { IoGlobeOutline as Website } from "react-icons/io5";
 import {
   CollapseSection,
   Layout,
@@ -21,20 +23,20 @@ import {
   SocialShare,
   Typo,
   TravelQuote,
-} from "../components"
-import PageLayout from "../components/layout/PageLayout"
-import { Newsletter } from "../components/Newsletter"
-import { window } from "browser-monads"
-import SidebarTourOperator from "../components/sidebar/SidebarTourOperator"
-import { About } from "../components/layout/About"
-import { CollapseListings } from "../components/layout/CollapseListings"
-import { IntroText } from "../components/layout/IntroText"
-import { CollapseCards } from "../components/layout/CollapseCards"
-import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed"
-import clsx from "clsx"
-import { CardsGrid } from "../components/layout/CardsGrid"
-import { isEmpty } from "lodash"
-import { TitleContent } from "../components/layout/TitleContent"
+} from "../components";
+import PageLayout from "../components/layout/PageLayout";
+import { Newsletter } from "../components/Newsletter";
+import { window } from "browser-monads";
+import SidebarTourOperator from "../components/sidebar/SidebarTourOperator";
+import { About } from "../components/layout/About";
+import { CollapseListings } from "../components/layout/CollapseListings";
+import { IntroText } from "../components/layout/IntroText";
+import { CollapseCards } from "../components/layout/CollapseCards";
+import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed";
+import clsx from "clsx";
+import { CardsGrid } from "../components/layout/CardsGrid";
+import { isEmpty } from "lodash";
+import { TitleContent } from "../components/layout/TitleContent";
 
 const WithLink = ({ link, children }) => {
   return (
@@ -47,12 +49,12 @@ const WithLink = ({ link, children }) => {
         children
       )}
     </>
-  )
-}
+  );
+};
 
 const Social = ({ value, icon, link }) => {
   if (!value) {
-    return null
+    return null;
   }
 
   return (
@@ -64,12 +66,12 @@ const Social = ({ value, icon, link }) => {
         </WithLink>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const CheckList = ({ array, title, value }) => {
   if (!array) {
-    return null
+    return null;
   }
 
   return (
@@ -87,16 +89,16 @@ const CheckList = ({ array, title, value }) => {
               <div className="text-f-18">{item[value]}</div>
             </WithLink>
           </div>
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
 const WriterPage = ({ data }) => {
-  const { wpWriter: writer } = data || {}
+  const { wpWriter: writer } = data || {};
 
-  const { title, featuredImage, customDataAttributes } = writer || {}
+  const { title, featuredImage, customDataAttributes } = writer || {};
   const {
     about,
     awards,
@@ -111,18 +113,38 @@ const WriterPage = ({ data }) => {
     wikipedia,
     facebook,
     linkedin,
-  } = customDataAttributes || {}
+  } = customDataAttributes || {};
 
-  const iconStyle = "text-[30px] text-gold"
+  const seoGeneral = useSeoGeneral();
+  const seo = {
+    page: writer?.seo,
+    general: seoGeneral?.wp?.seo,
+  };
+  const seoImage = featuredImage?.node.localFile.childImageSharp.original;
+
+  const iconStyle = "text-[30px] text-gold";
 
   const breadcrumbsTerms = [
     { name: "home", link: "/" },
     { name: "About us", link: "/about-us" },
     { name: "Our Writers", link: "/writers" },
     { name: title },
-  ]
+  ];
   return (
     <Layout page="destination">
+      <Seo
+        title={title}
+        uri={uri}
+        yoastSeo={true}
+        seo={seo}
+        featuredImage={
+          seoImage && {
+            src: seoImage.src,
+            width: seoImage.width,
+            height: seoImage.height,
+          }
+        }
+      />
       <Breadcrumbs terms={breadcrumbsTerms} />
 
       <PageLayout
@@ -214,10 +236,10 @@ const WriterPage = ({ data }) => {
         </TravelQuote>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default WriterPage
+export default WriterPage;
 
 export const pageQuery = graphql`
   query ($uri: String!) {
@@ -225,4 +247,4 @@ export const pageQuery = graphql`
       ...WriterPage
     }
   }
-`
+`;
