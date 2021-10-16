@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 export const experienceFragments = graphql`
   fragment ExperienceListing on WpExperience {
     title
@@ -8,6 +8,7 @@ export const experienceFragments = graphql`
     databaseId
     date
     modified
+
     featuredImage {
       node {
         ...ListingImage
@@ -70,6 +71,9 @@ export const experienceFragments = graphql`
     databaseId
     date
     modified
+    seo {
+      ...SeoPage
+    }
     experienceTypes {
       nodes {
         name
@@ -223,4 +227,4 @@ export const experienceFragments = graphql`
       }
     }
   }
-`
+`;

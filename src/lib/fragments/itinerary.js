@@ -33,6 +33,9 @@ export const itineraryFragments = graphql`
     slug
     title
     uri
+    seo {
+      ...SeoPage
+    }
     featuredImage {
       node {
         ...ListingImage

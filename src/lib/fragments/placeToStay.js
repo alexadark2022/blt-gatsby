@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 
 export const placeTostayFragments = graphql`
   fragment PlaceToStayListing on WpPlaceToStay {
@@ -52,6 +52,9 @@ export const placeTostayFragments = graphql`
     title
     uri
     # viewCount
+    seo {
+      ...SeoPage
+    }
     featuredImage {
       node {
         ...ListingImage
@@ -144,4 +147,4 @@ export const placeTostayFragments = graphql`
       }
     }
   }
-`
+`;

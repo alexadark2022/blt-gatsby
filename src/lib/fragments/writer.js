@@ -18,6 +18,9 @@ export const writerFragments = graphql`
   fragment WriterPage on WpWriter {
     title
     id
+    seo {
+      ...SeoPage
+    }
     customDataAttributes: writerDataAttributes {
       about
       background

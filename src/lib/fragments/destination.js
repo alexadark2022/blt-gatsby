@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 
 export const destinationFragments = graphql`
   fragment DestinationListing on WpDestination {
@@ -49,6 +49,9 @@ export const destinationFragments = graphql`
     databaseId
     date
     modified
+    seo {
+      ...SeoPage
+    }
     featuredImage {
       node {
         ...ListingImage
@@ -172,4 +175,4 @@ export const destinationFragments = graphql`
       }
     }
   }
-`
+`;
