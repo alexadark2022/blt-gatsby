@@ -4,11 +4,7 @@ import { Number } from "./../ui-components/Number";
 const Stats = ({ nbHits, searchText }) => {
   const resultsString = nbHits === 1 ? "result" : "results";
   if (!searchText) {
-    return (
-      <>
-        <p>Enter a search string</p>
-      </>
-    );
+    return null;
   }
   return (
     <>
