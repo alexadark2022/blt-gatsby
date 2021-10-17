@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 
 export const placeTostayFragments = graphql`
   fragment PlaceToStayListing on WpPlaceToStay {
@@ -25,6 +25,10 @@ export const placeTostayFragments = graphql`
       }
     }
     customDataAttributes: ptsDataAttr {
+      especiallyFor
+      setting
+      theme
+      type
       website
       starRating
       region
@@ -144,4 +148,4 @@ export const placeTostayFragments = graphql`
       }
     }
   }
-`
+`;

@@ -8,6 +8,12 @@ import clsx from "clsx";
 export default function PlaceToStayFilter({ openFilters, setOpenFilters }) {
   const PTSFilters = useStaticQuery(graphql`
     query PTS_FILTERS_QUERY {
+      allWpRecommendationType {
+        nodes {
+          name
+          slug
+        }
+      }
       allWpContinent {
         nodes {
           name
@@ -106,27 +112,27 @@ export default function PlaceToStayFilter({ openFilters, setOpenFilters }) {
               className="continents"
             />
             <RefinementList
-              values={PTSFilters?.allWpContinent?.nodes}
+              values={PTSFilters?.allWpSetting?.nodes}
               title="SETTING"
               className="settings"
             />
             <RefinementList
-              values={PTSFilters?.allWpContinent?.nodes}
+              values={PTSFilters?.allWpFactoryTheme?.nodes}
               title="THEME"
               className="theme"
             />
             <RefinementList
-              values={PTSFilters?.allWpContinent?.nodes}
+              values={PTSFilters?.allWpBestTime?.nodes}
               title="BEST TIME"
               className="besttime"
             />
             <RefinementList
-              values={PTSFilters?.allWpContinent?.nodes}
+              values={PTSFilters?.allWpEspeciallyFor?.nodes}
               title="ESPECIALLY FOR"
               className="esp4"
             />
             <RefinementList
-              values={PTSFilters?.allWpContinent?.nodes}
+              values={PTSFilters?.allWpRecommendationType?.nodes}
               title="RECOMMENDATION TYPE"
               className="recomendation-type"
             />

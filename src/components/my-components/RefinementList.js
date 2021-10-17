@@ -87,7 +87,7 @@ const RefinementList = (props) => {
                   </li>
                 );
               })}
-            {!!filteredValues && filteredValues.length > 0 && (
+            {!!filteredValues && filteredValues.length > 4 && (
               <>
                 <Button
                   small
