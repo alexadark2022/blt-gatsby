@@ -8,6 +8,9 @@ export const roundUpFragments = graphql`
     title
     modified
     uri
+    seo {
+      ...SeoPage
+    }
     featuredImage {
       node {
         ...ListingImage

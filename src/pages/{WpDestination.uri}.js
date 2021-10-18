@@ -1,5 +1,5 @@
-import React from "react"
-import { graphql } from "gatsby"
+import React from "react";
+import { graphql } from "gatsby";
 
 import {
   CollapseSection,
@@ -7,25 +7,29 @@ import {
   SidebarSocialShare,
   SocialShare,
   TravelQuote,
-} from "../components"
-import PageLayout from "../components/layout/PageLayout"
-import { Newsletter } from "../components/Newsletter"
-import { window } from "browser-monads"
-import SidebarTourOperator from "../components/sidebar/SidebarTourOperator"
-import { About } from "../components/layout/About"
-import { TitleContent } from "../components/layout/TitleContent"
-import { CollapseListings } from "../components/layout/CollapseListings"
-import { IntroText } from "../components/layout/IntroText"
-import { CollapseCards } from "../components/layout/CollapseCards"
-import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed"
-import { Breadcrumbs } from "../components/Breadcrumbs"
-import slugify from "slugify"
+} from "../components";
+import PageLayout from "../components/layout/PageLayout";
+import { Newsletter } from "../components/Newsletter";
+import { window } from "browser-monads";
+import SidebarTourOperator from "../components/sidebar/SidebarTourOperator";
+import { About } from "../components/layout/About";
+import { TitleContent } from "../components/layout/TitleContent";
+import { CollapseListings } from "../components/layout/CollapseListings";
+import { IntroText } from "../components/layout/IntroText";
+import { CollapseCards } from "../components/layout/CollapseCards";
+import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed";
+import { Breadcrumbs } from "../components/Breadcrumbs";
+import slugify from "slugify";
+import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
+import { useSeoGeneral } from "../lib/hooks/useSeoGeneral";
 
-const slugs = (string) => slugify(string, { lower: true, strict: true })
+const slugs = (string) => slugify(string, { lower: true, strict: true });
 
 const DestinationPage = ({ data }) => {
-  const url = window.location.href
-  const { wpDestination: destination } = data || {}
+  const url = window.location.href;
+  const { wpDestination: destination } = data || {};
+
+  const seoGeneral = useSeoGeneral();
 
   const {
     title,
@@ -34,10 +38,16 @@ const DestinationPage = ({ data }) => {
     customDataAttributes,
     featuredImage,
     uri,
-  } = destination || {}
+  } = destination || {};
+  const seoImage = featuredImage?.node.localFile.childImageSharp.original;
 
-  const rvData = { title, featuredImage, uri }
-  useRecentlyViewed(rvData)
+  const seo = {
+    page: destination?.seo,
+    general: seoGeneral?.wp?.seo,
+  };
+
+  const rvData = { title, featuredImage, uri };
+  useRecentlyViewed(rvData);
 
   const {
     imageGallery,
@@ -47,7 +57,7 @@ const DestinationPage = ({ data }) => {
     sbtouroperatordescription,
     continent,
     country,
-  } = commonDataAttributes || {}
+  } = commonDataAttributes || {};
   const {
     writer,
     culture,
@@ -75,16 +85,14 @@ const DestinationPage = ({ data }) => {
     affiliatedTours,
     destinationGuides,
     itineraries,
-  } = customDataAttributes || {}
-
-
+  } = customDataAttributes || {};
 
   const bucketListExperiences = experiences?.filter(
     (exp) => exp.customDataAttributes.isBucketList === "yes"
-  )
+  );
   const otherExperiences = experiences?.filter(
     (exp) => exp.customDataAttributes.isBucketList === "no"
-  )
+  );
 
   const allExperiences = [
     {
@@ -94,7 +102,7 @@ const DestinationPage = ({ data }) => {
     },
     { title: "Other experiences", experiences: otherExperiences },
     { title: "Destination tickets & tours", experiences: affiliatedTours },
-  ]
+  ];
 
   const tabs = [
     { name: "our review" },
@@ -103,9 +111,9 @@ const DestinationPage = ({ data }) => {
     { name: "logistics" },
     { name: "who to go with" },
     { name: "map" },
-  ]
+  ];
 
-  const brContinent = continent?.length === 1 ? continent[0] : null
+  const brContinent = continent?.length === 1 ? continent[0] : null;
 
   const breadcrumbsTerms = [
     { name: "home", link: "/" },
@@ -117,10 +125,23 @@ const DestinationPage = ({ data }) => {
         ? `/destination/${region && slugs(region)}`
         : `/search/?q=${region}`,
     },
-  ].filter((term) => term.name)
+  ].filter((term) => term.name);
 
   return (
     <Layout page="destination">
+      <Seo
+        title={title}
+        uri={uri}
+        yoastSeo={true}
+        seo={seo}
+        featuredImage={
+          seoImage && {
+            src: seoImage.src,
+            width: seoImage.width,
+            height: seoImage.height,
+          }
+        }
+      />
       <Breadcrumbs terms={breadcrumbsTerms} />
       <PageLayout
         title={title}
@@ -165,7 +186,7 @@ const DestinationPage = ({ data }) => {
         {/* Experiences */}
         {experiences &&
           allExperiences?.map((exp) => {
-            const { title, experiences, id } = exp
+            const { title, experiences, id } = exp;
             return (
               <CollapseSection
                 key={id}
@@ -179,7 +200,7 @@ const DestinationPage = ({ data }) => {
                   <CollapseCards cards={experiences} className="md:hidden" />
                 </div>
               </CollapseSection>
-            )
+            );
           })}
         {/* Where to stay */}
         {placesToStay && (
@@ -211,8 +232,8 @@ const DestinationPage = ({ data }) => {
             <TitleContent title="Where to shop" content={whereToShop} />
             <TitleContent title="Health & Safety" content={healthSafety} />
             {additionalSections?.map((section, i) => {
-              const { title, content } = section
-              return <TitleContent key={i} title={title} content={content} />
+              const { title, content } = section;
+              return <TitleContent key={i} title={title} content={content} />;
             })}
           </div>
         </CollapseSection>
@@ -268,10 +289,10 @@ const DestinationPage = ({ data }) => {
         lost”
       </TravelQuote>
     </Layout>
-  )
-}
+  );
+};
 
-export default DestinationPage
+export default DestinationPage;
 
 export const pageQuery = graphql`
   query ($uri: String!) {
@@ -279,4 +300,4 @@ export const pageQuery = graphql`
       ...DestinationPage
     }
   }
-`
+`;

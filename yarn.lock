@@ -1398,15 +1398,15 @@
     querystring "^0.2.0"
     strip-ansi "^6.0.0"
 
-"@gatsbywpthemes/gatsby-plugin-gwpt-packages@1.5.0":
-  version "1.5.0"
-  resolved "https://npm.cloudsmith.io/gatsbywpthemes/gatsby-themes/@gatsbywpthemes/gatsby-plugin-gwpt-packages/-/1.5.0/gatsby-plugin-gwpt-packages-1.5.0.tgz#c43174f149a6bb2bdcd5b37b4351a1ec34eed85b"
-  integrity sha512-OXtJXPWX4nWC9tP5MFx0ZWg2xtdNK+y6FPbH+DQN6uYmBNqPf8VRno2SBFmoD79obvCKLOrPk1HoeAH83M5QGg==
+"@gatsbywpthemes/gatsby-plugin-gwpt-packages@1.5.1":
+  version "1.5.1"
+  resolved "https://npm.cloudsmith.io/gatsbywpthemes/gatsby-themes/@gatsbywpthemes/gatsby-plugin-gwpt-packages/-/1.5.1/gatsby-plugin-gwpt-packages-1.5.1.tgz#f33c38313a9bcaca4705af8b6f7c855a8e09ea40"
+  integrity sha512-0DAy6pCbeV6PqWDPsuAUzQiGcCr6OAozUDjqDwHPpkLtqMnRzaZDM/lufAVv/wsJhSAOYqdZT2NPBKe7vKFJfg==
   dependencies:
     "@gatsbywpthemes/gatsby-plugin-wordpress-lightbox" "^1.1.1"
     "@gatsbywpthemes/gatsby-plugin-wp-seo" "^1.2.0"
     "@gatsbywpthemes/gatsby-plugin-wpcf7" "^1.1.1"
-    "@gatsbywpthemes/gatsby-theme-blog-data" "^1.5.0"
+    "@gatsbywpthemes/gatsby-theme-blog-data" "^1.5.1"
     "@wordpress/base-styles" "^3.5.2"
     "@wordpress/block-library" "^3.2.15"
     babel-plugin-prismjs "^2.1.0"
@@ -1446,10 +1446,10 @@
     html-react-parser "^1.2.6"
     simple-react-lightbox "3.6.6"
 
-"@gatsbywpthemes/gatsby-plugin-wordpress-parser@^1.1.1":
-  version "1.1.1"
-  resolved "https://npm.cloudsmith.io/gatsbywpthemes/gatsby-themes/@gatsbywpthemes/gatsby-plugin-wordpress-parser/-/1.1.1/gatsby-plugin-wordpress-parser-1.1.1.tgz#440b251fadeea8b7525d1cd7fff447d050b5621d"
-  integrity sha512-sRM6zQkJlpGzysoYKOJUVYJmgxu3ojLStHPpR4UJbTHE9UzgYp/iuWu2nLf1FfkfZ7lg7CT0PIJqdemJ7o2LSg==
+"@gatsbywpthemes/gatsby-plugin-wordpress-parser@^1.1.2":
+  version "1.1.2"
+  resolved "https://npm.cloudsmith.io/gatsbywpthemes/gatsby-themes/@gatsbywpthemes/gatsby-plugin-wordpress-parser/-/1.1.2/gatsby-plugin-wordpress-parser-1.1.2.tgz#fcc7a60a06609e63da6c77f71d4a7abe9a866ce2"
+  integrity sha512-K4XsajAeiC8KxFIYE9xCrz2qax9kWGWSs31yEirR9O8yqThrNNzSH4OjHwafy14Q/sznFp4uaVgBh52KjTPKkw==
   dependencies:
     "@babel/runtime" "^7.14.5"
     gatsby-plugin-sharp "^3.9.0"
@@ -1476,13 +1476,13 @@
     html-react-parser "^1.2.6"
     react-hook-form "^7.11.0"
 
-"@gatsbywpthemes/gatsby-theme-blog-data@^1.5.0":
-  version "1.5.0"
-  resolved "https://npm.cloudsmith.io/gatsbywpthemes/gatsby-themes/@gatsbywpthemes/gatsby-theme-blog-data/-/1.5.0/gatsby-theme-blog-data-1.5.0.tgz#800003ac474a3c994ae268183071a27352841154"
-  integrity sha512-qDCPR2nQ7ryVBnHLul8mm2KfqcoVnuu4M3Q2VwFqtAvjMAKLACIzwr4aGDkiZz0b2+C4hdn4Rp+iaANiKYBrwg==
+"@gatsbywpthemes/gatsby-theme-blog-data@^1.5.1":
+  version "1.5.1"
+  resolved "https://npm.cloudsmith.io/gatsbywpthemes/gatsby-themes/@gatsbywpthemes/gatsby-theme-blog-data/-/1.5.1/gatsby-theme-blog-data-1.5.1.tgz#4644f749303dabe2ee83b5834ca3a0314dab8c1a"
+  integrity sha512-Qi6JMspXBGIc4aUE3nXRpWBJdT2Ir3306aUl1Nl/L58lPmEUuPNFuvQQxmwjjPfMwV90C80PHVVdPTPRZoUTxg==
   dependencies:
     "@apollo/client" "^3.4.11"
-    "@gatsbywpthemes/gatsby-plugin-wordpress-parser" "^1.1.1"
+    "@gatsbywpthemes/gatsby-plugin-wordpress-parser" "^1.1.2"
     gatsby-awesome-pagination "^0.3.6"
     gatsby-plugin-anchor-links "^1.2.1"
     gatsby-plugin-google-gtag "^3.13.0"
@@ -1497,17 +1497,17 @@
     normalize-path "^3.0.0"
     remove-trailing-slash "^0.1.1"
 
-"@googlemaps/js-api-loader@1.12.4":
-  version "1.12.4"
-  resolved "https://registry.yarnpkg.com/@googlemaps/js-api-loader/-/js-api-loader-1.12.4.tgz#9248ed6ca3ab5055158b2ea1d7eabd54251849ab"
-  integrity sha512-CG2ldySYFP+Pf6ymtAp9fUQGltEdOJCv2+LEiQjVZySqSN9QhqVbIFdFDKOu6cirqXXvpVcKYYLsg/K1H8XN0Q==
-  dependencies:
-    fast-deep-equal "^3.1.3"
-
-"@googlemaps/js-api-loader@^1.12.5":
+"@googlemaps/js-api-loader@1.12.5":
   version "1.12.5"
   resolved "https://registry.yarnpkg.com/@googlemaps/js-api-loader/-/js-api-loader-1.12.5.tgz#ed7856fc42bc5539e76eafe0d6c825bf6bc5fc90"
   integrity sha512-3SwYXmNQ3lHbkOwyFGdEJyp1wEAKa2P9xuTOmJAxY9M2N4nPxv7CqoskKX8lsgUbsxzRFYU/DYEtaEQ6ZdLXAQ==
+  dependencies:
+    fast-deep-equal "^3.1.3"
+
+"@googlemaps/js-api-loader@^1.12.6":
+  version "1.12.6"
+  resolved "https://registry.yarnpkg.com/@googlemaps/js-api-loader/-/js-api-loader-1.12.6.tgz#49a740787926f906aaa221e29ffbf9b59a88cf25"
+  integrity sha512-GRc96kQNuBbJbTJ//aQia7vaCgkCF64z+VrJ4pBKrJGBu/Thkd6nEE9B+CeDkih2eXhjxcz6ONNKFqyc+1xCAg==
   dependencies:
     fast-deep-equal "^3.1.3"
 
@@ -2144,26 +2144,26 @@
     tiny-warning "^1.0.3"
     tslib "^2.3.0"
 
-"@react-google-maps/api@^2.4.1":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@react-google-maps/api/-/api-2.4.1.tgz#d64208da882c26eb5712b7b2e7f8f2098de5e893"
-  integrity sha512-uGB9QLlZSQxxB9/iu5cWVpmub97PQOypfDnow1cACU49BTUEB7s7/3/A30IR9WxVx3TP+CbYYuGDmKkwhYTJMg==
+"@react-google-maps/api@^2.5.0":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@react-google-maps/api/-/api-2.5.0.tgz#ddd0b78684e9fcf9475b7b0696c6d0e13fa542b7"
+  integrity sha512-w1EzhzLVYAeznYQhcBc3D1tPH7SfAL11AzaMmCfa9OVLCOu9XIHAvnnN+O/n6a7Rvc1d3d464OkWRmOgcD9lJw==
   dependencies:
-    "@googlemaps/js-api-loader" "1.12.4"
-    "@react-google-maps/infobox" "2.4.0"
-    "@react-google-maps/marker-clusterer" "2.4.0"
+    "@googlemaps/js-api-loader" "1.12.5"
+    "@react-google-maps/infobox" "2.5.0"
+    "@react-google-maps/marker-clusterer" "2.5.0"
     "@types/google.maps" "3.45.6"
     invariant "2.2.4"
 
-"@react-google-maps/infobox@2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@react-google-maps/infobox/-/infobox-2.4.0.tgz#3ef811c3d5d0934c590c68d714c57d63c316b454"
-  integrity sha512-ABxPQLOjT1s5w0DtNvVuLLLtUAW/VtN9rVci/qBo+Hx1wo2QWcGRcmc7+lnheCO8B98A1InHDfxCR6wIMwrcoA==
+"@react-google-maps/infobox@2.5.0":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@react-google-maps/infobox/-/infobox-2.5.0.tgz#ce5a0ae6bcbb2c525e4741649668ea752fa39299"
+  integrity sha512-wKLdOrOtYXklya5iMof/4JQqNm346RLM60y9NhtWyTWD8KPwGxV+yipVUbehMPNlwbzD0RjNNbW3WOva3NV7qA==
 
-"@react-google-maps/marker-clusterer@2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@react-google-maps/marker-clusterer/-/marker-clusterer-2.4.0.tgz#a5567626287b03e37fa16266e19010d48749113f"
-  integrity sha512-bqSyv0zBf4CTwVKQCXhpeSX7d/OGJIRoKMLLTzwk9C5z5Vj7gXJadaDoNHoYs2x8t54d3bR+ODK5uNq70IHX0w==
+"@react-google-maps/marker-clusterer@2.5.0":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@react-google-maps/marker-clusterer/-/marker-clusterer-2.5.0.tgz#dde9c7e790f1cb96bca2031aaef95648b24d5f72"
+  integrity sha512-Sn8iTn5AHc4MDMgx5tjYClBObmPgrf5OQARs10c3Dh6oDsI2qXvO3Spair2Mv/hhBZRi+9DWEGffAeqykTWUiA==
 
 "@rematch/core@^1.3.0":
   version "1.4.0"
@@ -7252,10 +7252,10 @@ gatsby-background-image@^1.5.3:
     short-uuid "^4.1.0"
     sort-media-queries "^0.2.2"
 
-gatsby-cli@^3.14.1:
-  version "3.14.1"
-  resolved "https://registry.yarnpkg.com/gatsby-cli/-/gatsby-cli-3.14.1.tgz#508515760d708b36cd8491f30f062cc451dd2252"
-  integrity sha512-0k8fJU2oE35U1D3sj4qFHMmKj32LJRmXeUSsDtJWdvNZ8+xhBNyIh+YGcqfqbCNicLXiPyfzvt6UwBIbOOTCRQ==
+gatsby-cli@^3.14.2:
+  version "3.14.2"
+  resolved "https://registry.yarnpkg.com/gatsby-cli/-/gatsby-cli-3.14.2.tgz#1d4ebeb199c3a910d80abc13f458888c8cd7f2f8"
+  integrity sha512-p3E6XyzwVPGpHd0AYVkvnPkZoEElWLWjAG10173k5aGtpoM6dIuJuSlgBPrjeev9PQ7y3oCoCO3zBjnGdB1/WQ==
   dependencies:
     "@babel/code-frame" "^7.14.0"
     "@babel/runtime" "^7.15.4"
@@ -7841,10 +7841,10 @@ gatsby-worker@^0.5.0:
     "@babel/core" "^7.15.5"
     "@babel/runtime" "^7.15.4"
 
-gatsby@^3.14.2:
-  version "3.14.2"
-  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-3.14.2.tgz#684a49ed9521abe5e72ff36b1fc3a4ed96fee0fb"
-  integrity sha512-1cjyfGkQ9zXtou+RhtYBprv8nYXTPuRIs4IFzBP373vBD1CdwabAC/R8kjqHfdvyNrorzg3sqRjLjActtfU8NA==
+gatsby@^3.14.3:
+  version "3.14.3"
+  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-3.14.3.tgz#62bc020d0997f4b30e419abe644f60483f99e8b5"
+  integrity sha512-B6NmmIvGGVNktky0YGugxMJlZAbKEzGMMBA8ojbaDhfEzfNXxsyHYd0aHKL0fNwPEqMKUsllaACdXrw6CWRk2g==
   dependencies:
     "@babel/code-frame" "^7.14.0"
     "@babel/core" "^7.15.5"
@@ -7913,7 +7913,7 @@ gatsby@^3.14.2:
     find-cache-dir "^3.3.1"
     fs-exists-cached "1.0.0"
     fs-extra "^10.0.0"
-    gatsby-cli "^3.14.1"
+    gatsby-cli "^3.14.2"
     gatsby-core-utils "^2.14.0"
     gatsby-graphiql-explorer "^1.14.0"
     gatsby-legacy-polyfills "^1.14.0"
@@ -7952,7 +7952,6 @@ gatsby@^3.14.2:
     opentracing "^0.14.4"
     p-defer "^3.0.0"
     parseurl "^1.3.3"
-    path-to-regexp "0.1.7"
     physical-cpu-count "^2.0.0"
     platform "^1.3.6"
     postcss "^8.3.5"
@@ -13849,10 +13848,10 @@ tailwindcss-debug-screens@^2.0.0:
   resolved "https://registry.yarnpkg.com/tailwindcss-debug-screens/-/tailwindcss-debug-screens-2.1.0.tgz#fff6b6d84029a8dc7b507fb02f4264582c1123b2"
   integrity sha512-58mnybJxnGQG8DyLnbovjNL9dpHpffrHSPm6PsELOX3KSvsZF3xwZO3GYtQhLvSryFGLjS7Ntfdjw34Efck/MQ==
 
-tailwindcss@^2.2.16:
-  version "2.2.16"
-  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-2.2.16.tgz#32f81bdf1758b639cb83b9d30bf7cbecdda49e5e"
-  integrity sha512-EireCtpQyyJ4Xz8NYzHafBoy4baCOO96flM0+HgtsFcIQ9KFy/YBK3GEtlnD+rXen0e4xm8t3WiUcKBJmN6yjg==
+tailwindcss@^2.2.17:
+  version "2.2.17"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-2.2.17.tgz#c6332731f9ff1b6628ff589c95c38685347775e3"
+  integrity sha512-WgRpn+Pxn7eWqlruxnxEbL9ByVRWi3iC10z4b6dW0zSdnkPVC4hPMSWLQkkW8GCyBIv/vbJ0bxIi9dVrl4CfoA==
   dependencies:
     arg "^5.0.1"
     bytes "^3.0.0"
@@ -14244,10 +14243,10 @@ turbo-combine-reducers@^1.0.2:
   resolved "https://registry.yarnpkg.com/turbo-combine-reducers/-/turbo-combine-reducers-1.0.2.tgz#aa3650b3c63daa6804d35a4042014f6d31df1e47"
   integrity sha512-gHbdMZlA6Ym6Ur5pSH/UWrNQMIM9IqTH6SoL1DbHpqEdQ8i+cFunSmSlFykPt0eGQwZ4d/XTHOl74H0/kFBVWw==
 
-twin.macro@^2.6.2:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/twin.macro/-/twin.macro-2.7.0.tgz#2107e79339e24041de1f72e0f045ae321041f007"
-  integrity sha512-7RictvVsITP3Odm7zd5EcZ3i8+deBuDCZBAwnm/H5MSixaKESjvEFQaHA/T8nkHb6vKcp/2f/6+txRzXLj//gg==
+twin.macro@^2.8.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/twin.macro/-/twin.macro-2.8.0.tgz#eabd894cb00cc9251856ba093a057199be922bf1"
+  integrity sha512-iORyfVXFlWcVebDF3i0iQS9Ek+9ybsiotTjDBPFg1iG4gWJe4sbudd8iC0gysSep/OWVBcKZ6dKzo3kmVKMqXQ==
   dependencies:
     "@babel/parser" "^7.12.5"
     "@babel/template" "^7.14.5"

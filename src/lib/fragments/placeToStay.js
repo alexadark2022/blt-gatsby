@@ -56,6 +56,9 @@ export const placeTostayFragments = graphql`
     title
     uri
     # viewCount
+    seo {
+      ...SeoPage
+    }
     featuredImage {
       node {
         ...ListingImage

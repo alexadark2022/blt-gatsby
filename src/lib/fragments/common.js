@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 
 export const commonFragments = graphql`
   fragment LargeImage on WpMediaItem {
@@ -146,4 +146,45 @@ export const commonFragments = graphql`
     id
     cssClasses
   }
-`
+  fragment SeoPage on WpPostTypeSEO {
+    metaDesc
+    metaKeywords
+    opengraphAuthor
+    opengraphDescription
+    schema {
+      articleType
+      pageType
+      raw
+    }
+    opengraphType
+    opengraphTitle
+    opengraphModifiedTime
+    opengraphUrl
+    twitterDescription
+    twitterTitle
+    cornerstone
+    title
+    opengraphImage {
+      localFile {
+        childImageSharp {
+          original {
+            src
+            height
+            width
+          }
+        }
+      }
+    }
+    twitterImage {
+      localFile {
+        childImageSharp {
+          original {
+            src
+            height
+            width
+          }
+        }
+      }
+    }
+  }
+`;
