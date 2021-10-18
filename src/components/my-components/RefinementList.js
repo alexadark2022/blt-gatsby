@@ -5,25 +5,33 @@ import { WithCollapse } from "../ui-components/WithCollapse";
 import { FaChevronDown } from "react-icons/fa";
 
 const RefinementList = (props) => {
-  const { values, title = "CONTINENT", className } = props;
+  const {
+    values,
+    title = "CONTINENT",
+    className,
+    updateFilter,
+    selectedFilters,
+    existInData,
+  } = props;
   const [open, setOpen] = useState(false);
   const [arraySize, setArraySize] = useState(4);
   const [openFilterSet, setOpenFilterSet] = useState(false);
   if (!values) {
     return null;
   }
-
-  const filteredValues = values.sort(function (a, b) {
-    var nameA = a.slug.toUpperCase();
-    var nameB = b.slug.toUpperCase();
-    if (nameA < nameB) {
-      return -1;
-    }
-    if (nameA > nameB) {
-      return 1;
-    }
-    return 0;
-  });
+  const filteredValues = values
+    .filter((item) => item?.name?.length > 2)
+    .sort(function (a, b) {
+      var nameA = a.name.toUpperCase();
+      var nameB = b.name.toUpperCase();
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
   return (
     <div className={className}>
       <div className="py-4 border-b border-grey2">
@@ -54,31 +62,42 @@ const RefinementList = (props) => {
                 return (
                   <li
                     className={clsx("item", {
-                      "opacity-50 cursor-not-allowed ": false,
+                      "opacity-50 cursor-not-allowed ":
+                        !existInData?.includes(staticItem.name) ?? false,
                     })}
                     key={staticItem.name}
                   >
                     <label
-                      className={clsx(
-                        "input-item leading-tight text-grey4 undefined",
-                        {
-                          "cursor-not-allowed ": false,
-                        }
-                      )}
+                      className={clsx("input-item leading-tight text-grey4", {
+                        "cursor-not-allowed ": false,
+                      })}
                     >
                       <input
                         type="checkbox"
                         value={staticItem.name}
-                        checked={false}
+                        checked={
+                          selectedFilters?.includes(staticItem.name) ?? false
+                        }
                         className={clsx(
                           "input-item border-2 rounded-none text-gold form-checkbox border-grey2 w-5 h-5 mr-4",
                           {
-                            "cursor-not-allowed ": false,
+                            "cursor-not-allowed ":
+                              !existInData?.includes(staticItem.name) ?? false,
                           }
                         )}
-                        disabled={false}
+                        disabled={
+                          !existInData?.includes(staticItem.name) ?? false
+                        }
                         onChange={(event) => {
                           const value = event.currentTarget.value;
+                          updateFilter(value);
+                          // setAllFilters((prev) => {
+                          //   const itemArray = prev?.className ?? [];
+                          //   return {
+                          //     ...prev,
+                          //     prev.className: [...itemArray, value],
+                          //   };
+                          // });
                           console.log(value);
                         }}
                       />

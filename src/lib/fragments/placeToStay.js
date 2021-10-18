@@ -19,6 +19,7 @@ export const placeTostayFragments = graphql`
     }
     commonDataAttributes {
       standfirst
+      continent
       country {
         name
         slug
@@ -28,7 +29,6 @@ export const placeTostayFragments = graphql`
       especiallyFor
       setting
       theme
-      type
       website
       starRating
       region

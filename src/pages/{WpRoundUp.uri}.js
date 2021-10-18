@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Layout, Section, SocialShare, TravelQuote } from "../components";
 import PageLayout from "../components/layout/PageLayout";
-import { SidebarFilters } from "../components/sidebar/SidebarFilters";
 import clsx from "clsx";
 import { window } from "browser-monads";
 import { About } from "../components/layout/About";
@@ -12,6 +11,7 @@ import { ViewSwitcher } from "../components/ui-components/ViewSwitcher";
 import { graphql } from "gatsby";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import PlaceToStayFilter from "../components/my-components/PlaceToStayFilter";
+import useStore from "./../store";
 const RoundupPage = ({ data }) => {
   console.log("data", data);
   const { wpRoundUp: roundUp } = data || {};
@@ -26,7 +26,6 @@ const RoundupPage = ({ data }) => {
   const url = window.location.href;
 
   const {
-    id,
     title,
     commonDataAttributes,
     customDataAttributes,
@@ -38,6 +37,49 @@ const RoundupPage = ({ data }) => {
   const { links } = customDataAttributes || {};
   const breadcrumbsTerms = [{ name: "home", link: "/" }, { name: "Round-ups" }];
   const [openFilters, setOpenFilters] = useState(false);
+
+  const updateItemExist = useStore((state) => state.updateItemExist);
+  const settingFilter = useStore((state) => state.settingFilter);
+  const continentFilter = useStore((state) => state.continentFilter);
+  const [filteredLinks, setFilteredLinks] = useState(links);
+  useEffect(() => {
+    const filteredSettings = links.filter((item) => {
+      const settings = item.link[0].customDataAttributes.setting;
+      const haveSettings = settings.some((item) =>
+        settingFilter.length ? settingFilter?.includes(item) ?? true : true
+      );
+      if (haveSettings) {
+        return true;
+      }
+    });
+    const filteredContinents = links.filter((item) => {
+      const continents = item.link[0].commonDataAttributes.continent;
+      //console.log(continents);
+      const haveContinents = continents.some((item) =>
+        continentFilter.length ? continentFilter?.includes(item) ?? true : true
+      );
+      if (haveContinents) {
+        return true;
+      }
+    });
+    const nArray = [...filteredSettings, ...filteredContinents];
+    setFilteredLinks([...new Set(nArray)]);
+  }, [settingFilter, continentFilter]);
+  console.log({ links, filteredLinks });
+  useEffect(() => {
+    updateItemExist({
+      continent: [
+        ...new Set(
+          links.map(({ link }) => link[0].commonDataAttributes.continent[0])
+        ),
+      ],
+      setting: [
+        ...new Set(
+          links.map(({ link }) => link[0].customDataAttributes.setting).flat()
+        ),
+      ],
+    });
+  }, []);
   return (
     <Layout page="round-up">
       <Breadcrumbs terms={breadcrumbsTerms} />
@@ -77,7 +119,7 @@ const RoundupPage = ({ data }) => {
         </div>
         {view === "list" && (
           <Section className={clsx("p-5 md:p-8  mb-base2")}>
-            {links?.map((item, i) => {
+            {filteredLinks?.map((item, i) => {
               const type = item.link[0].__typename;
 
               return (
@@ -103,7 +145,9 @@ const RoundupPage = ({ data }) => {
             })}
           </Section>
         )}
-        {view === "grid" && <CardsGrid cards={links} className="mb-base2" />}
+        {view === "grid" && (
+          <CardsGrid cards={filteredLinks} className="mb-base2" />
+        )}
         {view === "map" && "map view here"}
       </PageLayout>
       {/* Quote */}

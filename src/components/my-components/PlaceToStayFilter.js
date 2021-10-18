@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import RefinementList from "./RefinementList";
 import { IoCloseSharp as Close } from "react-icons/io5";
 import { Typo, WithCollapse, Button } from "../ui-components";
 import clsx from "clsx";
+import useStore from "./../../store";
 
 export default function PlaceToStayFilter({ openFilters, setOpenFilters }) {
   const PTSFilters = useStaticQuery(graphql`
@@ -11,72 +12,70 @@ export default function PlaceToStayFilter({ openFilters, setOpenFilters }) {
       allWpRecommendationType {
         nodes {
           name
-          slug
         }
       }
       allWpContinent {
         nodes {
           name
-          slug
         }
       }
       allWpSetting {
         nodes {
           name
-          slug
         }
       }
       allWpFactoryTheme {
         nodes {
           name
-          slug
         }
       }
       allWpBestTime {
         nodes {
           name
-          slug
         }
       }
       allWpEspeciallyFor {
         nodes {
           name
-          slug
         }
       }
       allWpStandard {
         nodes {
           name
-          slug
         }
       }
       allWpAccommodationType {
         nodes {
           name
-          slug
         }
       }
       allWpRoomType {
         nodes {
           name
-          slug
         }
       }
       allWpHotelFacility {
         nodes {
           name
-          slug
         }
       }
       allWpHotelBrand {
         nodes {
           name
-          slug
         }
       }
     }
   `);
-  console.log(PTSFilters);
+  const itemExist = useStore((state) => state.itemExist);
+  const continentFilter = useStore((state) => state.continentFilter);
+  const updateContinentFilter = useStore(
+    (state) => state.updateContinentFilter
+  );
+  const settingFilter = useStore((state) => state.settingFilter);
+  const updateSettingFilter = useStore((state) => state.updateSettingFilter);
+
+  console.log({ continentFilter, settingFilter });
+  console.log(itemExist);
   return (
     <>
       <WithCollapse
@@ -110,11 +109,17 @@ export default function PlaceToStayFilter({ openFilters, setOpenFilters }) {
               values={PTSFilters?.allWpContinent?.nodes}
               title="CONTINENT"
               className="continents"
+              updateFilter={updateContinentFilter}
+              selectedFilters={continentFilter}
+              existInData={itemExist.continent}
             />
             <RefinementList
               values={PTSFilters?.allWpSetting?.nodes}
               title="SETTING"
               className="settings"
+              updateFilter={updateSettingFilter}
+              selectedFilters={settingFilter}
+              existInData={itemExist.setting}
             />
             <RefinementList
               values={PTSFilters?.allWpFactoryTheme?.nodes}

@@ -50,7 +50,8 @@
     "sharp": "^0.29.1",
     "tailwindcss": "^2.2.16",
     "tailwindcss-debug-screens": "^2.0.0",
-    "twin.macro": "^2.6.2"
+    "twin.macro": "^2.6.2",
+    "zustand": "^3.5.13"
   },
   "devDependencies": {
     "babel-preset-gatsby": "^1.14.0",
