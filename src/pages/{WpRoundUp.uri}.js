@@ -43,29 +43,33 @@ const RoundupPage = ({ data }) => {
   const continentFilter = useStore((state) => state.continentFilter);
   const [filteredLinks, setFilteredLinks] = useState(links);
   useEffect(() => {
-    const filteredSettings = links.filter((item) => {
-      const settings = item.link[0].customDataAttributes.setting;
-      const haveSettings = settings.some((item) =>
-        settingFilter.length ? settingFilter?.includes(item) ?? true : true
-      );
-      if (haveSettings) {
-        return true;
-      }
-    });
-    const filteredContinents = links.filter((item) => {
-      const continents = item.link[0].commonDataAttributes.continent;
-      //console.log(continents);
-      const haveContinents = continents.some((item) =>
-        continentFilter.length ? continentFilter?.includes(item) ?? true : true
-      );
-      if (haveContinents) {
-        return true;
-      }
-    });
-    const nArray = [...filteredSettings, ...filteredContinents];
-    setFilteredLinks([...new Set(nArray)]);
+    let resArr = links;
+    if (settingFilter.length) {
+      resArr = resArr.filter((item) => {
+        const settings = item.link[0].customDataAttributes.setting;
+        const haveSettings = settings.some((item) =>
+          settingFilter.length ? settingFilter?.includes(item) ?? true : true
+        );
+        if (haveSettings) {
+          return true;
+        }
+      });
+    } else if (continentFilter.length) {
+      resArr = resArr.filter((item) => {
+        const continents = item.link[0].commonDataAttributes.continent;
+        const haveContinents = continents.some((item) =>
+          continentFilter.length
+            ? continentFilter?.includes(item) ?? true
+            : true
+        );
+        if (haveContinents) {
+          return true;
+        }
+      });
+    }
+    setFilteredLinks([...new Set(resArr)]);
   }, [settingFilter, continentFilter]);
-  console.log({ links, filteredLinks });
+
   useEffect(() => {
     updateItemExist({
       continent: [

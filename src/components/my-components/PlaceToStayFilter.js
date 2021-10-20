@@ -73,9 +73,6 @@ export default function PlaceToStayFilter({ openFilters, setOpenFilters }) {
   );
   const settingFilter = useStore((state) => state.settingFilter);
   const updateSettingFilter = useStore((state) => state.updateSettingFilter);
-
-  console.log({ continentFilter, settingFilter });
-  console.log(itemExist);
   return (
     <>
       <WithCollapse
