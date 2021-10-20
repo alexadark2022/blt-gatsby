@@ -125,6 +125,7 @@ export const Listing = ({
               minAge={minAge}
               priceFrom={priceFrom}
               whenIsIt={whenIsIt}
+              duration={duration}
             />
           </div>
         </div>

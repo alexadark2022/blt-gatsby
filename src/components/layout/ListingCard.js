@@ -135,6 +135,7 @@ export const ListingCard = ({
                 minAge={minAge}
                 priceFrom={priceFrom}
                 whenIsIt={whenIsIt}
+                duration={duration}
                 card
                 className="justify-center"
               />

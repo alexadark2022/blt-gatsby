@@ -17,12 +17,12 @@ export const ListingBottomInfo = ({
           <StarIcons stars={parseInt(starRating)} small card={card} />
         </div>
       ) : (
-        <div className={`flex mt-4 text-grey4 md:hidden ${className ? className : ""}`}>
+        <div className={`flex mt-4 text-grey4 ${card && 'md:hidden'} ${className ? className : ""}`}>
           {minAge !== undefined &&
             `Ages: ${minAge === null ? "Any " : minAge + "+ "} ${
               priceFrom
                 ? ` |  Price from: ${
-                    priceFrom === "Varies" ? priceFrom : "£" + priceFrom
+                    priceFrom === "Varies" ? priceFrom : priceFrom==='0' || !priceFrom || priceFrom.toLowerCase() === 'free' ? "Free" : "£" + priceFrom
                   }`
                 : duration
                 ? ` | Duration: ${duration}`

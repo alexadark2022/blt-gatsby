@@ -82,7 +82,7 @@ export const CollapseCards = ({
               </div>
             </Collapse>
             <div
-              className={`flex justify-center w-full absolute  ${
+              className={`flex justify-center w-full absolute left-0  ${
                 open ? "-bottom-10" : "-bottom-3"
               }`}
             >
