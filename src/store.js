@@ -2,27 +2,33 @@ import create from "zustand";
 
 const useStore = create((set) => ({
   itemExist: {},
-  continentFilter: [],
-  settingFilter: [],
-  updateSettingFilter: (value) => {
-    set((state) => {
-      if (state.settingFilter.includes(value)) {
-        return {
-          settingFilter: state.settingFilter.filter((f) => f !== value),
-        };
-      } else {
-        return { settingFilter: [...state.settingFilter, value] };
-      }
-    });
+  allFilters: {
+    continentFilter: [],
+    settingFilter: [],
+    themeFilter: [],
+    bestTimeFilter: [],
+    espForFilter: [],
+    recTypeFilter: [],
   },
-  updateContinentFilter: (value) => {
+  updateAllFilter: (name, value) => {
     set((state) => {
-      if (state.continentFilter.includes(value)) {
+      if (state.allFilters[name].includes(value)) {
+        let some = state.allFilters[name].filter((f) => f !== value);
+        let newF = {
+          ...state.allFilters,
+          [name]: some,
+        };
         return {
-          continentFilter: state.continentFilter.filter((f) => f !== value),
+          allFilters: newF,
         };
       } else {
-        return { continentFilter: [...state.continentFilter, value] };
+        let newF = {
+          ...state.allFilters,
+          [name]: [...state.allFilters[name], value],
+        };
+        return {
+          allFilters: newF,
+        };
       }
     });
   },

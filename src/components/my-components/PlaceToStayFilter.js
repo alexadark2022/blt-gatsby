@@ -67,12 +67,23 @@ export default function PlaceToStayFilter({ openFilters, setOpenFilters }) {
     }
   `);
   const itemExist = useStore((state) => state.itemExist);
-  const continentFilter = useStore((state) => state.continentFilter);
-  const updateContinentFilter = useStore(
-    (state) => state.updateContinentFilter
-  );
-  const settingFilter = useStore((state) => state.settingFilter);
-  const updateSettingFilter = useStore((state) => state.updateSettingFilter);
+  const {
+    continentFilter,
+    settingFilter,
+    themeFilter,
+    bestTimeFilter,
+    espForFilter,
+    recTypeFilter,
+  } = useStore((state) => state.allFilters);
+  const updateAllFilter = useStore((state) => state.updateAllFilter);
+  console.log({
+    continentFilter,
+    settingFilter,
+    themeFilter,
+    bestTimeFilter,
+    espForFilter,
+    recTypeFilter,
+  });
   return (
     <>
       <WithCollapse
@@ -106,37 +117,51 @@ export default function PlaceToStayFilter({ openFilters, setOpenFilters }) {
               values={PTSFilters?.allWpContinent?.nodes}
               title="CONTINENT"
               className="continents"
-              updateFilter={updateContinentFilter}
+              updateFilter={(value) =>
+                updateAllFilter("continentFilter", value)
+              }
               selectedFilters={continentFilter}
-              existInData={itemExist.continent}
+              existInData={itemExist?.continent ?? []}
             />
             <RefinementList
               values={PTSFilters?.allWpSetting?.nodes}
               title="SETTING"
               className="settings"
-              updateFilter={updateSettingFilter}
+              updateFilter={(value) => updateAllFilter("settingFilter", value)}
               selectedFilters={settingFilter}
-              existInData={itemExist.setting}
+              existInData={itemExist?.setting ?? []}
             />
             <RefinementList
               values={PTSFilters?.allWpFactoryTheme?.nodes}
               title="THEME"
               className="theme"
+              updateFilter={(value) => updateAllFilter("themeFilter", value)}
+              selectedFilters={themeFilter}
+              existInData={itemExist?.theme ?? []}
             />
             <RefinementList
               values={PTSFilters?.allWpBestTime?.nodes}
               title="BEST TIME"
               className="besttime"
+              updateFilter={(value) => updateAllFilter("bestTimeFilter", value)}
+              selectedFilters={bestTimeFilter}
+              existInData={itemExist?.bestTime ?? []}
             />
             <RefinementList
               values={PTSFilters?.allWpEspeciallyFor?.nodes}
               title="ESPECIALLY FOR"
               className="esp4"
+              updateFilter={(value) => updateAllFilter("espForFilter", value)}
+              selectedFilters={espForFilter}
+              existInData={itemExist?.espFor ?? []}
             />
             <RefinementList
               values={PTSFilters?.allWpRecommendationType?.nodes}
               title="RECOMMENDATION TYPE"
               className="recomendation-type"
+              updateFilter={(value) => updateAllFilter("recTypeFilter", value)}
+              selectedFilters={recTypeFilter}
+              existInData={itemExist?.recType ?? []}
             />
           </div>
         </div>

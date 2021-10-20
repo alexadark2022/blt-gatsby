@@ -37,11 +37,25 @@ const RoundupPage = ({ data }) => {
   const { links } = customDataAttributes || {};
   const breadcrumbsTerms = [{ name: "home", link: "/" }, { name: "Round-ups" }];
   const [openFilters, setOpenFilters] = useState(false);
+  const [filteredLinks, setFilteredLinks] = useState(links);
 
   const updateItemExist = useStore((state) => state.updateItemExist);
-  const settingFilter = useStore((state) => state.settingFilter);
-  const continentFilter = useStore((state) => state.continentFilter);
-  const [filteredLinks, setFilteredLinks] = useState(links);
+  // {
+  //   continent,
+  //   setting,
+  //   theme,
+  //   bestTime,
+  //   espFor,
+  //   recType,
+  // }
+  const {
+    continentFilter,
+    settingFilter,
+    themeFilter,
+    bestTimeFilter,
+    espForFilter,
+    recTypeFilter,
+  } = useStore((state) => state.allFilters);
   useEffect(() => {
     let resArr = links;
     if (settingFilter.length) {
@@ -54,7 +68,8 @@ const RoundupPage = ({ data }) => {
           return true;
         }
       });
-    } else if (continentFilter.length) {
+    }
+    if (continentFilter.length) {
       resArr = resArr.filter((item) => {
         const continents = item.link[0].commonDataAttributes.continent;
         const haveContinents = continents.some((item) =>
@@ -67,14 +82,44 @@ const RoundupPage = ({ data }) => {
         }
       });
     }
+    if (themeFilter.length) {
+      resArr = resArr.filter((item) => {
+        const themes = item.link[0].customDataAttributes.theme;
+        const haveTheme = themes.some((item) =>
+          themeFilter.length ? themeFilter?.includes(item) ?? true : true
+        );
+        if (haveTheme) {
+          return true;
+        }
+      });
+    }
+    if (espForFilter.length) {
+      resArr = resArr.filter((item) => {
+        const espFors = item.link[0].customDataAttributes.especiallyFor;
+        const haveEspFor =
+          espFors?.some((item) =>
+            espForFilter.length ? espForFilter?.includes(item) ?? true : true
+          ) ?? false;
+        if (haveEspFor) {
+          return true;
+        }
+      });
+    }
     setFilteredLinks([...new Set(resArr)]);
-  }, [settingFilter, continentFilter]);
+  }, [
+    continentFilter,
+    settingFilter,
+    themeFilter,
+    bestTimeFilter,
+    espForFilter,
+    recTypeFilter,
+  ]);
 
   useEffect(() => {
     updateItemExist({
       continent: [
         ...new Set(
-          links.map(({ link }) => link[0].commonDataAttributes.continent[0])
+          links.map(({ link }) => link[0].commonDataAttributes.continent).flat()
         ),
       ],
       setting: [
@@ -82,8 +127,21 @@ const RoundupPage = ({ data }) => {
           links.map(({ link }) => link[0].customDataAttributes.setting).flat()
         ),
       ],
+      theme: [
+        ...new Set(
+          links.map(({ link }) => link[0].customDataAttributes.theme).flat()
+        ),
+      ],
+      espFor: [
+        ...new Set(
+          links
+            .map(({ link }) => link[0].customDataAttributes.especiallyFor)
+            .flat()
+        ),
+      ],
     });
   }, []);
+  console.log(filteredLinks);
   return (
     <Layout page="round-up">
       <Breadcrumbs terms={breadcrumbsTerms} />
