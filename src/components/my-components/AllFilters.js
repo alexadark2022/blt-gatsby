@@ -26,9 +26,9 @@ export default function AllFilters({ facets, mainState }) {
               ]),
             })}
           />
-          {/* <CustomRefinementList
-            values={facets["settings"]}
-            attribute="settings"
+          <CustomRefinementList
+            values={facets["customDataAttributes.setting"]}
+            attribute="customDataAttributes.setting"
             title="SETTING"
             className={clsx({
               hidden: shouldVisible([
@@ -42,8 +42,8 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <CustomRefinementList
-            values={facets.factoryThemes}
-            attribute="factoryThemes"
+            values={facets["customDataAttributes.theme"]}
+            attribute="customDataAttributes.theme"
             title="THEME"
             className={clsx({
               hidden: shouldVisible([
@@ -56,6 +56,8 @@ export default function AllFilters({ facets, mainState }) {
               ]),
             })}
           />
+          {/* 
+
 
           <CustomRefinementList
             values={facets.whenAvailables}

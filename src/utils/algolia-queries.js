@@ -346,7 +346,7 @@ const queries = [
         };
       });
     },
-    indexName: `Alldata`,
+    indexName: `BucketList`,
   },
   {
     query: allWpRoundUpQuery,
@@ -360,7 +360,7 @@ const queries = [
         };
       });
     },
-    indexName: `Alldata`,
+    indexName: `BucketList`,
   },
   {
     query: allWpPlaceToStayQuery,
@@ -376,7 +376,7 @@ const queries = [
         }
       );
     },
-    indexName: `Alldata`,
+    indexName: `BucketList`,
   },
   {
     query: allWpDestinationQuery,
@@ -392,7 +392,7 @@ const queries = [
         }
       );
     },
-    indexName: `Alldata`,
+    indexName: `BucketList`,
   },
   {
     query: allWpExperienceQuery,
@@ -406,7 +406,7 @@ const queries = [
         };
       });
     },
-    indexName: `Alldata`,
+    indexName: `BucketList`,
   },
 ];
 // console.log(queries);

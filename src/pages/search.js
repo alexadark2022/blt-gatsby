@@ -18,13 +18,13 @@ import { IoCloseSharp as Close } from "react-icons/io5";
 import { Typo, Button, WithCollapse } from "../components/ui-components";
 import isEmptyObject from "./../utils/isEmptyObject";
 import { Breadcrumbs } from "../components/Breadcrumbs";
-
-const indexName = "Alldata";
+import Loader from "react-loader-spinner";
+const indexName = "BucketList";
 const searchClient = algoliasearch(
   "E4TS2J6OFT",
   "8878e427a5a3d373a179bab058ca2641"
 );
-const index = searchClient.initIndex("Alldata");
+const index = searchClient.initIndex("BucketList");
 const breadcrumbsTerms = [{ name: "home", link: "/" }, { name: "search" }];
 
 const SearchPage = () => {
@@ -64,33 +64,38 @@ const SearchPage = () => {
       <InstantSearch searchClient={searchClient} indexName={indexName}>
         <Configure hitsPerPage={12} />
         <SearchBox />
-        <div
-          className={clsx(
-            "container max-w-big",
-            "flex flex-col lg:flex-row ",
-            "px-5 md:px-0"
-          )}
-        >
+        {isEmptyObject(facets()) ? (
+          <div className="flex items-center justify-center h-[400px]">
+            <Loader type="Rings" color="#d3b27d" width={150} height={150} />
+          </div>
+        ) : (
           <div
             className={clsx(
-              "w-full lg:w-2/3 xl:w-[960px]",
-              "order-2 lg:order-1",
-              "mr-0 lg:mr-7 lg:pl-5 lg:px-0"
+              "container max-w-big",
+              "flex flex-col lg:flex-row ",
+              "px-5 md:px-0"
             )}
           >
-            <StaticRefinementList
-              attribute="nodeType"
-              setMainState={setMainState}
-              values={[
-                { label: "Experience", value: "Experience" },
-                { label: "PlaceToStay", value: "PlaceToStay" },
-                { label: "Destination", value: "Destination" },
-                { label: "RoundUp", value: "RoundUp" },
-                { label: "Itinerary", value: "Itinerary" },
-              ]}
-            />
-            <div className="flex items-center justify-between mt-4 mb-4 space-x-2">
-              {/* <Select
+            <div
+              className={clsx(
+                "w-full lg:w-2/3 xl:w-[960px]",
+                "order-2 lg:order-1",
+                "mr-0 lg:mr-7 lg:pl-5 lg:px-0"
+              )}
+            >
+              <StaticRefinementList
+                attribute="nodeType"
+                setMainState={setMainState}
+                values={[
+                  { label: "Experience", value: "Experience" },
+                  { label: "PlaceToStay", value: "PlaceToStay" },
+                  { label: "Destination", value: "Destination" },
+                  { label: "RoundUp", value: "RoundUp" },
+                  { label: "Itinerary", value: "Itinerary" },
+                ]}
+              />
+              <div className="flex items-center justify-between mt-4 mb-4 space-x-2">
+                {/* <Select
             options={[
               'Recently added',
               'Most Popular',
@@ -112,34 +117,30 @@ const SearchPage = () => {
           >
             Filters
           </Button> */}
-              {/* <SortBy
-                defaultRefinement="Alldata"
+                {/* <SortBy
+                defaultRefinement="BucketList"
                 items={[
-                  { value: "Alldata", label: "Featured" },
+                  { value: "BucketList", label: "Featured" },
                   { value: "date_timestamp", label: "Price asc." },
                 ]}
               />
               <MenuSelect attribute="nodeType" /> */}
-              <Button
-                small
-                className={`w-[125px] lg:!hidden ${openFilters && "!hidden"}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setOpenFilters(true);
-                }}
-              >
-                Filters
-              </Button>
-              <div className="justify-end hidden w-full md:flex">
-                <ViewSwitcher setView={setView} />
+                <Button
+                  small
+                  className={`w-[125px] lg:!hidden ${openFilters && "!hidden"}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setOpenFilters(true);
+                  }}
+                >
+                  Filters
+                </Button>
+                <div className="justify-end hidden w-full md:flex">
+                  <ViewSwitcher setView={setView} />
+                </div>
               </div>
+              <SearchHit view={view} />
             </div>
-            <SearchHit view={view} />
-          </div>
-          <WithCollapse
-            isOpen={openFilters}
-            className="duration-500 ease-in-out transition-height"
-          >
             <div
               className={clsx(
                 "w-full lg:w-1/3",
@@ -147,33 +148,38 @@ const SearchPage = () => {
                 "bg-white "
               )}
             >
-              <div className="lg:max-w-[300px] relative px-5 pt-3 pb-10 mb-10 border border-grey2">
-                <div
-                  className="absolute flex items-center justify-center border-2 cursor-pointer top-4 right-4 w-base2 h-base2 border-lightBlue lg:hidden"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setOpenFilters(false);
-                  }}
-                >
-                  <Close className="absolute text-xl text-lightBlue " />
+              <WithCollapse
+                isOpen={openFilters}
+                className="duration-500 ease-in-out transition-height"
+              >
+                <div className="lg:max-w-[300px] relative px-5 pt-3 pb-10 mb-10 border border-grey2">
+                  <div
+                    className="absolute flex items-center justify-center border-2 cursor-pointer top-4 right-4 w-base2 h-base2 border-lightBlue lg:hidden"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setOpenFilters(false);
+                    }}
+                  >
+                    <Close className="absolute text-xl text-lightBlue " />
+                  </div>
+                  <Typo
+                    as="h3"
+                    h3
+                    className="p-2 mb-2 text-center border-b border-grey2"
+                  >
+                    Filter your results
+                  </Typo>
+                  <div className="flex justify-center mb-3">
+                    <ClearAllFilters />
+                  </div>
+                  {!isEmptyObject(facets()) && (
+                    <AllFilters mainState={mainState} facets={facets()} />
+                  )}
                 </div>
-                <Typo
-                  as="h3"
-                  h3
-                  className="p-2 mb-2 text-center border-b border-grey2"
-                >
-                  Filter your results
-                </Typo>
-                <div className="flex justify-center mb-3">
-                  <ClearAllFilters />
-                </div>
-                {!isEmptyObject(facets()) && (
-                  <AllFilters mainState={mainState} facets={facets()} />
-                )}
-              </div>
+              </WithCollapse>
             </div>
-          </WithCollapse>
-        </div>
+          </div>
+        )}
         {/* old */}
       </InstantSearch>
       {/* Quote */}
