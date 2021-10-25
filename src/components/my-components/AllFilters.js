@@ -26,7 +26,7 @@ export default function AllFilters({ facets, mainState }) {
               ]),
             })}
           />
-          <CustomRefinementList
+          {/* <CustomRefinementList
             values={facets["settings"]}
             attribute="settings"
             title="SETTING"
@@ -225,7 +225,7 @@ export default function AllFilters({ facets, mainState }) {
             attribute="priceRanges"
             title="PRICE GUIDE"
             className={clsx({ hidden: shouldVisible(["Experience"]) })}
-          />
+          /> */}
         </div>
       </div>
     </>
