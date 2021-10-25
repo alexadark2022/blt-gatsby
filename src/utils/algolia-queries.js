@@ -4,7 +4,51 @@ const allWpExperienceQuery = gql`
   {
     allWpExperience {
       nodes {
-        experienceDataAttr {
+        id
+        databaseId
+        title
+        uri
+        date
+        nodeType
+        featuredImage {
+          node {
+            altText
+            sourceUrl
+            caption
+            description
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  quality: 80
+                  aspectRatio: 1.5
+                  layout: CONSTRAINED
+                )
+                original {
+                  height
+                  width
+                  src
+                }
+              }
+            }
+          }
+        }
+        commonDataAttributes {
+          textCountry
+          textContinent
+          standfirst
+        }
+        customDataAttributes: experienceDataAttr {
+          eventType: eventSubType
+          activityType: activitySubType
+          attractionType: attractionSubType
+          greatFor: suitableFor
+          priceGuide: priceRange
+          bestTime: bestMonthFrom1
+          whenAvailable: availableMonthFrom1
+          theme
+          setting
+          experienceType: type
+          rating: isBucketList
           city
           latitudeOfLocation1
           latitudeOfLocation2
@@ -20,98 +64,12 @@ const allWpExperienceQuery = gql`
           profile
           website
         }
-        id
-        databaseId
-        title
-        uri
-        date
-        nodeType
-        featuredImage {
-          node {
-            altText
-            sourceUrl
-            caption
-            description
-            localFile {
-              childImageSharp {
-                gatsbyImageData(
-                  # width: 940
-                  # height: 626
-                  quality: 80
-                  aspectRatio: 1.5
-                  layout: CONSTRAINED
-                  # placeholder: BLURRED
-                )
-                original {
-                  height
-                  width
-                  src
-                }
-              }
-            }
-          }
-        }
-        commonDataAttributes {
-          textCountry
-          textContinent
-          standfirst
-        }
         tags {
           nodes {
             name
           }
         }
-        bestTimes {
-          nodes {
-            name
-          }
-        }
-        settings {
-          nodes {
-            name
-          }
-        }
-        factoryThemes {
-          nodes {
-            name
-          }
-        }
-        especiallyFors {
-          nodes {
-            name
-          }
-        }
-        whenAvailables {
-          nodes {
-            name
-          }
-        }
-        experienceTypes {
-          nodes {
-            name
-          }
-        }
-        attractionTypes {
-          nodes {
-            name
-          }
-        }
-        activityTypes {
-          nodes {
-            name
-          }
-        }
-        eventTypes {
-          nodes {
-            name
-          }
-        }
-        priceRanges {
-          nodes {
-            name
-          }
-        }
-        ageGroups {
+        categories {
           nodes {
             name
           }
@@ -124,10 +82,12 @@ const allWpDestinationQuery = gql`
   {
     allWpDestination {
       nodes {
-        destinationDataAttributes {
+        customDataAttributes: destinationDataAttributes {
           latitudeOfLocation1
           longitudeOfLocation1
           region
+          setting
+          bestTime: bestMonthFrom1
         }
         id
         databaseId
@@ -144,12 +104,9 @@ const allWpDestinationQuery = gql`
             localFile {
               childImageSharp {
                 gatsbyImageData(
-                  # width: 940
-                  # height: 626
                   quality: 80
                   aspectRatio: 1.5
                   layout: CONSTRAINED
-                  # placeholder: BLURRED
                 )
                 original {
                   height
@@ -170,17 +127,7 @@ const allWpDestinationQuery = gql`
             name
           }
         }
-        bestTimes {
-          nodes {
-            name
-          }
-        }
-        settings {
-          nodes {
-            name
-          }
-        }
-        especiallyFors {
+        categories {
           nodes {
             name
           }
@@ -193,7 +140,7 @@ const allWpPlaceToStayQuery = gql`
   {
     allWpPlaceToStay {
       nodes {
-        ptsDataAttr {
+        customDataAttributes: ptsDataAttr {
           city
           website
           latitudeOfLocation1
@@ -206,8 +153,21 @@ const allWpPlaceToStayQuery = gql`
               altText
             }
           }
-          website
           starRating
+          theme
+          whoFor: especiallyFor
+          priceGuide: pricePerNight
+          setting
+          standard
+          accommodationType: type
+          roomType
+          hotelFacility: otherHotelFacilities
+          roomFacility: roomFeatures
+          forFamilies: roomForFamilies
+          allInclusive
+          selfCatering
+          skiFacilities: ski
+          brand
         }
         id
         databaseId
@@ -224,12 +184,9 @@ const allWpPlaceToStayQuery = gql`
             localFile {
               childImageSharp {
                 gatsbyImageData(
-                  # width: 940
-                  # height: 626
                   quality: 80
                   aspectRatio: 1.5
                   layout: CONSTRAINED
-                  # placeholder: BLURRED
                 )
                 original {
                   height
@@ -250,67 +207,7 @@ const allWpPlaceToStayQuery = gql`
             name
           }
         }
-        bestTimes {
-          nodes {
-            name
-          }
-        }
-        settings {
-          nodes {
-            name
-          }
-        }
-        factoryThemes {
-          nodes {
-            name
-          }
-        }
-        especiallyFors {
-          nodes {
-            name
-          }
-        }
-        hotelBrands {
-          nodes {
-            name
-          }
-        }
-        standards {
-          nodes {
-            name
-          }
-        }
-        accommodationTypes {
-          nodes {
-            name
-          }
-        }
-        roomTypes {
-          nodes {
-            name
-          }
-        }
-        hotelFacilities {
-          nodes {
-            name
-          }
-        }
-        forFamilies {
-          nodes {
-            name
-          }
-        }
-        skiFacilities {
-          nodes {
-            name
-          }
-        }
-        priceRangePounds {
-          nodes {
-            name
-          }
-        }
-        allInclusives {
+        categories {
           nodes {
             name
           }
@@ -338,12 +235,9 @@ const allWpRoundUpQuery = gql`
             localFile {
               childImageSharp {
                 gatsbyImageData(
-                  # width: 940
-                  # height: 626
                   quality: 80
                   aspectRatio: 1.5
                   layout: CONSTRAINED
-                  # placeholder: BLURRED
                 )
                 original {
                   height
@@ -364,30 +258,16 @@ const allWpRoundUpQuery = gql`
             name
           }
         }
-        bestTimes {
+        categories {
           nodes {
             name
           }
         }
-        settings {
-          nodes {
-            name
-          }
-        }
-        factoryThemes {
-          nodes {
-            name
-          }
-        }
-        especiallyFors {
-          nodes {
-            name
-          }
-        }
-        recommendationTypes {
-          nodes {
-            name
-          }
+        customDataAttributes: roundUpDataAttributes {
+          setting
+          theme
+          especiallyFor
+          recommendationType: type
         }
       }
     }
@@ -397,10 +277,13 @@ const allWpItineraryQuery = gql`
   {
     allWpItinerary {
       nodes {
-        itineraryDataAttributes {
+        customDataAttributes: itineraryDataAttributes {
           latitudeOfLocation1
           longitudeOfLocation1
           minAge
+          setting
+          theme
+          bestTime: bestMonthFrom1
         }
         id
         databaseId
@@ -417,12 +300,9 @@ const allWpItineraryQuery = gql`
             localFile {
               childImageSharp {
                 gatsbyImageData(
-                  # width: 940
-                  # height: 626
                   quality: 80
                   aspectRatio: 1.5
                   layout: CONSTRAINED
-                  # placeholder: BLURRED
                 )
                 original {
                   height
@@ -443,22 +323,7 @@ const allWpItineraryQuery = gql`
             name
           }
         }
-        bestTimes {
-          nodes {
-            name
-          }
-        }
-        settings {
-          nodes {
-            name
-          }
-        }
-        factoryThemes {
-          nodes {
-            name
-          }
-        }
-        especiallyFors {
+        categories {
           nodes {
             name
           }
@@ -472,15 +337,12 @@ const queries = [
   {
     query: allWpItineraryQuery,
     transformer: ({ data }) => {
-      return data.allWpItinerary.nodes.map((item) => {
+      return data.allWpItinerary.nodes.map(({ tags, categories, ...item }) => {
         return {
           ...item,
           date_timestamp: new Date(item.date).getTime(),
-          bestTimes: mergeArray(item.bestTimes),
-          settings: mergeArray(item.settings),
-          especiallyFors: mergeArray(item.especiallyFors),
-          factoryThemes: mergeArray(item.factoryThemes),
-          tags: mergeArray(item.tags),
+          tags: mergeArray(tags),
+          categories: mergeArray(categories),
         };
       });
     },
@@ -489,16 +351,12 @@ const queries = [
   {
     query: allWpRoundUpQuery,
     transformer: ({ data }) => {
-      return data.allWpRoundUp.nodes.map((item) => {
+      return data.allWpRoundUp.nodes.map(({ tags, categories, ...item }) => {
         return {
           ...item,
           date_timestamp: new Date(item.date).getTime(),
-          bestTimes: mergeArray(item.bestTimes),
-          settings: mergeArray(item.settings),
-          especiallyFors: mergeArray(item.especiallyFors),
-          factoryThemes: mergeArray(item.factoryThemes),
-          recommendationTypes: mergeArray(item.recommendationTypes),
-          tags: mergeArray(item.tags),
+          tags: mergeArray(tags),
+          categories: mergeArray(categories),
         };
       });
     },
@@ -507,27 +365,16 @@ const queries = [
   {
     query: allWpPlaceToStayQuery,
     transformer: ({ data }) => {
-      return data.allWpPlaceToStay.nodes.map(({ ptsDataAttr, ...item }) => {
-        return {
-          ...item,
-          date_timestamp: new Date(item.date).getTime(),
-          bestTimes: mergeArray(item.bestTimes),
-          settings: mergeArray(item.settings),
-          especiallyFors: mergeArray(item.especiallyFors),
-          factoryThemes: mergeArray(item.factoryThemes),
-          hotelBrands: mergeArray(item.hotelBrands),
-          standards: mergeArray(item.standards),
-          accommodationTypes: mergeArray(item.accommodationTypes),
-          roomTypes: mergeArray(item.roomTypes),
-          hotelFacilities: mergeArray(item.hotelFacilities),
-          forFamilies: mergeArray(item.forFamilies),
-          skiFacilities: mergeArray(item.skiFacilities),
-          priceRangePounds: mergeArray(item.priceRangePounds),
-          allInclusives: mergeArray(item.allInclusives),
-          customDataAttributes: ptsDataAttr,
-          tags: mergeArray(item.tags),
-        };
-      });
+      return data.allWpPlaceToStay.nodes.map(
+        ({ tags, categories, ...item }) => {
+          return {
+            ...item,
+            date_timestamp: new Date(item.date).getTime(),
+            tags: mergeArray(tags),
+            categories: mergeArray(categories),
+          };
+        }
+      );
     },
     indexName: `Alldata`,
   },
@@ -535,15 +382,12 @@ const queries = [
     query: allWpDestinationQuery,
     transformer: ({ data }) => {
       return data.allWpDestination.nodes.map(
-        ({ destinationDataAttributes, ...item }) => {
+        ({ tags, categories, ...item }) => {
           return {
             ...item,
             date_timestamp: new Date(item.date).getTime(),
-            bestTimes: mergeArray(item.bestTimes),
-            settings: mergeArray(item.settings),
-            especiallyFors: mergeArray(item.especiallyFors),
-            customDataAttributes: destinationDataAttributes,
-            tags: mergeArray(item.tags),
+            tags: mergeArray(tags),
+            categories: mergeArray(categories),
           };
         }
       );
@@ -553,27 +397,14 @@ const queries = [
   {
     query: allWpExperienceQuery,
     transformer: ({ data }) => {
-      return data.allWpExperience.nodes.map(
-        ({ experienceDataAttr, ...item }) => {
-          return {
-            ...item,
-            date_timestamp: new Date(item.date).getTime(),
-            bestTimes: mergeArray(item.bestTimes),
-            settings: mergeArray(item.settings),
-            factoryThemes: mergeArray(item.factoryThemes),
-            especiallyFors: mergeArray(item.especiallyFors),
-            whenAvailables: mergeArray(item.whenAvailables),
-            experienceTypes: mergeArray(item.experienceTypes),
-            attractionTypes: mergeArray(item.attractionTypes),
-            activityTypes: mergeArray(item.activityTypes),
-            eventTypes: mergeArray(item.eventTypes),
-            priceRanges: mergeArray(item.priceRanges),
-            ageGroups: mergeArray(item.ageGroups),
-            customDataAttributes: experienceDataAttr,
-            tags: mergeArray(item.tags),
-          };
-        }
-      );
+      return data.allWpExperience.nodes.map(({ tags, categories, ...item }) => {
+        return {
+          ...item,
+          date_timestamp: new Date(item.date).getTime(),
+          tags: mergeArray(tags),
+          categories: mergeArray(categories),
+        };
+      });
     },
     indexName: `Alldata`,
   },
@@ -582,7 +413,14 @@ const queries = [
 module.exports = queries;
 
 const mergeArray = (items) => {
+  const { nodes } = items || {};
+  if (nodes === undefined || nodes === null) {
+    return [];
+  }
   const isArray = Array.isArray(items.nodes);
   if (!isArray) return [];
-  return items.nodes.map((item) => item.name);
+  if (items.nodes.length) {
+    return items.nodes.map((item) => item.name);
+  }
+  return [];
 };
