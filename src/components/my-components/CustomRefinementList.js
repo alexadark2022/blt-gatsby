@@ -19,11 +19,13 @@ const CustomRefinementList = (props) => {
   const [openFilterSet, setOpenFilterSet] = useState(false);
   if (!values) {
     return (
-      <div className="py-4 border-b border-grey2">
-        <h4 className="uppercase text-[15px] tracking-wider text-grey5 mb-2">
-          {title}
-        </h4>
-        <p>Only Null Values found</p>
+      <div className={className}>
+        <div className="py-4 border-b border-grey2">
+          <h4 className="uppercase text-[15px] tracking-wider text-grey5 mb-2">
+            {title}
+          </h4>
+          <p>Only Null Values found</p>
+        </div>
       </div>
     );
   }
@@ -90,7 +92,7 @@ const CustomRefinementList = (props) => {
                   >
                     <label
                       className={clsx(
-                        "input-item leading-tight text-grey4 undefined",
+                        "input-item leading-tight text-grey4 capitalize ",
                         {
                           "cursor-not-allowed ": !count,
                         }
