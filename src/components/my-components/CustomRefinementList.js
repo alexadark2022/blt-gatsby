@@ -147,7 +147,7 @@ const CustomRefinementList = (props) => {
                     className={clsx(
                       "transition duration-500",
                       "ml-1",
-                      "text-lightBlue  text-[11px]",
+                      "text-lightBlue  text-sm",
                       { "transform rotate-180": open }
                     )}
                   />
