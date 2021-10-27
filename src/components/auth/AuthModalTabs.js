@@ -5,12 +5,12 @@ import clsx from "clsx"
 import { SignUpForm, UnAuthContent, LogInForm } from "."
 import { Typo } from ".."
 
-export const AuthModalTabs = ({ warning, closeModal }) => {
+export const AuthModalTabs = ({ warning, closeModal, propsTabIndex }) => {
   const [tabIndex, setTabIndex] = useState(0)
 
   console.log(tabIndex)
   const handleTabsChange = (index) => {
-    setTabIndex(index)
+    setTabIndex(propsTabIndex || index)
   }
 
   const tabStyles = `w-1/2 text-center h-[66px] text-[20px] font-medium px-5 uppercase border-b border-grey2 text-grey5 `

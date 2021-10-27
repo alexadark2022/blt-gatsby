@@ -54,7 +54,7 @@ export function SendPasswordResetEmailForm() {
           </button>
         </p>
 
-        <AuthModal isOpen={isOpen} setIsOpen={setIsOpen} warning={false} />
+        <AuthModal isOpen={isOpen} setIsOpen={setIsOpen} warning={false} propsTabIndex={1} />
       </div>
     )
   }
