@@ -69,7 +69,7 @@ export function SetPasswordForm({ resetKey: key, login }: Props) {
     return (
       <>
         <p
-          className={`text-center text-lg uppercase font-bold text-white mb-5`}
+          className={`orange-box`}
         >
           Your new password has been set.
         </p>
