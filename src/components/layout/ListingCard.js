@@ -83,13 +83,13 @@ export const ListingCard = ({
               <AddToBlButton
                 remove
                 addToBl={removeFromBl}
-                className="absolute z-30 px-2 py-1 text-2xl text-white cursor-pointer top-2 right-2"
+                className="absolute z-10 px-2 py-1 text-2xl text-white cursor-pointer top-2 right-2"
               />
             ) : (
               <AddToBlButton
                 add
                 addToBl={addToBl}
-                className="absolute z-30 px-2 py-1 text-2xl text-white cursor-pointer top-2 right-2"
+                className="absolute z-10 px-2 py-1 text-2xl text-white cursor-pointer top-2 right-2"
               />
             )
           ) : (
