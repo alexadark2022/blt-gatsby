@@ -91,7 +91,35 @@ export default function AllFilters({ facets, mainState }) {
               ]),
             })}
           />
-          {/* Who for mising */}
+          <CustomRefinementList
+            values={facets["customDataAttributes.whoFor"]}
+            attribute="customDataAttributes.whoFor"
+            title="Who For"
+            className={clsx({
+              hidden: shouldVisible([
+                "All",
+                "Experience",
+                "Itinerary",
+                "PlaceToStay",
+              ]),
+            })}
+          />
+          <CustomRefinementList
+            values={facets["customDataAttributes.priceGuide"]}
+            attribute="customDataAttributes.priceGuide"
+            title="Price Guide"
+            className={clsx({
+              hidden: shouldVisible(["PlaceToStay"]),
+            })}
+          />
+          <CustomRefinementList
+            values={facets["customDataAttributes.priceGuideExp"]}
+            attribute="customDataAttributes.priceGuideExp"
+            title="Price Guide"
+            className={clsx({
+              hidden: shouldVisible(["Experience"]),
+            })}
+          />
           {/* Price Guide conflict PTS and Experience  */}
           <CustomRefinementList
             values={facets["customDataAttributes.greatFor"]}
@@ -181,6 +209,15 @@ export default function AllFilters({ facets, mainState }) {
               hidden: shouldVisible(["PlaceToStay"]),
             })}
           />
+          <CustomRefinementList
+            values={facets["customDataAttributes.forFamilies"]}
+            attribute="customDataAttributes.forFamilies"
+            title="For Families"
+            className={clsx({
+              hidden: shouldVisible(["PlaceToStay"]),
+            })}
+          />
+          {/* {Inclusions missing} */}
           <CustomRefinementList
             values={facets["customDataAttributes.skiFacilities"]}
             attribute="customDataAttributes.skiFacilities"
