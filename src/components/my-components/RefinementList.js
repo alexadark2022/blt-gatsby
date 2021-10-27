@@ -11,27 +11,26 @@ const RefinementList = (props) => {
     className,
     updateFilter,
     selectedFilters,
-    existInData,
+    existInData: rawExData,
   } = props;
   const [open, setOpen] = useState(false);
   const [arraySize, setArraySize] = useState(4);
   const [openFilterSet, setOpenFilterSet] = useState(false);
+  let existInData = rawExData.map((i) => i?.toUpperCase() ?? i);
   if (!values) {
     return null;
   }
-  const filteredValues = values
-    .filter((item) => item?.name?.length > 2)
-    .sort(function (a, b) {
-      var nameA = a.name.toUpperCase();
-      var nameB = b.name.toUpperCase();
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0;
-    });
+  const filteredValues = values.sort(function (a, b) {
+    var nameA = a.toUpperCase();
+    var nameB = b.toUpperCase();
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
   return (
     <div className={className}>
       <div className="py-4 border-b border-grey2">
@@ -63,9 +62,11 @@ const RefinementList = (props) => {
                   <li
                     className={clsx("item", {
                       "opacity-50 cursor-not-allowed ":
-                        !existInData?.includes(staticItem.name) ?? false,
+                        !existInData?.includes(
+                          staticItem?.toUpperCase() ?? staticItem
+                        ) ?? false,
                     })}
-                    key={staticItem.name}
+                    key={staticItem}
                   >
                     <label
                       className={clsx("input-item leading-tight text-grey4", {
@@ -74,34 +75,28 @@ const RefinementList = (props) => {
                     >
                       <input
                         type="checkbox"
-                        value={staticItem.name}
-                        checked={
-                          selectedFilters?.includes(staticItem.name) ?? false
-                        }
+                        value={staticItem}
+                        checked={selectedFilters?.includes(staticItem) ?? false}
                         className={clsx(
                           "input-item border-2 rounded-none text-gold form-checkbox border-grey2 w-5 h-5 mr-4",
                           {
                             "cursor-not-allowed ":
-                              !existInData?.includes(staticItem.name) ?? false,
+                              !existInData?.includes(
+                                staticItem?.toUpperCase() ?? staticItem
+                              ) ?? false,
                           }
                         )}
                         disabled={
-                          !existInData?.includes(staticItem.name) ?? false
+                          !existInData?.includes(
+                            staticItem?.toUpperCase() ?? staticItem
+                          ) ?? false
                         }
                         onChange={(event) => {
                           const value = event.currentTarget.value;
                           updateFilter(value);
-                          // setAllFilters((prev) => {
-                          //   const itemArray = prev?.className ?? [];
-                          //   return {
-                          //     ...prev,
-                          //     prev.className: [...itemArray, value],
-                          //   };
-                          // });
-                          console.log(value);
                         }}
                       />
-                      {staticItem.name}
+                      {staticItem}
                     </label>
                   </li>
                 );
