@@ -13,6 +13,7 @@ const CustomRefinementList = (props) => {
     refine,
     title = "CONTINENT",
     className,
+    orderAlphabetically = true,
   } = props;
   const [open, setOpen] = useState(false);
   const [arraySize, setArraySize] = useState(4);
@@ -30,17 +31,42 @@ const CustomRefinementList = (props) => {
     );
   }
 
-  const filteredValues = values.sort(function (a, b) {
-    var nameA = a.label.toUpperCase();
-    var nameB = b.label.toUpperCase();
-    if (nameA < nameB) {
-      return -1;
-    }
-    if (nameA > nameB) {
-      return 1;
-    }
-    return 0;
-  });
+  function sortByMonth(arr) {
+    var months = [
+      "january",
+      "february",
+      "march",
+      "april",
+      "may",
+      "june",
+      "july",
+      "august",
+      "september",
+      "october",
+      "november",
+      "december",
+    ];
+    return arr.sort(function (a, b) {
+      return (
+        months.indexOf(a.label.toLowerCase()) -
+        months.indexOf(b.label.toLowerCase())
+      );
+    });
+  }
+
+  const filteredValues = orderAlphabetically
+    ? values.sort(function (a, b) {
+        var nameA = a.label.toUpperCase();
+        var nameB = b.label.toUpperCase();
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      })
+    : sortByMonth(values);
   return (
     <div className={className}>
       <div className="py-4 border-b border-grey2">

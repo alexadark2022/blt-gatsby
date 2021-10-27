@@ -13,13 +13,20 @@ const RatingRefinementList = (props) => {
     refine,
     title = "CONTINENT",
     className,
+    state,
   } = props;
   const [open, setOpen] = useState(false);
   const [arraySize, setArraySize] = useState(4);
   const [openFilterSet, setOpenFilterSet] = useState(false);
-  useEffect(() => {
-    refine(["yes"]);
-  }, []);
+  // console.log(state);
+  // useEffect(() => {
+  //   if (["All", "Experience"].includes(state)) {
+  //     refine(["yes"]);
+  //   } else {
+  //     refine([]);
+  //   }
+  // }, [state]);
+
   if (!values) {
     return null;
   }

@@ -21,6 +21,7 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <RatingRefinementList
+            state={mainState}
             values={facets["customDataAttributes.rating"]}
             attribute="customDataAttributes.rating"
             title="RATING"
@@ -76,12 +77,14 @@ export default function AllFilters({ facets, mainState }) {
             values={facets["customDataAttributes.whenAvailable"]}
             attribute="customDataAttributes.whenAvailable"
             title="WHEN AVAILABLE"
+            orderAlphabetically={false}
             className={clsx({ hidden: shouldVisible(["Experience"]) })}
           />
           <CustomRefinementList
             values={facets["customDataAttributes.bestTime"]}
             attribute="customDataAttributes.bestTime"
             title="BEST TIME"
+            orderAlphabetically={false}
             className={clsx({
               hidden: shouldVisible([
                 "All",
