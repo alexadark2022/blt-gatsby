@@ -5,7 +5,7 @@ import { Button } from "../ui-components/Button";
 import { WithCollapse } from "../ui-components/WithCollapse";
 import { FaChevronDown } from "react-icons/fa";
 
-const CustomRefinementList = (props) => {
+const RatingRefinementList = (props) => {
   const {
     values,
     currentRefinement,
@@ -18,16 +18,7 @@ const CustomRefinementList = (props) => {
   const [arraySize, setArraySize] = useState(4);
   const [openFilterSet, setOpenFilterSet] = useState(false);
   if (!values) {
-    return (
-      <div className={className}>
-        <div className="py-4 border-b border-grey2">
-          <h4 className="uppercase text-[15px] tracking-wider text-grey5 mb-2">
-            {title}
-          </h4>
-          <p>Only Null Values found</p>
-        </div>
-      </div>
-    );
+    return null;
   }
 
   const filteredValues = values.sort(function (a, b) {
@@ -41,6 +32,16 @@ const CustomRefinementList = (props) => {
     }
     return 0;
   });
+
+  const handelSomething = (value) => {
+    if (value === "yes" && !currentRefinement.includes(value)) {
+      return refine(["yes"]);
+    }
+    if (value === "no" && !currentRefinement.includes(value)) {
+      return refine(["no"]);
+    }
+    return refine([]);
+  };
   return (
     <div className={className}>
       <div className="py-4 border-b border-grey2">
@@ -92,7 +93,7 @@ const CustomRefinementList = (props) => {
                   >
                     <label
                       className={clsx(
-                        "input-item leading-tight text-grey4 capitalize ",
+                        "input-item leading-tight text-grey4 undefined",
                         {
                           "cursor-not-allowed ": !count,
                         }
@@ -111,16 +112,11 @@ const CustomRefinementList = (props) => {
                         disabled={!count}
                         onChange={(event) => {
                           const value = event.currentTarget.value;
-                          const next = currentRefinement.includes(value)
-                            ? currentRefinement.filter(
-                                (current) => current !== value
-                              )
-                            : currentRefinement.concat(value);
-
-                          refine(next);
+                          handelSomething(value);
                         }}
                       />
-                      {staticItem.label} <span className="ml-1">[{count}]</span>
+                      {staticItem.label === "yes" ? "Bucket list" : "Other"}{" "}
+                      <span className="ml-1">[{count}]</span>
                     </label>
                   </li>
                 );
@@ -160,4 +156,4 @@ const CustomRefinementList = (props) => {
     </div>
   );
 };
-export default connectRefinementList(CustomRefinementList);
+export default connectRefinementList(RatingRefinementList);

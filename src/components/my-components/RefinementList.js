@@ -1,46 +1,37 @@
-import { connectRefinementList } from "react-instantsearch-dom";
 import clsx from "clsx";
 import React, { useState } from "react";
 import { Button } from "../ui-components/Button";
 import { WithCollapse } from "../ui-components/WithCollapse";
 import { FaChevronDown } from "react-icons/fa";
 
-const CustomRefinementList = (props) => {
+const RefinementList = (props) => {
   const {
     values,
-    currentRefinement,
-    items,
-    refine,
     title = "CONTINENT",
     className,
+    updateFilter,
+    selectedFilters,
+    existInData,
   } = props;
   const [open, setOpen] = useState(false);
   const [arraySize, setArraySize] = useState(4);
   const [openFilterSet, setOpenFilterSet] = useState(false);
   if (!values) {
-    return (
-      <div className={className}>
-        <div className="py-4 border-b border-grey2">
-          <h4 className="uppercase text-[15px] tracking-wider text-grey5 mb-2">
-            {title}
-          </h4>
-          <p>Only Null Values found</p>
-        </div>
-      </div>
-    );
+    return null;
   }
-
-  const filteredValues = values.sort(function (a, b) {
-    var nameA = a.label.toUpperCase();
-    var nameB = b.label.toUpperCase();
-    if (nameA < nameB) {
-      return -1;
-    }
-    if (nameA > nameB) {
-      return 1;
-    }
-    return 0;
-  });
+  const filteredValues = values
+    .filter((item) => item?.name?.length > 2)
+    .sort(function (a, b) {
+      var nameA = a.name.toUpperCase();
+      var nameB = b.name.toUpperCase();
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
   return (
     <div className={className}>
       <div className="py-4 border-b border-grey2">
@@ -68,59 +59,49 @@ const CustomRefinementList = (props) => {
           <ul>
             {!!filteredValues &&
               filteredValues.slice(0, arraySize).map((staticItem) => {
-                const { isRefined } = items.find(
-                  (item) => item.label === staticItem.label
-                ) || {
-                  isRefined: false,
-                };
-                const countArray = items.map((item) => {
-                  if (item.label === staticItem.label) return item.count;
-                  return 0;
-                });
-                const count = countArray.reduce(
-                  (previousValue, currentValue) => {
-                    return previousValue + currentValue;
-                  },
-                  0
-                );
                 return (
                   <li
                     className={clsx("item", {
-                      "opacity-50 cursor-not-allowed ": !count,
+                      "opacity-50 cursor-not-allowed ":
+                        !existInData?.includes(staticItem.name) ?? false,
                     })}
-                    key={staticItem.value}
+                    key={staticItem.name}
                   >
                     <label
-                      className={clsx(
-                        "input-item leading-tight text-grey4 capitalize ",
-                        {
-                          "cursor-not-allowed ": !count,
-                        }
-                      )}
+                      className={clsx("input-item leading-tight text-grey4", {
+                        "cursor-not-allowed ": false,
+                      })}
                     >
                       <input
                         type="checkbox"
-                        value={staticItem.value}
-                        checked={isRefined}
+                        value={staticItem.name}
+                        checked={
+                          selectedFilters?.includes(staticItem.name) ?? false
+                        }
                         className={clsx(
                           "input-item border-2 rounded-none text-gold form-checkbox border-grey2 w-5 h-5 mr-4",
                           {
-                            "cursor-not-allowed ": !count,
+                            "cursor-not-allowed ":
+                              !existInData?.includes(staticItem.name) ?? false,
                           }
                         )}
-                        disabled={!count}
+                        disabled={
+                          !existInData?.includes(staticItem.name) ?? false
+                        }
                         onChange={(event) => {
                           const value = event.currentTarget.value;
-                          const next = currentRefinement.includes(value)
-                            ? currentRefinement.filter(
-                                (current) => current !== value
-                              )
-                            : currentRefinement.concat(value);
-
-                          refine(next);
+                          updateFilter(value);
+                          // setAllFilters((prev) => {
+                          //   const itemArray = prev?.className ?? [];
+                          //   return {
+                          //     ...prev,
+                          //     prev.className: [...itemArray, value],
+                          //   };
+                          // });
+                          console.log(value);
                         }}
                       />
-                      {staticItem.label} <span className="ml-1">[{count}]</span>
+                      {staticItem.name}
                     </label>
                   </li>
                 );
@@ -160,4 +141,4 @@ const CustomRefinementList = (props) => {
     </div>
   );
 };
-export default connectRefinementList(CustomRefinementList);
+export default RefinementList;

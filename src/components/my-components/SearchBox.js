@@ -10,10 +10,12 @@ import CustomStats from "./CustomStats";
 const SearchBox = ({ currentRefinement, refine }) => {
   const isSmall = useMediaQuery("(max-width:639px)");
   const [searchText, setSearchtext] = useState("");
+  const [statText, setStatText] = useState("");
   useEffect(() => {
     const parsed = qs.parse(window.location.search);
     if (parsed.q) {
       setSearchtext(parsed.q);
+      setStatText(parsed.q);
       refine(parsed.q);
     }
   }, []);
@@ -58,6 +60,7 @@ const SearchBox = ({ currentRefinement, refine }) => {
                 e.preventDefault();
                 if (currentRefinement === searchText) return null;
                 refine(searchText);
+                setStatText(searchText);
                 if (isBrowser()) {
                   const url = new URL(window.location.href);
                   url.searchParams.set("q", searchText);
@@ -74,7 +77,7 @@ const SearchBox = ({ currentRefinement, refine }) => {
           </div>
           <div className="flex items-center mt-5">
             <div className="ml-3 font-bold text-f-26">
-              <CustomStats searchText={searchText} />
+              <CustomStats searchText={statText} />
             </div>
           </div>
         </form>

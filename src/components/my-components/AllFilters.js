@@ -1,16 +1,33 @@
 import React from "react";
 import CustomRefinementList from "./CustomRefinementList";
+import RatingRefinementList from "./RatingRefinementList";
 import clsx from "clsx";
 export default function AllFilters({ facets, mainState }) {
   const shouldVisible = (list) => {
     return !list.includes(mainState);
   };
   //   console.log(mainState);
-  //   console.log(facets);
+  console.log(facets);
   return (
     <>
       <div className="">
         <div className="flex flex-col justify-between">
+          <CustomRefinementList
+            values={facets["customDataAttributes.recommendationType"]}
+            attribute="customDataAttributes.recommendationType"
+            title="Recommendation Type"
+            className={clsx({
+              hidden: shouldVisible(["RoundUp"]),
+            })}
+          />
+          <RatingRefinementList
+            values={facets["customDataAttributes.rating"]}
+            attribute="customDataAttributes.rating"
+            title="RATING"
+            className={clsx({
+              hidden: shouldVisible(["All", "Experience"]),
+            })}
+          />
           <CustomRefinementList
             values={facets["commonDataAttributes.textContinent"]}
             attribute="commonDataAttributes.textContinent"
@@ -27,8 +44,8 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <CustomRefinementList
-            values={facets["settings"]}
-            attribute="settings"
+            values={facets["customDataAttributes.setting"]}
+            attribute="customDataAttributes.setting"
             title="SETTING"
             className={clsx({
               hidden: shouldVisible([
@@ -42,189 +59,143 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <CustomRefinementList
-            values={facets.factoryThemes}
-            attribute="factoryThemes"
+            values={facets["customDataAttributes.theme"]}
+            attribute="customDataAttributes.theme"
             title="THEME"
             className={clsx({
               hidden: shouldVisible([
                 "All",
                 "Experience",
                 "PlaceToStay",
-                "Destination",
                 "RoundUp",
                 "Itinerary",
               ]),
             })}
           />
-
           <CustomRefinementList
-            values={facets.whenAvailables}
-            attribute="whenAvailables"
+            values={facets["customDataAttributes.whenAvailable"]}
+            attribute="customDataAttributes.whenAvailable"
             title="WHEN AVAILABLE"
             className={clsx({ hidden: shouldVisible(["Experience"]) })}
           />
-
           <CustomRefinementList
-            values={facets.bestTimes}
-            attribute="bestTimes"
+            values={facets["customDataAttributes.bestTime"]}
+            attribute="customDataAttributes.bestTime"
             title="BEST TIME"
             className={clsx({
               hidden: shouldVisible([
                 "All",
                 "Experience",
-                "PlaceToStay",
                 "Destination",
-                "RoundUp",
                 "Itinerary",
               ]),
             })}
           />
-
+          {/* Who for mising */}
+          {/* Price Guide conflict PTS and Experience  */}
           <CustomRefinementList
-            values={facets.especiallyFors}
-            attribute="especiallyFors"
-            title="ESPECIALLY FOR"
+            values={facets["customDataAttributes.greatFor"]}
+            attribute="customDataAttributes.greatFor"
+            title="GREAT FOR"
             className={clsx({
-              hidden: shouldVisible([
-                "All",
-                "Experience",
-                "PlaceToStay",
-                "Destination",
-                "RoundUp",
-                "Itinerary",
-              ]),
+              hidden: shouldVisible(["Experience"]),
             })}
           />
-
           <CustomRefinementList
-            values={facets.priceRangePounds}
-            attribute="priceRangePounds"
-            title="PRICE GUIDE"
+            values={facets["customDataAttributes.experienceType"]}
+            attribute="customDataAttributes.experienceType"
+            title="Experience Type"
             className={clsx({
-              hidden: shouldVisible(["PlaceToStay"]),
+              hidden: shouldVisible(["Experience"]),
             })}
           />
-
           <CustomRefinementList
-            values={facets.ageGroups}
-            attribute="ageGroups"
-            title="GREAT FOR..."
-            className={clsx({ hidden: shouldVisible(["Experience"]) })}
+            values={facets["customDataAttributes.attractionType"]}
+            attribute="customDataAttributes.attractionType"
+            title="Attraction Type"
+            className={clsx({
+              hidden: shouldVisible(["Experience"]),
+            })}
           />
-
           <CustomRefinementList
-            values={facets.experienceTypes}
-            attribute="experienceTypes"
-            title="EXPERIENCE TYPE"
-            className={clsx({ hidden: shouldVisible(["Experience"]) })}
+            values={facets["customDataAttributes.activityType"]}
+            attribute="customDataAttributes.activityType"
+            title="Activity Type"
+            className={clsx({
+              hidden: shouldVisible(["Experience"]),
+            })}
           />
-
           <CustomRefinementList
-            values={facets.attractionTypes}
-            attribute="attractionTypes"
-            title="ATTRACTION TYPE"
-            className={clsx({ hidden: shouldVisible(["Experience"]) })}
+            values={facets["customDataAttributes.eventType"]}
+            attribute="customDataAttributes.eventType"
+            title="Event Type"
+            className={clsx({
+              hidden: shouldVisible(["Experience"]),
+            })}
           />
-
           <CustomRefinementList
-            values={facets.activityTypes}
-            attribute="activityTypes"
-            title="ACTIVITY TYPE"
-            className={clsx({ hidden: shouldVisible(["Experience"]) })}
-          />
-
-          <CustomRefinementList
-            values={facets.eventTypes}
-            attribute="eventTypes"
-            title="EVENT TYPE"
-            className={clsx({ hidden: shouldVisible(["Experience"]) })}
-          />
-
-          <CustomRefinementList
-            values={facets.standards}
-            attribute="standards"
-            title="STANDARDS"
+            values={facets["customDataAttributes.standard"]}
+            attribute="customDataAttributes.standard"
+            title="Standard"
             className={clsx({
               hidden: shouldVisible(["PlaceToStay"]),
             })}
           />
-
           <CustomRefinementList
-            values={facets.accommodationTypes}
-            attribute="accommodationTypes"
-            title="ACCOMMODATION TYPE"
+            values={facets["customDataAttributes.starRating"]}
+            attribute="customDataAttributes.starRating"
+            title="Star Rating"
             className={clsx({
               hidden: shouldVisible(["PlaceToStay"]),
             })}
           />
-
           <CustomRefinementList
-            values={facets.roomTypes}
-            attribute="roomTypes"
-            title="ROOMTYPE"
+            values={facets["customDataAttributes.accommodationType"]}
+            attribute="customDataAttributes.accommodationType"
+            title="Accommodation Type"
             className={clsx({
               hidden: shouldVisible(["PlaceToStay"]),
             })}
           />
-
           <CustomRefinementList
-            values={facets.hotelFacilities}
-            attribute="hotelFacilities"
-            title="HOTEL FACILITIES"
+            values={facets["customDataAttributes.roomType"]}
+            attribute="customDataAttributes.roomType"
+            title="Room Type"
             className={clsx({
               hidden: shouldVisible(["PlaceToStay"]),
             })}
           />
-
           <CustomRefinementList
-            values={facets.forFamilies}
-            attribute="forFamilies"
-            title="FOR FAMILIES"
+            values={facets["customDataAttributes.hotelFacility"]}
+            attribute="customDataAttributes.hotelFacility"
+            title="Hotel Facility"
             className={clsx({
               hidden: shouldVisible(["PlaceToStay"]),
             })}
           />
-
           <CustomRefinementList
-            values={facets.allInclusives}
-            attribute="allInclusives"
-            title="INCLUSIONS"
+            values={facets["customDataAttributes.roomFacility"]}
+            attribute="customDataAttributes.roomFacility"
+            title="Room Facility"
             className={clsx({
               hidden: shouldVisible(["PlaceToStay"]),
             })}
           />
-
           <CustomRefinementList
-            values={facets.skiFacilities}
-            attribute="skiFacilities"
-            title="SKI FACILITIES"
+            values={facets["customDataAttributes.skiFacilities"]}
+            attribute="customDataAttributes.skiFacilities"
+            title="Ski Facilities"
             className={clsx({
               hidden: shouldVisible(["PlaceToStay"]),
             })}
           />
-
           <CustomRefinementList
-            values={facets.hotelBrands}
-            attribute="hotelBrands"
-            title="HOTEL BRANDS"
+            values={facets["customDataAttributes.brand"]}
+            attribute="customDataAttributes.brand"
+            title="brand"
             className={clsx({
               hidden: shouldVisible(["PlaceToStay"]),
             })}
-          />
-
-          <CustomRefinementList
-            values={facets.recommendationTypes}
-            attribute="recommendationTypes"
-            title="RECOMMENDATION TYPE"
-            className={clsx({
-              hidden: shouldVisible(["RoundUp"]),
-            })}
-          />
-          <CustomRefinementList
-            values={facets.priceRanges}
-            attribute="priceRanges"
-            title="PRICE GUIDE"
-            className={clsx({ hidden: shouldVisible(["Experience"]) })}
           />
         </div>
       </div>

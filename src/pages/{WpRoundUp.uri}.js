@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Layout, Section, SocialShare, TravelQuote } from "../components";
 import PageLayout from "../components/layout/PageLayout";
-import { SidebarFilters } from "../components/sidebar/SidebarFilters";
 import clsx from "clsx";
 import { window } from "browser-monads";
 import { About } from "../components/layout/About";
@@ -12,10 +11,9 @@ import { ViewSwitcher } from "../components/ui-components/ViewSwitcher";
 import { graphql } from "gatsby";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import PlaceToStayFilter from "../components/my-components/PlaceToStayFilter";
-import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
-import { useSeoGeneral } from "../lib/hooks/useSeoGeneral";
-
+import useStore from "./../store";
 const RoundupPage = ({ data }) => {
+  console.log("data", data);
   const { wpRoundUp: roundUp } = data || {};
   const contentType = roundUp.customDataAttributes.type;
   const [view, setView] = useState("list");
@@ -28,42 +26,124 @@ const RoundupPage = ({ data }) => {
   const url = window.location.href;
 
   const {
-    id,
     title,
     commonDataAttributes,
     customDataAttributes,
     modified,
     author,
-    featuredImage,
-    uri,
   } = roundUp || {};
-
-  const seoGeneral = useSeoGeneral();
-  const seo = {
-    page: roundUp?.seo,
-    general: seoGeneral?.wp?.seo,
-  };
-  const seoImage = featuredImage?.node.localFile.childImageSharp.original;
 
   const { about } = commonDataAttributes || {};
   const { links } = customDataAttributes || {};
   const breadcrumbsTerms = [{ name: "home", link: "/" }, { name: "Round-ups" }];
+  const [openFilters, setOpenFilters] = useState(false);
+  const [filteredLinks, setFilteredLinks] = useState(links);
+
+  const updateItemExist = useStore((state) => state.updateItemExist);
+  // {
+  //   continent,
+  //   setting,
+  //   theme,
+  //   bestTime,
+  //   espFor,
+  //   recType,
+  // }
+  const {
+    continentFilter,
+    settingFilter,
+    themeFilter,
+    bestTimeFilter,
+    espForFilter,
+    recTypeFilter,
+  } = useStore((state) => state.allFilters);
+  useEffect(() => {
+    let resArr = links;
+    if (settingFilter.length) {
+      resArr = resArr.filter((item) => {
+        const settings = item.link[0].customDataAttributes.setting;
+        const haveSettings = settings.some((item) =>
+          settingFilter.length ? settingFilter?.includes(item) ?? true : true
+        );
+        if (haveSettings) {
+          return true;
+        }
+      });
+    }
+    if (continentFilter.length) {
+      resArr = resArr.filter((item) => {
+        const continents = item.link[0].commonDataAttributes.continent;
+        const haveContinents = continents.some((item) =>
+          continentFilter.length
+            ? continentFilter?.includes(item) ?? true
+            : true
+        );
+        if (haveContinents) {
+          return true;
+        }
+      });
+    }
+    if (themeFilter.length) {
+      resArr = resArr.filter((item) => {
+        const themes = item.link[0].customDataAttributes.theme;
+        const haveTheme = themes.some((item) =>
+          themeFilter.length ? themeFilter?.includes(item) ?? true : true
+        );
+        if (haveTheme) {
+          return true;
+        }
+      });
+    }
+    if (espForFilter.length) {
+      resArr = resArr.filter((item) => {
+        const espFors = item.link[0].customDataAttributes.especiallyFor;
+        const haveEspFor =
+          espFors?.some((item) =>
+            espForFilter.length ? espForFilter?.includes(item) ?? true : true
+          ) ?? false;
+        if (haveEspFor) {
+          return true;
+        }
+      });
+    }
+    setFilteredLinks([...new Set(resArr)]);
+  }, [
+    continentFilter,
+    settingFilter,
+    themeFilter,
+    bestTimeFilter,
+    espForFilter,
+    recTypeFilter,
+  ]);
+
+  useEffect(() => {
+    updateItemExist({
+      continent: [
+        ...new Set(
+          links.map(({ link }) => link[0].commonDataAttributes.continent).flat()
+        ),
+      ],
+      setting: [
+        ...new Set(
+          links.map(({ link }) => link[0].customDataAttributes.setting).flat()
+        ),
+      ],
+      theme: [
+        ...new Set(
+          links.map(({ link }) => link[0].customDataAttributes.theme).flat()
+        ),
+      ],
+      espFor: [
+        ...new Set(
+          links
+            .map(({ link }) => link[0].customDataAttributes.especiallyFor)
+            .flat()
+        ),
+      ],
+    });
+  }, []);
+  console.log(filteredLinks);
   return (
     <Layout page="round-up">
-      <Seo
-        title={title}
-        uri={uri}
-        yoastSeo={true}
-        seo={seo}
-        featuredImage={
-          seoImage && {
-            src: seoImage.src,
-            width: seoImage.width,
-            height: seoImage.height,
-          }
-        }
-      />
-      {contentType === "Places to stay" && <PlaceToStayFilter />}
       <Breadcrumbs terms={breadcrumbsTerms} />
 
       <PageLayout
@@ -71,22 +151,16 @@ const RoundupPage = ({ data }) => {
         smallMargin
         intro="Our round-ups of the best of the best: "
         isFilters
-        // openFilters={openFilters}
-        // setOpenFilters={setOpenFilters}
-        // sidebar={
-        //   <SidebarFilters
-        //     filtersComponents={
-        //       <>
-        //         <FiltersCommon filters={filters} />
-        //         {roundUpFilterSet.map((filterSet, i) => {
-        //           const { title, filters } = filterSet;
-        //           return <FilterSet key={i} title={title} filters={filters} />;
-        //         })}
-        //       </>
-        //     }
-
-        //   />
-        // }
+        openFilters={openFilters}
+        setOpenFilters={setOpenFilters}
+        sidebar={
+          contentType === "Places to stay" && (
+            <PlaceToStayFilter
+              openFilters={openFilters}
+              setOpenFilters={setOpenFilters}
+            />
+          )
+        }
       >
         <section
           className={clsx(
@@ -107,7 +181,7 @@ const RoundupPage = ({ data }) => {
         </div>
         {view === "list" && (
           <Section className={clsx("p-5 md:p-8  mb-base2")}>
-            {links?.map((item, i) => {
+            {filteredLinks?.map((item, i) => {
               const type = item.link[0].__typename;
 
               return (
@@ -125,7 +199,7 @@ const RoundupPage = ({ data }) => {
                       key={item.link[0].id}
                       pts={type === "PlaceToStay"}
                       itinerary={type === "Itinerary"}
-                      className="mb-10 md:hidden"
+                      className="md:hidden mb-10"
                     />
                   </div>
                 </>
@@ -133,7 +207,9 @@ const RoundupPage = ({ data }) => {
             })}
           </Section>
         )}
-        {view === "grid" && <CardsGrid cards={links} className="mb-base2" />}
+        {view === "grid" && (
+          <CardsGrid cards={filteredLinks} className="mb-base2" />
+        )}
         {view === "map" && "map view here"}
       </PageLayout>
       {/* Quote */}

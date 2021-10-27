@@ -19,12 +19,16 @@ export const placeTostayFragments = graphql`
     }
     commonDataAttributes {
       standfirst
+      continent
       country {
         name
         slug
       }
     }
     customDataAttributes: ptsDataAttr {
+      especiallyFor
+      setting
+      theme
       website
       starRating
       region
