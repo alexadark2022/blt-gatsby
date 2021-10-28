@@ -94,6 +94,7 @@ const DestinationPage = ({ data }) => {
     (exp) => exp.customDataAttributes.isBucketList === "no"
   );
 
+
   const allExperiences = [
     {
       title: "Bucket list experiences",
@@ -187,6 +188,9 @@ const DestinationPage = ({ data }) => {
         {experiences &&
           allExperiences?.map((exp) => {
             const { title, experiences, id } = exp;
+            if(experiences === null || experiences?.length === 0){
+              return
+            }
             return (
               <CollapseSection
                 key={id}
