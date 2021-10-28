@@ -21,6 +21,7 @@ export const experienceFragments = graphql`
       }
     }
     commonDataAttributes {
+      continent
       standfirst
       country {
         name
@@ -59,6 +60,19 @@ export const experienceFragments = graphql`
       longitudeOfLocation2
       latitudeOfLocation3
       longitudeOfLocation3
+      eventType: eventSubType
+      activityType: activitySubType
+      attractionType: attractionSubType
+      greatFor: suitableFor
+      priceGuideExp: priceRange
+      bestTime: bestMonthFrom1
+      whenAvailable: availableMonthFrom1
+      whoFor: especiallyFor
+      theme
+      setting
+      experienceType: type
+      rating: isBucketList
+      profile
     }
   }
 
