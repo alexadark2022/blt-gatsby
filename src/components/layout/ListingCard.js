@@ -100,7 +100,7 @@ export const ListingCard = ({
 
         <div className={clsx("p-4 text-center flex-col justify-between space-y-5")}>
           {/* Title and city */}
-          <div className="space-y-5 ">
+          <div className="space-y-5 min-h-[110px] ">
             <div>
               <Link
                 to={`${uri}`}
