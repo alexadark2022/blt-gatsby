@@ -1,6 +1,6 @@
 import { connectRefinementList } from "react-instantsearch-dom";
 import clsx from "clsx";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "../ui-components/Button";
 import { WithCollapse } from "../ui-components/WithCollapse";
 import { FaChevronDown } from "react-icons/fa";
@@ -13,10 +13,20 @@ const RatingRefinementList = (props) => {
     refine,
     title = "CONTINENT",
     className,
+    state,
   } = props;
   const [open, setOpen] = useState(false);
   const [arraySize, setArraySize] = useState(4);
   const [openFilterSet, setOpenFilterSet] = useState(false);
+  // console.log(state);
+  // useEffect(() => {
+  //   if (["All", "Experience"].includes(state)) {
+  //     refine(["yes"]);
+  //   } else {
+  //     refine([]);
+  //   }
+  // }, [state]);
+
   if (!values) {
     return null;
   }
@@ -32,7 +42,6 @@ const RatingRefinementList = (props) => {
     }
     return 0;
   });
-
   const handelSomething = (value) => {
     if (value === "yes" && !currentRefinement.includes(value)) {
       return refine(["yes"]);

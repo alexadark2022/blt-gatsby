@@ -1,89 +1,14 @@
-import React, { useEffect } from "react";
-import { useStaticQuery, graphql } from "gatsby";
+import React from "react";
 import RefinementList from "./RefinementList";
 import { IoCloseSharp as Close } from "react-icons/io5";
 import { Typo, WithCollapse, Button } from "../ui-components";
 import clsx from "clsx";
 import useStore from "./../../store";
-
+import filters from "../../utils/FiltersData";
 export default function PlaceToStayFilter({ openFilters, setOpenFilters }) {
-  const PTSFilters = useStaticQuery(graphql`
-    query PTS_FILTERS_QUERY {
-      allWpRecommendationType {
-        nodes {
-          name
-        }
-      }
-      allWpContinent {
-        nodes {
-          name
-        }
-      }
-      allWpSetting {
-        nodes {
-          name
-        }
-      }
-      allWpFactoryTheme {
-        nodes {
-          name
-        }
-      }
-      allWpBestTime {
-        nodes {
-          name
-        }
-      }
-      allWpEspeciallyFor {
-        nodes {
-          name
-        }
-      }
-      allWpStandard {
-        nodes {
-          name
-        }
-      }
-      allWpAccommodationType {
-        nodes {
-          name
-        }
-      }
-      allWpRoomType {
-        nodes {
-          name
-        }
-      }
-      allWpHotelFacility {
-        nodes {
-          name
-        }
-      }
-      allWpHotelBrand {
-        nodes {
-          name
-        }
-      }
-    }
-  `);
   const itemExist = useStore((state) => state.itemExist);
-  const {
-    continentFilter,
-    settingFilter,
-    themeFilter,
-    bestTimeFilter,
-    espForFilter,
-    recTypeFilter,
-  } = useStore((state) => state.allFilters);
+  const allFilters = useStore((state) => state.allFilters);
   const updateAllFilter = useStore((state) => state.updateAllFilter);
-  console.log({
-    continentFilter,
-    settingFilter,
-    themeFilter,
-    bestTimeFilter,
-    espForFilter,
-    recTypeFilter,
-  });
   return (
     <>
       <WithCollapse
@@ -114,54 +39,123 @@ export default function PlaceToStayFilter({ openFilters, setOpenFilters }) {
               </Button>
             </div>
             <RefinementList
-              values={PTSFilters?.allWpContinent?.nodes}
+              values={filters.continent}
               title="CONTINENT"
               className="continents"
-              updateFilter={(value) =>
-                updateAllFilter("continentFilter", value)
-              }
-              selectedFilters={continentFilter}
+              updateFilter={(value) => updateAllFilter("continent", value)}
+              selectedFilters={allFilters.continent ?? []}
               existInData={itemExist?.continent ?? []}
             />
+
             <RefinementList
-              values={PTSFilters?.allWpSetting?.nodes}
+              values={filters.setting}
+              attribute="customDataAttributes.setting"
               title="SETTING"
-              className="settings"
-              updateFilter={(value) => updateAllFilter("settingFilter", value)}
-              selectedFilters={settingFilter}
+              className="setting"
+              updateFilter={(value) => updateAllFilter("setting", value)}
+              selectedFilters={allFilters.setting ?? []}
               existInData={itemExist?.setting ?? []}
             />
             <RefinementList
-              values={PTSFilters?.allWpFactoryTheme?.nodes}
+              values={filters.theme}
               title="THEME"
               className="theme"
-              updateFilter={(value) => updateAllFilter("themeFilter", value)}
-              selectedFilters={themeFilter}
+              updateFilter={(value) => updateAllFilter("theme", value)}
+              selectedFilters={allFilters.theme ?? []}
               existInData={itemExist?.theme ?? []}
             />
+
             <RefinementList
-              values={PTSFilters?.allWpBestTime?.nodes}
-              title="BEST TIME"
-              className="besttime"
-              updateFilter={(value) => updateAllFilter("bestTimeFilter", value)}
-              selectedFilters={bestTimeFilter}
-              existInData={itemExist?.bestTime ?? []}
+              values={filters.whoFor}
+              title="Who For"
+              className="whoFor"
+              updateFilter={(value) => updateAllFilter("whoFor", value)}
+              selectedFilters={allFilters.whoFor ?? []}
+              existInData={itemExist?.whoFor ?? []}
             />
             <RefinementList
-              values={PTSFilters?.allWpEspeciallyFor?.nodes}
-              title="ESPECIALLY FOR"
-              className="esp4"
-              updateFilter={(value) => updateAllFilter("espForFilter", value)}
-              selectedFilters={espForFilter}
-              existInData={itemExist?.espFor ?? []}
+              values={filters.priceGuide}
+              title="Price Guide"
+              className="priceGuide"
+              updateFilter={(value) => updateAllFilter("priceGuide", value)}
+              selectedFilters={allFilters.priceGuide ?? []}
+              existInData={itemExist?.priceGuide ?? []}
+            />
+
+            <RefinementList
+              values={filters.standard}
+              title="Standard"
+              className="standard"
+              updateFilter={(value) => updateAllFilter("standard", value)}
+              selectedFilters={allFilters.standard ?? []}
+              existInData={itemExist?.standard ?? []}
             />
             <RefinementList
-              values={PTSFilters?.allWpRecommendationType?.nodes}
-              title="RECOMMENDATION TYPE"
-              className="recomendation-type"
-              updateFilter={(value) => updateAllFilter("recTypeFilter", value)}
-              selectedFilters={recTypeFilter}
-              existInData={itemExist?.recType ?? []}
+              values={filters.starRating}
+              title="Star Rating"
+              className="starRating"
+              updateFilter={(value) => updateAllFilter("starRating", value)}
+              selectedFilters={allFilters.starRating ?? []}
+              existInData={itemExist?.starRating ?? []}
+            />
+            <RefinementList
+              values={filters.accommodationType}
+              title="Accommodation Type"
+              className="accommodationType"
+              updateFilter={(value) =>
+                updateAllFilter("accommodationType", value)
+              }
+              selectedFilters={allFilters.accommodationType ?? []}
+              existInData={itemExist?.accommodationType ?? []}
+            />
+            <RefinementList
+              values={filters.roomType}
+              title="Room Type"
+              className="roomType"
+              updateFilter={(value) => updateAllFilter("roomType", value)}
+              selectedFilters={allFilters.roomType ?? []}
+              existInData={itemExist?.roomType ?? []}
+            />
+            <RefinementList
+              values={filters.hotelFacility}
+              title="Hotel Facility"
+              className="hotelFacility"
+              updateFilter={(value) => updateAllFilter("hotelFacility", value)}
+              selectedFilters={allFilters.hotelFacility ?? []}
+              existInData={itemExist?.hotelFacility ?? []}
+            />
+            <RefinementList
+              values={filters.roomFacility}
+              title="Room Facility"
+              className="roomFacility"
+              updateFilter={(value) => updateAllFilter("roomFacility", value)}
+              selectedFilters={allFilters.roomFacility ?? []}
+              existInData={itemExist?.roomFacility ?? []}
+            />
+            <RefinementList
+              values={filters.forFamilies}
+              title="For Families"
+              className="forFamilies"
+              updateFilter={(value) => updateAllFilter("forFamilies", value)}
+              selectedFilters={allFilters.forFamilies ?? []}
+              existInData={itemExist?.forFamilies ?? []}
+            />
+            {/* {Inclusions missing} */}
+            <RefinementList
+              values={filters.skiFacilities}
+              title="Ski Facilities"
+              className="skiFacilities"
+              updateFilter={(value) => updateAllFilter("skiFacilities", value)}
+              selectedFilters={allFilters.skiFacilities ?? []}
+              existInData={itemExist?.skiFacilities ?? []}
+            />
+            <RefinementList
+              values={filters.brand}
+              title="brand"
+              className="brand"
+              updateFilter={(value) => updateAllFilter("brand", value)}
+              selectedFilters={allFilters.brand ?? []}
+              existInData={itemExist?.brand ?? []}
             />
           </div>
         </div>

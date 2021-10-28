@@ -21,6 +21,7 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <RatingRefinementList
+            state={mainState}
             values={facets["customDataAttributes.rating"]}
             attribute="customDataAttributes.rating"
             title="RATING"
@@ -76,12 +77,14 @@ export default function AllFilters({ facets, mainState }) {
             values={facets["customDataAttributes.whenAvailable"]}
             attribute="customDataAttributes.whenAvailable"
             title="WHEN AVAILABLE"
+            orderAlphabetically={false}
             className={clsx({ hidden: shouldVisible(["Experience"]) })}
           />
           <CustomRefinementList
             values={facets["customDataAttributes.bestTime"]}
             attribute="customDataAttributes.bestTime"
             title="BEST TIME"
+            orderAlphabetically={false}
             className={clsx({
               hidden: shouldVisible([
                 "All",
@@ -91,7 +94,35 @@ export default function AllFilters({ facets, mainState }) {
               ]),
             })}
           />
-          {/* Who for mising */}
+          <CustomRefinementList
+            values={facets["customDataAttributes.whoFor"]}
+            attribute="customDataAttributes.whoFor"
+            title="Who For"
+            className={clsx({
+              hidden: shouldVisible([
+                "All",
+                "Experience",
+                "Itinerary",
+                "PlaceToStay",
+              ]),
+            })}
+          />
+          <CustomRefinementList
+            values={facets["customDataAttributes.priceGuide"]}
+            attribute="customDataAttributes.priceGuide"
+            title="Price Guide"
+            className={clsx({
+              hidden: shouldVisible(["PlaceToStay"]),
+            })}
+          />
+          <CustomRefinementList
+            values={facets["customDataAttributes.priceGuideExp"]}
+            attribute="customDataAttributes.priceGuideExp"
+            title="Price Guide"
+            className={clsx({
+              hidden: shouldVisible(["Experience"]),
+            })}
+          />
           {/* Price Guide conflict PTS and Experience  */}
           <CustomRefinementList
             values={facets["customDataAttributes.greatFor"]}
@@ -181,6 +212,15 @@ export default function AllFilters({ facets, mainState }) {
               hidden: shouldVisible(["PlaceToStay"]),
             })}
           />
+          <CustomRefinementList
+            values={facets["customDataAttributes.forFamilies"]}
+            attribute="customDataAttributes.forFamilies"
+            title="For Families"
+            className={clsx({
+              hidden: shouldVisible(["PlaceToStay"]),
+            })}
+          />
+          {/* {Inclusions missing} */}
           <CustomRefinementList
             values={facets["customDataAttributes.skiFacilities"]}
             attribute="customDataAttributes.skiFacilities"

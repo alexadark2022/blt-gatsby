@@ -42,9 +42,10 @@ const allWpExperienceQuery = gql`
           activityType: activitySubType
           attractionType: attractionSubType
           greatFor: suitableFor
-          priceGuide: priceRange
+          priceGuideExp: priceRange
           bestTime: bestMonthFrom1
           whenAvailable: availableMonthFrom1
+          whoFor: especiallyFor
           theme
           setting
           experienceType: type
@@ -284,6 +285,7 @@ const allWpItineraryQuery = gql`
           setting
           theme
           bestTime: bestMonthFrom1
+          whoFor: especiallyFor
         }
         id
         databaseId

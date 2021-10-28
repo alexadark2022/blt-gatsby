@@ -18,6 +18,7 @@ const MainSearchList = (props) => {
       window.history.pushState(null, "", url);
     }
     if (parsed.tab) {
+      setMainState(parsed.tab);
       values.map((item) => {
         if (item.value === parsed.tab) {
           refine([item.value]);

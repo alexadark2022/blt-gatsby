@@ -11,7 +11,9 @@ import { ViewSwitcher } from "../components/ui-components/ViewSwitcher";
 import { graphql } from "gatsby";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import PlaceToStayFilter from "../components/my-components/PlaceToStayFilter";
+import ExperiencesFilter from "../components/my-components/ExperiencesFilter";
 import useStore from "./../store";
+import filters from "../utils/FiltersData";
 const RoundupPage = ({ data }) => {
   console.log("data", data);
   const { wpRoundUp: roundUp } = data || {};
@@ -40,108 +42,79 @@ const RoundupPage = ({ data }) => {
   const [filteredLinks, setFilteredLinks] = useState(links);
 
   const updateItemExist = useStore((state) => state.updateItemExist);
-  // {
-  //   continent,
-  //   setting,
-  //   theme,
-  //   bestTime,
-  //   espFor,
-  //   recType,
-  // }
-  const {
-    continentFilter,
-    settingFilter,
-    themeFilter,
-    bestTimeFilter,
-    espForFilter,
-    recTypeFilter,
-  } = useStore((state) => state.allFilters);
-  useEffect(() => {
-    let resArr = links;
-    if (settingFilter.length) {
-      resArr = resArr.filter((item) => {
-        const settings = item.link[0].customDataAttributes.setting;
-        const haveSettings = settings.some((item) =>
-          settingFilter.length ? settingFilter?.includes(item) ?? true : true
-        );
-        if (haveSettings) {
-          return true;
-        }
-      });
-    }
-    if (continentFilter.length) {
-      resArr = resArr.filter((item) => {
-        const continents = item.link[0].commonDataAttributes.continent;
-        const haveContinents = continents.some((item) =>
-          continentFilter.length
-            ? continentFilter?.includes(item) ?? true
-            : true
-        );
-        if (haveContinents) {
-          return true;
-        }
-      });
-    }
-    if (themeFilter.length) {
-      resArr = resArr.filter((item) => {
-        const themes = item.link[0].customDataAttributes.theme;
-        const haveTheme = themes.some((item) =>
-          themeFilter.length ? themeFilter?.includes(item) ?? true : true
-        );
-        if (haveTheme) {
-          return true;
-        }
-      });
-    }
-    if (espForFilter.length) {
-      resArr = resArr.filter((item) => {
-        const espFors = item.link[0].customDataAttributes.especiallyFor;
-        const haveEspFor =
-          espFors?.some((item) =>
-            espForFilter.length ? espForFilter?.includes(item) ?? true : true
-          ) ?? false;
-        if (haveEspFor) {
-          return true;
-        }
-      });
-    }
-    setFilteredLinks([...new Set(resArr)]);
-  }, [
-    continentFilter,
-    settingFilter,
-    themeFilter,
-    bestTimeFilter,
-    espForFilter,
-    recTypeFilter,
-  ]);
+  const itemExist = useStore((state) => state.itemExist);
+  const allFilters = useStore((state) => state.allFilters);
 
   useEffect(() => {
-    updateItemExist({
-      continent: [
-        ...new Set(
-          links.map(({ link }) => link[0].commonDataAttributes.continent).flat()
-        ),
-      ],
-      setting: [
-        ...new Set(
-          links.map(({ link }) => link[0].customDataAttributes.setting).flat()
-        ),
-      ],
-      theme: [
-        ...new Set(
-          links.map(({ link }) => link[0].customDataAttributes.theme).flat()
-        ),
-      ],
-      espFor: [
-        ...new Set(
-          links
-            .map(({ link }) => link[0].customDataAttributes.especiallyFor)
-            .flat()
-        ),
-      ],
+    let resArr = links;
+    const allFiltersArray = Object.keys(allFilters);
+    if (!allFiltersArray.length) return;
+    allFiltersArray.forEach((filterItem) => {
+      const filterArray = allFilters[filterItem];
+      if (!filterArray.length) return;
+      resArr = resArr.filter((item) => {
+        const dataItem =
+          filterItem === "continent"
+            ? item.link[0].commonDataAttributes[filterItem]
+            : item.link[0].customDataAttributes[filterItem];
+        // const haveItem = Array.isArray(dataItem)
+        //   ? dataItem?.some(
+        //       (item) =>
+        //         filterArray
+        //           .map((i) => i?.toUpperCase() ?? i)
+        //           ?.includes(item.toUpperCase()) ?? true
+        //     ) ?? false
+        //   : filterArray
+        //       .map((i) => i?.toUpperCase() ?? i)
+        //       ?.includes(dataItem.toUpperCase()) ?? true;
+
+        // console.log(filterArray);
+        // console.log(dataItem);
+        // console.log(haveItem);
+        // return true;
+        if (!dataItem) return false;
+        const haveItem = Array.isArray(dataItem)
+          ? dataItem?.some(
+              (item) =>
+                filterArray
+                  .map((i) => i?.toUpperCase() ?? i)
+                  ?.includes(item.toUpperCase()) ?? true
+            ) ?? false
+          : filterArray
+              .map((i) => i?.toUpperCase() ?? i)
+              ?.includes(dataItem.toUpperCase()) ?? true;
+        if (haveItem) {
+          return true;
+        }
+      });
     });
+    setFilteredLinks([...new Set(resArr)]);
+  }, [allFilters]);
+
+  useEffect(() => {
+    const allFiltersArray = Object.keys(filters);
+    let existingItems = allFiltersArray.reduce(function (allItems, item) {
+      if (item === "continent") {
+        allItems[item] = [
+          ...new Set(
+            links.map(({ link }) => link[0].commonDataAttributes[item]).flat()
+          ),
+        ];
+      } else {
+        allItems[item] = [
+          ...new Set(
+            links.map(({ link }) => link[0].customDataAttributes[item]).flat()
+          ),
+        ];
+      }
+      return allItems;
+    }, {});
+    updateItemExist(existingItems);
   }, []);
+
   console.log(filteredLinks);
+  console.log({ itemExist, allFilters });
+
   return (
     <Layout page="round-up">
       <Breadcrumbs terms={breadcrumbsTerms} />
@@ -154,12 +127,20 @@ const RoundupPage = ({ data }) => {
         openFilters={openFilters}
         setOpenFilters={setOpenFilters}
         sidebar={
-          contentType === "Places to stay" && (
-            <PlaceToStayFilter
-              openFilters={openFilters}
-              setOpenFilters={setOpenFilters}
-            />
-          )
+          <div>
+            {contentType === "Places to stay" && (
+              <PlaceToStayFilter
+                openFilters={openFilters}
+                setOpenFilters={setOpenFilters}
+              />
+            )}
+            {contentType === "Experiences" && (
+              <ExperiencesFilter
+                openFilters={openFilters}
+                setOpenFilters={setOpenFilters}
+              />
+            )}
+          </div>
         }
       >
         <section
@@ -186,21 +167,23 @@ const RoundupPage = ({ data }) => {
 
               return (
                 <>
-                  <Listing
-                    item={item}
-                    key={item.link[0].id}
-                    pts={type === "PlaceToStay"}
-                    itinerary={type === "Itinerary"}
-                    className="hidden md:block"
-                  />
-                  <div className="flex justify-center">
-                    <ListingCard
+                  <div key={item.link[0].id}>
+                    <Listing
                       item={item}
                       key={item.link[0].id}
                       pts={type === "PlaceToStay"}
                       itinerary={type === "Itinerary"}
-                      className="md:hidden mb-10"
+                      className="hidden md:block"
                     />
+                    <div className="flex justify-center">
+                      <ListingCard
+                        item={item}
+                        key={item.link[0].id}
+                        pts={type === "PlaceToStay"}
+                        itinerary={type === "Itinerary"}
+                        className="md:hidden mb-10"
+                      />
+                    </div>
                   </div>
                 </>
               );

@@ -26,22 +26,34 @@ export const placeTostayFragments = graphql`
       }
     }
     customDataAttributes: ptsDataAttr {
-      especiallyFor
-      setting
-      theme
-      website
-      starRating
-      region
       city
+      region
+      website
       latitudeOfLocation1
       longitudeOfLocation1
       priceCheckingLinks {
         url
         logo {
-          altText
           sourceUrl
+          title
+          altText
         }
       }
+      starRating
+      theme
+      whoFor: especiallyFor
+      priceGuide: pricePerNight
+      setting
+      standard
+      accommodationType: type
+      roomType
+      hotelFacility: otherHotelFacilities
+      roomFacility: roomFeatures
+      forFamilies: roomForFamilies
+      allInclusive
+      selfCatering
+      skiFacilities: ski
+      brand
     }
     featuredImage {
       node {

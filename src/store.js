@@ -2,17 +2,10 @@ import create from "zustand";
 
 const useStore = create((set) => ({
   itemExist: {},
-  allFilters: {
-    continentFilter: [],
-    settingFilter: [],
-    themeFilter: [],
-    bestTimeFilter: [],
-    espForFilter: [],
-    recTypeFilter: [],
-  },
+  allFilters: {},
   updateAllFilter: (name, value) => {
     set((state) => {
-      if (state.allFilters[name].includes(value)) {
+      if (state.allFilters[name]?.includes(value)) {
         let some = state.allFilters[name].filter((f) => f !== value);
         let newF = {
           ...state.allFilters,
@@ -22,9 +15,10 @@ const useStore = create((set) => ({
           allFilters: newF,
         };
       } else {
+        const p = state.allFilters[name] ?? [];
         let newF = {
           ...state.allFilters,
-          [name]: [...state.allFilters[name], value],
+          [name]: [...p, value],
         };
         return {
           allFilters: newF,
