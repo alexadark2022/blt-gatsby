@@ -166,7 +166,7 @@ export const Listing = ({
             )
           )}
           {/* Price checking links button */}
-          {priceCheckingLinks || website ? (
+          {priceCheckingLinks || website && pts ? (
             <Button
               secondary
               className="!text-sm"
