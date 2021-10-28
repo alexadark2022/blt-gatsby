@@ -97,9 +97,11 @@ export function SignUpForm({ warning, setTabIndex }) {
             Create account
           </Typo>
           {warning && (
-            <div className="orange-box">
-              Please note: if you want us to save your bucket list for next
-              time, you need to sign in or create an account.
+            <div className="flex justify-center">
+              <div className="orange-box">
+                Please note: if you want us to save your bucket list for next
+                time, you need to sign in or create an account.
+              </div>
             </div>
           )}
           <form
@@ -194,9 +196,11 @@ export function SignUpForm({ warning, setTabIndex }) {
               </div>
 
               {error ? (
-                <p className="orange-box">
-                  An account with that email already exists.
-                </p>
+                <div className="flex justify-center">
+                  <p className="orange-box">
+                    An account with that email already exists.
+                  </p>
+                </div>
               ) : null}
               <div className="flex justify-around mb-5">
                 <Button

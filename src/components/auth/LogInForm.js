@@ -89,10 +89,14 @@ export function LogInForm({ setTabIndex, closeModal }) {
           Forgot password?
         </Link>
         {!isEmailValid ? (
-          <p className="error-message ">Invalid email. Please try again.</p>
+          <div className="flex justify-center">
+            <p className="error-message ">Invalid email. Please try again.</p>
+          </div>
         ) : null}
         {!isPasswordValid ? (
-          <p className="error-message">Invalid password. Please try again.</p>
+          <div className="flex justify-center">
+            <p className="error-message">Invalid password. Please try again.</p>
+          </div>
         ) : null}
 
         <div className="flex justify-center">
