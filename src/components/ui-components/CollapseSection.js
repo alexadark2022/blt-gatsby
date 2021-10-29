@@ -68,7 +68,9 @@ export const CollapseSection = ({
 
             <Typo>{title}</Typo>
           </div>
-          {number && <Number number={number} />}
+          {number && <div>
+            <Number number={number} />
+          </div>}
         </div>
 
         <Collapse

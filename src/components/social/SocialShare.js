@@ -57,7 +57,7 @@ const SidebarSocialShare = ({ url }) => {
   return (
     <Section
       as="div"
-      className="fixed bottom-0 z-50 w-full px-3 pt-3 pb-5 -ml-5 space-y-3 md:static md:-ml-0"
+      className="fixed z-40 bottom-0 w-full px-3 pt-3 pb-5 -ml-5 space-y-3 md:static md:-ml-0"
     >
       <Typo as="h3" className="hidden text-center md:block">
         Share this page

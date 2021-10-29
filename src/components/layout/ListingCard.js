@@ -83,13 +83,13 @@ export const ListingCard = ({
               <AddToBlButton
                 remove
                 addToBl={removeFromBl}
-                className="absolute z-30 px-2 py-1 text-2xl text-white cursor-pointer top-2 right-2"
+                className="absolute z-10 px-2 py-1 text-2xl text-white cursor-pointer top-2 right-2"
               />
             ) : (
               <AddToBlButton
                 add
                 addToBl={addToBl}
-                className="absolute z-30 px-2 py-1 text-2xl text-white cursor-pointer top-2 right-2"
+                className="absolute z-10 px-2 py-1 text-2xl text-white cursor-pointer top-2 right-2"
               />
             )
           ) : (
@@ -100,7 +100,7 @@ export const ListingCard = ({
 
         <div className={clsx("p-4 text-center flex-col justify-between space-y-5")}>
           {/* Title and city */}
-          <div className="space-y-5 ">
+          <div className="space-y-5 min-h-[110px] ">
             <div>
               <Link
                 to={`${uri}`}
@@ -135,6 +135,7 @@ export const ListingCard = ({
                 minAge={minAge}
                 priceFrom={priceFrom}
                 whenIsIt={whenIsIt}
+                duration={duration}
                 card
                 className="justify-center"
               />

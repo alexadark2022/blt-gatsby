@@ -73,7 +73,9 @@ export function ProfileForm() {
           defaultValue={email || ""}
           autoComplete="email"
         />
-        {error ? <p className="error-message">{error.message}</p> : null}
+        {error ? <div className="flex justify-center">
+          <p className="error-message">{error.message}</p>
+        </div> : null}
         <button type="submit" disabled={loading}>
           {loading ? "Updating..." : "Update"}
         </button>

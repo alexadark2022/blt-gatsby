@@ -6,7 +6,7 @@ export const Number = ({ number, className = "", ...props }) => {
     <div
       className={clsx(
         "text-[34px] font-bold",
-        "w-[50px] min-w-[50px] h-[50px] ",
+        " min-w-[50px] min-h-[50px] p-1",
         "flex justify-center items-center",
         "border-3 border-gold",
         className

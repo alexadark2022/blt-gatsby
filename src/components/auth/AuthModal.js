@@ -3,7 +3,7 @@ import React, { Fragment } from "react"
 import { Button } from "../ui-components"
 import { AuthModalTabs } from "./AuthModalTabs"
 
-export const AuthModal = ({ isOpen, setIsOpen, warning }) => {
+export const AuthModal = ({ isOpen, setIsOpen, warning, propsTabIndex=null }) => {
   const closeModal = () => setIsOpen(false)
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -41,7 +41,7 @@ export const AuthModal = ({ isOpen, setIsOpen, warning }) => {
             leaveTo="opacity-0 scale-95"
           >
             <div className="inline-block w-full max-w-[500px] overflow-hidden text-left align-middle transition-all transform bg-white relative">
-              <AuthModalTabs closeModal={closeModal} warning={warning} />
+              <AuthModalTabs closeModal={closeModal} warning={warning} propsTabIndex={propsTabIndex} />
               <Button
                 onClick={closeModal}
                 secondary

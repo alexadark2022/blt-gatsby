@@ -67,14 +67,14 @@ export function SetPasswordForm({ resetKey: key, login }: Props) {
 
   if (wasPasswordReset) {
     return (
-      <>
+      <div className="flex justify-center">
         <p
-          className={`text-center text-lg uppercase font-bold text-white mb-5`}
+          className={`orange-box`}
         >
-          Your new password has been set.
+          Your new password has been set
         </p>
         {/*{setIsOpen(true)}*/}
-      </>
+      </div>
     )
   }
 

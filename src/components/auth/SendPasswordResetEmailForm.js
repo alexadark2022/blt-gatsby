@@ -39,7 +39,7 @@ export function SendPasswordResetEmailForm() {
 
   if (wasEmailSent) {
     return (
-      <div>
+      <div className="flex justify-center">
         <p className={`orange-box text-f-20`}>
           Please check your email, a password reset link has been sent to you
           <button
@@ -54,7 +54,7 @@ export function SendPasswordResetEmailForm() {
           </button>
         </p>
 
-        <AuthModal isOpen={isOpen} setIsOpen={setIsOpen} warning={false} />
+        <AuthModal isOpen={isOpen} setIsOpen={setIsOpen} warning={false} propsTabIndex={1} />
       </div>
     );
   }
@@ -82,7 +82,9 @@ export function SendPasswordResetEmailForm() {
           className="h-14"
           required
         />
-        {error ? <p className="error-message">{error.message}</p> : null}
+        {error ? <div className="flex justify-center">
+          <p className="error-message">{error.message}</p>
+        </div> : null}
         <div className={` flex justify-center mt-10`}>
           <Button type="submit" disabled={loading} className={`h-14 w-[300px]`}>
             {loading ? "Sending..." : "Send password reset email"}

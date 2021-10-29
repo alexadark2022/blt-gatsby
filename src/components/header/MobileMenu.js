@@ -101,10 +101,11 @@ export const MobileMenu = ({ className, ...props }) => {
                       "flex flex-col",
                       "h-screen",
                       "overflow-y-scroll",
-                      "bg-darkBlue shadow-xl"
+                      "bg-darkBlue shadow-xl",
+                      "z-50"
                     )}
                   >
-                    <div className="flex items-center justify-between px-4 py-2 border-b border-white">
+                    <div className="flex items-center justify-between px-4 py-2 border-b border-white border-opacity-25">
                       <Branding />
                       <button className={clsx("")} aria-label="close menu">
                         <Close
@@ -114,7 +115,7 @@ export const MobileMenu = ({ className, ...props }) => {
                       </button>
                     </div>
 
-                    {/*<MobileMenuItems className="px-4" setOpen={setOpen} />*/}
+
                     <nav className={`px-4`}>
                       {menuItems?.map((item) => {
                         const { label, path, cssClasses, id } = item;
