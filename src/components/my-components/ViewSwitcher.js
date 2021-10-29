@@ -13,7 +13,7 @@ const WiewButton = styled.button(() => [
   tw`w-10 h-10`,
 ]);
 
-const ViewSwitcher = ({ className, setView, isClickable = false }) => {
+const ViewSwitcher = ({ className, setView, isClickable = false, mapOpen }) => {
   return (
     <div className={clsx("flex space-x-3", className)}>
       <div>
@@ -37,7 +37,7 @@ const ViewSwitcher = ({ className, setView, isClickable = false }) => {
       </div>
       <div>
         <WiewButton
-          onClick={() => (isClickable ? setView("map") : null)}
+          onClick={mapOpen}
           className={clsx({
             "cursor-default ": !isClickable,
             "hover:bg-gold focus:bg-gold": isClickable,

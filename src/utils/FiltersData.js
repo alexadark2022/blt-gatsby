@@ -1,4 +1,4 @@
-export default {
+const filterData = {
   continent: [
     "Africa: Sub-Saharan",
     "Asia",
@@ -156,3 +156,4 @@ export default {
     "Sir Hotels",
   ],
 };
+export default filterData;

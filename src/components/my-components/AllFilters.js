@@ -7,7 +7,7 @@ export default function AllFilters({ facets, mainState }) {
     return !list.includes(mainState);
   };
   //   console.log(mainState);
-  console.log(facets);
+  //console.log(facets);
   return (
     <>
       <div className="">
