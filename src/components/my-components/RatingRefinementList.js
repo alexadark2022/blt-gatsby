@@ -1,6 +1,6 @@
 import { connectRefinementList } from "react-instantsearch-dom";
 import clsx from "clsx";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button } from "../ui-components/Button";
 import { WithCollapse } from "../ui-components/WithCollapse";
 import { FaChevronDown } from "react-icons/fa";
@@ -13,35 +13,24 @@ const RatingRefinementList = (props) => {
     refine,
     title = "CONTINENT",
     className,
-    state,
+    customOrderArray,
   } = props;
   const [open, setOpen] = useState(false);
   const [arraySize, setArraySize] = useState(4);
   const [openFilterSet, setOpenFilterSet] = useState(false);
-  // console.log(state);
-  // useEffect(() => {
-  //   if (["All", "Experience"].includes(state)) {
-  //     refine(["yes"]);
-  //   } else {
-  //     refine([]);
-  //   }
-  // }, [state]);
-
+  function sortCustomArray(arr) {
+    return arr.sort(function (a, b) {
+      return (
+        customOrderArray.indexOf(a.label.toLowerCase()) -
+        customOrderArray.indexOf(b.label.toLowerCase())
+      );
+    });
+  }
   if (!values) {
     return null;
   }
 
-  const filteredValues = values.sort(function (a, b) {
-    var nameA = a.label.toUpperCase();
-    var nameB = b.label.toUpperCase();
-    if (nameA < nameB) {
-      return -1;
-    }
-    if (nameA > nameB) {
-      return 1;
-    }
-    return 0;
-  });
+  const filteredValues = sortCustomArray(values);
   const handelSomething = (value) => {
     if (value === "yes" && !currentRefinement.includes(value)) {
       return refine(["yes"]);

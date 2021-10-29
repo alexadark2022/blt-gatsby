@@ -1,21 +1,21 @@
-import React, { useState } from "react"
-import { Tabs, TabList, Tab, TabPanels, TabPanel } from "@reach/tabs"
-import { Dialog, Transition } from "@headlessui/react"
-import clsx from "clsx"
-import { SignUpForm, UnAuthContent, LogInForm } from "."
-import { Typo } from ".."
+import React, { useState } from "react";
+import { Tabs, TabList, Tab, TabPanels, TabPanel } from "@reach/tabs";
+import { Dialog } from "@headlessui/react";
+import clsx from "clsx";
+import { SignUpForm, UnAuthContent, LogInForm } from ".";
+import { Typo } from "..";
 
 export const AuthModalTabs = ({ warning, closeModal }) => {
-  const [tabIndex, setTabIndex] = useState(0)
+  const [tabIndex, setTabIndex] = useState(0);
 
-  console.log(tabIndex)
+  console.log(tabIndex);
   const handleTabsChange = (index) => {
-    setTabIndex(index)
-  }
+    setTabIndex(index);
+  };
 
-  const tabStyles = `w-1/2 text-center h-[66px] text-[20px] font-medium px-5 uppercase border-b border-grey2 text-grey5 `
+  const tabStyles = `w-1/2 text-center h-[66px] text-[20px] font-medium px-5 uppercase border-b border-grey2 text-grey5 `;
 
-  const tabPanelStyles = `px-5 sm:px-11 pt-3 pb-16`
+  const tabPanelStyles = `px-5 sm:px-11 pt-3 pb-16`;
   return (
     <Tabs index={tabIndex} onChange={handleTabsChange} className="">
       <TabList
@@ -47,5 +47,5 @@ export const AuthModalTabs = ({ warning, closeModal }) => {
         </TabPanel>
       </TabPanels>
     </Tabs>
-  )
-}
+  );
+};

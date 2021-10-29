@@ -8,16 +8,12 @@ export const AccountForm = ({ onSubmit }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful, isSubmitting },
+    formState: { isSubmitSuccessful },
   } = useForm();
 
   const Label = styled.label(() => [tw`block mb-1 font-bold text-black`]);
   const questionMarkStyles =
     "flex items-center justify-center w-5 h-5 border border-gray-500 rounded-full bg-lightBlue text-black text-sm";
-  const ErrorMessage = styled.div(() => [
-    tw`max-w-md px-5 py-2 my-2 text-center text-red-500 bg-red-100 rounded-md`,
-  ]);
-
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="w-full">

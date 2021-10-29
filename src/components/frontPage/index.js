@@ -1,15 +1,15 @@
-import React, { useEffect, useContext } from "react";
+import React from "react";
 import { NewsletterHome } from "../Newsletter";
 import { Awards } from "./Awards";
 import { HomeHero } from "./HomeHero";
 import { WhatWeOffer } from "./WhatWeOffer";
-import { useAuth } from "../../lib/hooks/useAuth";
-import { useQuery } from "@apollo/client";
-import { GET_BUCKET_LIST } from "../../lib/queries";
-import {
-  GlobalDispatchContext,
-  GlobalStateContext,
-} from "../../context/GlobalContextProvider";
+// import { useAuth } from "../../lib/hooks/useAuth";
+// import { useQuery } from "@apollo/client";
+// import { GET_BUCKET_LIST } from "../../lib/queries";
+// import {
+//   GlobalDispatchContext,
+//   GlobalStateContext,
+// } from "../../context/GlobalContextProvider";
 
 export const FrontPage = ({ homeHero, whatWeOffer, url, awards }) => {
   // const { user } = useAuth();

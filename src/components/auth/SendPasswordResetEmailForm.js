@@ -1,9 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useMutation, gql } from "@apollo/client"
-import { Label, Input, Button } from "../ui-components"
+import { useMutation, gql } from "@apollo/client";
+import { Input, Button } from "../ui-components";
 
-import React, { useState } from "react"
-import { AuthModal } from "./AuthModal"
+import React, { useState } from "react";
+import { AuthModal } from "./AuthModal";
 
 const SEND_PASSWORD_RESET_EMAIL = gql`
   mutation sendPasswordResetEmail($username: String!) {
@@ -13,28 +13,28 @@ const SEND_PASSWORD_RESET_EMAIL = gql`
       }
     }
   }
-`
+`;
 
 export function SendPasswordResetEmailForm() {
   const [sendPasswordResetEmail, { loading, error, data }] = useMutation(
     SEND_PASSWORD_RESET_EMAIL
-  )
-  const wasEmailSent = Boolean(data?.sendPasswordResetEmail?.user)
+  );
+  const wasEmailSent = Boolean(data?.sendPasswordResetEmail?.user);
 
-  console.log("wasEmailSent", data)
-  const [isOpen, setIsOpen] = useState(false)
+  console.log("wasEmailSent", data);
+  const [isOpen, setIsOpen] = useState(false);
 
   function handleSubmit(event) {
-    event.preventDefault()
-    const data = new FormData(event.currentTarget)
-    const { email } = Object.fromEntries(data)
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const { email } = Object.fromEntries(data);
     sendPasswordResetEmail({
       variables: {
         username: email,
       },
     }).catch((error) => {
-      console.error(error)
-    })
+      console.error(error);
+    });
   }
 
   if (wasEmailSent) {
@@ -46,8 +46,8 @@ export function SendPasswordResetEmailForm() {
             aria-label="go to signin"
             className={`text-blueLink mt-3 text-center font-bold mx-auto w-full`}
             onClick={(e) => {
-              e.preventDefault()
-              setIsOpen(true)
+              e.preventDefault();
+              setIsOpen(true);
             }}
           >
             Sign in
@@ -56,7 +56,7 @@ export function SendPasswordResetEmailForm() {
 
         <AuthModal isOpen={isOpen} setIsOpen={setIsOpen} warning={false} />
       </div>
-    )
+    );
   }
 
   return (
@@ -90,5 +90,5 @@ export function SendPasswordResetEmailForm() {
         </div>
       </fieldset>
     </form>
-  )
+  );
 }

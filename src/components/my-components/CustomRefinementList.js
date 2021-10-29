@@ -13,7 +13,22 @@ const CustomRefinementList = (props) => {
     refine,
     title = "CONTINENT",
     className,
+    extraText = null,
     orderAlphabetically = true,
+    customOrderArray = [
+      "january",
+      "february",
+      "march",
+      "april",
+      "may",
+      "june",
+      "july",
+      "august",
+      "september",
+      "october",
+      "november",
+      "december",
+    ],
   } = props;
   const [open, setOpen] = useState(false);
   const [arraySize, setArraySize] = useState(4);
@@ -31,25 +46,11 @@ const CustomRefinementList = (props) => {
     );
   }
 
-  function sortByMonth(arr) {
-    var months = [
-      "january",
-      "february",
-      "march",
-      "april",
-      "may",
-      "june",
-      "july",
-      "august",
-      "september",
-      "october",
-      "november",
-      "december",
-    ];
+  function sortCustomArray(arr) {
     return arr.sort(function (a, b) {
       return (
-        months.indexOf(a.label.toLowerCase()) -
-        months.indexOf(b.label.toLowerCase())
+        customOrderArray.indexOf(a.label.toLowerCase()) -
+        customOrderArray.indexOf(b.label.toLowerCase())
       );
     });
   }
@@ -66,7 +67,7 @@ const CustomRefinementList = (props) => {
         }
         return 0;
       })
-    : sortByMonth(values);
+    : sortCustomArray(values);
   return (
     <div className={className}>
       <div className="py-4 border-b border-grey2">
@@ -146,7 +147,8 @@ const CustomRefinementList = (props) => {
                           refine(next);
                         }}
                       />
-                      {staticItem.label} <span className="ml-1">[{count}]</span>
+                      {staticItem.label} {extraText ? extraText : ""}
+                      <span className="ml-1">[{count}]</span>
                     </label>
                   </li>
                 );
