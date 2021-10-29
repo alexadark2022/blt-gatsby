@@ -125,6 +125,7 @@ export const Listing = ({
               minAge={minAge}
               priceFrom={priceFrom}
               whenIsIt={whenIsIt}
+              duration={duration}
             />
           </div>
         </div>
@@ -147,7 +148,7 @@ export const Listing = ({
           writer ||
           nested ||
           roundUp ? (
-            <Link to={uri} className="!text-[11px] btn h-10">
+            <Link to={uri} className="!text-sm btn h-10">
               {writer ? "Read more" : "Review"}
             </Link>
           ) : (
@@ -155,7 +156,7 @@ export const Listing = ({
               <Button
                 secondary
                 as="a"
-                // className="!text-[11px]"
+                className="!text-sm"
                 href={website}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -165,10 +166,10 @@ export const Listing = ({
             )
           )}
           {/* Price checking links button */}
-          {priceCheckingLinks ? (
+          {priceCheckingLinks || website && pts ? (
             <Button
               secondary
-              // className="leading-none !text-[11px]"
+              className="!text-sm"
               onClick={(e) => {
                 e.preventDefault()
                 setOpen(!open)
@@ -184,7 +185,7 @@ export const Listing = ({
                 className={clsx(
                   "transition duration-500",
                   "ml-3 -mt-1",
-                  "text-lightBlue  text-[17px]",
+                  "text-lightBlue text-sm",
                   { "transform rotate-180": open }
                 )}
               />
@@ -194,7 +195,7 @@ export const Listing = ({
           )}
         </div>
       </div>
-      {priceCheckingLinks && (
+
         <Collapse
           isOpen={open}
           className="duration-500 ease-in-out transition-height"
@@ -204,8 +205,9 @@ export const Listing = ({
             website={website}
             className="mt-10"
           />
+
         </Collapse>
-      )}
+
     </div>
   )
 }

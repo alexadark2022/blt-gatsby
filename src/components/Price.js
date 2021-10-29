@@ -31,7 +31,7 @@ export const Price = ({ priceCheckingLinks, website, className, ...props }) => {
             as="a"
             href={website}
             target="_blank"
-            className="my-4 ml-3"
+            className="my-4 ml-3 text-sm"
           >
             Hotel Website
           </Button>

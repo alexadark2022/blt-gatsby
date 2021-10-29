@@ -363,7 +363,7 @@ const PlaceToStayPage = ({ data }) => {
           </HotelFeatures>
         </CollapseSection>
         {/* Bucketlist experiences */}
-        {bucketListExperiences && (
+        {bucketListExperiences && bucketListExperiences?.length > 0 && (
           <CollapseSection
             title="Bucket list experiences nearby"
             number={bucketListExperiences.length}
@@ -379,7 +379,7 @@ const PlaceToStayPage = ({ data }) => {
           </CollapseSection>
         )}
         {/* Other experiences */}
-        {otherExperiences && (
+        {otherExperiences && otherExperiences?.length > 0 && (
           <CollapseSection
             title="Other experiences nearby"
             number={otherExperiences.length}

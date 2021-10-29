@@ -145,7 +145,7 @@ const ExperiencePage = ({ data }) => {
         bl
         item={experience}
         sidebar={
-          <div className="sticky top-0 space-y-base2">
+          <div className="sticky top-0 z-50 space-y-base2 ">
             <Newsletter />
             <SidebarSocialShare url={url} />
             {sidebarTourOperator &&
@@ -284,7 +284,7 @@ const ExperiencePage = ({ data }) => {
           </CollapseSection>
         )}
         {/* Bucketlist experiences */}
-        {bucketListExperiences && (
+        {bucketListExperiences && bucketListExperiences?.length > 0 && (
           <CollapseSection
             title="Other bucket list experiences nearby"
             number={bucketListExperiences.length}
@@ -300,7 +300,7 @@ const ExperiencePage = ({ data }) => {
           </CollapseSection>
         )}
         {/* Other experiences */}
-        {otherExperiences && (
+        {otherExperiences && otherExperiences?.length > 0 &&  (
           <CollapseSection
             title="Other experiences nearby"
             number={otherExperiences.length}

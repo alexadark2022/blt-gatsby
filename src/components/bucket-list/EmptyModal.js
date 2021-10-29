@@ -16,7 +16,7 @@ export const EmptyModal = ({ isOpen, setIsOpen, action, title, text }) => {
           {title}
         </Dialog.Title>
         <div className="mb-10 text-lg">
-          <p>Are you sure? this cannot be undone.</p>
+          <p>Are you sure? This cannot be undone.</p>
         </div>
 
         <div className="flex justify-between max-w-md mx-auto mt-4 space-x-3">

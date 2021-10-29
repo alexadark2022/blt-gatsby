@@ -94,6 +94,7 @@ const DestinationPage = ({ data }) => {
     (exp) => exp.customDataAttributes.isBucketList === "no"
   );
 
+
   const allExperiences = [
     {
       title: "Bucket list experiences",
@@ -153,7 +154,7 @@ const DestinationPage = ({ data }) => {
         sidebar={
           <div className="h-full space-y-base2">
             <Newsletter />
-            <div className="sticky top-0 space-y-base2">
+            <div className="sticky top-0 z-50 space-y-base2">
               <SidebarSocialShare url={url} />
               {sidebarTourOperator &&
                 sidebarTourOperator.map((to, index) => (
@@ -187,6 +188,9 @@ const DestinationPage = ({ data }) => {
         {experiences &&
           allExperiences?.map((exp) => {
             const { title, experiences, id } = exp;
+            if(experiences === null || experiences?.length === 0){
+              return
+            }
             return (
               <CollapseSection
                 key={id}
