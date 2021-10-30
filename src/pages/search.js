@@ -41,14 +41,6 @@ const SearchPage = () => {
     apiKey: "AIzaSyCJkZohj9sqn6H_LrfHMNG5cY794SWFJgA",
     libraries: ["places"],
   });
-  loader
-    .load()
-    .then(() => {
-      setLoadMap(true);
-    })
-    .catch((e) => {
-      console.log("error loading Google Maps API");
-    });
 
   const facets = useCallback(() => {
     const filtersArray = Object.entries(filters);
@@ -71,6 +63,14 @@ const SearchPage = () => {
       })
       .then((res) => {
         setFilters(res.facets);
+      });
+    loader
+      .load()
+      .then(() => {
+        setLoadMap(true);
+      })
+      .catch((e) => {
+        console.log("error loading Google Maps API");
       });
   }, []);
 
