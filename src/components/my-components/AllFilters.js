@@ -7,7 +7,7 @@ export default function AllFilters({ facets, mainState }) {
     return !list.includes(mainState);
   };
   //   console.log(mainState);
-  console.log(facets);
+  //console.log(facets);
   return (
     <>
       <div className="">
@@ -24,9 +24,11 @@ export default function AllFilters({ facets, mainState }) {
             state={mainState}
             values={facets["customDataAttributes.rating"]}
             attribute="customDataAttributes.rating"
+            orderAlphabetically={false}
+            customOrderArray={["yes", "no"]}
             title="RATING"
             className={clsx({
-              hidden: shouldVisible(["All", "Experience"]),
+              hidden: shouldVisible(["Experience"]),
             })}
           />
           <CustomRefinementList
@@ -123,15 +125,6 @@ export default function AllFilters({ facets, mainState }) {
               hidden: shouldVisible(["Experience"]),
             })}
           />
-          {/* Price Guide conflict PTS and Experience  */}
-          <CustomRefinementList
-            values={facets["customDataAttributes.greatFor"]}
-            attribute="customDataAttributes.greatFor"
-            title="GREAT FOR"
-            className={clsx({
-              hidden: shouldVisible(["Experience"]),
-            })}
-          />
           <CustomRefinementList
             values={facets["customDataAttributes.experienceType"]}
             attribute="customDataAttributes.experienceType"
@@ -176,6 +169,7 @@ export default function AllFilters({ facets, mainState }) {
             values={facets["customDataAttributes.starRating"]}
             attribute="customDataAttributes.starRating"
             title="Star Rating"
+            extraText="star"
             className={clsx({
               hidden: shouldVisible(["PlaceToStay"]),
             })}

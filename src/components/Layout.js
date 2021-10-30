@@ -1,29 +1,20 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { HelmetForFavicon } from "./HelmetForFavicon";
 import clsx from "clsx";
 import { Header } from "./header/Header";
 import { Footer } from "./footer";
-import Helmet from "react-helmet"
-
 
 export const Layout = ({ children, page, type = "page", ...props }) => {
   const layoutClass = page !== undefined ? (page.slug ? page.slug : page) : "";
   const pageTemplate = page?.headlesswp?.pageTemplate;
 
   const fullWidthClass = pageTemplate === "full width" ? "fullWidth" : "";
-  const devMode = process.env.NODE_ENV === "development"
 
-
-
+  // useDbBucketList()
 
   return (
     <>
       <HelmetForFavicon />
-      <Helmet
-        bodyAttributes={{
-          class: devMode ? "debug-screens" : "",
-        }}
-      />
 
       <div
         className={clsx(

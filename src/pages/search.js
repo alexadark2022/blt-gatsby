@@ -18,7 +18,10 @@ import { IoCloseSharp as Close } from "react-icons/io5";
 import { Typo, Button, WithCollapse } from "../components/ui-components";
 import isEmptyObject from "./../utils/isEmptyObject";
 import { Breadcrumbs } from "../components/Breadcrumbs";
-import Loader from "react-loader-spinner";
+import LoaderSpinner from "react-loader-spinner";
+import { Loader } from "@googlemaps/js-api-loader";
+import SearchMap from "./../components/maps/SearchMap";
+
 const indexName = "BucketList";
 const searchClient = algoliasearch(
   "E4TS2J6OFT",
@@ -31,7 +34,13 @@ const SearchPage = () => {
   const [mainState, setMainState] = useState("All");
   const [view, setView] = useState("");
   const [openFilters, setOpenFilters] = useState(false);
+  const [isMapOpen, setIsMapOpen] = useState(false);
   const [filters, setFilters] = useState([]);
+  const [loadMap, setLoadMap] = useState(false);
+  const loader = new Loader({
+    apiKey: "AIzaSyCJkZohj9sqn6H_LrfHMNG5cY794SWFJgA",
+    libraries: ["places"],
+  });
 
   const facets = useCallback(() => {
     const filtersArray = Object.entries(filters);
@@ -55,6 +64,14 @@ const SearchPage = () => {
       .then((res) => {
         setFilters(res.facets);
       });
+    loader
+      .load()
+      .then(() => {
+        setLoadMap(true);
+      })
+      .catch((e) => {
+        console.log("error loading Google Maps API");
+      });
   }, []);
 
   return (
@@ -66,7 +83,12 @@ const SearchPage = () => {
         <SearchBox />
         {isEmptyObject(facets()) ? (
           <div className="flex items-center justify-center h-[400px]">
-            <Loader type="Rings" color="#d3b27d" width={150} height={150} />
+            <LoaderSpinner
+              type="Rings"
+              color="#d3b27d"
+              width={150}
+              height={150}
+            />
           </div>
         ) : (
           <div
@@ -136,8 +158,20 @@ const SearchPage = () => {
                   Filters
                 </Button>
                 <div className="justify-end hidden w-full md:flex">
-                  <ViewSwitcher setView={setView} />
+                  <ViewSwitcher
+                    isClickable={["Experience"].some(
+                      (item) => item === mainState
+                    )}
+                    mapOpen={() => setIsMapOpen(true)}
+                    setView={setView}
+                  />
                 </div>
+                {loadMap && (
+                  <SearchMap
+                    isMapOpen={isMapOpen}
+                    closeModal={() => setIsMapOpen(false)}
+                  />
+                )}
               </div>
               <SearchHit view={view} />
             </div>

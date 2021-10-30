@@ -1,7 +1,4 @@
-import React, { Fragment, useContext } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-
-import { AiOutlineClose } from "react-icons/ai";
+import React, { useContext } from "react";
 import { IoCloseCircle } from "react-icons/io5";
 import { Modal } from "..";
 import {
@@ -11,8 +8,7 @@ import {
 import MapBox from "./MapBox";
 
 const ExperienceMap = ({ experience = {} }: any) => {
-  const { title, commonDataAttributes, customDataAttributes } =
-    experience || {};
+  const { title, customDataAttributes } = experience || {};
   const {
     longitudeOfLocation1,
     latitudeOfLocation1,
@@ -52,7 +48,7 @@ const ExperienceMap = ({ experience = {} }: any) => {
     <Modal isOpen={isMapOpen} closeModal={closeModal}>
       <div
         style={{ height: "90vh" }}
-        className="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle md:w-5/6 sm:p-6"
+        className="inline-block z-[100] px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle md:w-5/6 sm:p-6"
       >
         <div className="w-full h-full pb-10">
           <MapBox

@@ -41,7 +41,6 @@ const allWpExperienceQuery = gql`
           eventType: eventSubType
           activityType: activitySubType
           attractionType: attractionSubType
-          greatFor: suitableFor
           priceGuideExp: priceRange
           bestTime: bestMonthFrom1
           whenAvailable: availableMonthFrom1
@@ -64,6 +63,8 @@ const allWpExperienceQuery = gql`
           whenIsIt
           profile
           website
+          generic: isGenericRecommendation
+          affiliate: isAffiliateTour
         }
         tags {
           nodes {
@@ -399,14 +400,20 @@ const queries = [
   {
     query: allWpExperienceQuery,
     transformer: ({ data }) => {
-      return data.allWpExperience.nodes.map(({ tags, categories, ...item }) => {
-        return {
-          ...item,
-          date_timestamp: new Date(item.date).getTime(),
-          tags: mergeArray(tags),
-          categories: mergeArray(categories),
-        };
-      });
+      return data.allWpExperience.nodes
+        .filter(
+          ({ customDataAttributes }) =>
+            customDataAttributes?.generic !== "yes" ||
+            customDataAttributes?.affiliate !== "yes"
+        )
+        .map(({ tags, categories, ...item }) => {
+          return {
+            ...item,
+            date_timestamp: new Date(item.date).getTime(),
+            tags: mergeArray(tags),
+            categories: mergeArray(categories),
+          };
+        });
     },
     indexName: `BucketList`,
   },
