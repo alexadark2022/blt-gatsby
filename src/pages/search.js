@@ -2,12 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Layout, TravelQuote } from "../components";
 import clsx from "clsx";
 import algoliasearch from "algoliasearch/lite";
-import {
-  InstantSearch,
-  MenuSelect,
-  Configure,
-  SortBy,
-} from "react-instantsearch-dom";
+import { InstantSearch, Configure } from "react-instantsearch-dom";
 import SearchHit from "../components/my-components/SearchHit";
 import StaticRefinementList from "../components/my-components/MainSearchList";
 import SearchBox from "../components/my-components/SearchBox";
