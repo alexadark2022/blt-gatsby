@@ -58,7 +58,6 @@ const SearchPage = () => {
   return (
     <Layout>
       <Breadcrumbs terms={breadcrumbsTerms} />
-
       <InstantSearch searchClient={searchClient} indexName={indexName}>
         <Configure hitsPerPage={12} />
         <SearchBox />
@@ -98,18 +97,7 @@ const SearchPage = () => {
                 ]}
               />
               <div className="flex items-center justify-between mt-4 mb-4 space-x-2">
-                {/* <Select
-            options={[
-              'Recently added',
-              'Most Popular',
-              'Price: cheapest first',
-              'Price: expensive first',
-              'A-Z',
-              'Z-A',
-            ]}
-            defaultValue="Recently added"
-          />
-
+                {/*
           <Button
             small
             className={`w-[125px] lg:!hidden ${openFilters && '!hidden'}`}
