@@ -401,11 +401,14 @@ const queries = [
     query: allWpExperienceQuery,
     transformer: ({ data }) => {
       return data.allWpExperience.nodes
-        .filter(
-          ({ customDataAttributes }) =>
-            customDataAttributes?.generic !== "yes" ||
-            customDataAttributes?.affiliate !== "yes"
-        )
+        .filter(({ customDataAttributes }) => {
+          const isGeneric = customDataAttributes?.generic === "yes";
+          const isAffiliate = customDataAttributes?.affiliate === "yes";
+          if (isGeneric || isAffiliate) {
+            return false;
+          }
+          return true;
+        })
         .map(({ tags, categories, ...item }) => {
           return {
             ...item,

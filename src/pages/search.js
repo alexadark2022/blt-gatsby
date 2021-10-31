@@ -14,7 +14,6 @@ import { Typo, Button, WithCollapse } from "../components/ui-components";
 import isEmptyObject from "./../utils/isEmptyObject";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import LoaderSpinner from "react-loader-spinner";
-import { Loader } from "@googlemaps/js-api-loader";
 import SearchMap from "./../components/maps/SearchMap";
 
 const indexName = "BucketList";
@@ -31,11 +30,6 @@ const SearchPage = () => {
   const [openFilters, setOpenFilters] = useState(false);
   const [isMapOpen, setIsMapOpen] = useState(false);
   const [filters, setFilters] = useState([]);
-  const [loadMap, setLoadMap] = useState(false);
-  const loader = new Loader({
-    apiKey: "AIzaSyCJkZohj9sqn6H_LrfHMNG5cY794SWFJgA",
-    libraries: ["places"],
-  });
 
   const facets = useCallback(() => {
     const filtersArray = Object.entries(filters);
@@ -58,14 +52,6 @@ const SearchPage = () => {
       })
       .then((res) => {
         setFilters(res.facets);
-      });
-    loader
-      .load()
-      .then(() => {
-        setLoadMap(true);
-      })
-      .catch((e) => {
-        console.log("error loading Google Maps API");
       });
   }, []);
 
@@ -154,19 +140,20 @@ const SearchPage = () => {
                 </Button>
                 <div className="justify-end hidden w-full md:flex">
                   <ViewSwitcher
-                    isClickable={["Experience"].some(
-                      (item) => item === mainState
-                    )}
+                    isClickable={[
+                      "Experience",
+                      "PlaceToStay",
+                      "Destination",
+                    ].some((item) => item === mainState)}
                     mapOpen={() => setIsMapOpen(true)}
                     setView={setView}
                   />
                 </div>
-                {loadMap && (
-                  <SearchMap
-                    isMapOpen={isMapOpen}
-                    closeModal={() => setIsMapOpen(false)}
-                  />
-                )}
+
+                <SearchMap
+                  isMapOpen={isMapOpen}
+                  closeModal={() => setIsMapOpen(false)}
+                />
               </div>
               <SearchHit view={view} />
             </div>
