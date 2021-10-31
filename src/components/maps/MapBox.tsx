@@ -26,6 +26,7 @@ const MapBox = ({
     }
     setActiveMarker(marker);
   };
+  console.log(mainData);
 
   const onLoad = (map) => {
     console.log(map, "map instance");
