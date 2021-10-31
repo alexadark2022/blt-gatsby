@@ -20,7 +20,7 @@ const SearchMap = ({ isMapOpen, closeModal, hits }) => {
 
   const [map, setMap] = useState(null);
 
-  const onLoad = useCallback(function callback(map) {
+  const onLoad = useCallback((map) => {
     const bounds = new window.google.maps.LatLngBounds();
     if (allMapPoints.length == 1) {
       let pt = new window.google.maps.LatLng(allMapPoints[0].position);
@@ -34,7 +34,7 @@ const SearchMap = ({ isMapOpen, closeModal, hits }) => {
     setMap(map);
   }, []);
 
-  const onUnmount = useCallback(function callback(map) {
+  const onUnmount = useCallback((map) => {
     setMap(null);
   }, []);
 
