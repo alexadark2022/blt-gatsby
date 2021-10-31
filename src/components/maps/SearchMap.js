@@ -13,6 +13,7 @@ import FormatMapsData from "./FormatMapsData";
 
 const SearchMap = ({ isMapOpen, closeModal, hits }) => {
   const allMapPoints = FormatMapsData(hits);
+  console.log(allMapPoints);
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyCJkZohj9sqn6H_LrfHMNG5cY794SWFJgA",
@@ -60,7 +61,7 @@ const SearchMap = ({ isMapOpen, closeModal, hits }) => {
               onUnmount={onUnmount}
               onClick={() => setActiveMarker(null)}
               mapContainerStyle={{ width: "100%", height: "100%" }}
-              zoom={15}
+              zoom={14}
             >
               {allMapPoints.map((loc) => (
                 <Marker
