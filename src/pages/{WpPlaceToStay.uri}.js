@@ -27,6 +27,7 @@ import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed";
 import { CollapseCards } from "../components/layout/CollapseCards";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import slugify from "slugify";
+import { useDdestinationsArray } from "../lib/hooks/useDestinationsArray";
 
 const slugs = (string) => slugify(string, { lower: true, strict: true });
 
@@ -97,6 +98,7 @@ const PlaceToStayPage = ({ data }) => {
   const otherExperiences = experiences?.filter(
     (exp) => exp.customDataAttributes.isBucketList === "no"
   );
+const destinationsArray = useDdestinationsArray()
 
   const tabs = [
     { name: "our review" },
@@ -112,7 +114,7 @@ const PlaceToStayPage = ({ data }) => {
     { name: country.name, link: `/search/?q=${country.name}` },
     {
       name: region,
-      link: `/destination/${region && slugs(region)}`
+      link: destinationsArray.includes(region)
         ? `/destination/${region && slugs(region)}`
         : `/search/?q=${region}`,
     },
