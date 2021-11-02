@@ -26,14 +26,15 @@ import { useDdestinationsArray } from "../lib/hooks/useDestinationsArray";
 
 
 const slugs = (string) => slugify(string, { lower: true, strict: true });
-const destinationsArray = useDdestinationsArray()
 
 
 const DestinationPage = ({ data }) => {
   const url = window.location.href;
   const { wpDestination: destination } = data || {};
 
-  const seoGeneral = useSeoGeneral();
+const seoGeneral = useSeoGeneral();
+const destinationsArray = useDdestinationsArray()
+
 
   const {
     title,
