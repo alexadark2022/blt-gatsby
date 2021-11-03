@@ -9,7 +9,7 @@ import PageLayout from "../components/layout/PageLayout"
 import { Breadcrumbs } from "../components/Breadcrumbs"
 
 const GET_ALL_WRITERS = graphql`
-  query MyQuery {
+  query  {
     allWpWriter(sort: { fields: title, order: ASC }, limit: 100) {
       nodes {
         ...WriterListing
@@ -18,7 +18,7 @@ const GET_ALL_WRITERS = graphql`
   }
 `
 
-const WritersPage = () => {
+const WritersGatsbyPage = () => {
   const data = useStaticQuery(GET_ALL_WRITERS)
   let writers = data?.allWpWriter?.nodes
 
@@ -69,4 +69,4 @@ const WritersPage = () => {
   )
 }
 
-export default WritersPage
+export default WritersGatsbyPage

@@ -16,26 +16,13 @@ import {
 } from "react-icons/fa";
 import { IoGlobeOutline as Website } from "react-icons/io5";
 import {
-  CollapseSection,
   Layout,
   Section,
-  SidebarSocialShare,
-  SocialShare,
   Typo,
   TravelQuote,
 } from "../components";
 import PageLayout from "../components/layout/PageLayout";
 import { Newsletter } from "../components/Newsletter";
-import { window } from "browser-monads";
-import SidebarTourOperator from "../components/sidebar/SidebarTourOperator";
-import { About } from "../components/layout/About";
-import { CollapseListings } from "../components/layout/CollapseListings";
-import { IntroText } from "../components/layout/IntroText";
-import { CollapseCards } from "../components/layout/CollapseCards";
-import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed";
-import clsx from "clsx";
-import { CardsGrid } from "../components/layout/CardsGrid";
-import { isEmpty } from "lodash";
 import { TitleContent } from "../components/layout/TitleContent";
 
 const WithLink = ({ link, children }) => {
