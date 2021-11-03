@@ -10,7 +10,7 @@ export const Layout = ({ children, page, type = "page", ...props }) => {
 
   const fullWidthClass = pageTemplate === "full width" ? "fullWidth" : "";
 
-  // useDbBucketList()
+
 
   return (
     <>
