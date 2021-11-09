@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import {
   GoogleMap,
   InfoWindow,
@@ -11,7 +11,7 @@ import { Modal } from "..";
 import { Link } from "gatsby";
 import FormatMapsData from "./FormatMapsData";
 
-const SearchMap = ({ isMapOpen, closeModal, hits }) => {
+const SearchMap = ({ isMapOpen, closeModal, hits, mainState }) => {
   const allMapPoints = FormatMapsData(hits);
   console.log(allMapPoints);
   const { isLoaded } = useJsApiLoader({
@@ -20,6 +20,18 @@ const SearchMap = ({ isMapOpen, closeModal, hits }) => {
   });
 
   const [map, setMap] = useState(null);
+  const [pointerColor, setPointerColor] = useState(`icon-pastel.png`);
+  useEffect(() => {
+    if (mainState === "Destination") {
+      setPointerColor(`icon-pastel.png`);
+    }
+    if (mainState === `PlaceToStay`) {
+      setPointerColor(`icon-lightblue.png`);
+    }
+    if (mainState === `Experience`) {
+      setPointerColor(`icon-darkblue.png`);
+    }
+  }, [mainState]);
 
   const onLoad = useCallback(
     (map) => {
@@ -71,7 +83,7 @@ const SearchMap = ({ isMapOpen, closeModal, hits }) => {
                   key={loc.id}
                   position={loc.position}
                   icon={{
-                    url: "/images/icon-pastel.png",
+                    url: `/images/${pointerColor}`,
                     labelOrigin: new window.google.maps.Point(24, -10),
                   }}
                   onClick={() => handleActiveMarker(loc.position.lat)}

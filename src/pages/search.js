@@ -118,6 +118,7 @@ const SearchPage = () => {
                 <SearchMap
                   isMapOpen={isMapOpen}
                   closeModal={() => setIsMapOpen(false)}
+                  mainState={mainState}
                 />
               </div>
               <SearchHit view={view} />
