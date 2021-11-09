@@ -21,15 +21,19 @@ const SearchMap = ({ isMapOpen, closeModal, hits, mainState }) => {
 
   const [map, setMap] = useState(null);
   const [pointerColor, setPointerColor] = useState(`icon-pastel.png`);
+  const [pointerTextColor, setPointerTextColor] = useState(`#D3B27D`);
   useEffect(() => {
     if (mainState === "Destination") {
       setPointerColor(`icon-pastel.png`);
+      setPointerTextColor(`#D3B27D`);
     }
     if (mainState === `PlaceToStay`) {
       setPointerColor(`icon-lightblue.png`);
+      setPointerTextColor(`#A9E8FF`);
     }
     if (mainState === `Experience`) {
       setPointerColor(`icon-darkblue.png`);
+      setPointerTextColor(`#3A8DE1`);
     }
   }, [mainState]);
 
@@ -89,7 +93,7 @@ const SearchMap = ({ isMapOpen, closeModal, hits, mainState }) => {
                   onClick={() => handleActiveMarker(loc.position.lat)}
                   label={{
                     text: loc.title,
-                    color: "#FDA658",
+                    color: pointerTextColor,
                     fontSize: "1rem",
                     fontWeight: "900",
                     className: "green-marker",
