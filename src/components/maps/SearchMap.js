@@ -21,19 +21,22 @@ const SearchMap = ({ isMapOpen, closeModal, hits }) => {
 
   const [map, setMap] = useState(null);
 
-  const onLoad = useCallback((map) => {
-    const bounds = new window.google.maps.LatLngBounds();
-    if (allMapPoints.length == 1) {
-      let pt = new window.google.maps.LatLng(allMapPoints[0].position);
-      map.setCenter(pt);
-      map.setZoom(14);
-    } else {
-      // if not, we set bounds to different locations
-      allMapPoints.map((loc) => bounds.extend(loc.position));
-      map.fitBounds(bounds);
-    }
-    setMap(map);
-  }, []);
+  const onLoad = useCallback(
+    (map) => {
+      const bounds = new window.google.maps.LatLngBounds();
+      if (allMapPoints.length == 1) {
+        let pt = new window.google.maps.LatLng(allMapPoints[0].position);
+        map.setCenter(pt);
+        map.setZoom(14);
+      } else {
+        // if not, we set bounds to different locations
+        allMapPoints.map((loc) => bounds.extend(loc.position));
+        map.fitBounds(bounds);
+      }
+      setMap(map);
+    },
+    [allMapPoints]
+  );
 
   const onUnmount = useCallback((map) => {
     setMap(null);

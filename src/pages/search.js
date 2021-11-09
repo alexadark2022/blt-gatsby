@@ -73,16 +73,12 @@ const SearchPage = () => {
         ) : (
           <div
             className={clsx(
-              "container max-w-big",
-              "flex flex-col lg:flex-row ",
-              "px-5 md:px-0"
+              "container  px-5 max-w-big 2xl:px-0  flex flex-col lg:flex-row"
             )}
           >
             <div
               className={clsx(
-                "w-full lg:w-2/3 xl:w-[960px]",
-                "order-2 lg:order-1",
-                "mr-0 lg:mr-7 lg:pl-5 lg:px-0"
+                "w-full  lg:w-2/3 xl:w-[940px] mb-7 lg:mb-0 mr-7 xl:ml-14  order-2 lg:order-1"
               )}
             >
               <StaticRefinementList
@@ -97,25 +93,6 @@ const SearchPage = () => {
                 ]}
               />
               <div className="flex items-center justify-between mt-4 mb-4 space-x-2">
-                {/*
-          <Button
-            small
-            className={`w-[125px] lg:!hidden ${openFilters && '!hidden'}`}
-            onClick={(e) => {
-              e.preventDefault()
-              setOpenFilters(true)
-            }}
-          >
-            Filters
-          </Button> */}
-                {/* <SortBy
-                defaultRefinement="BucketList"
-                items={[
-                  { value: "BucketList", label: "Featured" },
-                  { value: "date_timestamp", label: "Price asc." },
-                ]}
-              />
-              <MenuSelect attribute="nodeType" /> */}
                 <Button
                   small
                   className={`w-[125px] lg:!hidden ${openFilters && "!hidden"}`}
@@ -147,9 +124,7 @@ const SearchPage = () => {
             </div>
             <div
               className={clsx(
-                "w-full lg:w-1/3",
-                "order-1 lg:order-2",
-                "bg-white "
+                "w-full lg:w-1/3 xl:w-[320px]  lg:mt-base2  lg:mr-5 mb-base2 lg:mb-0 order-1 lg:order-2"
               )}
             >
               <WithCollapse
