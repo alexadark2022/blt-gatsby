@@ -6,7 +6,7 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 import { Button } from "./Button";
 import { GlobalDispatchContext } from "../../context/GlobalContextProvider";
 
-export const Tabs = ({ tabs = [], className, ...props }) => {
+export const Tabs = ({ tabs = [], className, mapOpen, ...props }) => {
   const dispatch = useContext(GlobalDispatchContext);
   const closeModal = () => dispatch({ type: "SET_MAP_CLOSE" });
   const toggleModal = () => dispatch({ type: "TOGGLE_MAP_OPEN" });
@@ -42,8 +42,9 @@ export const Tabs = ({ tabs = [], className, ...props }) => {
         } else if (tab.name == "map") {
           return (
             <Button
+              key={tab.name}
               className={clsx("h-[54px]", "!text-grey4")}
-              onClick={toggleModal}
+              onClick={mapOpen}
               tab
             >
               {tab.name}

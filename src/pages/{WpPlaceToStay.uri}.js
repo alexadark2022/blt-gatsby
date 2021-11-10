@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { graphql } from "gatsby";
 import { window } from "browser-monads";
 
@@ -27,6 +27,7 @@ import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed";
 import { CollapseCards } from "../components/layout/CollapseCards";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import slugify from "slugify";
+import DetailPageMap from "./../components/maps/DetailPageMap";
 
 const slugs = (string) => slugify(string, { lower: true, strict: true });
 
@@ -81,8 +82,6 @@ const PlaceToStayPage = ({ data }) => {
     starRating,
     ski,
     isSkiHotel,
-    longitudeOfLocation1,
-    latitudeOfLocation1,
     experiences,
     destinations,
   } = customDataAttributes || {};
@@ -117,6 +116,8 @@ const PlaceToStayPage = ({ data }) => {
         : `/search/?q=${region}`,
     },
   ].filter((term) => term.name);
+  const [isMapOpen, setIsMapOpen] = useState(false);
+
   return (
     <Layout page="place-to-stay">
       <Seo
@@ -133,11 +134,18 @@ const PlaceToStayPage = ({ data }) => {
         }
       />
       <Breadcrumbs terms={breadcrumbsTerms} />
+      <DetailPageMap
+        isMapOpen={isMapOpen}
+        closeModal={() => setIsMapOpen(false)}
+        pageType="placetostay"
+        data={pts}
+      />
       <PageLayout
         title={title}
         stars={parseInt(starRating)}
         intro="Recommended place to stay:"
         tabs={tabs}
+        mapOpen={() => setIsMapOpen(true)}
         images={imageGallery}
         bl
         item={pts}

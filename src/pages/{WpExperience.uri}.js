@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { graphql } from "gatsby";
-
 import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed";
 import { window } from "browser-monads";
 import PageLayout from "../components/layout/PageLayout";
@@ -10,12 +9,10 @@ import { SidebarSocialShare, SocialShare } from "../components/social";
 import clsx from "clsx";
 import { CollapseSection, Layout, TravelQuote } from "../components";
 import { About } from "../components/layout/About";
-
 import { CollapseListings } from "../components/layout/CollapseListings";
 import { TitleContent } from "../components/layout/TitleContent";
 import { CollapseCards } from "../components/layout/CollapseCards";
-import ExperienceMap from "../components/maps/ExperienceMap";
-import { Loader } from "@googlemaps/js-api-loader";
+import DetailPageMap from "../components/maps/DetailPageMap";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import slugify from "slugify";
 import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
@@ -24,20 +21,6 @@ import { useSeoGeneral } from "../lib/hooks/useSeoGeneral";
 const slugs = (string) => slugify(string, { lower: true, strict: true });
 
 const ExperiencePage = ({ data }) => {
-  const [loadMap, setLoadMap] = useState(false);
-  const loader = new Loader({
-    apiKey: "AIzaSyCJkZohj9sqn6H_LrfHMNG5cY794SWFJgA",
-    libraries: ["places"],
-  });
-  loader
-    .load()
-    .then(() => {
-      setLoadMap(true);
-    })
-    .catch((e) => {
-      console.log("error loading Google Maps API");
-    });
-
   const { wpExperience: experience } = data || {};
   const {
     title,
@@ -119,6 +102,7 @@ const ExperiencePage = ({ data }) => {
   const otherExperiences = experiences?.filter(
     (exp) => exp.customDataAttributes.isBucketList === "no"
   );
+  const [isMapOpen, setIsMapOpen] = useState(false);
 
   return (
     <Layout page="experience">
@@ -136,10 +120,17 @@ const ExperiencePage = ({ data }) => {
         }
       />
       <Breadcrumbs terms={breadcrumbsTerms} />
-      {loadMap && <ExperienceMap experience={experience} />}
+      {/* {loadMap && <ExperienceMap experience={experience} />} */}
+      <DetailPageMap
+        isMapOpen={isMapOpen}
+        closeModal={() => setIsMapOpen(false)}
+        pageType="experience"
+        data={experience}
+      />
       <PageLayout
         title={title}
         tabs={tabs}
+        mapOpen={() => setIsMapOpen(true)}
         intro="Best things to do:"
         images={imageGallery}
         bl
@@ -300,7 +291,7 @@ const ExperiencePage = ({ data }) => {
           </CollapseSection>
         )}
         {/* Other experiences */}
-        {otherExperiences && otherExperiences?.length > 0 &&  (
+        {otherExperiences && otherExperiences?.length > 0 && (
           <CollapseSection
             title="Other experiences nearby"
             number={otherExperiences.length}

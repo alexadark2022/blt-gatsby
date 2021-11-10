@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { graphql } from "gatsby";
 
 import {
@@ -22,6 +22,7 @@ import { Breadcrumbs } from "../components/Breadcrumbs";
 import slugify from "slugify";
 import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
 import { useSeoGeneral } from "../lib/hooks/useSeoGeneral";
+import DetailPageMap from "./../components/maps/DetailPageMap";
 
 const slugs = (string) => slugify(string, { lower: true, strict: true });
 
@@ -65,15 +66,8 @@ const DestinationPage = ({ data }) => {
     gettingAround,
     gettingThere,
     healthSafety,
-    latitudeOfLocation1,
-    longitudeOfLocation1,
-    nearestAirport1,
-    nearestAirport2,
-    nearestAirport3,
     orientation,
-    profile,
     region,
-    setting,
     whenToGo,
     whereToEat,
     whereToShop,
@@ -93,7 +87,6 @@ const DestinationPage = ({ data }) => {
   const otherExperiences = experiences?.filter(
     (exp) => exp.customDataAttributes.isBucketList === "no"
   );
-
 
   const allExperiences = [
     {
@@ -127,6 +120,7 @@ const DestinationPage = ({ data }) => {
         : `/search/?q=${region}`,
     },
   ].filter((term) => term.name);
+  const [isMapOpen, setIsMapOpen] = useState(false);
 
   return (
     <Layout page="destination">
@@ -144,11 +138,18 @@ const DestinationPage = ({ data }) => {
         }
       />
       <Breadcrumbs terms={breadcrumbsTerms} />
+      <DetailPageMap
+        isMapOpen={isMapOpen}
+        closeModal={() => setIsMapOpen(false)}
+        pageType="destination"
+        data={destination}
+      />
       <PageLayout
         title={title}
         bl
         item={destination}
         tabs={tabs}
+        mapOpen={() => setIsMapOpen(true)}
         images={imageGallery}
         intro="Best things to do & places to stay in:"
         sidebar={
@@ -188,8 +189,8 @@ const DestinationPage = ({ data }) => {
         {experiences &&
           allExperiences?.map((exp) => {
             const { title, experiences, id } = exp;
-            if(experiences === null || experiences?.length === 0){
-              return
+            if (experiences === null || experiences?.length === 0) {
+              return;
             }
             return (
               <CollapseSection
