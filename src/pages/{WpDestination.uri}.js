@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { graphql } from "gatsby";
 
 import {
@@ -22,19 +22,15 @@ import { Breadcrumbs } from "../components/Breadcrumbs";
 import slugify from "slugify";
 import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
 import { useSeoGeneral } from "../lib/hooks/useSeoGeneral";
-import { useDdestinationsArray } from "../lib/hooks/useDestinationsArray";
-
+import DetailPageMap from "./../components/maps/DetailPageMap";
 
 const slugs = (string) => slugify(string, { lower: true, strict: true });
-
 
 const DestinationPage = ({ data }) => {
   const url = window.location.href;
   const { wpDestination: destination } = data || {};
 
-const seoGeneral = useSeoGeneral();
-const destinationsArray = useDdestinationsArray()
-
+  const seoGeneral = useSeoGeneral();
 
   const {
     title,
@@ -70,15 +66,8 @@ const destinationsArray = useDdestinationsArray()
     gettingAround,
     gettingThere,
     healthSafety,
-    latitudeOfLocation1,
-    longitudeOfLocation1,
-    nearestAirport1,
-    nearestAirport2,
-    nearestAirport3,
     orientation,
-    profile,
     region,
-    setting,
     whenToGo,
     whereToEat,
     whereToShop,
@@ -98,7 +87,6 @@ const destinationsArray = useDdestinationsArray()
   const otherExperiences = experiences?.filter(
     (exp) => exp.customDataAttributes.isBucketList === "no"
   );
-
 
   const allExperiences = [
     {
@@ -127,11 +115,12 @@ const destinationsArray = useDdestinationsArray()
     { name: country?.name, link: `/search/?q=${country?.name}` },
     {
       name: region,
-      link: destinationsArray.includes(region)
+      link: `/destination/${region && slugs(region)}`
         ? `/destination/${region && slugs(region)}`
         : `/search/?q=${region}`,
     },
   ].filter((term) => term.name);
+  const [isMapOpen, setIsMapOpen] = useState(false);
 
   return (
     <Layout page="destination">
@@ -149,11 +138,18 @@ const destinationsArray = useDdestinationsArray()
         }
       />
       <Breadcrumbs terms={breadcrumbsTerms} />
+      <DetailPageMap
+        isMapOpen={isMapOpen}
+        closeModal={() => setIsMapOpen(false)}
+        pageType="destination"
+        data={destination}
+      />
       <PageLayout
         title={title}
         bl
         item={destination}
         tabs={tabs}
+        mapOpen={() => setIsMapOpen(true)}
         images={imageGallery}
         intro="Best things to do & places to stay in:"
         sidebar={
@@ -193,8 +189,8 @@ const destinationsArray = useDdestinationsArray()
         {experiences &&
           allExperiences?.map((exp) => {
             const { title, experiences, id } = exp;
-            if(experiences === null || experiences?.length === 0){
-              return
+            if (experiences === null || experiences?.length === 0) {
+              return;
             }
             return (
               <CollapseSection
