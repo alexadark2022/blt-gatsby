@@ -36,6 +36,10 @@ const allWpExperienceQuery = gql`
           textCountry
           textContinent
           standfirst
+          country {
+            name
+          }
+          continent
         }
         customDataAttributes: experienceDataAttr {
           eventType: eventSubType
@@ -123,6 +127,10 @@ const allWpDestinationQuery = gql`
           textCountry
           textContinent
           standfirst
+          country {
+            name
+          }
+          continent
         }
         tags {
           nodes {
@@ -203,6 +211,10 @@ const allWpPlaceToStayQuery = gql`
           textCountry
           textContinent
           standfirst
+          country {
+            name
+          }
+          continent
         }
         tags {
           nodes {
@@ -254,6 +266,10 @@ const allWpRoundUpQuery = gql`
           textCountry
           textContinent
           standfirst
+          country {
+            name
+          }
+          continent
         }
         tags {
           nodes {
@@ -320,6 +336,10 @@ const allWpItineraryQuery = gql`
           textCountry
           textContinent
           standfirst
+          country {
+            name
+          }
+          continent
         }
         tags {
           nodes {
