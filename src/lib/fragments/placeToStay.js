@@ -139,6 +139,7 @@ export const placeTostayFragments = graphql`
         }
       }
       region
+      city
       roomFeatures
       roomForFamilies
       roomType

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { graphql } from "gatsby";
 import { window } from "browser-monads";
+import { useDdestinationsArray } from "../lib/hooks/useDestinationsArray";
+
 
 import {
   CollapseSection,
@@ -30,6 +32,7 @@ import slugify from "slugify";
 import DetailPageMap from "./../components/maps/DetailPageMap";
 
 const slugs = (string) => slugify(string, { lower: true, strict: true });
+
 
 const PlaceToStayPage = ({ data }) => {
   const url = window.location.href;
@@ -84,7 +87,9 @@ const PlaceToStayPage = ({ data }) => {
     isSkiHotel,
     experiences,
     destinations,
+    city
   } = customDataAttributes || {};
+
 
   const hf = otherHotelFacilities?.map((item) => item.toLowerCase());
   const poolFeatures = pool?.map((item) => item.toLowerCase());
@@ -104,6 +109,9 @@ const PlaceToStayPage = ({ data }) => {
     { name: "experiences nearby" },
     { name: "map" },
   ];
+const destinationsArray = useDdestinationsArray()
+console.log('city', city, 'array',destinationsArray);
+
   const brContinent = continent?.length === 1 ? continent[0] : null;
   const breadcrumbsTerms = [
     { name: "home", link: "/" },
@@ -111,9 +119,15 @@ const PlaceToStayPage = ({ data }) => {
     { name: country.name, link: `/search/?q=${country.name}` },
     {
       name: region,
-      link: `/destination/${region && slugs(region)}`
+      link: destinationsArray.includes(region?.toLowerCase())
         ? `/destination/${region && slugs(region)}`
         : `/search/?q=${region}`,
+    },
+    {
+      name: city,
+      link: destinationsArray.includes(city?.toLowerCase())
+        ? `/destination/${city && slugs(city)}`
+        : `/search/?q=${city}`,
     },
   ].filter((term) => term.name);
   const [isMapOpen, setIsMapOpen] = useState(false);

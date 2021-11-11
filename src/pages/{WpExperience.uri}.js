@@ -51,6 +51,7 @@ const ExperiencePage = ({ data }) => {
     destinations,
     whenIsIt,
     region,
+    city,
     ageBestSuitedFrom,
     whenToDoIt,
     gettingThere,
@@ -87,9 +88,15 @@ const destinationsArray = useDdestinationsArray()
     { name: country.name, link: `/search/?q=${country.name}` },
     {
       name: region,
-      link: destinationsArray.includes(region)
+      link: destinationsArray.includes(region?.toLowerCase())
         ? `/destination/${region && slugs(region)}`
         : `/search/?q=${region}`,
+    },
+    {
+      name: city,
+      link: destinationsArray.includes(city?.toLowerCase())
+        ? `/destination/${city && slugs(city)}`
+        : `/search/?q=${city}`,
     },
   ].filter((term) => term.name);
 
