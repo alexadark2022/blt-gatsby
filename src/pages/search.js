@@ -15,6 +15,7 @@ import isEmptyObject from "./../utils/isEmptyObject";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import LoaderSpinner from "react-loader-spinner";
 import SearchMap from "./../components/maps/SearchMap";
+import Sticky from "react-stickynode";
 
 const indexName = "BucketList";
 const searchClient = algoliasearch(
@@ -72,6 +73,7 @@ const SearchPage = () => {
           </div>
         ) : (
           <div
+            id="content"
             className={clsx(
               "container  px-5 max-w-big 2xl:px-0  flex flex-col lg:flex-row"
             )}
@@ -128,35 +130,37 @@ const SearchPage = () => {
                 "w-full lg:w-1/3 xl:w-[320px]  lg:mt-base2  lg:mr-5 mb-base2 lg:mb-0 order-1 lg:order-2"
               )}
             >
-              <WithCollapse
-                isOpen={openFilters}
-                className="duration-500 ease-in-out transition-height"
-              >
-                <div className="lg:max-w-[300px] relative px-5 pt-3 pb-10 mb-10 border border-grey2">
-                  <div
-                    className="absolute flex items-center justify-center border-2 cursor-pointer top-4 right-4 w-base2 h-base2 border-lightBlue lg:hidden"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setOpenFilters(false);
-                    }}
-                  >
-                    <Close className="absolute text-xl text-lightBlue " />
+              <Sticky bottomBoundary="#content">
+                <WithCollapse
+                  isOpen={openFilters}
+                  className="duration-500 ease-in-out transition-height"
+                >
+                  <div className="lg:max-w-[300px] relative px-5 pt-3 border border-grey2">
+                    <div
+                      className="absolute flex items-center justify-center border-2 cursor-pointer top-4 right-4 w-base2 h-base2 border-lightBlue lg:hidden"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpenFilters(false);
+                      }}
+                    >
+                      <Close className="absolute text-xl text-lightBlue " />
+                    </div>
+                    <Typo
+                      as="h3"
+                      h3
+                      className="p-2 mb-2 text-center border-b border-grey2"
+                    >
+                      Filter your results
+                    </Typo>
+                    <div className="flex justify-center mb-3">
+                      <ClearAllFilters />
+                    </div>
+                    {!isEmptyObject(facets()) && (
+                      <AllFilters mainState={mainState} facets={facets()} />
+                    )}
                   </div>
-                  <Typo
-                    as="h3"
-                    h3
-                    className="p-2 mb-2 text-center border-b border-grey2"
-                  >
-                    Filter your results
-                  </Typo>
-                  <div className="flex justify-center mb-3">
-                    <ClearAllFilters />
-                  </div>
-                  {!isEmptyObject(facets()) && (
-                    <AllFilters mainState={mainState} facets={facets()} />
-                  )}
-                </div>
-              </WithCollapse>
+                </WithCollapse>
+              </Sticky>
             </div>
           </div>
         )}

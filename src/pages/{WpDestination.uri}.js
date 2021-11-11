@@ -158,17 +158,15 @@ const DestinationPage = ({ data }) => {
         sidebar={
           <div className="h-full space-y-base2">
             <Newsletter />
-            <div className="sticky top-0 z-50 space-y-base2">
-              <SidebarSocialShare url={url} />
-              {sidebarTourOperator &&
-                sidebarTourOperator.map((to, index) => (
-                  <SidebarTourOperator
-                    key={index}
-                    tourOperator={to}
-                    description={sbtouroperatordescription}
-                  />
-                ))}
-            </div>
+            <SidebarSocialShare url={url} />
+            {sidebarTourOperator &&
+              sidebarTourOperator.map((to, index) => (
+                <SidebarTourOperator
+                  key={index}
+                  tourOperator={to}
+                  description={sbtouroperatordescription}
+                />
+              ))}
           </div>
         }
       >
