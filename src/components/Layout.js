@@ -38,7 +38,6 @@ export const Layout = ({ children, page, type = "page", ...props }) => {
         <Header />
 
         {children}
-
         <Footer />
       </div>
     </>

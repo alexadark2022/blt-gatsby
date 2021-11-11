@@ -1,7 +1,5 @@
 import React from "react";
-
 import { Layout } from "../Layout";
-
 import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
 import { FrontPage } from "../frontPage";
 import { window } from "browser-monads";
@@ -13,7 +11,6 @@ import { TravelQuote } from "..";
 import { Breadcrumbs } from "../Breadcrumbs";
 
 const Page = ({ page, ctx }) => {
-  console.log("page ctx", ctx);
   const url = window.location.href;
   const {
     title,
@@ -35,6 +32,7 @@ const Page = ({ page, ctx }) => {
 
   const featuredImage =
     page.featuredImage?.node.localFile.childImageSharp.original;
+
   return (
     <Layout page={page} type="page">
       <Seo
@@ -64,9 +62,11 @@ const Page = ({ page, ctx }) => {
           <PageLayout
             title={pageTitle}
             sidebar={
-              <div className="sticky top-0 z-50 space-y-base2">
+              <div className="page-sidebar-wrapper">
                 <Newsletter />
-                <SidebarSocialShare url={url} />
+                <div className="mt-4">
+                  <SidebarSocialShare url={url} />
+                </div>
               </div>
             }
           >

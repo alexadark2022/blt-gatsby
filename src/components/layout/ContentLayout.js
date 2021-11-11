@@ -1,17 +1,14 @@
-import React, { useState } from "react"
-import clsx from "clsx"
+import React from "react";
+import clsx from "clsx";
+import Sticky from "react-stickynode";
 
-export const ContentLayout = ({
-  children,
-  sidebar,
-  smallMargin,
-  isFilters,
-}) => {
+export const ContentLayout = ({ children, sidebar, isFilters }) => {
   return (
     <div
+      id="content"
       className={clsx(
         "container  px-5 max-w-big 2xl:px-0 ",
-        "flex flex-col lg:flex-row"
+        "flex flex-col lg:flex-row t"
       )}
     >
       <div
@@ -34,8 +31,8 @@ export const ContentLayout = ({
           }
         )}
       >
-        {sidebar}
+        <Sticky bottomBoundary="#content">{sidebar}</Sticky>
       </div>
     </div>
-  )
-}
+  );
+};

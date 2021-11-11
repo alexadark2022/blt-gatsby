@@ -136,7 +136,7 @@ const ExperiencePage = ({ data }) => {
         bl
         item={experience}
         sidebar={
-          <div className="sticky top-0 z-50 space-y-base2 ">
+          <div className="space-y-base2 ">
             <Newsletter />
             <SidebarSocialShare url={url} />
             {sidebarTourOperator &&
