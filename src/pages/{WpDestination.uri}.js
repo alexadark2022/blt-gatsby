@@ -118,7 +118,7 @@ const DestinationPage = ({ data }) => {
     { name: country?.name, link: `/search/?q=${country?.name}` },
     {
       name: region,
-      link: destinationsArray.includes(region.toLowerCase())
+      link: destinationsArray.includes(region?.toLowerCase())
         ? `/destination/${region && slugs(region)}`
         : `/search/?q=${region}`,
     },
