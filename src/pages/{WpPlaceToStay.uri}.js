@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { graphql } from "gatsby";
 import { window } from "browser-monads";
 
@@ -27,7 +27,7 @@ import { useRecentlyViewed } from "../lib/hooks/useRecentlyViewed";
 import { CollapseCards } from "../components/layout/CollapseCards";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import slugify from "slugify";
-import { useDdestinationsArray } from "../lib/hooks/useDestinationsArray";
+import DetailPageMap from "./../components/maps/DetailPageMap";
 
 const slugs = (string) => slugify(string, { lower: true, strict: true });
 
@@ -51,7 +51,6 @@ const PlaceToStayPage = ({ data }) => {
     page: pts?.seo,
     general: seoGeneral?.wp?.seo,
   };
-  console.log('seo', seo);
   const seoImage = featuredImage?.node.localFile.childImageSharp.original;
 
   const {
@@ -83,8 +82,6 @@ const PlaceToStayPage = ({ data }) => {
     starRating,
     ski,
     isSkiHotel,
-    longitudeOfLocation1,
-    latitudeOfLocation1,
     experiences,
     destinations,
   } = customDataAttributes || {};
@@ -99,7 +96,6 @@ const PlaceToStayPage = ({ data }) => {
   const otherExperiences = experiences?.filter(
     (exp) => exp.customDataAttributes.isBucketList === "no"
   );
-const destinationsArray = useDdestinationsArray()
 
   const tabs = [
     { name: "our review" },
@@ -115,11 +111,13 @@ const destinationsArray = useDdestinationsArray()
     { name: country.name, link: `/search/?q=${country.name}` },
     {
       name: region,
-      link: destinationsArray.includes(region)
+      link: `/destination/${region && slugs(region)}`
         ? `/destination/${region && slugs(region)}`
         : `/search/?q=${region}`,
     },
   ].filter((term) => term.name);
+  const [isMapOpen, setIsMapOpen] = useState(false);
+
   return (
     <Layout page="place-to-stay">
       <Seo
@@ -136,11 +134,18 @@ const destinationsArray = useDdestinationsArray()
         }
       />
       <Breadcrumbs terms={breadcrumbsTerms} />
+      <DetailPageMap
+        isMapOpen={isMapOpen}
+        closeModal={() => setIsMapOpen(false)}
+        pageType="placetostay"
+        data={pts}
+      />
       <PageLayout
         title={title}
         stars={parseInt(starRating)}
         intro="Recommended place to stay:"
         tabs={tabs}
+        mapOpen={() => setIsMapOpen(true)}
         images={imageGallery}
         bl
         item={pts}

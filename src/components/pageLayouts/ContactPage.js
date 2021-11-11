@@ -1,14 +1,14 @@
-import React, { useState } from "react"
-import { useForm } from "react-hook-form"
-import tw, { styled } from "twin.macro"
-import { useMutation, gql } from "@apollo/client"
+import React, { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import tw, { styled } from "twin.macro";
+import { useMutation, gql } from "@apollo/client";
 
-import { Section, Input, Button, Label, Select } from "../ui-components"
-import { v4 as uuidv4 } from "uuid"
+import { Section, Input, Button, Label, Select } from "../ui-components";
+import { v4 as uuidv4 } from "uuid";
 
 export const ContactPage = ({ intro }) => {
-  const [isMailSent, setIsMailSent] = useState(false)
-  console.log("mail sent", isMailSent)
+  const [isMailSent, setIsMailSent] = useState(false);
+  console.log("mail sent", isMailSent);
 
   const SEND_EMAIL = gql`
     mutation ($input: SendEmailInput!) {
@@ -18,18 +18,19 @@ export const ContactPage = ({ intro }) => {
         message
       }
     }
-  `
-  const [sendEmail] = useMutation(SEND_EMAIL)
+  `;
+  const [sendEmail] = useMutation(SEND_EMAIL);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm()
+    control,
+  } = useForm();
 
   const onSubmit = (data) => {
-    const { firstName, email, subject, message } = data
+    const { firstName, email, subject, message } = data;
     sendEmail({
       variables: {
         input: {
@@ -40,14 +41,14 @@ export const ContactPage = ({ intro }) => {
           clientMutationId: uuidv4(),
         },
       },
-    })
-    setIsMailSent(true)
-    reset()
-  }
+    });
+    setIsMailSent(true);
+    reset();
+  };
 
   const ErrorMessage = styled.div(() => [
     tw`max-w-md px-5 py-2 my-2 text-center text-red-500 bg-red-100 rounded-md`,
-  ])
+  ]);
 
   return (
     <Section className="pb-20 px-base2 pt-base2">
@@ -85,20 +86,26 @@ export const ContactPage = ({ intro }) => {
         </div>
         <div>
           <Label htmlFor="subject">Subject</Label>
-
-          <Select
-            id="subject"
-            options={[
-              "Customer feedback",
-              "Content & website update",
-              "Finance",
-              "Legal",
-              "Partnerships",
-              "Technical help",
-              "Other",
-            ]}
+          <Controller
+            name="subject"
             defaultValue="Customer feedback"
-            {...register("subject")}
+            control={control}
+            render={({ field }) => (
+              <Select
+                {...field}
+                id="subject"
+                options={[
+                  "Customer feedback",
+                  "Content & website update",
+                  "Finance",
+                  "Legal",
+                  "Partnerships",
+                  "Technical help",
+                  "Other",
+                ]}
+                defaultValue="Customer feedback"
+              />
+            )}
           />
           {errors.subject && (
             <ErrorMessage>This field is required</ErrorMessage>
@@ -133,5 +140,5 @@ export const ContactPage = ({ intro }) => {
         </div>
       )}
     </Section>
-  )
-}
+  );
+};

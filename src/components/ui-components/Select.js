@@ -1,22 +1,12 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { FaAngleDown } from "react-icons/fa";
 import clsx from "clsx";
 
 export const Select = ({ options, defaultValue, width, ...props }) => {
-  const [selected, setSelected] = useState(defaultValue);
-
-  useEffect(() => {
-    setSelected(defaultValue);
-  }, [defaultValue]);
-
   return (
-    <div className="z-10" {...props}>
-      <Listbox
-        value={selected}
-        defaultValue={defaultValue}
-        onChange={setSelected}
-      >
+    <div className="z-10">
+      <Listbox {...props} defaultValue={defaultValue}>
         {({ open }) => (
           <>
             <div className="relative mt-1">
@@ -28,7 +18,7 @@ export const Select = ({ options, defaultValue, width, ...props }) => {
                   "border-2 border-grey2 bg-white focus:outline-none"
                 )}
               >
-                <span className="block truncate">{selected}</span>
+                <span className="block truncate">{props.value}</span>
                 <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                   <FaAngleDown
                     className="w-5 h-5 text-lightBlue"
@@ -62,11 +52,7 @@ export const Select = ({ options, defaultValue, width, ...props }) => {
                       }
                       value={option}
                     >
-                      {({ selected, active }) => (
-                        <>
-                          <span className={` block  `}>{option}</span>
-                        </>
-                      )}
+                      <span className={` block  `}>{option}</span>
                     </Listbox.Option>
                   ))}
                 </Listbox.Options>

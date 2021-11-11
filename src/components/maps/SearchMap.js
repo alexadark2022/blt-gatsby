@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import {
   GoogleMap,
   InfoWindow,
@@ -11,7 +11,7 @@ import { Modal } from "..";
 import { Link } from "gatsby";
 import FormatMapsData from "./FormatMapsData";
 
-const SearchMap = ({ isMapOpen, closeModal, hits }) => {
+const SearchMap = ({ isMapOpen, closeModal, hits, mainState }) => {
   const allMapPoints = FormatMapsData(hits);
   console.log(allMapPoints);
   const { isLoaded } = useJsApiLoader({
@@ -20,20 +20,39 @@ const SearchMap = ({ isMapOpen, closeModal, hits }) => {
   });
 
   const [map, setMap] = useState(null);
-
-  const onLoad = useCallback((map) => {
-    const bounds = new window.google.maps.LatLngBounds();
-    if (allMapPoints.length == 1) {
-      let pt = new window.google.maps.LatLng(allMapPoints[0].position);
-      map.setCenter(pt);
-      map.setZoom(14);
-    } else {
-      // if not, we set bounds to different locations
-      allMapPoints.map((loc) => bounds.extend(loc.position));
-      map.fitBounds(bounds);
+  const [pointerColor, setPointerColor] = useState(`icon-pastel.png`);
+  const [pointerTextColor, setPointerTextColor] = useState(`#D3B27D`);
+  useEffect(() => {
+    if (mainState === "Destination") {
+      setPointerColor(`icon-pastel.png`);
+      setPointerTextColor(`#D3B27D`);
     }
-    setMap(map);
-  }, []);
+    if (mainState === `PlaceToStay`) {
+      setPointerColor(`icon-lightblue.png`);
+      setPointerTextColor(`#A9E8FF`);
+    }
+    if (mainState === `Experience`) {
+      setPointerColor(`icon-darkblue.png`);
+      setPointerTextColor(`#3A8DE1`);
+    }
+  }, [mainState]);
+
+  const onLoad = useCallback(
+    (map) => {
+      const bounds = new window.google.maps.LatLngBounds();
+      if (allMapPoints.length == 1) {
+        let pt = new window.google.maps.LatLng(allMapPoints[0].position);
+        map.setCenter(pt);
+        map.setZoom(14);
+      } else {
+        // if not, we set bounds to different locations
+        allMapPoints.map((loc) => bounds.extend(loc.position));
+        map.fitBounds(bounds);
+      }
+      setMap(map);
+    },
+    [allMapPoints]
+  );
 
   const onUnmount = useCallback((map) => {
     setMap(null);
@@ -68,13 +87,13 @@ const SearchMap = ({ isMapOpen, closeModal, hits }) => {
                   key={loc.id}
                   position={loc.position}
                   icon={{
-                    url: "/images/icon-pastel.png",
+                    url: `/images/${pointerColor}`,
                     labelOrigin: new window.google.maps.Point(24, -10),
                   }}
                   onClick={() => handleActiveMarker(loc.position.lat)}
                   label={{
                     text: loc.title,
-                    color: "#FDA658",
+                    color: pointerTextColor,
                     fontSize: "1rem",
                     fontWeight: "900",
                     className: "green-marker",

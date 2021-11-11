@@ -32,8 +32,8 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <CustomRefinementList
-            values={facets["commonDataAttributes.textContinent"]}
-            attribute="commonDataAttributes.textContinent"
+            values={facets["commonDataAttributes.continent"]}
+            attribute="commonDataAttributes.continent"
             title="CONTINENT"
             className={clsx({
               hidden: shouldVisible([

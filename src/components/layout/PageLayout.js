@@ -1,8 +1,8 @@
-import React from "react"
-import { ContentLayout } from "./ContentLayout"
-import { Button, Tabs } from "../ui-components"
-import { Gallery } from "../ui-components/Gallery"
-import { Title } from "./Title"
+import React from "react";
+import { ContentLayout } from "./ContentLayout";
+import { Button, Tabs } from "../ui-components";
+import { Gallery } from "../ui-components/Gallery";
+import { Title } from "./Title";
 
 const PageLayout = ({
   children,
@@ -20,6 +20,7 @@ const PageLayout = ({
   bl,
   handleEmpty,
   notEmpty,
+  mapOpen,
 }) => {
   return (
     <>
@@ -38,8 +39,8 @@ const PageLayout = ({
             small
             className={`w-[125px] lg:!hidden ${openFilters && "!hidden"}`}
             onClick={(e) => {
-              e.preventDefault()
-              setOpenFilters(true)
+              e.preventDefault();
+              setOpenFilters(true);
             }}
           >
             Filters
@@ -51,12 +52,12 @@ const PageLayout = ({
         smallMargin={smallMargin}
         isFilters={isFilters}
       >
-        {tabs && <Tabs tabs={tabs} className="mb-4" />}
+        {tabs && <Tabs mapOpen={mapOpen} tabs={tabs} className="mb-4" />}
         {images && <Gallery images={images} />}
         {children}
       </ContentLayout>
     </>
-  )
-}
+  );
+};
 
-export default PageLayout
+export default PageLayout;
