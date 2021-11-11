@@ -9,6 +9,7 @@ import { Button } from ".."
 import { Price } from "../Price"
 import { ListingBottomInfo } from "./ListingBottomInfo"
 import { AddToBlButton } from "../bucket-list/AddToBlButton"
+import noImage from "../../images/noimage.svg"
 
 export const Listing = ({
   item,
@@ -79,9 +80,10 @@ export const Listing = ({
       />
     )
   ) : (
-    <div className="flex items-center justify-center col-span-1 bg-veryLightGold w-[249px] h-[166px] text-grey4 ">
-      No Image
-    </div>
+    // <div className="flex items-center justify-center col-span-1 bg-veryLightGold w-[249px] h-[166px] text-grey4 ">
+    //   No Image
+    // </div>
+<img src={noImage} alt="placeholder image" width="249px" height="166px" />
   )
   return (
     <div className={clsx("shadow-listing", "p-2 pr-3 mb-5", className)}>
