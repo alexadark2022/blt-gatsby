@@ -6,6 +6,7 @@ import { Link } from "gatsby"
 import { Section, Underline } from ".."
 import { useMediaQuery } from "../../lib/hooks"
 import { Image } from "../images"
+import noImage from '../../images/noimage.svg'
 
 export const RecentlyViewed = ({ className, ...props }) => {
   const rvData = ls("recentlyViewed")?.reverse() || []
@@ -89,7 +90,8 @@ export const RecentlyViewed = ({ className, ...props }) => {
                       // <div className="aspect-6 aspect-h-4">
                       //   <img src="/images/noimage.svg" alt="no-image" />
                       // </div>
-                      <div className="relative aspect-w-6 aspect-h-4 bg-veryLightGold" />
+                      // <div className="relative aspect-w-6 aspect-h-4 bg-veryLightGold" />
+                      <img src={noImage} alt="image placeholder" width="233px" height="127px" />
                     )}
                   </div>
                   <div className="py-4 text-center px-base group h-[100px]">
@@ -111,7 +113,10 @@ export const RecentlyViewed = ({ className, ...props }) => {
             return (
               <div key={i} className="px-base py-base2 ">
                 <div className="cursor-pointer shadow-listing ">
-                  <div className="relative aspect-w-6 aspect-h-4 bg-veryLightGold max-h-[127px]" />
+                  {/* <div className="relative aspect-w-6 aspect-h-4 bg-veryLightGold max-h-[127px]" /> */}
+                  <img src={noImage} alt="image placeholder" width="233px" height="127px" />
+
+
                   {/* <img
                       src={image}
                       alt={"no image"}

@@ -1,7 +1,8 @@
 import React from "react";
 import clsx from "clsx";
 import { Section, Typo, Button, Image, Underline } from "..";
-import { useMediaQuery } from "../../lib/hooks";
+import noImage from "../../images/noimage.svg"
+
 
 const SidebarTourOperator = ({
   tourOperator,
@@ -29,12 +30,13 @@ const SidebarTourOperator = ({
           {title}
         </Typo>
         <div className="flex justify-center">
-          <Image
+          {featuredImage ? <Image
             img={featuredImage?.node.localFile}
             objectFit="cover"
             objectPosition="center"
             className="w-full max-w-[300px]"
-          />
+          /> : <img src={noImage} alt="placeholder image" width="249px" height="166px" /> }
+
         </div>
         <div
           className="prose max-w-none"

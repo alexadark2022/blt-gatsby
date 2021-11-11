@@ -6,6 +6,8 @@ import { useBucketList } from "../../lib/hooks/useBucketList"
 import { Button } from ".."
 import { AddToBlButton } from "../bucket-list/AddToBlButton"
 import { ListingBottomInfo } from "./ListingBottomInfo"
+import noImage from "../../images/noimage.svg"
+
 
 export const ListingCard = ({
   item,
@@ -59,9 +61,11 @@ export const ListingCard = ({
       className="w-full"
     />
   ) : (
-    <div className="flex items-center justify-center w-full h-full bg-veryLightGold">
-      no image
-    </div>
+    // <div className="flex items-center justify-center w-full h-full bg-veryLightGold">
+    //   no image
+    // </div>
+<img src={noImage} alt="placeholder image" width="249px" height="166px" />
+
   )
 
   const isFull = profile === "full" || itinerary || pts || writer

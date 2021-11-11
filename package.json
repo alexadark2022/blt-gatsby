@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
-    "dev": "rm -rf .cache && gatsby develop",
+    "dev": "rm -rf .cache && gatsby develop --host 0.0.0.0",
     "build": "gatsby build",
     "develop": "gatsby develop --host 0.0.0.0",
     "format": "prettier --write src/**/*.{js,jsx}",

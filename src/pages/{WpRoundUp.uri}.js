@@ -14,11 +14,22 @@ import PlaceToStayFilter from "../components/my-components/PlaceToStayFilter";
 import ExperiencesFilter from "../components/my-components/ExperiencesFilter";
 import useStore from "./../store";
 import filters from "../utils/FiltersData";
+import { useSeoGeneral } from "../lib/hooks/useSeoGeneral";
+import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
+
+
+
 const RoundupPage = ({ data }) => {
   console.log("data", data);
   const { wpRoundUp: roundUp } = data || {};
   const contentType = roundUp.customDataAttributes.type;
   const [view, setView] = useState("list");
+  const seoGeneral = useSeoGeneral();
+
+  const seo = {
+    page: roundUp?.seo,
+    general: seoGeneral?.wp?.seo,
+  };
 
   useEffect(() => {
     const isLarge = window.matchMedia("(min-width: 768px)").matches;
@@ -33,6 +44,8 @@ const RoundupPage = ({ data }) => {
     customDataAttributes,
     modified,
     author,
+    featuredImage,
+    uri
   } = roundUp || {};
 
   const { about } = commonDataAttributes || {};
@@ -57,21 +70,7 @@ const RoundupPage = ({ data }) => {
           filterItem === "continent"
             ? item.link[0].commonDataAttributes[filterItem]
             : item.link[0].customDataAttributes[filterItem];
-        // const haveItem = Array.isArray(dataItem)
-        //   ? dataItem?.some(
-        //       (item) =>
-        //         filterArray
-        //           .map((i) => i?.toUpperCase() ?? i)
-        //           ?.includes(item.toUpperCase()) ?? true
-        //     ) ?? false
-        //   : filterArray
-        //       .map((i) => i?.toUpperCase() ?? i)
-        //       ?.includes(dataItem.toUpperCase()) ?? true;
 
-        // console.log(filterArray);
-        // console.log(dataItem);
-        // console.log(haveItem);
-        // return true;
         if (!dataItem) return false;
         const haveItem = Array.isArray(dataItem)
           ? dataItem?.some(
@@ -112,11 +111,24 @@ const RoundupPage = ({ data }) => {
     updateItemExist(existingItems);
   }, []);
 
-  console.log(filteredLinks);
-  console.log({ itemExist, allFilters });
+  const seoImage = featuredImage?.node.localFile.childImageSharp.original;
+
 
   return (
     <Layout page="round-up">
+        <Seo
+        title={title}
+        uri={uri}
+        yoastSeo={true}
+        seo={seo}
+        featuredImage={
+          seoImage && {
+            src: seoImage.src,
+            width: seoImage.width,
+            height: seoImage.height,
+          }
+        }
+      />
       <Breadcrumbs terms={breadcrumbsTerms} />
 
       <PageLayout
@@ -181,7 +193,7 @@ const RoundupPage = ({ data }) => {
                         key={item.link[0].id}
                         pts={type === "PlaceToStay"}
                         itinerary={type === "Itinerary"}
-                        className="md:hidden mb-10"
+                        className="mb-10 md:hidden"
                       />
                     </div>
                   </div>

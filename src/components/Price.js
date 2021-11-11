@@ -12,7 +12,7 @@ export const Price = ({ priceCheckingLinks, website, className, ...props }) => {
       )}
       {...props}
     >
-      <div>Check pricing & availability on:</div>
+      <div className="mb-3 md:mb-0">Check pricing & availability on:</div>
       <div className="relative flex flex-wrap items-center">
         {priceCheckingLinks?.map((item, i) => {
           return (
@@ -20,7 +20,7 @@ export const Price = ({ priceCheckingLinks, website, className, ...props }) => {
               <img
                 src={item?.logo?.sourceUrl}
                 alt={item?.logo?.altText}
-                className="max-w-[100px] mx-3"
+                className="max-w-[100px] mx-3 mb-3 md:mb-0"
               />
             </a>
           )
