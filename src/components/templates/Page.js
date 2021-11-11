@@ -5,7 +5,7 @@ import { Layout } from "../Layout";
 import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
 import { FrontPage } from "../frontPage";
 import { window } from "browser-monads";
-import { FaqPage, AboutPage, ContactPage, MyAccountPage } from "../pageLayouts";
+import { FaqPage, AboutPage, ContactPage, MyAccountPage, WritersPage } from "../pageLayouts";
 import { Newsletter } from "../Newsletter";
 import { Section, SidebarSocialShare } from "..";
 import PageLayout from "../layout/PageLayout";
@@ -13,7 +13,7 @@ import { TravelQuote } from "..";
 import { Breadcrumbs } from "../Breadcrumbs";
 
 const Page = ({ page, ctx }) => {
-  console.log("page ctx", ctx);
+
   const url = window.location.href;
   const {
     title,
@@ -58,7 +58,7 @@ const Page = ({ page, ctx }) => {
           url={url}
           awards={awards}
         />
-      ) : (
+      ) : slug.includes("writers") ?<WritersPage/> :(
         <div>
           <Breadcrumbs terms={breadcrumbTerms} />
           <PageLayout
