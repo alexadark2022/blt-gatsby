@@ -7,7 +7,7 @@ import { About } from "../components/layout/About";
 import { CardsGrid } from "../components/layout/CardsGrid";
 import { Listing } from "../components/layout/Listing";
 import { ListingCard } from "../components/layout/ListingCard";
-import { ViewSwitcher } from "../components/ui-components/ViewSwitcher";
+import ViewSwitcher from "../components/my-components/ViewSwitcher";
 import { graphql } from "gatsby";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import PlaceToStayFilter from "../components/my-components/PlaceToStayFilter";
@@ -16,8 +16,7 @@ import useStore from "./../store";
 import filters from "../utils/FiltersData";
 import { useSeoGeneral } from "../lib/hooks/useSeoGeneral";
 import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
-
-
+import DetailPageMap from "./../components/maps/DetailPageMap";
 
 const RoundupPage = ({ data }) => {
   console.log("data", data);
@@ -45,7 +44,7 @@ const RoundupPage = ({ data }) => {
     modified,
     author,
     featuredImage,
-    uri
+    uri,
   } = roundUp || {};
 
   const { about } = commonDataAttributes || {};
@@ -112,11 +111,11 @@ const RoundupPage = ({ data }) => {
   }, []);
 
   const seoImage = featuredImage?.node.localFile.childImageSharp.original;
-
+  const [isMapOpen, setIsMapOpen] = useState(false);
 
   return (
     <Layout page="round-up">
-        <Seo
+      <Seo
         title={title}
         uri={uri}
         yoastSeo={true}
@@ -130,7 +129,12 @@ const RoundupPage = ({ data }) => {
         }
       />
       <Breadcrumbs terms={breadcrumbsTerms} />
-
+      <DetailPageMap
+        isMapOpen={isMapOpen}
+        closeModal={() => setIsMapOpen(false)}
+        pageType="roundup"
+        data={roundUp}
+      />
       <PageLayout
         title={title}
         smallMargin
@@ -170,7 +174,11 @@ const RoundupPage = ({ data }) => {
           />
         </section>
         <div className="justify-end hidden mb-base2 md:flex">
-          <ViewSwitcher setView={setView} />
+          <ViewSwitcher
+            isClickable={true}
+            mapOpen={() => setIsMapOpen(true)}
+            setView={setView}
+          />
         </div>
         {view === "list" && (
           <Section className={clsx("p-5 md:p-8  mb-base2")}>

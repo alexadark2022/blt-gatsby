@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { CgMenuGridR as Grid } from "react-icons/cg";
 import { FaBars as List, FaMapMarkerAlt as Map } from "react-icons/fa";
@@ -36,10 +36,22 @@ const ViewSwitcher = ({ className, setView, isClickable = false, mapOpen }) => {
         <div className="text-[9px] text-center mt-1 font-medium">List</div>
       </div>
       <div>
-        <WiewButton
+        {/* <button
+          disabled={!isClickable}
           onClick={mapOpen}
           className={clsx({
-            "cursor-default ": !isClickable,
+            "w-10 h-10 focus:outline-none focus:ring-0 flex items-center justify-center border border-grey2": true,
+            " cursor-not-allowed ": !isClickable,
+            "hover:bg-gold focus:bg-gold": isClickable,
+          })}
+        >
+          <Map className={`text-[20px]  ${!isClickable && "text-grey2"}`} />
+        </button> */}
+        <WiewButton
+          disabled={!isClickable}
+          onClick={mapOpen}
+          className={clsx({
+            " cursor-not-allowed ": !isClickable,
             "hover:bg-gold focus:bg-gold": isClickable,
           })}
         >
