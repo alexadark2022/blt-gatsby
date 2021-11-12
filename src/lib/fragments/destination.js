@@ -25,6 +25,7 @@ export const destinationFragments = graphql`
     }
     commonDataAttributes {
       standfirst
+      bcklgeoDistance
       country {
         name
         slug

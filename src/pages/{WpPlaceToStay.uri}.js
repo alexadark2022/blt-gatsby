@@ -45,6 +45,7 @@ const PlaceToStayPage = ({ data }) => {
     customDataAttributes,
     featuredImage,
     uri,
+    databaseId
   } = pts || {};
 
   useRecentlyViewed({ title, featuredImage, uri });
@@ -392,7 +393,7 @@ console.log('city', city, 'array',destinationsArray);
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={bucketListExperiences} />
+              <CollapseListings listings={bucketListExperiences} databaseId={databaseId} />
               <CollapseCards
                 cards={bucketListExperiences}
                 className="md:hidden"

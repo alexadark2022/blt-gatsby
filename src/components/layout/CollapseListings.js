@@ -8,6 +8,7 @@ export const CollapseListings = ({
   noBl,
   destinationGuide,
   pts,
+  databaseId,
   ...props
 }) => {
   const [open, setOpen] = useState(false);
@@ -27,6 +28,7 @@ export const CollapseListings = ({
             itinerary={__typename === "Itinerary"}
             writer={__typename === "writer"}
             pts={pts || __typename === "PlaceToStay"}
+            databaseId={databaseId}
           />
         );
       })}

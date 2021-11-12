@@ -20,6 +20,7 @@ export const placeTostayFragments = graphql`
     commonDataAttributes {
       standfirst
       continent
+      bcklgeoDistance
       country {
         name
         slug
