@@ -61,7 +61,42 @@
     padding: 5px 10px;
     border-radius: 4px;
   }
-  .orange-box, .error-message {
+  .current-pin-label {
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: #676767;
+    color: #fda658;
+  }
+  .pts-pin-label {
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: #26496c;
+    color: #ffffff;
+  }
+  .experience-pin-label {
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: #3a8de1;
+    color: #ffffff;
+  }
+  .itinerary-pin-label {
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: #b5ebff;
+    color: #676767;
+  }
+  .destination-pin-label {
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: #d3b27d;
+    color: #676767;
+  }
+  .marker {
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+  .orange-box,
+  .error-message {
     @apply px-3 py-4 text-lg font-medium leading-tight text-center bg-orange !text-white mb-6 max-w-lg inline-block;
   }
   .btn {

@@ -54,7 +54,7 @@ const ExperienceMapBox = ({
           />
           <TickBox
             show={whereToStay}
-            name="Where To Stay"
+            name="Place To Stay"
             checked={showWhereToStay}
             onChange={() => setShowWhereToStay(!showWhereToStay)}
           />
@@ -82,10 +82,10 @@ const ExperienceMapBox = ({
                         onClick={() => handleActiveMarker(loc.lat)}
                         label={{
                           text: mainData.title,
-                          color: "#FDA658",
+                          color: "#FFFFFF",
                           fontSize: "1rem",
                           fontWeight: "900",
-                          className: "green-marker",
+                          className: "current-pin-label",
                         }}
                       >
                         {activeMarker === loc.lat ? (
@@ -121,6 +121,9 @@ const ExperienceMapBox = ({
                               clusterer={clusterer}
                               activeMarker={activeMarker}
                               setActiveMarker={setActiveMarker}
+                              className="experience-pin-label"
+                              color="#FFFFFF"
+                              imageName="icon-darkblue.png"
                             />
                           )
                       )}
@@ -136,6 +139,9 @@ const ExperienceMapBox = ({
                               clusterer={clusterer}
                               activeMarker={activeMarker}
                               setActiveMarker={setActiveMarker}
+                              className="itinerary-pin-label"
+                              color="#676767"
+                              imageName="icon-gray.png"
                             />
                           )
                       )}
@@ -151,6 +157,9 @@ const ExperienceMapBox = ({
                               clusterer={clusterer}
                               activeMarker={activeMarker}
                               setActiveMarker={setActiveMarker}
+                              color="#FFFFFF"
+                              className="pts-pin-label"
+                              imageName="icon-blue.png"
                             />
                           )
                       )}

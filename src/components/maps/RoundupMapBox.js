@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import {
   GoogleMap,
   InfoWindow,
@@ -6,68 +6,19 @@ import {
   useJsApiLoader,
 } from "@react-google-maps/api";
 import { IoCloseCircle } from "react-icons/io5";
-import { connectSearchBox } from "react-instantsearch-dom";
 import { Modal } from "..";
 import { Link } from "gatsby";
-import FormatMapsData from "./FormatMapsData";
-import algoliasearch from "algoliasearch/lite";
-const searchClient = algoliasearch(
-  "E4TS2J6OFT",
-  "8878e427a5a3d373a179bab058ca2641"
-);
-const index = searchClient.initIndex("BucketList");
+import FormatRoundUpMapsData from "./FormatRoundUpMapsData";
 
-function SearchMap(props) {
-  //console.log(props);
-  const { mainState, currentRefinement } = props;
-  const [hits, setHits] = useState(null);
-  useEffect(() => {
-    index
-      .search(currentRefinement, {
-        facetFilters: [`nodeType:${mainState}`],
-        hitsPerPage: 100,
-      })
-      .then(({ hits }) => {
-        setHits(hits);
-        console.log({ searchText: currentRefinement, mainState, hits });
-      });
-  }, [mainState, currentRefinement]);
-  if (!hits) {
-    return null;
-  }
-  return (
-    <>
-      <SearchMapBox {...props} hits={hits} />
-    </>
-  );
-}
-
-const SearchMapBox = ({ isMapOpen, closeModal, hits, mainState }) => {
-  const allMapPoints = FormatMapsData(hits);
-  //console.log(allMapPoints);
+const RoundupMapBox = ({ isMapOpen, closeModal, roundupData }) => {
+  const allMapPoints = FormatRoundUpMapsData(roundupData);
+  console.log(allMapPoints);
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyCJkZohj9sqn6H_LrfHMNG5cY794SWFJgA",
   });
 
   const [map, setMap] = useState(null);
-  const [pointerColor, setPointerColor] = useState(`icon-pastel.png`);
-  const [pointerTextColor, setPointerTextColor] = useState(`#D3B27D`);
-  useEffect(() => {
-    if (mainState === "Destination") {
-      setPointerColor(`icon-pastel.png`);
-      setPointerTextColor(`#D3B27D`);
-    }
-    if (mainState === `PlaceToStay`) {
-      setPointerColor(`icon-lightblue.png`);
-      setPointerTextColor(`#A9E8FF`);
-    }
-    if (mainState === `Experience`) {
-      setPointerColor(`icon-darkblue.png`);
-      setPointerTextColor(`#3A8DE1`);
-    }
-  }, [mainState]);
-
   const onLoad = useCallback(
     (map) => {
       const bounds = new window.google.maps.LatLngBounds();
@@ -118,13 +69,13 @@ const SearchMapBox = ({ isMapOpen, closeModal, hits, mainState }) => {
                   key={loc.id}
                   position={loc.position}
                   icon={{
-                    url: `/images/${pointerColor}`,
+                    url: "/images/icon-pastel.png",
                     labelOrigin: new window.google.maps.Point(24, -10),
                   }}
                   onClick={() => handleActiveMarker(loc.position.lat)}
                   label={{
                     text: loc.title,
-                    color: pointerTextColor,
+                    color: "#ffffff",
                     fontSize: "1rem",
                     fontWeight: "900",
                     className: "green-marker",
@@ -161,4 +112,4 @@ const SearchMapBox = ({ isMapOpen, closeModal, hits, mainState }) => {
   );
 };
 
-export default connectSearchBox(SearchMap);
+export default RoundupMapBox;
