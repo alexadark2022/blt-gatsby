@@ -7,13 +7,16 @@ export default function ShowMarkerBox({
   clusterer,
   activeMarker,
   setActiveMarker,
+  className = null,
+  color = "#ffffff",
+  imageName = "icon-darkblue.png",
 }) {
   return (
     <>
       <Marker
         icon={{
-          url: "/images/icon-darkblue.png",
-          labelOrigin: new window.google.maps.Point(24, -5),
+          url: `/images/${imageName}`,
+          labelOrigin: new window.google.maps.Point(24, -10),
         }}
         position={{
           lat: item.customDataAttributes.latitudeOfLocation1,
@@ -23,10 +26,10 @@ export default function ShowMarkerBox({
         clusterer={clusterer}
         label={{
           text: item.title,
-          color: "#3A8DE1",
+          color,
           fontSize: "1rem",
           fontWeight: "500",
-          className: "green-marker",
+          className: `${className ? className : ""}`,
         }}
       >
         {activeMarker === item.id ? (

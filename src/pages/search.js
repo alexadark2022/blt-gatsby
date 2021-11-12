@@ -80,7 +80,7 @@ const SearchPage = () => {
           >
             <div
               className={clsx(
-                "w-full  lg:w-2/3 xl:w-[940px] mb-7 lg:mb-0 mr-7 xl:ml-14  order-2 lg:order-1"
+                "w-full  lg:w-2/3 xl:w-[940px] mb-7 lg:mb-0 mr-14 xl:ml-14  mr-7 xl:w-[960px] lg:mt-base2"
               )}
             >
               <StaticRefinementList
@@ -116,7 +116,6 @@ const SearchPage = () => {
                     setView={setView}
                   />
                 </div>
-
                 <SearchMap
                   isMapOpen={isMapOpen}
                   closeModal={() => setIsMapOpen(false)}
@@ -127,7 +126,7 @@ const SearchPage = () => {
             </div>
             <div
               className={clsx(
-                "w-full lg:w-1/3 xl:w-[320px]  lg:mt-base2  lg:mr-5 mb-base2 lg:mb-0 order-1 lg:order-2"
+                "w-full lg:w-1/3 xl:w-[320px]  lg:mt-base2  lg:mr-5 mb-base2 lg:mb-0"
               )}
             >
               <Sticky bottomBoundary="#content">

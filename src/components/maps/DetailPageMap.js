@@ -3,10 +3,23 @@ import ExperienceMapBox from "./ExperienceMapBox";
 import DestinationMapBox from "./DestinationMapBox";
 import PlacesToStayMapBox from "./PlacesToStayMapBox";
 import getMainLocations from "./getMainLocations";
+import RoundupMapBox from "./RoundupMapBox";
 
 const DetailPageMap = ({ isMapOpen, closeModal, pageType, data }) => {
   //console.log(data);
   const { title, featuredImage, uri, customDataAttributes } = data || {};
+
+  if (pageType === `roundup`) {
+    return (
+      <div className="i">
+        <RoundupMapBox
+          isMapOpen={isMapOpen}
+          closeModal={closeModal}
+          roundupData={data}
+        />
+      </div>
+    );
+  }
   const {
     experiences,
     recommendations,
