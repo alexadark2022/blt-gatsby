@@ -30,9 +30,6 @@ export const Listing = ({
 
 const distanceObject = JSON.parse(distance)
 const distanceToParent = Math.round(distanceObject?.[databaseId]*100)/100
-console.log(title, distanceObject, databaseId);
-
-
 
 
   let { featuredImage, uri, commonDataAttributes, customDataAttributes } = link

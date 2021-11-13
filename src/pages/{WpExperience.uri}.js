@@ -31,6 +31,7 @@ const ExperiencePage = ({ data }) => {
     modified,
     commonDataAttributes,
     customDataAttributes,
+    viAffiliate,
   } = experience || {};
 
   const {

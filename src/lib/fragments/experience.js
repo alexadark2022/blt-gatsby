@@ -78,7 +78,7 @@ export const experienceFragments = graphql`
 
   fragment ExperiencePage on WpExperience {
     title
-    # viewCount
+    viAffiliate
     uri
     slug
     id

@@ -41,8 +41,11 @@ const DestinationPage = ({ data }) => {
     customDataAttributes,
     featuredImage,
     uri,
+    viAffiliate,
   } = destination || {};
   const seoImage = featuredImage?.node.localFile.childImageSharp.original;
+  // const viatorData = JSON.parse(viAffiliate)
+  // console.log("viator", JSON.parse(viAffiliate[0]));
 
   const seo = {
     page: destination?.seo,
