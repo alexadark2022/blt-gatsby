@@ -7,7 +7,6 @@ export const destinationFragments = graphql`
     slug
     id
     databaseId
-
     featuredImage {
       node {
         ...ListingImage

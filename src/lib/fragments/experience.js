@@ -23,7 +23,6 @@ export const experienceFragments = graphql`
     commonDataAttributes {
       continent
       standfirst
-      bcklgeoDistance
       country {
         name
         slug
@@ -114,6 +113,7 @@ export const experienceFragments = graphql`
     commonDataAttributes {
       about
       standfirst
+      bcklgeoDistance
       continent
       review {
         title

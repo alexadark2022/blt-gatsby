@@ -20,7 +20,6 @@ export const placeTostayFragments = graphql`
     commonDataAttributes {
       standfirst
       continent
-      bcklgeoDistance
       country {
         name
         slug
@@ -68,7 +67,6 @@ export const placeTostayFragments = graphql`
     databaseId
     title
     uri
-    # viewCount
     seo {
       ...SeoPage
     }
@@ -81,6 +79,7 @@ export const placeTostayFragments = graphql`
     modified
     commonDataAttributes {
       about
+      bcklgeoDistance
       review {
         title
         content

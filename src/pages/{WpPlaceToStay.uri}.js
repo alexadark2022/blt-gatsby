@@ -45,7 +45,7 @@ const PlaceToStayPage = ({ data }) => {
     customDataAttributes,
     featuredImage,
     uri,
-    databaseId
+    databaseId,
   } = pts || {};
 
   useRecentlyViewed({ title, featuredImage, uri });
@@ -65,7 +65,10 @@ const PlaceToStayPage = ({ data }) => {
     review,
     continent,
     country,
+    bcklgeoDistance,
   } = commonDataAttributes || {};
+
+  console.log('distance',JSON.parse(bcklgeoDistance));
 
   const {
     writer,
@@ -111,7 +114,7 @@ const PlaceToStayPage = ({ data }) => {
     { name: "map" },
   ];
 const destinationsArray = useDdestinationsArray()
-console.log('city', city, 'array',destinationsArray);
+
 
   const brContinent = continent?.length === 1 ? continent[0] : null;
   const breadcrumbsTerms = [
@@ -393,7 +396,7 @@ console.log('city', city, 'array',destinationsArray);
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={bucketListExperiences} databaseId={databaseId} />
+              <CollapseListings listings={bucketListExperiences} databaseId={databaseId} distance={bcklgeoDistance} />
               <CollapseCards
                 cards={bucketListExperiences}
                 className="md:hidden"
@@ -408,7 +411,7 @@ console.log('city', city, 'array',destinationsArray);
             number={otherExperiences.length}
             listings
           >
-            <CollapseListings listings={otherExperiences} />
+            <CollapseListings listings={otherExperiences} distance={bcklgeoDistance}  />
             <CollapseCards cards={otherExperiences} className="md:hidden" />
           </CollapseSection>
         )}
@@ -419,7 +422,7 @@ console.log('city', city, 'array',destinationsArray);
             number={destinations.length}
             listings
           >
-            <CollapseListings listings={destinations} />
+            <CollapseListings listings={destinations} distance={bcklgeoDistance}  />
             <CollapseCards cards={destinations} className="md:hidden" />
           </CollapseSection>
         )}

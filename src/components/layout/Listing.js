@@ -21,18 +21,25 @@ export const Listing = ({
   pts = false,
   roundUp = false,
   nested = false,
-  databaseId = null,
+  distance = null,
   ...props
 }) => {
   const [open, setOpen] = useState(false)
 
-  let { title, intro, externalLink, link } = item || {}
+  let { title, intro, externalLink, link, databaseId } = item || {}
+
+const distanceObject = JSON.parse(distance)
+const distanceToParent = Math.round(distanceObject?.[databaseId]*100)/100
+console.log(title, distanceObject, databaseId);
+
+
+
 
   let { featuredImage, uri, commonDataAttributes, customDataAttributes } = link
     ? link[0] || {}
     : item || {}
 
-  let { standfirst, country, bcklgeoDistance } = commonDataAttributes || {}
+  let { standfirst, country} = commonDataAttributes || {}
   const blItem = item.link ? item.link[0] : item
 
   const { addToBl, removeFromBl, isAdded } = useBucketList(blItem)
@@ -51,9 +58,8 @@ export const Listing = ({
     summaryBio,
 
   } = customDataAttributes || {}
-  const distance = bcklgeoDistance ? JSON.parse(bcklgeoDistance) : undefined
-  console.log("bcklgeoDistance", distance, databaseId);
-  const getDistance = (id) => distance[id]
+
+
 
   profile = profile ? profile : "full"
 
@@ -114,16 +120,18 @@ export const Listing = ({
               </Link>
 
 
+
               {city ||
                 region ||
-                (country && (
+                country && (
                   <div className="flex space-x-2">
                     <h3 className="mb-2 text-f-18 text-grey5">
                       {city ? city : region ? region : country?.name}
                     </h3>
-                    {/* <div>distance[{getDistance(databaseId)}]</div> */}
+
                   </div>
-                ))}
+                )}
+                {distance && distanceObject?.[databaseId] && <span className="inline-block ml-2 font-bold">[{distanceToParent} miles]</span>}
               <div
                 dangerouslySetInnerHTML={{
                   __html: intro ? intro : summaryBio ? summaryBio : standfirst,

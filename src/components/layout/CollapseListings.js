@@ -8,7 +8,7 @@ export const CollapseListings = ({
   noBl,
   destinationGuide,
   pts,
-  databaseId,
+  distance,
   ...props
 }) => {
   const [open, setOpen] = useState(false);
@@ -28,7 +28,7 @@ export const CollapseListings = ({
             itinerary={__typename === "Itinerary"}
             writer={__typename === "writer"}
             pts={pts || __typename === "PlaceToStay"}
-            databaseId={databaseId}
+            distance={distance}
           />
         );
       })}
@@ -39,8 +39,14 @@ export const CollapseListings = ({
             className="duration-500 ease-in-out transition-height"
           >
             {listings?.slice(4)?.map((item) => {
+               const { __typename } = item;
               return (
-                <Listing item={item} key={item.id} className="mx-4 sm:mx-7" />
+                <Listing item={item} key={item.id} className="mx-4 sm:mx-7" profile="full"
+                noBl={noBl}
+                itinerary={__typename === "Itinerary"}
+                writer={__typename === "writer"}
+                pts={pts || __typename === "PlaceToStay"}
+                distance={distance}/>
               );
             })}
           </Collapse>

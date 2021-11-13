@@ -41,6 +41,7 @@ const ExperiencePage = ({ data }) => {
     review,
     continent,
     country,
+    bcklgeoDistance,
   } = commonDataAttributes || {};
 
   const {
@@ -179,7 +180,7 @@ const destinationsArray = useDdestinationsArray()
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={recos} pts />
+              <CollapseListings listings={recos} distance={bcklgeoDistance}  pts />
               <CollapseCards cards={recos} className="md:hidden" />
             </div>
           </CollapseSection>
@@ -218,7 +219,7 @@ const destinationsArray = useDdestinationsArray()
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={affiliateTours} noBl />
+              <CollapseListings listings={affiliateTours} distance={bcklgeoDistance}  noBl />
               <CollapseCards
                 cards={affiliateTours}
                 className="md:hidden"
@@ -236,7 +237,7 @@ const destinationsArray = useDdestinationsArray()
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={tourOperator} noBl />
+              <CollapseListings listings={tourOperator} distance={bcklgeoDistance}  noBl />
               <CollapseCards cards={tourOperator} className="md:hidden" noBl />
             </div>
           </CollapseSection>
@@ -250,7 +251,7 @@ const destinationsArray = useDdestinationsArray()
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={whereToStay} pts />
+              <CollapseListings listings={whereToStay} distance={bcklgeoDistance}  pts />
               <CollapseCards cards={whereToStay} className="md:hidden" pts />
             </div>
           </CollapseSection>
@@ -263,7 +264,7 @@ const destinationsArray = useDdestinationsArray()
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={itineraries} itinerary />
+              <CollapseListings listings={itineraries} distance={bcklgeoDistance} itinerary />
               <CollapseCards
                 cards={itineraries}
                 className="md:hidden"
@@ -280,7 +281,7 @@ const destinationsArray = useDdestinationsArray()
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={destinations} />
+              <CollapseListings listings={destinations} distance={bcklgeoDistance}  />
               <CollapseCards cards={destinations} className="md:hidden" />
             </div>
           </CollapseSection>
@@ -293,7 +294,7 @@ const destinationsArray = useDdestinationsArray()
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={bucketListExperiences} />
+              <CollapseListings listings={bucketListExperiences} distance={bcklgeoDistance}  />
               <CollapseCards
                 cards={bucketListExperiences}
                 className="md:hidden"
@@ -308,7 +309,7 @@ const destinationsArray = useDdestinationsArray()
             number={otherExperiences.length}
             listings
           >
-            <CollapseListings listings={otherExperiences} />
+            <CollapseListings listings={otherExperiences} distance={bcklgeoDistance}  />
             <CollapseCards cards={otherExperiences} className="md:hidden" />
           </CollapseSection>
         )}
