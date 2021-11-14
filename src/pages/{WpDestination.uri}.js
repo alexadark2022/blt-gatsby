@@ -24,6 +24,7 @@ import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
 import { useSeoGeneral } from "../lib/hooks/useSeoGeneral";
 import DetailPageMap from "./../components/maps/DetailPageMap";
 import { useDdestinationsArray } from "../lib/hooks/useDestinationsArray";
+import { AffiliateListing } from "../components/layout/AffiliateListing";
 
 
 const slugs = (string) => slugify(string, { lower: true, strict: true });
@@ -45,7 +46,7 @@ const DestinationPage = ({ data }) => {
   } = destination || {};
   const seoImage = featuredImage?.node.localFile.childImageSharp.original;
   // const viatorData = JSON.parse(viAffiliate)
-  // console.log("viator", JSON.parse(viAffiliate[0]));
+  console.log("viator",viAffiliate);
 
   const seo = {
     page: destination?.seo,
@@ -100,7 +101,7 @@ const DestinationPage = ({ data }) => {
       id: "experiences",
     },
     { title: "Other experiences", experiences: otherExperiences },
-    { title: "Destination tickets & tours", experiences: affiliatedTours },
+    // { title: "Destination tickets & tours", experiences: affiliatedTours },
   ];
 
   const tabs = [
@@ -211,6 +212,16 @@ const DestinationPage = ({ data }) => {
               </CollapseSection>
             );
           })}
+          {viAffiliate?.length > 0 &&<CollapseSection title="Destination Tickets & tours" >
+            <div className="mt-5">
+             {viAffiliate.map(item => {
+               const parsedItem = JSON.parse(item)
+               console.log('parsedItem', parsedItem);
+               return <AffiliateListing item={parsedItem} key={parsedItem.product_code}/>
+             })}
+            </div>
+            </CollapseSection>
+}
         {/* Where to stay */}
         {placesToStay && (
           <CollapseSection
