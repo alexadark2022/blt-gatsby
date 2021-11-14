@@ -26,7 +26,6 @@ import DetailPageMap from "./../components/maps/DetailPageMap";
 import { useDdestinationsArray } from "../lib/hooks/useDestinationsArray";
 import { AffiliateListing } from "../components/layout/AffiliateListing";
 
-
 const slugs = (string) => slugify(string, { lower: true, strict: true });
 
 const DestinationPage = ({ data }) => {
@@ -45,8 +44,6 @@ const DestinationPage = ({ data }) => {
     viAffiliate,
   } = destination || {};
   const seoImage = featuredImage?.node.localFile.childImageSharp.original;
-  // const viatorData = JSON.parse(viAffiliate)
-  console.log("viator",viAffiliate);
 
   const seo = {
     page: destination?.seo,
@@ -114,7 +111,7 @@ const DestinationPage = ({ data }) => {
   ];
 
   const brContinent = continent?.length === 1 ? continent[0] : null;
-  const destinationsArray = useDdestinationsArray()
+  const destinationsArray = useDdestinationsArray();
 
   const breadcrumbsTerms = [
     { name: "home", link: "/" },
@@ -212,16 +209,25 @@ const DestinationPage = ({ data }) => {
               </CollapseSection>
             );
           })}
-          {viAffiliate?.length > 0 &&<CollapseSection title="Destination Tickets & tours" >
+        {viAffiliate?.length > 0 && (
+          <CollapseSection
+            title="Destination Tickets & tours"
+            number={viAffiliate.length}
+          >
             <div className="mt-5">
-             {viAffiliate.map(item => {
-               const parsedItem = JSON.parse(item)
-               console.log('parsedItem', parsedItem);
-               return <AffiliateListing item={parsedItem} key={parsedItem.product_code}/>
-             })}
+              {viAffiliate.map((item) => {
+                const parsedItem = JSON.parse(item);
+                console.log("parsedItem", parsedItem);
+                return (
+                  <AffiliateListing
+                    item={parsedItem}
+                    key={parsedItem.product_code}
+                  />
+                );
+              })}
             </div>
-            </CollapseSection>
-}
+          </CollapseSection>
+        )}
         {/* Where to stay */}
         {placesToStay && (
           <CollapseSection

@@ -18,7 +18,7 @@ import slugify from "slugify";
 import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
 import { useSeoGeneral } from "../lib/hooks/useSeoGeneral";
 import { useDdestinationsArray } from "../lib/hooks/useDestinationsArray";
-
+import { AffiliateListing } from "../components/layout/AffiliateListing";
 
 const slugs = (string) => slugify(string, { lower: true, strict: true });
 
@@ -82,7 +82,7 @@ const ExperiencePage = ({ data }) => {
     { name: "map" },
   ];
   const brContinent = continent?.length === 1 ? continent[0] : null;
-const destinationsArray = useDdestinationsArray()
+  const destinationsArray = useDdestinationsArray();
 
   const breadcrumbsTerms = [
     { name: "home", link: "/" },
@@ -181,7 +181,11 @@ const destinationsArray = useDdestinationsArray()
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={recos} distance={bcklgeoDistance}  pts />
+              <CollapseListings
+                listings={recos}
+                distance={bcklgeoDistance}
+                pts
+              />
               <CollapseCards cards={recos} className="md:hidden" />
             </div>
           </CollapseSection>
@@ -212,20 +216,30 @@ const destinationsArray = useDdestinationsArray()
         </CollapseSection>
 
         {/* Affiliate tours */}
-        {affiliateTours && (
+        {viAffiliate?.length > 0 && (
           <CollapseSection
             title="Who to go with: organised tours"
-            number={affiliateTours.length}
+            number={viAffiliate.length}
             id="who-to-go-with"
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={affiliateTours} distance={bcklgeoDistance}  noBl />
+              {/* <CollapseListings listings={affiliateTours} distance={bcklgeoDistance}  noBl />
               <CollapseCards
                 cards={affiliateTours}
                 className="md:hidden"
                 noBl
-              />
+              /> */}
+              {viAffiliate.map((item) => {
+                const parsedItem = JSON.parse(item);
+                console.log("parsedItem", parsedItem);
+                return (
+                  <AffiliateListing
+                    item={parsedItem}
+                    key={parsedItem.product_code}
+                  />
+                );
+              })}
             </div>
           </CollapseSection>
         )}
@@ -238,7 +252,11 @@ const destinationsArray = useDdestinationsArray()
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={tourOperator} distance={bcklgeoDistance}  noBl />
+              <CollapseListings
+                listings={tourOperator}
+                distance={bcklgeoDistance}
+                noBl
+              />
               <CollapseCards cards={tourOperator} className="md:hidden" noBl />
             </div>
           </CollapseSection>
@@ -252,7 +270,11 @@ const destinationsArray = useDdestinationsArray()
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={whereToStay} distance={bcklgeoDistance}  pts />
+              <CollapseListings
+                listings={whereToStay}
+                distance={bcklgeoDistance}
+                pts
+              />
               <CollapseCards cards={whereToStay} className="md:hidden" pts />
             </div>
           </CollapseSection>
@@ -265,7 +287,11 @@ const destinationsArray = useDdestinationsArray()
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={itineraries} distance={bcklgeoDistance} itinerary />
+              <CollapseListings
+                listings={itineraries}
+                distance={bcklgeoDistance}
+                itinerary
+              />
               <CollapseCards
                 cards={itineraries}
                 className="md:hidden"
@@ -282,7 +308,10 @@ const destinationsArray = useDdestinationsArray()
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={destinations} distance={bcklgeoDistance}  />
+              <CollapseListings
+                listings={destinations}
+                distance={bcklgeoDistance}
+              />
               <CollapseCards cards={destinations} className="md:hidden" />
             </div>
           </CollapseSection>
@@ -295,7 +324,10 @@ const destinationsArray = useDdestinationsArray()
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={bucketListExperiences} distance={bcklgeoDistance}  />
+              <CollapseListings
+                listings={bucketListExperiences}
+                distance={bcklgeoDistance}
+              />
               <CollapseCards
                 cards={bucketListExperiences}
                 className="md:hidden"
@@ -310,7 +342,10 @@ const destinationsArray = useDdestinationsArray()
             number={otherExperiences.length}
             listings
           >
-            <CollapseListings listings={otherExperiences} distance={bcklgeoDistance}  />
+            <CollapseListings
+              listings={otherExperiences}
+              distance={bcklgeoDistance}
+            />
             <CollapseCards cards={otherExperiences} className="md:hidden" />
           </CollapseSection>
         )}
