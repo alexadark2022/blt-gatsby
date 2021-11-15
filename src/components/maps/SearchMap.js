@@ -18,7 +18,6 @@ const searchClient = algoliasearch(
 const index = searchClient.initIndex("BucketList");
 
 function SearchMap(props) {
-  //console.log(props);
   const { mainState, currentRefinement } = props;
   const [hits, setHits] = useState(null);
   useEffect(() => {
@@ -44,7 +43,7 @@ function SearchMap(props) {
 
 const SearchMapBox = ({ isMapOpen, closeModal, hits, mainState }) => {
   const allMapPoints = FormatMapsData(hits);
-  //console.log(allMapPoints);
+
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyCJkZohj9sqn6H_LrfHMNG5cY794SWFJgA",
