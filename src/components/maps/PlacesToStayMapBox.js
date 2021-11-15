@@ -10,6 +10,7 @@ import { Modal } from "..";
 import ShowMarkerBox from "./ShowMarkerBox";
 import useMapConfig from "./../../lib/hooks/useMapConfig";
 import TickBox from "./TickBox";
+import FilterOutCurrentItem from "./FilterOutCurrentItem";
 
 const PlacesToStayMapBox = ({
   isMapOpen,
@@ -95,7 +96,7 @@ const PlacesToStayMapBox = ({
                     ))}
                     {experiences &&
                       showExperiences &&
-                      experiences.map(
+                      FilterOutCurrentItem(experiences, mainData).map(
                         (item) =>
                           item?.customDataAttributes?.latitudeOfLocation1 && (
                             <ShowMarkerBox
