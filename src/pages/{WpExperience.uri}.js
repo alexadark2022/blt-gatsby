@@ -59,7 +59,7 @@ const ExperiencePage = ({ data }) => {
     gettingThere,
     priceFrom,
     minAge,
-    affiliateTours,
+
     experiences,
     itineraries,
   } = customDataAttributes || {};

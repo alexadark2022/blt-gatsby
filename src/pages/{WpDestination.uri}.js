@@ -79,7 +79,6 @@ const DestinationPage = ({ data }) => {
     placesToStay,
     tourOperators,
     experiences,
-    affiliatedTours,
     destinationGuides,
     itineraries,
   } = customDataAttributes || {};
