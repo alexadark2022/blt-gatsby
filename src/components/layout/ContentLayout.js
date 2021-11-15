@@ -1,8 +1,10 @@
 import React from "react";
 import clsx from "clsx";
 import Sticky from "react-stickynode";
+import { useMediaQuery } from "./../../lib/hooks";
 
 export const ContentLayout = ({ children, sidebar, isFilters }) => {
+  const min1024 = useMediaQuery("(min-width: 1024px)");
   return (
     <div
       id="content"
@@ -31,7 +33,9 @@ export const ContentLayout = ({ children, sidebar, isFilters }) => {
           }
         )}
       >
-        <Sticky bottomBoundary="#content">{sidebar}</Sticky>
+        <Sticky enabled={min1024} bottomBoundary="#content">
+          {sidebar}
+        </Sticky>
       </div>
     </div>
   );
