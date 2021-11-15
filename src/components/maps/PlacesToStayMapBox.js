@@ -7,7 +7,6 @@ import {
 } from "@react-google-maps/api";
 import { IoCloseCircle } from "react-icons/io5";
 import { Modal } from "..";
-import { Link } from "gatsby";
 import ShowMarkerBox from "./ShowMarkerBox";
 import useMapConfig from "./../../lib/hooks/useMapConfig";
 import TickBox from "./TickBox";
@@ -76,8 +75,9 @@ const PlacesToStayMapBox = ({
                           <InfoWindow
                             onCloseClick={() => setActiveMarker(null)}
                           >
-                            <Link
-                              to={mainData.uri}
+                            <a
+                              href={mainData.uri}
+                              target="_blank"
                               className="flex flex-col items-center"
                             >
                               <h3 className="mb-2 text-xl font-semibold text-primary">
@@ -88,7 +88,7 @@ const PlacesToStayMapBox = ({
                                 src={mainData.image}
                                 alt={mainData.title}
                               />
-                            </Link>
+                            </a>
                           </InfoWindow>
                         ) : null}
                       </Marker>
