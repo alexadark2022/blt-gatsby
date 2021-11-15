@@ -8,7 +8,7 @@ export const WhatWeOffer = ({ whatWeOffer, url }) => {
   return (
     <div className="container px-5 py-6 mt-5 bg-white md:pt-4 md:pb-10 max-w-big">
       {/* Title */}
-      <div className="flex flex-col items-center mb-10">
+      <div className="flex flex-col items-center mb-5">
         <h2 className="text-center text-f-40 md:text-[48px] text-grey5 font-light mb-5">
           {wwoTitle}
         </h2>
