@@ -183,7 +183,6 @@ export const experienceFragments = graphql`
       suitableFor
       theme
       whenToDoIt
-
       experiences {
         __typename
         ... on WpExperience {
