@@ -7,7 +7,6 @@ import {
 } from "@react-google-maps/api";
 import { IoCloseCircle } from "react-icons/io5";
 import { Modal } from "..";
-import { Link } from "gatsby";
 import FormatRoundUpMapsData from "./FormatRoundUpMapsData";
 
 const RoundupMapBox = ({ isMapOpen, closeModal, roundupData }) => {
@@ -83,7 +82,11 @@ const RoundupMapBox = ({ isMapOpen, closeModal, roundupData }) => {
                 >
                   {activeMarker === loc.position.lat ? (
                     <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-                      <Link to={loc.uri} className="flex flex-col items-center">
+                      <a
+                        href={loc.uri}
+                        target="_blank"
+                        className="flex flex-col items-center"
+                      >
                         <h3 className="mb-2 text-xl font-semibold text-primary">
                           {loc.title}
                         </h3>
@@ -92,7 +95,7 @@ const RoundupMapBox = ({ isMapOpen, closeModal, roundupData }) => {
                           src={loc.image}
                           alt={loc.title}
                         />
-                      </Link>
+                      </a>
                     </InfoWindow>
                   ) : null}
                 </Marker>

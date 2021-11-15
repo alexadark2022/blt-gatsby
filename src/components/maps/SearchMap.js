@@ -9,7 +9,6 @@ import {
 import { IoCloseCircle } from "react-icons/io5";
 import { connectSearchBox } from "react-instantsearch-dom";
 import { Modal } from "..";
-import { Link } from "gatsby";
 import FormatMapsData from "./FormatMapsData";
 import algoliasearch from "algoliasearch/lite";
 const searchClient = algoliasearch(
@@ -142,8 +141,9 @@ const SearchMapBox = ({ isMapOpen, closeModal, hits, mainState }) => {
                           <InfoWindow
                             onCloseClick={() => setActiveMarker(null)}
                           >
-                            <Link
-                              to={loc.uri}
+                            <a
+                              href={loc.uri}
+                              target="_blank"
                               className="flex flex-col items-center"
                             >
                               <h3 className="mb-2 text-xl font-semibold text-primary">
@@ -154,7 +154,7 @@ const SearchMapBox = ({ isMapOpen, closeModal, hits, mainState }) => {
                                 src={loc.image}
                                 alt={loc.title}
                               />
-                            </Link>
+                            </a>
                           </InfoWindow>
                         ) : null}
                       </Marker>
