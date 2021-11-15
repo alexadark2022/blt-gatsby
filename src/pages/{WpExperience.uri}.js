@@ -18,7 +18,7 @@ import slugify from "slugify";
 import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
 import { useSeoGeneral } from "../lib/hooks/useSeoGeneral";
 import { useDdestinationsArray } from "../lib/hooks/useDestinationsArray";
-
+import { AffiliateListing } from "../components/layout/AffiliateListing";
 
 const slugs = (string) => slugify(string, { lower: true, strict: true });
 
@@ -31,6 +31,7 @@ const ExperiencePage = ({ data }) => {
     modified,
     commonDataAttributes,
     customDataAttributes,
+    viAffiliate,
   } = experience || {};
 
   const {
@@ -41,6 +42,7 @@ const ExperiencePage = ({ data }) => {
     review,
     continent,
     country,
+    bcklgeoDistance,
   } = commonDataAttributes || {};
 
   const {
@@ -51,12 +53,13 @@ const ExperiencePage = ({ data }) => {
     destinations,
     whenIsIt,
     region,
+    city,
     ageBestSuitedFrom,
     whenToDoIt,
     gettingThere,
     priceFrom,
     minAge,
-    affiliateTours,
+
     experiences,
     itineraries,
   } = customDataAttributes || {};
@@ -79,7 +82,7 @@ const ExperiencePage = ({ data }) => {
     { name: "map" },
   ];
   const brContinent = continent?.length === 1 ? continent[0] : null;
-const destinationsArray = useDdestinationsArray()
+  const destinationsArray = useDdestinationsArray();
 
   const breadcrumbsTerms = [
     { name: "home", link: "/" },
@@ -87,9 +90,15 @@ const destinationsArray = useDdestinationsArray()
     { name: country.name, link: `/search/?q=${country.name}` },
     {
       name: region,
-      link: destinationsArray.includes(region)
+      link: destinationsArray.includes(region?.toLowerCase())
         ? `/destination/${region && slugs(region)}`
         : `/search/?q=${region}`,
+    },
+    {
+      name: city,
+      link: destinationsArray.includes(city?.toLowerCase())
+        ? `/destination/${city && slugs(city)}`
+        : `/search/?q=${city}`,
     },
   ].filter((term) => term.name);
 
@@ -172,7 +181,11 @@ const destinationsArray = useDdestinationsArray()
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={recos} pts />
+              <CollapseListings
+                listings={recos}
+                distance={bcklgeoDistance}
+                pts
+              />
               <CollapseCards cards={recos} className="md:hidden" />
             </div>
           </CollapseSection>
@@ -203,20 +216,30 @@ const destinationsArray = useDdestinationsArray()
         </CollapseSection>
 
         {/* Affiliate tours */}
-        {affiliateTours && (
+        {viAffiliate?.length > 0 && (
           <CollapseSection
             title="Who to go with: organised tours"
-            number={affiliateTours.length}
+            number={viAffiliate.length}
             id="who-to-go-with"
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={affiliateTours} noBl />
+              {/* <CollapseListings listings={affiliateTours} distance={bcklgeoDistance}  noBl />
               <CollapseCards
                 cards={affiliateTours}
                 className="md:hidden"
                 noBl
-              />
+              /> */}
+              {viAffiliate.map((item) => {
+                const parsedItem = JSON.parse(item);
+                console.log("parsedItem", parsedItem);
+                return (
+                  <AffiliateListing
+                    item={parsedItem}
+                    key={parsedItem.product_code}
+                  />
+                );
+              })}
             </div>
           </CollapseSection>
         )}
@@ -229,7 +252,11 @@ const destinationsArray = useDdestinationsArray()
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={tourOperator} noBl />
+              <CollapseListings
+                listings={tourOperator}
+                distance={bcklgeoDistance}
+                noBl
+              />
               <CollapseCards cards={tourOperator} className="md:hidden" noBl />
             </div>
           </CollapseSection>
@@ -243,7 +270,11 @@ const destinationsArray = useDdestinationsArray()
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={whereToStay} pts />
+              <CollapseListings
+                listings={whereToStay}
+                distance={bcklgeoDistance}
+                pts
+              />
               <CollapseCards cards={whereToStay} className="md:hidden" pts />
             </div>
           </CollapseSection>
@@ -256,7 +287,11 @@ const destinationsArray = useDdestinationsArray()
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={itineraries} itinerary />
+              <CollapseListings
+                listings={itineraries}
+                distance={bcklgeoDistance}
+                itinerary
+              />
               <CollapseCards
                 cards={itineraries}
                 className="md:hidden"
@@ -273,7 +308,10 @@ const destinationsArray = useDdestinationsArray()
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={destinations} />
+              <CollapseListings
+                listings={destinations}
+                distance={bcklgeoDistance}
+              />
               <CollapseCards cards={destinations} className="md:hidden" />
             </div>
           </CollapseSection>
@@ -286,7 +324,10 @@ const destinationsArray = useDdestinationsArray()
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={bucketListExperiences} />
+              <CollapseListings
+                listings={bucketListExperiences}
+                distance={bcklgeoDistance}
+              />
               <CollapseCards
                 cards={bucketListExperiences}
                 className="md:hidden"
@@ -301,7 +342,10 @@ const destinationsArray = useDdestinationsArray()
             number={otherExperiences.length}
             listings
           >
-            <CollapseListings listings={otherExperiences} />
+            <CollapseListings
+              listings={otherExperiences}
+              distance={bcklgeoDistance}
+            />
             <CollapseCards cards={otherExperiences} className="md:hidden" />
           </CollapseSection>
         )}

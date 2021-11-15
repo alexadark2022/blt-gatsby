@@ -182,12 +182,6 @@ export const experienceFragments = graphql`
       suitableFor
       theme
       whenToDoIt
-      affiliateTours {
-        __typename
-        ... on WpExperience {
-          ...ExperienceListing
-        }
-      }
       experiences {
         __typename
         ... on WpExperience {

@@ -143,12 +143,6 @@ export const destinationFragments = graphql`
           ...ExperienceListing
         }
       }
-      affiliatedTours {
-        __typename
-        ... on WpExperience {
-          ...ExperienceListing
-        }
-      }
       destinationGuides: destination {
         __typename
         ... on WpDestination {

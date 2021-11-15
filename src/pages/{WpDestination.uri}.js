@@ -23,6 +23,8 @@ import slugify from "slugify";
 import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
 import { useSeoGeneral } from "../lib/hooks/useSeoGeneral";
 import DetailPageMap from "./../components/maps/DetailPageMap";
+import { useDdestinationsArray } from "../lib/hooks/useDestinationsArray";
+import { AffiliateListing } from "../components/layout/AffiliateListing";
 
 const slugs = (string) => slugify(string, { lower: true, strict: true });
 
@@ -39,6 +41,7 @@ const DestinationPage = ({ data }) => {
     customDataAttributes,
     featuredImage,
     uri,
+    viAffiliate,
   } = destination || {};
   const seoImage = featuredImage?.node.localFile.childImageSharp.original;
 
@@ -76,7 +79,6 @@ const DestinationPage = ({ data }) => {
     placesToStay,
     tourOperators,
     experiences,
-    affiliatedTours,
     destinationGuides,
     itineraries,
   } = customDataAttributes || {};
@@ -95,7 +97,7 @@ const DestinationPage = ({ data }) => {
       id: "experiences",
     },
     { title: "Other experiences", experiences: otherExperiences },
-    { title: "Destination tickets & tours", experiences: affiliatedTours },
+    // { title: "Destination tickets & tours", experiences: affiliatedTours },
   ];
 
   const tabs = [
@@ -108,6 +110,7 @@ const DestinationPage = ({ data }) => {
   ];
 
   const brContinent = continent?.length === 1 ? continent[0] : null;
+  const destinationsArray = useDdestinationsArray();
 
   const breadcrumbsTerms = [
     { name: "home", link: "/" },
@@ -115,7 +118,7 @@ const DestinationPage = ({ data }) => {
     { name: country?.name, link: `/search/?q=${country?.name}` },
     {
       name: region,
-      link: `/destination/${region && slugs(region)}`
+      link: destinationsArray.includes(region?.toLowerCase())
         ? `/destination/${region && slugs(region)}`
         : `/search/?q=${region}`,
     },
@@ -205,6 +208,25 @@ const DestinationPage = ({ data }) => {
               </CollapseSection>
             );
           })}
+        {viAffiliate?.length > 0 && (
+          <CollapseSection
+            title="Destination Tickets & tours"
+            number={viAffiliate.length}
+          >
+            <div className="mt-5">
+              {viAffiliate.map((item) => {
+                const parsedItem = JSON.parse(item);
+                console.log("parsedItem", parsedItem);
+                return (
+                  <AffiliateListing
+                    item={parsedItem}
+                    key={parsedItem.product_code}
+                  />
+                );
+              })}
+            </div>
+          </CollapseSection>
+        )}
         {/* Where to stay */}
         {placesToStay && (
           <CollapseSection
