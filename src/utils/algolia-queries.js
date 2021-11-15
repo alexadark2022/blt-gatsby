@@ -33,8 +33,7 @@ const allWpExperienceQuery = gql`
           }
         }
         commonDataAttributes {
-          textCountry
-          textContinent
+
           standfirst
           country {
             name
@@ -124,8 +123,8 @@ const allWpDestinationQuery = gql`
           }
         }
         commonDataAttributes {
-          textCountry
-          textContinent
+
+
           standfirst
           country {
             name
@@ -208,8 +207,8 @@ const allWpPlaceToStayQuery = gql`
           }
         }
         commonDataAttributes {
-          textCountry
-          textContinent
+
+
           standfirst
           country {
             name
@@ -263,8 +262,8 @@ const allWpRoundUpQuery = gql`
           }
         }
         commonDataAttributes {
-          textCountry
-          textContinent
+
+
           standfirst
           country {
             name
@@ -333,8 +332,8 @@ const allWpItineraryQuery = gql`
           }
         }
         commonDataAttributes {
-          textCountry
-          textContinent
+
+
           standfirst
           country {
             name
