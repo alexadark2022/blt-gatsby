@@ -7,7 +7,6 @@ export const destinationFragments = graphql`
     slug
     id
     databaseId
-
     featuredImage {
       node {
         ...ListingImage
@@ -25,6 +24,7 @@ export const destinationFragments = graphql`
     }
     commonDataAttributes {
       standfirst
+      bcklgeoDistance
       country {
         name
         slug
@@ -42,7 +42,7 @@ export const destinationFragments = graphql`
 
   fragment DestinationPage on WpDestination {
     title
-    # viewCount
+    viAffiliate
     uri
     slug
     id
