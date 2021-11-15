@@ -4,6 +4,7 @@ import {
   InfoWindow,
   Marker,
   useJsApiLoader,
+  MarkerClusterer,
 } from "@react-google-maps/api";
 import { IoCloseCircle } from "react-icons/io5";
 import { connectSearchBox } from "react-instantsearch-dom";
@@ -24,7 +25,7 @@ function SearchMap(props) {
   useEffect(() => {
     index
       .search(currentRefinement, {
-        facetFilters: [`nodeType:${mainState}`],
+        facetFilters: mainState === "All" ? [] : [`nodeType:${mainState}`],
         hitsPerPage: 100,
       })
       .then(({ hits }) => {
@@ -97,7 +98,10 @@ const SearchMapBox = ({ isMapOpen, closeModal, hits, mainState }) => {
     }
     setActiveMarker(marker);
   };
-
+  const options = {
+    imagePath:
+      "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m", // so you must have m1.png, m2.png, m3.png, m4.png, m5.png and m6.png in that folder
+  };
   return (
     <Modal isOpen={isMapOpen} closeModal={closeModal}>
       <div
@@ -113,39 +117,51 @@ const SearchMapBox = ({ isMapOpen, closeModal, hits, mainState }) => {
               mapContainerStyle={{ width: "100%", height: "100%" }}
               zoom={14}
             >
-              {allMapPoints.map((loc) => (
-                <Marker
-                  key={loc.id}
-                  position={loc.position}
-                  icon={{
-                    url: `/images/${pointerColor}`,
-                    labelOrigin: new window.google.maps.Point(24, -10),
-                  }}
-                  onClick={() => handleActiveMarker(loc.position.lat)}
-                  label={{
-                    text: loc.title,
-                    color: pointerTextColor,
-                    fontSize: "1rem",
-                    fontWeight: "900",
-                    className: "green-marker",
-                  }}
-                >
-                  {activeMarker === loc.position.lat ? (
-                    <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-                      <Link to={loc.uri} className="flex flex-col items-center">
-                        <h3 className="mb-2 text-xl font-semibold text-primary">
-                          {loc.title}
-                        </h3>
-                        <img
-                          className="w-auto h-32 rounded-md"
-                          src={loc.image}
-                          alt={loc.title}
-                        />
-                      </Link>
-                    </InfoWindow>
-                  ) : null}
-                </Marker>
-              ))}
+              <MarkerClusterer options={options}>
+                {(clusterer) => (
+                  <>
+                    {allMapPoints.map((loc) => (
+                      <Marker
+                        clusterer={clusterer}
+                        key={loc.id}
+                        position={loc.position}
+                        icon={{
+                          url: `/images/${pointerColor}`,
+                          labelOrigin: new window.google.maps.Point(24, -10),
+                        }}
+                        onClick={() => handleActiveMarker(loc.position.lat)}
+                        label={{
+                          text: loc.title,
+                          color: pointerTextColor,
+                          fontSize: "1rem",
+                          fontWeight: "900",
+                          className: "green-marker",
+                        }}
+                      >
+                        {activeMarker === loc.position.lat ? (
+                          <InfoWindow
+                            onCloseClick={() => setActiveMarker(null)}
+                          >
+                            <Link
+                              to={loc.uri}
+                              className="flex flex-col items-center"
+                            >
+                              <h3 className="mb-2 text-xl font-semibold text-primary">
+                                {loc.title}
+                              </h3>
+                              <img
+                                className="w-auto h-32 rounded-md"
+                                src={loc.image}
+                                alt={loc.title}
+                              />
+                            </Link>
+                          </InfoWindow>
+                        ) : null}
+                      </Marker>
+                    ))}
+                  </>
+                )}
+              </MarkerClusterer>
             </GoogleMap>
           ) : null}
         </div>

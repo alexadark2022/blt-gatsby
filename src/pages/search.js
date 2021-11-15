@@ -16,6 +16,7 @@ import { Breadcrumbs } from "../components/Breadcrumbs";
 import LoaderSpinner from "react-loader-spinner";
 import SearchMap from "./../components/maps/SearchMap";
 import Sticky from "react-stickynode";
+import { useMediaQuery } from "./../lib/hooks";
 
 const indexName = "BucketList";
 const searchClient = algoliasearch(
@@ -24,8 +25,9 @@ const searchClient = algoliasearch(
 );
 const index = searchClient.initIndex("BucketList");
 const breadcrumbsTerms = [{ name: "home", link: "/" }, { name: "search" }];
-
 const SearchPage = () => {
+  const min1024 = useMediaQuery("(min-width: 1024px)");
+
   const [mainState, setMainState] = useState("All");
   const [view, setView] = useState("");
   const [openFilters, setOpenFilters] = useState(false);
@@ -83,6 +85,19 @@ const SearchPage = () => {
                 "w-full  lg:w-2/3 xl:w-[940px] mb-7 lg:mb-0 mr-14 xl:ml-14  mr-7 xl:w-[960px] lg:mt-base2"
               )}
             >
+              <div className="flex items-center justify-between mb-4 lg:mb-0 space-x-2">
+                <Button
+                  className={`lg:!hidden ${
+                    openFilters && "!hidden"
+                  } button !h-[45px] sm:h-[54px] w-full`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setOpenFilters(true);
+                  }}
+                >
+                  Filters
+                </Button>
+              </div>
               <StaticRefinementList
                 attribute="nodeType"
                 setMainState={setMainState}
@@ -95,19 +110,10 @@ const SearchPage = () => {
                 ]}
               />
               <div className="flex items-center justify-between mt-4 mb-4 space-x-2">
-                <Button
-                  small
-                  className={`w-[125px] lg:!hidden ${openFilters && "!hidden"}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setOpenFilters(true);
-                  }}
-                >
-                  Filters
-                </Button>
                 <div className="justify-end hidden w-full md:flex">
                   <ViewSwitcher
                     isClickable={[
+                      "All",
                       "Experience",
                       "PlaceToStay",
                       "Destination",
@@ -126,10 +132,10 @@ const SearchPage = () => {
             </div>
             <div
               className={clsx(
-                "w-full lg:w-1/3 xl:w-[320px]  lg:mt-base2  lg:mr-5 mb-base2 lg:mb-0"
+                "w-full order-first	lg:order-last lg:w-1/3 xl:w-[320px]  lg:mt-base2  lg:mr-5 mb-base2 lg:mb-0"
               )}
             >
-              <Sticky bottomBoundary="#content">
+              <Sticky enabled={min1024} bottomBoundary="#content">
                 <WithCollapse
                   isOpen={openFilters}
                   className="duration-500 ease-in-out transition-height"

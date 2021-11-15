@@ -17,12 +17,10 @@ const PlacesToStayMapBox = ({
   closeModal,
   mainData,
   experiences,
-  destinations,
 }) => {
   const { isLoaded, options, onUnmount, onLoad } = useMapConfig(mainData);
   const [activeMarker, setActiveMarker] = useState(null);
   const [showExperiences, setShowExperienes] = useState(false);
-  const [showDestinations, setShowDestinations] = useState(false);
 
   const handleActiveMarker = (marker) => {
     if (marker === activeMarker) {
@@ -43,12 +41,6 @@ const PlacesToStayMapBox = ({
             name="Experiences"
             checked={showExperiences}
             onChange={() => setShowExperienes(!showExperiences)}
-          />
-          <TickBox
-            show={destinations}
-            name="Destinations"
-            checked={showDestinations}
-            onChange={() => setShowDestinations(!showDestinations)}
           />
         </div>
         <div className="w-full h-full pb-10">
@@ -116,24 +108,6 @@ const PlacesToStayMapBox = ({
                               className="experience-pin-label"
                               color="#FFFFFF"
                               imageName="icon-darkblue.png"
-                            />
-                          )
-                      )}
-                    {destinations &&
-                      showDestinations &&
-                      destinations.map(
-                        (item) =>
-                          item?.customDataAttributes?.latitudeOfLocation1 && (
-                            <ShowMarkerBox
-                              key={item.id}
-                              item={item}
-                              handleActiveMarker={handleActiveMarker}
-                              clusterer={clusterer}
-                              activeMarker={activeMarker}
-                              setActiveMarker={setActiveMarker}
-                              className="destination-pin-label"
-                              color="#676767"
-                              imageName="icon-gray.png"
                             />
                           )
                       )}
