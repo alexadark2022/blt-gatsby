@@ -67,7 +67,6 @@ export const placeTostayFragments = graphql`
     databaseId
     title
     uri
-    # viewCount
     seo {
       ...SeoPage
     }
@@ -80,6 +79,7 @@ export const placeTostayFragments = graphql`
     modified
     commonDataAttributes {
       about
+      bcklgeoDistance
       review {
         title
         content
@@ -139,6 +139,7 @@ export const placeTostayFragments = graphql`
         }
       }
       region
+      city
       roomFeatures
       roomForFamilies
       roomType
@@ -147,6 +148,7 @@ export const placeTostayFragments = graphql`
       ski
       starRating
       wifi
+      website
       latitudeOfLocation1
       longitudeOfLocation1
       experiences {

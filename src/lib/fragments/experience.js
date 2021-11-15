@@ -78,7 +78,7 @@ export const experienceFragments = graphql`
 
   fragment ExperiencePage on WpExperience {
     title
-    # viewCount
+    viAffiliate
     uri
     slug
     id
@@ -113,6 +113,7 @@ export const experienceFragments = graphql`
     commonDataAttributes {
       about
       standfirst
+      bcklgeoDistance
       continent
       review {
         title

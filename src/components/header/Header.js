@@ -5,7 +5,7 @@ import { HeaderSearch } from "./HeaderSearch";
 import { HeaderMobileSearch } from "./HeaderMobileSearch";
 import clsx from "clsx";
 import { window } from "browser-monads";
-import Headroom from "react-headroom";
+// import Headroom from "react-headroom";
 
 import { Branding } from "./Branding";
 
@@ -13,7 +13,7 @@ export const Header = () => {
   const path = window.location.pathname;
 
   return (
-    <Headroom>
+    // <Headroom>
       <header id="header" className="relative py-3 bg-darkBlue">
         <div
           className={clsx(
@@ -38,6 +38,6 @@ export const Header = () => {
           </div>
         </div>
       </header>
-    </Headroom>
+    // </Headroom>
   );
 };

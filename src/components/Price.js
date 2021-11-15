@@ -13,7 +13,7 @@ export const Price = ({ priceCheckingLinks, website, className, ...props }) => {
       {...props}
     >
       <div className="mb-3 md:mb-0">Check pricing & availability on:</div>
-      <div className="relative flex flex-wrap items-center">
+      <div className="relative flex flex-wrap items-center justify-center">
         {priceCheckingLinks?.map((item, i) => {
           return (
             <a href={item.url} key={i} target="_blank" rel="noreferrer">
