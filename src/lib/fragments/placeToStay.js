@@ -148,6 +148,7 @@ export const placeTostayFragments = graphql`
       ski
       starRating
       wifi
+      website
       latitudeOfLocation1
       longitudeOfLocation1
       experiences {

@@ -91,7 +91,8 @@ const PlaceToStayPage = ({ data }) => {
     isSkiHotel,
     experiences,
     destinations,
-    city
+    city,
+    website
   } = customDataAttributes || {};
 
 
@@ -197,7 +198,7 @@ const destinationsArray = useDdestinationsArray()
         {/* Price */}
         {priceCheckingLinks && (
           <CollapseSection title="Price" id="price">
-            <Price priceCheckingLinks={priceCheckingLinks} />
+            <Price priceCheckingLinks={priceCheckingLinks} website={website} />
           </CollapseSection>
         )}
 
