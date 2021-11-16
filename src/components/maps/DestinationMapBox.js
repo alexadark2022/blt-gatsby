@@ -18,7 +18,6 @@ const DestinationMapBox = ({
   mainData,
   experiences,
   destinationGuides,
-  itineraries,
   placesToStay,
 }) => {
   const { isLoaded, options, onUnmount, onLoad } = useMapConfig(mainData);
@@ -33,7 +32,6 @@ const DestinationMapBox = ({
 
   const [showExperiences, setShowExperienes] = useState(false);
   const [showDestinationGuides, setShowDestinationGuides] = useState(false);
-  const [showItineraries, setShowItineraries] = useState(false);
   const [showPlacesToStay, setShowPlacesToStay] = useState(false);
 
   return (
@@ -54,12 +52,6 @@ const DestinationMapBox = ({
             name="Destination"
             checked={showDestinationGuides}
             onChange={() => setShowDestinationGuides(!showDestinationGuides)}
-          />
-          <TickBox
-            show={itineraries}
-            name="Itineraries"
-            checked={showItineraries}
-            onChange={() => setShowItineraries(!showItineraries)}
           />
           <TickBox
             show={placesToStay}
@@ -149,24 +141,6 @@ const DestinationMapBox = ({
                               activeMarker={activeMarker}
                               setActiveMarker={setActiveMarker}
                               className="destination-pin-label"
-                              color="#676767"
-                              imageName="icon-gray.png"
-                            />
-                          )
-                      )}
-                    {itineraries &&
-                      showItineraries &&
-                      itineraries.map(
-                        (item) =>
-                          item?.customDataAttributes?.latitudeOfLocation1 && (
-                            <ShowMarkerBox
-                              key={item.id}
-                              item={item}
-                              handleActiveMarker={handleActiveMarker}
-                              clusterer={clusterer}
-                              activeMarker={activeMarker}
-                              setActiveMarker={setActiveMarker}
-                              className="itinerary-pin-label"
                               color="#676767"
                               imageName="icon-gray.png"
                             />
