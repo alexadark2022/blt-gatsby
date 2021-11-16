@@ -31,6 +31,7 @@ export const ContactPage = ({ intro }) => {
 
   const onSubmit = (data) => {
     const { firstName, email, subject, message } = data;
+    console.log(data);
     sendEmail({
       variables: {
         input: {
