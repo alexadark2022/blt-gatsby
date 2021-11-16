@@ -1,8 +1,9 @@
-import React from "react"
-import { Widget } from "baseComponents"
-import clsx from "clsx"
+import React from "react";
+import { Widget } from "baseComponents";
+import clsx from "clsx";
 
 export const Sidebar = ({ widgets, className, ...props }) => {
+  console.log("test");
   return (
     <>
       {widgets && widgets.length > 0 && (
@@ -18,7 +19,7 @@ export const Sidebar = ({ widgets, className, ...props }) => {
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;
