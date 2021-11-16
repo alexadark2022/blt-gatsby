@@ -7,7 +7,6 @@ import {
 } from "@react-google-maps/api";
 import { IoCloseCircle } from "react-icons/io5";
 import { Modal } from "..";
-import { Link } from "gatsby";
 import ShowMarkerBox from "./ShowMarkerBox";
 import useMapConfig from "./../../lib/hooks/useMapConfig";
 import TickBox from "./TickBox";
@@ -17,12 +16,10 @@ const PlacesToStayMapBox = ({
   closeModal,
   mainData,
   experiences,
-  destinations,
 }) => {
   const { isLoaded, options, onUnmount, onLoad } = useMapConfig(mainData);
   const [activeMarker, setActiveMarker] = useState(null);
   const [showExperiences, setShowExperienes] = useState(false);
-  const [showDestinations, setShowDestinations] = useState(false);
 
   const handleActiveMarker = (marker) => {
     if (marker === activeMarker) {
@@ -43,12 +40,6 @@ const PlacesToStayMapBox = ({
             name="Experiences"
             checked={showExperiences}
             onChange={() => setShowExperienes(!showExperiences)}
-          />
-          <TickBox
-            show={destinations}
-            name="Destinations"
-            checked={showDestinations}
-            onChange={() => setShowDestinations(!showDestinations)}
           />
         </div>
         <div className="w-full h-full pb-10">
@@ -84,8 +75,9 @@ const PlacesToStayMapBox = ({
                           <InfoWindow
                             onCloseClick={() => setActiveMarker(null)}
                           >
-                            <Link
-                              to={mainData.uri}
+                            <a
+                              href={mainData.uri}
+                              target="_blank"
                               className="flex flex-col items-center"
                             >
                               <h3 className="mb-2 text-xl font-semibold text-primary">
@@ -96,7 +88,7 @@ const PlacesToStayMapBox = ({
                                 src={mainData.image}
                                 alt={mainData.title}
                               />
-                            </Link>
+                            </a>
                           </InfoWindow>
                         ) : null}
                       </Marker>
@@ -116,24 +108,6 @@ const PlacesToStayMapBox = ({
                               className="experience-pin-label"
                               color="#FFFFFF"
                               imageName="icon-darkblue.png"
-                            />
-                          )
-                      )}
-                    {destinations &&
-                      showDestinations &&
-                      destinations.map(
-                        (item) =>
-                          item?.customDataAttributes?.latitudeOfLocation1 && (
-                            <ShowMarkerBox
-                              key={item.id}
-                              item={item}
-                              handleActiveMarker={handleActiveMarker}
-                              clusterer={clusterer}
-                              activeMarker={activeMarker}
-                              setActiveMarker={setActiveMarker}
-                              className="destination-pin-label"
-                              color="#676767"
-                              imageName="icon-gray.png"
                             />
                           )
                       )}

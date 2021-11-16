@@ -6,7 +6,7 @@ import getMainLocations from "./getMainLocations";
 import RoundupMapBox from "./RoundupMapBox";
 
 const DetailPageMap = ({ isMapOpen, closeModal, pageType, data }) => {
-  //console.log(data);
+  console.log(data);
   const { title, featuredImage, uri, customDataAttributes } = data || {};
 
   if (pageType === `roundup`) {

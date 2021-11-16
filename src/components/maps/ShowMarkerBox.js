@@ -1,6 +1,5 @@
 import React from "react";
 import { InfoWindow, Marker } from "@react-google-maps/api";
-import { Link } from "gatsby";
 export default function ShowMarkerBox({
   item,
   handleActiveMarker,
@@ -34,7 +33,11 @@ export default function ShowMarkerBox({
       >
         {activeMarker === item.id ? (
           <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-            <Link to={item.uri} className="flex flex-col items-center">
+            <a
+              href={item.uri}
+              target="_blank"
+              className="flex flex-col items-center"
+            >
               <h3 className="mb-2 text-xl font-semibold text-primary">
                 {item.title}
               </h3>
@@ -43,7 +46,7 @@ export default function ShowMarkerBox({
                 src={item.featuredImage.node.sourceUrl}
                 alt={item.title}
               />
-            </Link>
+            </a>
           </InfoWindow>
         ) : null}
       </Marker>
