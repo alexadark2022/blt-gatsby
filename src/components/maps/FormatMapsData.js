@@ -1,5 +1,5 @@
 export default function FormatMapsData(hits) {
-  return (
+  const formatedHits =
     hits
       ?.filter((hit) => {
         const {
@@ -16,6 +16,7 @@ export default function FormatMapsData(hits) {
           uri,
           id,
           featuredImage,
+          nodeType,
           customDataAttributes: { latitudeOfLocation1, longitudeOfLocation1 },
         } = hit || {};
 
@@ -26,9 +27,16 @@ export default function FormatMapsData(hits) {
           },
           id,
           title,
+          nodeType,
           image: featuredImage?.node?.sourceUrl,
           uri: uri,
         };
-      }) ?? null
+      }) ?? null;
+
+  const ids = formatedHits.map((o) => JSON.stringify(o.position));
+  const filtered = formatedHits.filter(
+    ({ position }, index) => !ids.includes(JSON.stringify(position), index + 1)
   );
+
+  return filtered;
 }

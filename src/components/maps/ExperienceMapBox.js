@@ -10,6 +10,7 @@ import { Modal } from "..";
 import ShowMarkerBox from "./ShowMarkerBox";
 import useMapConfig from "./../../lib/hooks/useMapConfig";
 import TickBox from "./TickBox";
+import FilterMainData from "./FilterMainData";
 
 const ExperienceMapBox = ({
   isMapOpen,
@@ -111,37 +112,25 @@ const ExperienceMapBox = ({
                     ))}
                     {experiences &&
                       showExperiences &&
-                      experiences
-                        .filter((item) => {
-                          const lat =
-                            item?.customDataAttributes?.latitudeOfLocation1;
-                          const lng =
-                            item?.customDataAttributes?.longitudeOfLocation1;
-                          const same = mainData.mainLocations.some(
-                            (loc) => loc.lat === lat && loc.lng === lng
-                          );
-                          if (same) return false;
-                          return true;
-                        })
-                        .map(
-                          (item) =>
-                            item?.customDataAttributes?.latitudeOfLocation1 && (
-                              <ShowMarkerBox
-                                key={item.id}
-                                item={item}
-                                handleActiveMarker={handleActiveMarker}
-                                clusterer={clusterer}
-                                activeMarker={activeMarker}
-                                setActiveMarker={setActiveMarker}
-                                className="experience-pin-label"
-                                color="#FFFFFF"
-                                imageName="icon-darkblue.png"
-                              />
-                            )
-                        )}
+                      FilterMainData(experiences, mainData).map(
+                        (item) =>
+                          item?.customDataAttributes?.latitudeOfLocation1 && (
+                            <ShowMarkerBox
+                              key={item.id}
+                              item={item}
+                              handleActiveMarker={handleActiveMarker}
+                              clusterer={clusterer}
+                              activeMarker={activeMarker}
+                              setActiveMarker={setActiveMarker}
+                              className="experience-pin-label"
+                              color="#FFFFFF"
+                              imageName="icon-darkblue.png"
+                            />
+                          )
+                      )}
                     {recommendations &&
                       showRecommendations &&
-                      recommendations.map(
+                      FilterMainData(recommendations, mainData).map(
                         (item) =>
                           item?.customDataAttributes?.latitudeOfLocation1 && (
                             <ShowMarkerBox
@@ -159,7 +148,7 @@ const ExperienceMapBox = ({
                       )}
                     {whereToStay &&
                       showWhereToStay &&
-                      whereToStay.map(
+                      FilterMainData(whereToStay, mainData).map(
                         (item) =>
                           item?.customDataAttributes?.latitudeOfLocation1 && (
                             <ShowMarkerBox
