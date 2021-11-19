@@ -29,44 +29,31 @@ function SearchMap(props) {
       })
       .then(({ hits }) => {
         setHits(hits);
-        console.log({ searchText: currentRefinement, mainState, hits });
+        // console.log({ searchText: currentRefinement, mainState, hits });
       });
   }, [mainState, currentRefinement]);
   if (!hits) {
     return null;
   }
+  const allMapPoints = FormatMapsData(hits);
+  if (!allMapPoints) {
+    return null;
+  }
   return (
     <>
-      <SearchMapBox {...props} hits={hits} />
+      <SearchMapBox {...props} allMapPoints={allMapPoints} />
     </>
   );
 }
 
-const SearchMapBox = ({ isMapOpen, closeModal, hits, mainState }) => {
-  const allMapPoints = FormatMapsData(hits);
-  //console.log(allMapPoints);
+const SearchMapBox = ({ isMapOpen, closeModal, allMapPoints }) => {
+  console.log(allMapPoints);
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyCJkZohj9sqn6H_LrfHMNG5cY794SWFJgA",
   });
 
   const [map, setMap] = useState(null);
-  const [pointerColor, setPointerColor] = useState(`icon-pastel.png`);
-  const [pointerTextColor, setPointerTextColor] = useState(`#D3B27D`);
-  useEffect(() => {
-    if (mainState === "Destination") {
-      setPointerColor(`icon-pastel.png`);
-      setPointerTextColor(`#D3B27D`);
-    }
-    if (mainState === `PlaceToStay`) {
-      setPointerColor(`icon-lightblue.png`);
-      setPointerTextColor(`#A9E8FF`);
-    }
-    if (mainState === `Experience`) {
-      setPointerColor(`icon-darkblue.png`);
-      setPointerTextColor(`#3A8DE1`);
-    }
-  }, [mainState]);
 
   const onLoad = useCallback(
     (map) => {
@@ -101,6 +88,35 @@ const SearchMapBox = ({ isMapOpen, closeModal, hits, mainState }) => {
     imagePath:
       "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m", // so you must have m1.png, m2.png, m3.png, m4.png, m5.png and m6.png in that folder
   };
+
+  const getPointerInfo = ({ nodeType }) => {
+    if (nodeType === "PlaceToStay") {
+      return {
+        color: "#FFFFFF",
+        className: "pts-pin-label",
+        imageName: "icon-blue.png",
+      };
+    } else if (nodeType === "Experience") {
+      return {
+        className: "experience-pin-label",
+        color: "#FFFFFF",
+        imageName: "icon-darkblue.png",
+      };
+    } else if (nodeType === "Destination") {
+      return {
+        className: "destination-pin-label",
+        color: "#ffffff",
+        imageName: "icon-gray.png",
+      };
+    } else {
+      return {
+        className: "current-pin-label",
+        color: "#FFFFFF",
+        imageName: "icon-pastel.png",
+      };
+    }
+  };
+
   return (
     <Modal isOpen={isMapOpen} closeModal={closeModal}>
       <div
@@ -119,46 +135,50 @@ const SearchMapBox = ({ isMapOpen, closeModal, hits, mainState }) => {
               <MarkerClusterer options={options}>
                 {(clusterer) => (
                   <>
-                    {allMapPoints.map((loc) => (
-                      <Marker
-                        clusterer={clusterer}
-                        key={loc.id}
-                        position={loc.position}
-                        icon={{
-                          url: `/images/${pointerColor}`,
-                          labelOrigin: new window.google.maps.Point(24, -10),
-                        }}
-                        onClick={() => handleActiveMarker(loc.position.lat)}
-                        label={{
-                          text: loc.title,
-                          color: pointerTextColor,
-                          fontSize: "1rem",
-                          fontWeight: "900",
-                          className: "green-marker",
-                        }}
-                      >
-                        {activeMarker === loc.position.lat ? (
-                          <InfoWindow
-                            onCloseClick={() => setActiveMarker(null)}
-                          >
-                            <a
-                              href={loc.uri}
-                              target="_blank"
-                              className="flex flex-col items-center"
+                    {allMapPoints.map((loc) => {
+                      const { className, color, imageName } =
+                        getPointerInfo(loc);
+                      return (
+                        <Marker
+                          clusterer={clusterer}
+                          key={loc.id}
+                          position={loc.position}
+                          icon={{
+                            url: `/images/${imageName}`,
+                            labelOrigin: new window.google.maps.Point(24, -10),
+                          }}
+                          onClick={() => handleActiveMarker(loc.position.lat)}
+                          label={{
+                            text: loc.title,
+                            color,
+                            fontSize: "1rem",
+                            fontWeight: "900",
+                            className: `${className ? className : ""}`,
+                          }}
+                        >
+                          {activeMarker === loc.position.lat ? (
+                            <InfoWindow
+                              onCloseClick={() => setActiveMarker(null)}
                             >
-                              <h3 className="mb-2 text-xl font-semibold text-primary">
-                                {loc.title}
-                              </h3>
-                              <img
-                                className="w-auto h-32 rounded-md"
-                                src={loc.image}
-                                alt={loc.title}
-                              />
-                            </a>
-                          </InfoWindow>
-                        ) : null}
-                      </Marker>
-                    ))}
+                              <a
+                                href={loc.uri}
+                                target="_blank"
+                                className="flex flex-col items-center"
+                              >
+                                <h3 className="mb-2 text-xl font-semibold text-primary">
+                                  {loc.title}
+                                </h3>
+                                <img
+                                  className="w-auto h-32 rounded-md"
+                                  src={loc.image}
+                                  alt={loc.title}
+                                />
+                              </a>
+                            </InfoWindow>
+                          ) : null}
+                        </Marker>
+                      );
+                    })}
                   </>
                 )}
               </MarkerClusterer>
