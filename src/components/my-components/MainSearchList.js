@@ -6,10 +6,22 @@ import isEmpty from "lodash/isEmpty";
 import isBrowser from "./../../utils/isBrowser";
 
 const MainSearchList = (props) => {
-  const { values, currentRefinement, items, refine, setMainState } = props;
+  const {
+    values,
+    currentRefinement,
+    items,
+    refine,
+    setMainState,
+    setTotalSearchHit,
+  } = props;
   const AllTotal = items.reduce((previousValue, currentValue) => {
     return previousValue + currentValue.count;
   }, 0);
+
+  useEffect(() => {
+    setTotalSearchHit(AllTotal);
+  }, [AllTotal]);
+
   useEffect(() => {
     const parsed = qs.parse(window.location.search);
     if (isEmpty(parsed) || !parsed.tab) {
