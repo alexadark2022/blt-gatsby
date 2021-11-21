@@ -7,7 +7,7 @@ import { useMediaQuery } from "../../lib/hooks";
 import { Button } from "../ui-components/Button";
 import isBrowser from "./../../utils/isBrowser";
 import CustomStats from "./CustomStats";
-const SearchBox = ({ currentRefinement, refine }) => {
+const SearchBox = ({ currentRefinement, refine, totalSearchHit }) => {
   const isSmall = useMediaQuery("(max-width:639px)");
   const [searchText, setSearchtext] = useState("");
   const [statText, setStatText] = useState("");
@@ -77,7 +77,10 @@ const SearchBox = ({ currentRefinement, refine }) => {
           </div>
           <div className="flex items-center mt-5">
             <div className="ml-3 font-bold text-f-26">
-              <CustomStats searchText={statText} />
+              <CustomStats
+                totalSearchHit={totalSearchHit}
+                searchText={statText}
+              />
             </div>
           </div>
         </form>

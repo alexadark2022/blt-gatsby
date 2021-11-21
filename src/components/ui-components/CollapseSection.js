@@ -29,9 +29,10 @@ export const CollapseSection = ({
   useEffect(() => {
     const isDefaultOpen = window.matchMedia("(min-width: 768px)").matches;
     const currentElm = collapseContainer?.current;
-    if (!open && !isDefaultOpen && buttonLocation) {
-      currentElm.scrollIntoView();
-    }
+    // if (!open && !isDefaultOpen && buttonLocation) {
+    // }
+    console.log("Working");
+    currentElm.scrollIntoView();
   }, [open]);
   return (
     <Section
@@ -68,9 +69,11 @@ export const CollapseSection = ({
 
             <Typo>{title}</Typo>
           </div>
-          {number && <div>
-            <Number number={number} />
-          </div>}
+          {number && (
+            <div>
+              <Number number={number} />
+            </div>
+          )}
         </div>
 
         <Collapse

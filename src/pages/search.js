@@ -29,6 +29,7 @@ const SearchPage = () => {
   const min1024 = useMediaQuery("(min-width: 1024px)");
 
   const [mainState, setMainState] = useState("All");
+  const [totalSearchHit, setTotalSearchHit] = useState(null);
   const [view, setView] = useState("");
   const [openFilters, setOpenFilters] = useState(false);
   const [isMapOpen, setIsMapOpen] = useState(false);
@@ -63,7 +64,7 @@ const SearchPage = () => {
       <Breadcrumbs terms={breadcrumbsTerms} />
       <InstantSearch searchClient={searchClient} indexName={indexName}>
         <Configure hitsPerPage={12} />
-        <SearchBox />
+        <SearchBox totalSearchHit={totalSearchHit} />
         {isEmptyObject(facets()) ? (
           <div className="flex items-center justify-center h-[400px]">
             <LoaderSpinner
@@ -101,6 +102,7 @@ const SearchPage = () => {
               <StaticRefinementList
                 attribute="nodeType"
                 setMainState={setMainState}
+                setTotalSearchHit={setTotalSearchHit}
                 values={[
                   { label: "Experience", value: "Experience" },
                   { label: "PlaceToStay", value: "PlaceToStay" },
