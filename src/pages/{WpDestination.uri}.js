@@ -191,7 +191,7 @@ const DestinationPage = ({ data }) => {
           allExperiences?.map((exp) => {
             const { title, experiences, id } = exp;
             if (experiences === null || experiences?.length === 0) {
-              return;
+              return null;
             }
             return (
               <CollapseSection

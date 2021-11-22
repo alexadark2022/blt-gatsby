@@ -44,7 +44,12 @@ const RatingRefinementList = (props) => {
     <div className={className}>
       <div className="py-4 border-b border-grey2">
         {/* Title */}
-        <div className="flex justify-between">
+        <div
+          onClick={(e) => {
+            setOpenFilterSet(!openFilterSet);
+          }}
+          className="flex justify-between"
+        >
           <h4 className="uppercase text-[15px] tracking-wider text-grey5 mb-2">
             {title}
           </h4>
@@ -54,10 +59,6 @@ const RatingRefinementList = (props) => {
               "transition duration-500",
               { "transform rotate-180": openFilterSet }
             )}
-            onClick={(e) => {
-              e.preventDefault();
-              setOpenFilterSet(!openFilterSet);
-            }}
           />
         </div>
         <WithCollapse

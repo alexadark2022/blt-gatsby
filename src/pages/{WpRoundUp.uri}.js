@@ -52,9 +52,7 @@ const RoundupPage = ({ data }) => {
   const breadcrumbsTerms = [{ name: "home", link: "/" }, { name: "Round-ups" }];
   const [openFilters, setOpenFilters] = useState(false);
   const [filteredLinks, setFilteredLinks] = useState(links);
-
   const updateItemExist = useStore((state) => state.updateItemExist);
-  const itemExist = useStore((state) => state.itemExist);
   const allFilters = useStore((state) => state.allFilters);
 
   useEffect(() => {
@@ -84,10 +82,11 @@ const RoundupPage = ({ data }) => {
         if (haveItem) {
           return true;
         }
+        return false;
       });
     });
     setFilteredLinks([...new Set(resArr)]);
-  }, [allFilters]);
+  }, [allFilters, links]);
 
   useEffect(() => {
     const allFiltersArray = Object.keys(filters);
