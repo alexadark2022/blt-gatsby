@@ -47,8 +47,7 @@ const ItineraryPage = ({ data }) => {
 
   const { about, sidebarTourOperator, sbtouroperatordescription, review } =
     commonDataAttributes || {};
-  const { days, longitudeOfLocation1, latitudeOfLocation1 } =
-    customDataAttributes || {};
+  const { days } = customDataAttributes || {};
 
   const breadcrumbsTerms = [
     { name: "home", link: "/" },
