@@ -38,7 +38,7 @@ const DetailPageMap = ({ isMapOpen, closeModal, pageType, data }) => {
   };
 
   return (
-    <div className="i">
+    <div className="map-container">
       {pageType === `experience` ? (
         <ExperienceMapBox
           isMapOpen={isMapOpen}
