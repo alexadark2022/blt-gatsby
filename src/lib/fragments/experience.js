@@ -33,7 +33,7 @@ export const experienceFragments = graphql`
         slug
       }
     }
-    customDataAttributes: experienceDataAttr {
+    customDataAttributes: experienceDataAttributes {
       address
       city
       duration
@@ -147,7 +147,7 @@ export const experienceFragments = graphql`
       }
       sbtouroperatordescription
     }
-    customDataAttributes: experienceDataAttr {
+    customDataAttributes: experienceDataAttributes {
       activitySubType
       address
       ageBestSuitedFrom

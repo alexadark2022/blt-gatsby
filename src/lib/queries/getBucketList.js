@@ -36,7 +36,7 @@ export const GET_BUCKET_LIST = gql`
                   slug
                 }
               }
-              customDataAttributes: experienceDataAttr {
+              customDataAttributes: experienceDataAttributes {
                 address
                 city
                 duration

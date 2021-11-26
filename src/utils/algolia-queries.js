@@ -40,7 +40,7 @@ const allWpExperienceQuery = gql`
           }
           continent
         }
-        customDataAttributes: experienceDataAttr {
+        customDataAttributes: experienceDataAttributes {
           eventType: eventSubType
           activityType: activitySubType
           attractionType: attractionSubType
