@@ -103,14 +103,11 @@ const ItineraryPage = ({ data }) => {
           />
         </section>
         {days?.map((day, index) => {
-          const { about, links } = day;
-          console.log("links", links);
-          const expLinks = links.filter(
-            (link) => link.__typename === "WpExperience"
-          );
-          const ptsLinks = links.filter(
-            (link) => link.__typename === "WpPlaceToStay"
-          );
+          const { about, linksExp, linksPts } = day;
+
+          const expLinks = linksExp || [];
+          const ptsLinks = linksPts || [];
+
           const allLinks = [...expLinks, ...ptsLinks];
           return (
             <CollapseSection

@@ -63,7 +63,6 @@ export const experienceFragments = graphql`
       eventType: eventSubType
       activityType: activitySubType
       attractionType: attractionSubType
-      greatFor: suitableFor
       priceGuideExp: priceRange
       bestTime: bestMonthFrom1
       whenAvailable: availableMonthFrom1
@@ -180,7 +179,7 @@ export const experienceFragments = graphql`
       specificMonth
       specificTime
       startTime
-      suitableFor
+
       theme
       whenToDoIt
 
@@ -202,11 +201,14 @@ export const experienceFragments = graphql`
           ...ItineraryListing
         }
       }
-      recommendations {
+      recommendationsExp {
         __typename
         ... on WpExperience {
           ...ExperienceListing
         }
+      }
+      recommendationsPts {
+        __typename
         ... on WpPlaceToStay {
           ...PlaceToStayListing
         }

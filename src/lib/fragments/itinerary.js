@@ -81,11 +81,14 @@ export const itineraryFragments = graphql`
         about
         title
 
-        links {
+        linksExp {
           ... on WpExperience {
             __typename
             ...ExperienceListing
           }
+        }
+
+        linksPts {
           ... on WpPlaceToStay {
             __typename
             ...PlaceToStayListing

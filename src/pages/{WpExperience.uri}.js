@@ -48,7 +48,8 @@ const ExperiencePage = ({ data }) => {
   const {
     writer,
     whereToStay,
-    recommendations,
+    recommendationsExp,
+    recommendationsPts,
     tourOperator,
     destinations,
     whenIsIt,
@@ -102,11 +103,8 @@ const ExperiencePage = ({ data }) => {
     },
   ].filter((term) => term.name);
 
-  const expReco =
-    recommendations?.filter((item) => item.__typename === "WpExperience") || [];
-  const ptsReco =
-    recommendations?.filter((item) => item.__typename === "WpPlaceToStay") ||
-    [];
+  const expReco = recommendationsExp || [];
+  const ptsReco = recommendationsPts || [];
   const recos = [...expReco, ...ptsReco];
 
   const bucketListExperiences = experiences?.filter(
@@ -174,10 +172,10 @@ const ExperiencePage = ({ data }) => {
           />
         </CollapseSection>
         {/* Recommendations = exp+ pts */}
-        {recommendations && (
+        {recos && (
           <CollapseSection
             title="Recommendations"
-            number={recommendations.length}
+            number={recos.length}
             listings
           >
             <div className="mt-5">
