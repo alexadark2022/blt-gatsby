@@ -1,6 +1,6 @@
-import React from "react"
-import { Link } from "gatsby"
-import clsx from "clsx"
+import React from "react";
+import { Link } from "gatsby";
+import clsx from "clsx";
 
 export const Branding = ({ className, ...props }) => {
   return (
@@ -12,14 +12,12 @@ export const Branding = ({ className, ...props }) => {
       {...props}
     >
       <Link to="/" className="text-white hover:text-white hover:no-underline">
-        {/* bucket list{' '}
-          <span className="ml-4 text-gold font-script"> travels</span> */}
         <img
-          src="/images/bl-logo-horiz.svg"
+          src="/images/logo2.png"
           alt="logo"
           className="sm:w-[300px] w-[200px]"
         />
       </Link>
     </h1>
-  )
-}
+  );
+};
