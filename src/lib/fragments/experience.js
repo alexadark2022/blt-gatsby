@@ -40,6 +40,7 @@ export const experienceFragments = graphql`
       minAge
       isAffiliateTour
       isBucketList
+      isGenericRecommendation
       profile
       priceFrom
       region

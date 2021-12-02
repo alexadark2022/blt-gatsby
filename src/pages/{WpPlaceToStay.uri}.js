@@ -3,7 +3,6 @@ import { graphql } from "gatsby";
 import { window } from "browser-monads";
 import { useDdestinationsArray } from "../lib/hooks/useDestinationsArray";
 
-
 import {
   CollapseSection,
   Layout,
@@ -32,7 +31,6 @@ import slugify from "slugify";
 import DetailPageMap from "./../components/maps/DetailPageMap";
 
 const slugs = (string) => slugify(string, { lower: true, strict: true });
-
 
 const PlaceToStayPage = ({ data }) => {
   const url = window.location.href;
@@ -68,7 +66,7 @@ const PlaceToStayPage = ({ data }) => {
     bcklgeoDistance,
   } = commonDataAttributes || {};
 
-  console.log('distance',JSON.parse(bcklgeoDistance));
+  console.log("distance", JSON.parse(bcklgeoDistance));
 
   const {
     writer,
@@ -92,9 +90,8 @@ const PlaceToStayPage = ({ data }) => {
     experiences,
     destinations,
     city,
-    website
+    website,
   } = customDataAttributes || {};
-
 
   const hf = otherHotelFacilities?.map((item) => item.toLowerCase());
   const poolFeatures = pool?.map((item) => item.toLowerCase());
@@ -103,9 +100,12 @@ const PlaceToStayPage = ({ data }) => {
   const bucketListExperiences = experiences?.filter(
     (exp) => exp.customDataAttributes.isBucketList === "yes"
   );
-  const otherExperiences = experiences?.filter(
-    (exp) => exp.customDataAttributes.isBucketList === "no"
-  );
+  const otherExperiences = experiences
+    ?.filter((exp) => exp.customDataAttributes.isBucketList === "no")
+    .filter(
+      (exp) => exp.customDataAttributes.isGenericRecommmendation === "no"
+    );
+  console.log("otherExperiences", otherExperiences);
 
   const tabs = [
     { name: "our review" },
@@ -114,8 +114,7 @@ const PlaceToStayPage = ({ data }) => {
     { name: "experiences nearby" },
     { name: "map" },
   ];
-const destinationsArray = useDdestinationsArray()
-
+  const destinationsArray = useDdestinationsArray();
 
   const brContinent = continent?.length === 1 ? continent[0] : null;
   const breadcrumbsTerms = [
@@ -397,7 +396,11 @@ const destinationsArray = useDdestinationsArray()
             listings
           >
             <div className="mt-5">
-              <CollapseListings listings={bucketListExperiences} databaseId={databaseId} distance={bcklgeoDistance} />
+              <CollapseListings
+                listings={bucketListExperiences}
+                databaseId={databaseId}
+                distance={bcklgeoDistance}
+              />
               <CollapseCards
                 cards={bucketListExperiences}
                 className="md:hidden"
@@ -412,7 +415,10 @@ const destinationsArray = useDdestinationsArray()
             number={otherExperiences.length}
             listings
           >
-            <CollapseListings listings={otherExperiences} distance={bcklgeoDistance}  />
+            <CollapseListings
+              listings={otherExperiences}
+              distance={bcklgeoDistance}
+            />
             <CollapseCards cards={otherExperiences} className="md:hidden" />
           </CollapseSection>
         )}
@@ -423,7 +429,10 @@ const destinationsArray = useDdestinationsArray()
             number={destinations.length}
             listings
           >
-            <CollapseListings listings={destinations} distance={bcklgeoDistance}  />
+            <CollapseListings
+              listings={destinations}
+              distance={bcklgeoDistance}
+            />
             <CollapseCards cards={destinations} className="md:hidden" />
           </CollapseSection>
         )}
