@@ -1,15 +1,15 @@
-import React, { useState } from "react"
-import clsx from "clsx"
-import { Image } from "../images"
-import { Link } from "gatsby"
-import Collapse from "@kunukn/react-collapse"
-import { FaChevronDown } from "react-icons/fa"
-import { useBucketList } from "../../lib/hooks/useBucketList"
-import { Button } from ".."
-import { Price } from "../Price"
-import { ListingBottomInfo } from "./ListingBottomInfo"
-import { AddToBlButton } from "../bucket-list/AddToBlButton"
-import noImage from "../../images/noimage.svg"
+import React, { useState } from "react";
+import clsx from "clsx";
+import { Image } from "../images";
+import { Link } from "gatsby";
+import Collapse from "@kunukn/react-collapse";
+import { FaChevronDown } from "react-icons/fa";
+import { useBucketList } from "../../lib/hooks/useBucketList";
+import { Button } from "..";
+import { Price } from "../Price";
+import { ListingBottomInfo } from "./ListingBottomInfo";
+import { AddToBlButton } from "../bucket-list/AddToBlButton";
+import noImage from "../../images/noimage.svg";
 
 export const Listing = ({
   item,
@@ -24,22 +24,21 @@ export const Listing = ({
   distance = null,
   ...props
 }) => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
-  let { title, intro, externalLink, link, databaseId } = item || {}
+  let { title, intro, externalLink, link, databaseId } = item || {};
 
-const distanceObject = JSON.parse(distance)
-const distanceToParent = Math.round(distanceObject?.[databaseId]*100)/100
-
+  const distanceObject = JSON.parse(distance);
+  const distanceToParent = Math.round(distanceObject?.[databaseId] * 10) / 10;
 
   let { featuredImage, uri, commonDataAttributes, customDataAttributes } = link
     ? link[0] || {}
-    : item || {}
+    : item || {};
 
-  let { standfirst, country} = commonDataAttributes || {}
-  const blItem = item.link ? item.link[0] : item
+  let { standfirst, country } = commonDataAttributes || {};
+  const blItem = item.link ? item.link[0] : item;
 
-  const { addToBl, removeFromBl, isAdded } = useBucketList(blItem)
+  const { addToBl, removeFromBl, isAdded } = useBucketList(blItem);
 
   let {
     starRating,
@@ -53,20 +52,17 @@ const distanceToParent = Math.round(distanceObject?.[databaseId]*100)/100
     city,
     region,
     summaryBio,
+  } = customDataAttributes || {};
 
-  } = customDataAttributes || {}
+  profile = profile ? profile : "full";
 
-
-
-  profile = profile ? profile : "full"
-
-  website = externalLink ? externalLink : website
+  website = externalLink ? externalLink : website;
   uri =
     profile === "full" || pts || itinerary || writer || roundUp || nested
       ? uri
       : website
       ? website
-      : "#"
+      : "#";
 
   const img = featuredImage ? (
     featuredImage.node.localFile ? (
@@ -91,8 +87,8 @@ const distanceToParent = Math.round(distanceObject?.[databaseId]*100)/100
     // <div className="flex items-center justify-center col-span-1 bg-veryLightGold w-[249px] h-[166px] text-grey4 ">
     //   No Image
     // </div>
-<img src={noImage} alt="placeholder image" width="249px" height="166px" />
-  )
+    <img src={noImage} alt="placeholder image" width="249px" height="166px" />
+  );
   return (
     <div className={clsx("shadow-listing", "p-2 pr-3 mb-5", className)}>
       <div className={clsx("flex justify-between")} {...props}>
@@ -116,19 +112,20 @@ const distanceToParent = Math.round(distanceObject?.[databaseId]*100)/100
                 />
               </Link>
 
-
-
               {city ||
                 region ||
-                country && (
+                (country && (
                   <div className="flex space-x-2">
                     <h3 className="mb-2 text-f-18 text-grey5">
                       {city ? city : region ? region : country?.name}
                     </h3>
-
                   </div>
-                )}
-                {distance && distanceObject?.[databaseId] && <span className="inline-block ml-2 font-bold">[{distanceToParent} miles]</span>}
+                ))}
+              {distance && distanceObject?.[databaseId] && (
+                <span className="inline-block ml-2 font-bold">
+                  [{distanceToParent} miles]
+                </span>
+              )}
               <div
                 dangerouslySetInnerHTML={{
                   __html: intro ? intro : summaryBio ? summaryBio : standfirst,
@@ -183,13 +180,13 @@ const distanceToParent = Math.round(distanceObject?.[databaseId]*100)/100
             )
           )}
           {/* Price checking links button */}
-          {priceCheckingLinks || website && pts ? (
+          {priceCheckingLinks || (website && pts) ? (
             <Button
               secondary
               className="!text-sm"
               onClick={(e) => {
-                e.preventDefault()
-                setOpen(!open)
+                e.preventDefault();
+                setOpen(!open);
               }}
               css={{
                 "&:hover": {
@@ -213,18 +210,16 @@ const distanceToParent = Math.round(distanceObject?.[databaseId]*100)/100
         </div>
       </div>
 
-        <Collapse
-          isOpen={open}
-          className="duration-500 ease-in-out transition-height"
-        >
-          <Price
-            priceCheckingLinks={priceCheckingLinks}
-            website={website}
-            className="mt-10"
-          />
-
-        </Collapse>
-
+      <Collapse
+        isOpen={open}
+        className="duration-500 ease-in-out transition-height"
+      >
+        <Price
+          priceCheckingLinks={priceCheckingLinks}
+          website={website}
+          className="mt-10"
+        />
+      </Collapse>
     </div>
-  )
-}
+  );
+};
