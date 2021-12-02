@@ -32,9 +32,9 @@ const Title = ({
       <div className="ml-5 xl:ml-14">
         {intro && <div className={clsx("text-gold text-f-24")}>{intro}</div>}
         <div
-          className={clsx({
-            "max-w-[940px] gap-5 flex justify-between items-center": bl,
-          })}
+          className={clsx(
+            "max-w-[940px] gap-5 flex justify-between items-center"
+          )}
         >
           <Typo
             as="h1"

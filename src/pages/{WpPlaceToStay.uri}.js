@@ -105,7 +105,6 @@ const PlaceToStayPage = ({ data }) => {
     .filter(
       (exp) => exp.customDataAttributes.isGenericRecommmendation === "no"
     );
-  console.log("otherExperiences", otherExperiences);
 
   const tabs = [
     { name: "our review" },
