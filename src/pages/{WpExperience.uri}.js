@@ -18,7 +18,7 @@ import slugify from "slugify";
 import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
 import { useSeoGeneral } from "../lib/hooks/useSeoGeneral";
 import { useDdestinationsArray } from "../lib/hooks/useDestinationsArray";
-import { AffiliateListing } from "../components/layout/AffiliateListing";
+
 
 const slugs = (string) => slugify(string, { lower: true, strict: true });
 
@@ -71,6 +71,8 @@ const ExperiencePage = ({ data }) => {
     general: seoGeneral?.wp?.seo,
   };
   const seoImage = featuredImage?.node.localFile.childImageSharp.original;
+
+  const parsedViAffiliate = viAffiliate.map(item => JSON.parse(item));
 
   useRecentlyViewed({ title, featuredImage, uri });
   const url = window.location.href;
@@ -172,7 +174,7 @@ const ExperiencePage = ({ data }) => {
           />
         </CollapseSection>
         {/* Recommendations = exp+ pts */}
-        {recos && (
+        {recos?.length >0 && (
           <CollapseSection
             title="Recommendations"
             number={recos.length}
@@ -216,28 +218,13 @@ const ExperiencePage = ({ data }) => {
         {/* Affiliate tours */}
         {viAffiliate?.length > 0 && (
           <CollapseSection
-            title="Who to go with: organised tours"
+            title="Destination Tickets & tours"
             number={viAffiliate.length}
-            id="who-to-go-with"
-            listings
           >
             <div className="mt-5">
-              {/* <CollapseListings listings={affiliateTours} distance={bcklgeoDistance}  noBl />
-              <CollapseCards
-                cards={affiliateTours}
-                className="md:hidden"
-                noBl
-              /> */}
-              {viAffiliate.map((item) => {
-                const parsedItem = JSON.parse(item);
-                console.log("parsedItem", parsedItem);
-                return (
-                  <AffiliateListing
-                    item={parsedItem}
-                    key={parsedItem.product_code}
-                  />
-                );
-              })}
+
+              <CollapseListings affiliate listings={parsedViAffiliate} />
+              <CollapseCards cards={parsedViAffiliate} affiliate className="md:hidden" />
             </div>
           </CollapseSection>
         )}

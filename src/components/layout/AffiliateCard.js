@@ -33,8 +33,6 @@ export const AffiliateCard = ({
           <StaticImage
                 src="../../images/viator-image.svg"
                 alt="viator logo"
-                // width={249}
-                // heigt={166}t
                 objectFit="cover"
                 objectPosition="center"
                 className="w-full"

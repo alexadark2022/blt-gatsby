@@ -24,7 +24,7 @@ import { Seo } from "@gatsbywpthemes/gatsby-plugin-wp-seo";
 import { useSeoGeneral } from "../lib/hooks/useSeoGeneral";
 import DetailPageMap from "./../components/maps/DetailPageMap";
 import { useDdestinationsArray } from "../lib/hooks/useDestinationsArray";
-import { AffiliateListing } from "../components/layout/AffiliateListing";
+
 
 const slugs = (string) => slugify(string, { lower: true, strict: true });
 
@@ -218,15 +218,7 @@ const DestinationPage = ({ data }) => {
             number={viAffiliate.length}
           >
             <div className="mt-5">
-              {/* {parsedViAffiliate.map((item) => {
-                // const parsedItem = JSON.parse(item);
-                return (
-                  <AffiliateListing
-                    item={item}
-                    key={item.product_code}
-                  />
-                );
-              })} */}
+
               <CollapseListings affiliate listings={parsedViAffiliate} />
               <CollapseCards cards={parsedViAffiliate} affiliate className="md:hidden" />
             </div>
