@@ -44,6 +44,10 @@ const DestinationPage = ({ data }) => {
     viAffiliate,
   } = destination || {};
   const seoImage = featuredImage?.node.localFile.childImageSharp.original;
+  const parsedViAffiliate = viAffiliate.map(item => JSON.parse(item));
+
+
+
 
   const seo = {
     page: destination?.seo,
@@ -214,16 +218,16 @@ const DestinationPage = ({ data }) => {
             number={viAffiliate.length}
           >
             <div className="mt-5">
-              {viAffiliate.map((item) => {
-                const parsedItem = JSON.parse(item);
-                console.log("parsedItem", parsedItem);
+              {/* {parsedViAffiliate.map((item) => {
+                // const parsedItem = JSON.parse(item);
                 return (
                   <AffiliateListing
-                    item={parsedItem}
-                    key={parsedItem.product_code}
+                    item={item}
+                    key={item.product_code}
                   />
                 );
-              })}
+              })} */}
+              <CollapseListings affiliate listings={parsedViAffiliate} />
             </div>
           </CollapseSection>
         )}

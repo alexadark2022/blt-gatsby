@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Collapse from "@kunukn/react-collapse";
 import { Button } from "..";
 import { Listing } from "./Listing";
+import { AffiliateListing } from "./AffiliateListing";
 
 export const CollapseListings = ({
   listings,
@@ -9,6 +10,7 @@ export const CollapseListings = ({
   destinationGuide,
   pts,
   distance,
+  affiliate,
   ...props
 }) => {
   const [open, setOpen] = useState(false);
@@ -19,6 +21,7 @@ export const CollapseListings = ({
         const { __typename } = item;
 
         return (
+  affiliate ? <AffiliateListing item={item} key={item.product_code}  className="mx-4 sm:mx-7"/>:
           <Listing
             item={item}
             key={item.id || item.title}
@@ -41,6 +44,7 @@ export const CollapseListings = ({
             {listings?.slice(4)?.map((item) => {
                const { __typename } = item;
               return (
+                affiliate ? <AffiliateListing item={item} key={item.product_code}  className="mx-4 sm:mx-7"/>:
                 <Listing item={item} key={item.id} className="mx-4 sm:mx-7" profile="full"
                 noBl={noBl}
                 itinerary={__typename === "Itinerary"}
