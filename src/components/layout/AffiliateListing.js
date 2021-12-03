@@ -1,14 +1,12 @@
 import React from "react";
 import { StaticImage } from "gatsby-plugin-image";
 import clsx from "clsx";
-import { useBucketList } from "../../lib/hooks/useBucketList";
 import { Button } from "..";
 
 export const AffiliateListing = ({ className, item, ...props }) => {
   const { title, link, description, destination_names } = item;
   const destination = destination_names[0]?.name;
-  console.log('destination aff',destination);
-  const { addToBl, removeFromBl, isAdded } = useBucketList(item);
+
   return (
     <div className={clsx("shadow-listing", "p-2 pr-3 mb-5 ", className)}>
       <div className={clsx("flex justify-between")} {...props}>

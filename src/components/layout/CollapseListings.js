@@ -24,7 +24,7 @@ export const CollapseListings = ({
   affiliate ? <AffiliateListing item={item} key={item.product_code}  className="mx-4 sm:mx-7"/>:
           <Listing
             item={item}
-            key={item.id || item.title}
+            key={item.id || item.slug}
             className="mx-4 sm:mx-7"
             profile="full"
             noBl={noBl}
@@ -45,7 +45,7 @@ export const CollapseListings = ({
                const { __typename } = item;
               return (
                 affiliate ? <AffiliateListing item={item} key={item.product_code}  className="mx-4 sm:mx-7"/>:
-                <Listing item={item} key={item.id} className="mx-4 sm:mx-7" profile="full"
+                <Listing item={item} key={item.id || item.slug} className="mx-4 sm:mx-7" profile="full"
                 noBl={noBl}
                 itinerary={__typename === "Itinerary"}
                 writer={__typename === "writer"}

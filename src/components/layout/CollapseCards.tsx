@@ -3,6 +3,7 @@ import Collapse from "@kunukn/react-collapse";
 import clsx from "clsx";
 import { Button } from "..";
 import { ListingCard } from "./ListingCard";
+import { AffiliateCard } from "./AffiliateCard";
 
 export const CollapseCards = ({
   cards,
@@ -12,6 +13,7 @@ export const CollapseCards = ({
   itinerary,
   writer,
   nested,
+  affiliate,
   ...props
 }: any) => {
   const [open, setOpen] = useState(false);
@@ -38,7 +40,9 @@ export const CollapseCards = ({
       {cards?.slice(0, 4).map((item: any) => {
         return (
           <div className="flex justify-center" key={item.id}>
+            {affiliate ? <AffiliateCard item={item} key={item.product_code}/> :
             <ListingCard
+            key={item.id}
               item={item}
               noBl={noBl}
               itinerary={itinerary}
@@ -46,6 +50,7 @@ export const CollapseCards = ({
               pts={pts}
               nested={nested}
             />
+      }
           </div>
         );
       })}
@@ -68,14 +73,17 @@ export const CollapseCards = ({
                       } flex justify-center `}
                       key={item.id}
                     >
+                      {affiliate ? <AffiliateCard item={item} key={item.product_code}/> :
                       <ListingCard
                         item={item}
+                        key={item.id}
                         noBl={noBl}
                         itinerary={itinerary}
                         writer={writer}
                         pts={pts}
                         nested={nested}
                       />
+                    }
                     </div>
                   );
                 })}

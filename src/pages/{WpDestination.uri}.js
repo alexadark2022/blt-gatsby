@@ -228,6 +228,7 @@ const DestinationPage = ({ data }) => {
                 );
               })} */}
               <CollapseListings affiliate listings={parsedViAffiliate} />
+              <CollapseCards cards={parsedViAffiliate} affiliate className="md:hidden" />
             </div>
           </CollapseSection>
         )}
