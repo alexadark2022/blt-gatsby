@@ -98,7 +98,7 @@ const MainSearchList = (props) => {
                 }}
               >
                 {staticItem.label}
-                <span className="ml-1">[{count}]</span>
+                {/* <span className="ml-1">[{count}]</span> */}
               </button>
             </li>
           );

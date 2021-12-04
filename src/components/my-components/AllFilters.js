@@ -13,6 +13,7 @@ export default function AllFilters({ facets, mainState }) {
       <div className="">
         <div className="flex flex-col justify-between">
           <CustomRefinementList
+            state={mainState}
             values={facets["customDataAttributes.recommendationType"]}
             attribute="customDataAttributes.recommendationType"
             title="Recommendation Type"
@@ -32,6 +33,7 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <CustomRefinementList
+            state={mainState}
             values={facets["commonDataAttributes.continent"]}
             attribute="commonDataAttributes.continent"
             title="CONTINENT"
@@ -47,6 +49,7 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <CustomRefinementList
+            state={mainState}
             values={facets["customDataAttributes.setting"]}
             attribute="customDataAttributes.setting"
             title="SETTING"
@@ -62,6 +65,7 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <CustomRefinementList
+            state={mainState}
             values={facets["customDataAttributes.theme"]}
             attribute="customDataAttributes.theme"
             title="THEME"
@@ -76,6 +80,7 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <CustomRefinementList
+            state={mainState}
             values={facets["customDataAttributes.whenAvailable"]}
             attribute="customDataAttributes.whenAvailable"
             title="WHEN AVAILABLE"
@@ -83,6 +88,7 @@ export default function AllFilters({ facets, mainState }) {
             className={clsx({ hidden: shouldVisible(["Experience"]) })}
           />
           <CustomRefinementList
+            state={mainState}
             values={facets["customDataAttributes.bestTime"]}
             attribute="customDataAttributes.bestTime"
             title="BEST TIME"
@@ -97,6 +103,7 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <CustomRefinementList
+            state={mainState}
             values={facets["customDataAttributes.whoFor"]}
             attribute="customDataAttributes.whoFor"
             title="Who For"
@@ -110,6 +117,7 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <CustomRefinementList
+            state={mainState}
             values={facets["customDataAttributes.priceGuide"]}
             attribute="customDataAttributes.priceGuide"
             title="Price Guide"
@@ -118,6 +126,7 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <CustomRefinementList
+            state={mainState}
             values={facets["customDataAttributes.priceGuideExp"]}
             attribute="customDataAttributes.priceGuideExp"
             title="Price Guide"
@@ -126,6 +135,7 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <CustomRefinementList
+            state={mainState}
             values={facets["customDataAttributes.experienceType"]}
             attribute="customDataAttributes.experienceType"
             title="Experience Type"
@@ -134,6 +144,7 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <CustomRefinementList
+            state={mainState}
             values={facets["customDataAttributes.attractionType"]}
             attribute="customDataAttributes.attractionType"
             title="Attraction Type"
@@ -142,6 +153,7 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <CustomRefinementList
+            state={mainState}
             values={facets["customDataAttributes.activityType"]}
             attribute="customDataAttributes.activityType"
             title="Activity Type"
@@ -150,6 +162,7 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <CustomRefinementList
+            state={mainState}
             values={facets["customDataAttributes.eventType"]}
             attribute="customDataAttributes.eventType"
             title="Event Type"
@@ -158,6 +171,7 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <CustomRefinementList
+            state={mainState}
             values={facets["customDataAttributes.standard"]}
             attribute="customDataAttributes.standard"
             title="Standard"
@@ -166,6 +180,7 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <CustomRefinementList
+            state={mainState}
             values={facets["customDataAttributes.starRating"]}
             attribute="customDataAttributes.starRating"
             title="Star Rating"
@@ -175,6 +190,7 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <CustomRefinementList
+            state={mainState}
             values={facets["customDataAttributes.accommodationType"]}
             attribute="customDataAttributes.accommodationType"
             title="Accommodation Type"
@@ -183,6 +199,7 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <CustomRefinementList
+            state={mainState}
             values={facets["customDataAttributes.roomType"]}
             attribute="customDataAttributes.roomType"
             title="Room Type"
@@ -191,6 +208,7 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <CustomRefinementList
+            state={mainState}
             values={facets["customDataAttributes.hotelFacility"]}
             attribute="customDataAttributes.hotelFacility"
             title="Hotel Facility"
@@ -199,6 +217,7 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <CustomRefinementList
+            state={mainState}
             values={facets["customDataAttributes.roomFacility"]}
             attribute="customDataAttributes.roomFacility"
             title="Room Facility"
@@ -207,6 +226,7 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <CustomRefinementList
+            state={mainState}
             values={facets["customDataAttributes.forFamilies"]}
             attribute="customDataAttributes.forFamilies"
             title="For Families"
@@ -216,6 +236,7 @@ export default function AllFilters({ facets, mainState }) {
           />
           {/* {Inclusions missing} */}
           <CustomRefinementList
+            state={mainState}
             values={facets["customDataAttributes.skiFacilities"]}
             attribute="customDataAttributes.skiFacilities"
             title="Ski Facilities"
@@ -224,6 +245,7 @@ export default function AllFilters({ facets, mainState }) {
             })}
           />
           <CustomRefinementList
+            state={mainState}
             values={facets["customDataAttributes.brand"]}
             attribute="customDataAttributes.brand"
             title="brand"

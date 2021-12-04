@@ -1,6 +1,6 @@
 import { connectRefinementList } from "react-instantsearch-dom";
 import clsx from "clsx";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "../ui-components/Button";
 import { WithCollapse } from "../ui-components/WithCollapse";
 import { FaChevronDown } from "react-icons/fa";
@@ -11,6 +11,7 @@ const CustomRefinementList = (props) => {
     currentRefinement,
     items,
     refine,
+    state,
     title = "CONTINENT",
     className,
     extraText = null,
@@ -30,6 +31,11 @@ const CustomRefinementList = (props) => {
       "december",
     ],
   } = props;
+
+  useEffect(() => {
+    //console.log("should be resetting");
+    refine([]);
+  }, [state]);
   const [open, setOpen] = useState(false);
   const [arraySize, setArraySize] = useState(4);
   const [openFilterSet, setOpenFilterSet] = useState(false);

@@ -47,7 +47,7 @@ function SearchMap(props) {
 }
 
 const SearchMapBox = ({ isMapOpen, closeModal, allMapPoints }) => {
-  console.log(allMapPoints);
+  //console.log(allMapPoints);
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyCJkZohj9sqn6H_LrfHMNG5cY794SWFJgA",
