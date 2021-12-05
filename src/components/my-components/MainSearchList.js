@@ -61,7 +61,7 @@ const MainSearchList = (props) => {
             }}
           >
             All
-            <span className="ml-1">[{AllTotal}]</span>
+            {/* <span className="ml-1">[{AllTotal}]</span> */}
           </button>
         </li>
 

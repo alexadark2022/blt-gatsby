@@ -30,6 +30,8 @@ const CustomRefinementList = (props) => {
       "november",
       "december",
     ],
+    showAsSymbol = false,
+    symbol,
   } = props;
 
   useEffect(() => {
@@ -154,7 +156,20 @@ const CustomRefinementList = (props) => {
                           refine(next);
                         }}
                       />
-                      {staticItem.label} {extraText ? extraText : ""}
+                      {!showAsSymbol && (
+                        <>
+                          {staticItem.label} {extraText ? extraText : ""}
+                        </>
+                      )}
+                      {showAsSymbol && (
+                        <div className="inline-block">
+                          {Array.from({
+                            length: parseInt(staticItem.label),
+                          }).map(() => (
+                            <span className="mr-0.5">{symbol}</span>
+                          ))}
+                        </div>
+                      )}
                       <span className="ml-1">[{count}]</span>
                     </label>
                   </li>

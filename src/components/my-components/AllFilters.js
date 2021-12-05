@@ -106,7 +106,7 @@ export default function AllFilters({ facets, mainState }) {
             state={mainState}
             values={facets["customDataAttributes.whoFor"]}
             attribute="customDataAttributes.whoFor"
-            title="Who For"
+            title="Especially For"
             className={clsx({
               hidden: shouldVisible([
                 "All",
@@ -121,6 +121,8 @@ export default function AllFilters({ facets, mainState }) {
             values={facets["customDataAttributes.priceGuide"]}
             attribute="customDataAttributes.priceGuide"
             title="Price Guide"
+            showAsSymbol={true}
+            symbol="£"
             className={clsx({
               hidden: shouldVisible(["PlaceToStay"]),
             })}
@@ -185,6 +187,8 @@ export default function AllFilters({ facets, mainState }) {
             attribute="customDataAttributes.starRating"
             title="Star Rating"
             extraText="star"
+            showAsSymbol={true}
+            symbol="★"
             className={clsx({
               hidden: shouldVisible(["PlaceToStay"]),
             })}
