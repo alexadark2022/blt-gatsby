@@ -18,6 +18,7 @@ import { useUpdateBucketList } from "../lib/hooks/useUpdateBucketList";
 import Loader from "react-spinners/BeatLoader";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import { Newsletter } from "../components/Newsletter";
+import { window } from "browser-monads";
 
 const BucketListPage = () => {
   //   const { data: filters } = filtersData
