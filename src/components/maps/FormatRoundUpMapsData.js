@@ -14,17 +14,18 @@ export default function FormatRoundUpMapsData(hits) {
         featuredImage,
         customDataAttributes: { latitudeOfLocation1, longitudeOfLocation1 },
       } = info || {};
-
-      return {
-        position: {
-          lat: latitudeOfLocation1,
-          lng: longitudeOfLocation1,
-        },
-        id,
-        title,
-        image: featuredImage?.node?.sourceUrl,
-        uri: uri,
-      };
+      if (title && latitudeOfLocation1) {
+        return {
+          position: {
+            lat: latitudeOfLocation1,
+            lng: longitudeOfLocation1,
+          },
+          id,
+          title,
+          image: featuredImage?.node?.sourceUrl,
+          uri: uri,
+        };
+      }
     }) ?? null
   ).filter((hit) => {
     const {
