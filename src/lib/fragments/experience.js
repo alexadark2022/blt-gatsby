@@ -38,7 +38,6 @@ export const experienceFragments = graphql`
       city
       duration
       minAge
-      isAffiliateTour
       isBucketList
       isGenericRecommendation
       profile
