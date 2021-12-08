@@ -157,7 +157,6 @@ export const experienceFragments = graphql`
       duration
       eventSubType
       gettingThere
-      isAffiliateTour
       isBucketList
       isGenericRecommendation
       latitudeOfLocation1
