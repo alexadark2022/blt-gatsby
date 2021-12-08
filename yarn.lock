@@ -7714,6 +7714,13 @@ gatsby-plugin-mailchimp@^5.2.2:
     email-validator "^2.0.4"
     jsonp "^0.2.1"
 
+gatsby-plugin-no-sourcemaps@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-no-sourcemaps/-/gatsby-plugin-no-sourcemaps-4.3.0.tgz#e5004354d0f42b936abf39b4d0125e5a365f55fb"
+  integrity sha512-2sb/dFmbQirN52OAKdDA1N1NQUvyDNQL0/7rc+CaQMSRywTcbT9vEJQZxbJaKXofudC4BXN7QNswKwJC89MQbQ==
+  dependencies:
+    "@babel/runtime" "^7.15.4"
+
 gatsby-plugin-page-creator@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-page-creator/-/gatsby-plugin-page-creator-4.2.0.tgz#680b5cd446be8f569fa900c45bc602c58799abff"

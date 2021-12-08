@@ -20,13 +20,13 @@ const config = {
       // queryDepth: 5,
       // circularQueryLimit: 5,
     },
-    // type: {
-    //   MediaItem: {
-    //     localFile: {
-    //       requestConcurrency: 1,
-    //     },
-    //   },
-    // },
+    type: {
+      MediaItem: {
+        localFile: {
+          requestConcurrency: 1,
+        },
+      },
+    },
     develop: {
       hardCacheData: true,
       nodeUpdateInterval: 20000,
